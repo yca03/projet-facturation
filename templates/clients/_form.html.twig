@@ -1,0 +1,83 @@
+{# {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }} #}
+
+
+
+
+
+<fieldset>
+    <legend>Identification du Client</legend>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="numero_fiche_besoin">Type de Société  *</label>
+                {{ form_widget(form.typeSociete, {'attr' : {'class': 'form-control selct2'}}) }}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="numero_fiche_besoin">Nom de la Société *</label>
+                {{ form_widget(form.nom, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet"> Numero de Compte Contribuable (N.C.C) *</label>
+                {{ form_widget(form.numeroCompteContribuable, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="date_etablissement">Adresse de la Société  *</label>
+                {{ form_widget(form.adresse, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet">Conatct *</label>
+                {{ form_widget(form.contact, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet">Remise * <i style="color: red">facultatif</i></label>
+                {{ form_widget(form.remise, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+        {# <div class="col-6">
+            <div class="form-group">
+                <label for="responsable_demande">Remise ( FCFA ) *</label>
+                {{ form_widget(form.remise, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="destinataire"> </label>
+                {{ form_widget(form.factClient, {'attr' : {'class': 'form-control '}}) }}
+            </div>
+
+            
+    </div> #}
+
+       
+</fieldset>

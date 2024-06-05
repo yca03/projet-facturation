@@ -1,10 +1,39 @@
-import './bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
+/* * Welcome to your app's main JavaScript file!
  *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
+ * We recommend including the built version of this JavaScript file * (and its CSS file) in your base layout (base.html.twig).
  */
-import './styles/app.css';
+// any CSS you import will output into a single css file (app.css in this case)
+import './css/app.css';
+import './js/dataTables.bootstrap';
+import 'select2/dist/js/select2.min'
+require('inputmask');
+import './js/datatables-demo';
+import './js/select2-demo';
+import './js/add-form-collection'
+import './js/delete.form.collection'
+import './css/custom.min.css'
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+
+import {runInputmask} from "./js/inputMark";
+
+require("datatables.net")
+require("datatables.net-responsive")
+require('datatables.net-buttons')
+require('datatables.net-buttons-bs4')()
+require("datatables.net-buttons/js/buttons.html5")
+require("datatables.net-buttons/js/buttons.colVis")
+require("datatables.net-buttons/js/buttons.print")
+require("datatables.net-rowgroup");
+require("datatables.net-fixedheader");
+
+
+/** Cutoms JS */
+import './js/page/feature/facture/add-collection-detail-facture'
+
+const moment = require('moment')
+global.moment = moment;
+
+
+///require("datatables.net")
+
+runInputmask();

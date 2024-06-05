@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+{#    <h1>User</h1>#}
+
+{#    <table class="table">#}
+{#        <tbody>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ user.id }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Email</th>#}
+{#                <td>{{ user.email }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Roles</th>#}
+{#                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Password</th>#}
+{#                <td>{{ user.password }}</td>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    <a href="{{ path('app_user_index') }}">back to list</a>#}
+
+{#    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>#}
+
+{#    {{ include('user/_delete_form.html.twig') }}#}
+
+
+
+
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp;  Liste des clients
+
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+
+                        <tr>
+                            <<th class="text-center">Id</th>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Prenom </th>
+                            <th class="text-center">Adresse email</th>
+                            <th class="text-center">Rôles</th>
+                            <th class="text-center">Contact</th>
+                            {#                            <th>actions</th>#}
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td class="text-center">{{user.id }}</td>
+                            <td class="text-center">{{user.nom }}</td>
+                            <td class="text-center">{{user.prenom }} </td>
+                            <td class="text-center">{{user.email}}</td>
+{#                            <td class="text-center">{{ user.roles ? user.roles|json_encode : '' }}}</td>#}
+
+                            <td class="text-center">
+                                {% if user.roles is iterable %}
+                                    {% for role in user.roles %}
+                                        {% if role == 'USER_ROLE' %}
+                                            UTILISATEUR
+                                        {% elseif role == 'ROLE_ADMIN' %}
+                                            ADMINISTRATEUR
+                                        {% endif %}
+
+                                    {% endfor %}
+                                {% else %}
+                                    {{ user.roles }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center">{{user.contact}}</td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                        <div class="card-footer">
+                            <div class="card-footer-content">
+                                <a href="{{path('app_user_new')}}" class="btn btn-primary float-right ml-2">
+                                    Nouveau</a>
+                                <a href="{{path('app_home')}}" class="btn btn-success float-right ml-3">
+                                    <i class="oi oi-home"></i>
+                                    Accueil</a>
+                            </div>
+                        </div>
+        </div>
+    </div>
+
+{% endblock %}

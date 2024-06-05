@@ -1,0 +1,74 @@
+{#{{ form_start(form) }}#}
+{#    {{ form_widget(form) }}#}
+{#    <button class="btn">{{ button_label|default('Save') }}</button>#}
+{#{{ form_end(form) }}#}
+
+
+
+
+<fieldset>
+    <legend>Identification</legend>
+    <hr>
+
+    <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="numero_fiche_besoin">Nom *</label>
+                    {{ form_widget(form.nom, {'attr' : {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="date_etablissement">Prenom *</label>
+                    {{ form_widget(form.prenom, {'attr' : {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Contact *</label>
+                {{ form_widget(form.contact, {'attr' : {'class': 'form-control'}, 'expanded': false}) }}
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="numero_fiche_besoin">Adresse Email *</label>
+                {{ form_widget(form.email, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="date_etablissement">Mot de passe *</label>
+                {{ form_widget(form.password, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Rôles d'utilisateur *</label>
+                {{ form_widget(form.roles, {'attr' : {'class': 'form-control select2 '}, 'expanded': false}) }}
+
+            </div>
+        </div>
+
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet"></label>
+                {{ form_widget(form.status, {'attr' : {'class': 'form-control  '}}) }}
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</fieldset>

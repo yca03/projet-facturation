@@ -1,0 +1,181 @@
+<!-- .menu-header -->
+<li class="menu-header"> MENU </li><br>
+<!-- /.menu-header -->
+<!-- .menu-item -->
+<!-- .menu-item -->
+{#<li class="menu-item {{ app.request.get('_route') == 'app_feature_ticket_new' ? 'has-active': '' }}"> <a href="{{ path('app_feature_ticket_new') }}" class="menu-link">#}
+{#		<span class="menu-icon fa fa-solid fa-add"></span>#}
+{#		Nouveau Ticket</a>#}
+{#</li>
+{#  <li class="menu-item"> <a href="" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-add"></span>
+		Lien</a>#}
+{#</li>#}
+
+{#<li class="menu-item has-child">#}
+{#	<a href="#" class="menu-link">#}
+{#		<span class="menu-icon oi oi-pencil"></span>#}
+{#		<span class="menu-text">Forms</span>#}
+{#	</a>#}
+{#	<!-- child menu -->#}
+{#	<ul class="menu">#}
+{#		<li class="menu-item">#}
+{#			<a href="" class="menu-link">Basic Elements</a>#}
+{#		</li>#}
+{#		<li class="menu-item">#}
+{#			<a href="" class="menu-link">Autocompletes</a>#}
+{#		</li>#}
+
+{#	</ul>#}
+{#	<!-- /child menu -->#}
+{#</li>#}
+
+<li class="menu-item ">
+	<a href="{{ path('app_home') }}" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-home"></span>
+		<span class="menu-text">Acceuil </span>
+	</a>
+	<!-- child menu -->
+{#	<ul class="menu">#}
+{#		<li class="menu-item {{ app.request.get('_route') == 'fdb_new' ? 'has-active': '' }}">#}
+{#			<a href="" class="menu-link"></a>#}
+{#		</li>#}
+{#		<li class="menu-item {{ app.request.get('_route') == 'fdb_index' ? 'has-active': '' }}">#}
+{#			<a href="" class="menu-link"></a>#}
+{#		</li>#}
+
+{#	</ul>#}
+	<!-- /child menu -->
+	<!-- .menu-item -->
+</li><br>
+{% if is_granted('ROLE_ADMIN') %}
+<li class="menu-item has-child">
+	<a href="#" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-user"></span>
+		<span class="menu-text">Utilisateur</span>
+	</a>
+	<!-- child menu -->
+	<ul class="menu">
+		<li class="menu-item {{ app.request.get('_route') == 'bonapprovisionnement_new' ? 'has-active': '' }}">
+			<a href="{{ path('app_user_new') }}" class="menu-link">Créer</a>
+		</li>
+		<li class="menu-item {{ app.request.get('_route') == 'bonapprovisionnement_index' ? 'has-active': '' }}">
+			<a href="{{ path('app_user_index') }}" class="menu-link">Liste</a>
+		</li>
+	</ul>
+	<!-- /child menu -->
+	<!-- .menu-item -->
+</li><br>
+{% endif %}
+<li class="menu-item has-child">
+	<a href="#" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-users"></span>
+		<span class="menu-text">Client</span>
+	</a>
+	<!-- child menu -->
+	<ul class="menu">
+		<li class="menu-item {{ app.request.get('_route') == 'depense_new' ? 'has-active': '' }}">
+			<a href="{{path('app_clients_new')}}" class="menu-link">Créer</a>
+		</li>
+		<li class="menu-item {{ app.request.get('_route') == 'depense_index' ? 'has-active': '' }}">
+			<a href="{{path('app_clients_index')}}" class="menu-link">Liste</a>
+		</li>
+	</ul>
+	<!-- /child menu -->
+	<!-- .menu-item -->
+</li><br>
+<li class="menu-item has-child">
+	<a href="#" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-file-invoice"></span>
+		<span class="menu-text">Facture</span>
+	</a>
+	<!-- child menu -->
+	<ul class="menu">
+		<li class="menu-item {{ app.request.get('_route') == 'depense_new' ? 'has-active': '' }}">
+			<a href="{{path('app_facture_new')}}" class="menu-link">Créer</a>
+		</li>
+		<li class="menu-item {{ app.request.get('_route') == 'depense_index' ? 'has-active': '' }}">
+			<a href="{{path('app_facture_info')}}" class="menu-link">Liste</a>
+		</li>
+	</ul>
+	<!-- /child menu -->
+	<!-- .menu-item -->
+</li><br>
+{% if is_granted('ROLE_ADMIN') %}
+<li class="menu-item has-child">
+	<a href="#" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-box"></span>
+		<span class="menu-text">Produit</span>
+	</a>
+	<!-- child menu -->
+	<ul class="menu">
+		<li class="menu-item {{ app.request.get('_route') == 'depense_new' ? 'has-active': '' }}">
+			<a href="{{ path('app_produit_new') }}" class="menu-link">Créer</a>
+		</li>
+		<li class="menu-item {{ app.request.get('_route') == 'depense_index' ? 'has-active': '' }}">
+			<a href="{{ path('app_produit_index') }}" class="menu-link">Liste</a>
+		</li>
+	</ul>
+	<!-- /child menu -->
+	<!-- .menu-item -->
+</li><br>
+{% endif %}
+{#<li class="menu-item ">#}
+{#	<a href="{{ path ('app_facture_info') }}" class="menu-link">#}
+{#		<span class="menu-icon fa fa-solid fa-list"></span>#}
+{#		<span class="menu-text">Liste</span>#}
+{#	</a>#}
+{#	<!-- child menu -->#}
+{#	<ul class="menu">#}
+{#		<li class="menu-item {{ app.request.get('_route') == 'depense_new' ? 'has-active': '' }}">#}
+{#			<a href="" class="menu-link"></a>#}
+{#		</li>#}
+{#		<li class="menu-item {{ app.request.get('_route') == 'depense_index' ? 'has-active': '' }}">#}
+{#			<a href="" class="menu-link"></a>#}
+{#		</li>#}
+{#	</ul>#}
+{#	<!-- /child menu -->#}
+{#	<!-- .menu-item -->#}
+{#</li>#}
+{#<li class="menu-item ">#}
+{#	<a href="" class="menu-link">#}
+{#		<span class="fas fa-credit-card"></span>#}
+{#		<span class="menu-text"> Mode payement</span>#}
+{#	</a>#}
+{#	<!-- child menu -->#}
+{#	<ul class="menu">#}
+{#		<li class="menu-item {{ app.request.get('_route') == 'depense_new' ? 'has-active': '' }}">#}
+{#			<a href="" class="menu-link"></a>#}
+{#		</li>#}
+{#		<li class="menu-item {{ app.request.get('_route') == 'depense_index' ? 'has-active': '' }}">#}
+{#			<a href="" class="menu-link"></a>#}
+{#		</li>#}
+{#	</ul>#}
+{#	<!-- /child menu -->#}
+{#	<!-- .menu-item -->#}
+{#</li>#}
+
+
+<li class="menu-item ">
+	<a href="{{ path('app_list_etat') }}" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-layer-group"></span>
+		<span class="menu-text">Etat</span>
+	</a>
+	<!-- child menu -->
+	<ul class="menu">
+		<li class="menu-item {{ app.request.get('_route') == 'depense_new' ? 'has-active': '' }}">
+			<a href="" class="menu-link"></a>
+		</li>
+		<li class="menu-item {{ app.request.get('_route') == 'depense_index' ? 'has-active': '' }}">
+			<a href="" class="menu-link"></a>
+		</li>
+	</ul>
+	<!-- /child menu -->
+	<!-- .menu-item -->
+</li>
+
+
+
+
+
+

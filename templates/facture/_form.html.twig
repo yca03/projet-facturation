@@ -1,0 +1,81 @@
+{% form_theme form 'facture/_collection.html.twig' %}
+
+<fieldset>
+    <legend>Identification</legend>
+    <div class="row">
+
+
+        <div class="col-3">
+            <div class="form-group">
+                <label for="date_etablissement">Date *</label>
+                {{ form_widget(form.date, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        <div class="col-3">
+            <div class="form-group">
+                <label for="numero_fiche_besoin">Code de la facture *</label>
+                {{ form_widget(form.codeFacture, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+
+        <div class="col-3">
+            <div class="form-group">
+                <label for="objet">Société *</label>
+                {{ form_widget(form.IdClient, {'attr' : {'class': 'form-control', 'onchange': 'updateRemise(this.value)'}}) }}
+            </div>
+        </div>
+
+
+        <div class="col-3">
+            <div class="form-group">
+                <label for="objet">Mode de Payement *</label>
+                {{ form_widget(form.modePayement, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="form-group">
+                <label for="objet">Reference de la facture *</label>
+                {{ form_widget(form.reference , {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+    </div>
+</fieldset>
+
+<fieldset>
+    <input type="hidden" id="widget-counter-detail-facture" name="widget-counter-detail-facture"
+           value="{{ form.detailFactures|length }}">
+    <legend>Detail facture</legend>
+    <div class="table-responsive">
+        <table class="table table-sm bordered" id="table_detail_facture">
+            <thead>
+            <tr>
+                <th>Service (s)</th>
+                <th>Quanité</th>
+                <th>prix (fcfa)</th>
+                <th>Remise (fcfa)</th>
+                <th>Montant HT (fcfa)</th>
+                <th>Montant TVA (fcfa)</th>
+                <th>Montant TTC (fcfa)</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+               {{ form_widget(form.detailFactures) }}
+            </tbody>
+        </table>
+    </div>
+</fieldset>  
+
+
+
+
+
+
+
