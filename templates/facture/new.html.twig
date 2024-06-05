@@ -31,7 +31,7 @@
 
 {% block javascripts %}
     <script>
-        // Fonction pour mettre à jour la remise du client
+        // Fonction pour mettre à jour la remise du client en fonctionne du id
         function updateRemise(clientId) {
             if (clientId) {
                 fetch('/facture/client/' + clientId + '/remise')
@@ -48,6 +48,8 @@
                     .catch(error => console.error('Erreur:', error));
             }
         }
+
+
 
         document.addEventListener('DOMContentLoaded', function() {
             // Ajouter un écouteur d'événement sur le champ du client pour mettre à jour la remise
