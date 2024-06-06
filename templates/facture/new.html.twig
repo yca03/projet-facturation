@@ -57,7 +57,7 @@
                 updateRemise(this.value);
             });
 
-            // Initial attachment of events for product changes and montant calculations
+            // initialisation de l evenement
             function attacherEvenementChangeProduit() {
                 document.querySelectorAll('.produit-selector').forEach(function(element) {
                     element.addEventListener('change', function(event) {
@@ -82,7 +82,7 @@
                 });
             }
 
-            // Function to calculate amounts
+            // Function pour le calcul des montants
             function calculerMontants(detailId) {
                 var quantite = parseFloat(document.querySelector('.quantite[data-id="' + detailId + '"]').value) || 0;
                 var prix = parseFloat(document.querySelector('.prix[data-id="' + detailId + '"]').value) || 0;

@@ -24,9 +24,9 @@
 
             margin-bottom: 20px;
         }
-        h6
+        #date
         {
-
+            text-align: right;
         }
         table {
             width: 100%;
@@ -39,6 +39,10 @@
         th, td {
             padding: 10px;
             text-align: center;
+        }
+        #nom
+        {
+
         }
         th {
             background-color: #f2f2f2;
@@ -81,7 +85,7 @@
 {% block body %}
     <div class="invoice-container">
         <h3>FACTURE N° {{ facture.codeFacture }}</h3>
-        <h6>Date : {{ facture.dateFacture |date("d/m/Y") }}</h6>
+        <h5 id="date">Date : {{ facture.dateFacture |date("d/m/Y") }}</h5>
 
         <div class="company-info">
             <p><strong>OFFSET CONSULTING</strong></p>
@@ -123,12 +127,13 @@
             {% for detail in facture.detailFactures %}
                 <tr>
                     <td>{{ detail.quantite }}</td>
-                    <td>{{ detail.produit }}</td>
-                    <td>{{ detail.prix }}</td>
-                    <td>{{ detail.remise }}</td>
-                    <td>{{ detail.montantHT }}</td>
-                    <td>{{ detail.montantTVA }}</td>
-                    <td>{{ detail.montantTTC }}</td>
+                    <td  class="text-center">{{ detail.produit }}</td>
+                    <td class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
+                    <td class="text-right">{{ detail.remise | number_format(0, '.', ' ') }}</td>
+                    <td class="text-right">{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
+                    <td class="text-right">{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
+                    <td class="text-right">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
+
                 </tr>
 
                 {% set totalTTC = totalTTC + detail.montantTTC %}
@@ -139,7 +144,8 @@
         </table>
 
         <div class="total">
-            <p>NET A PAYER : {{ totalTTC }} Total TTC</p>
+            <p>NET A PAYER : {{ totalTTC | number_format(0, '.', ' ') }} Total TTC</p>
+
         </div>
 
 {#        <div class="total">#}

@@ -32,7 +32,7 @@ class DetailFacture
     #[ORM\Column(length: 255)]
     private ?string $montantTVA = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $remise = null;
 
 //    #[ORM\Column(type: Types::DATETIME_MUTABLE)]

@@ -46,6 +46,7 @@ class RechercheDateController extends AbstractController
                     'clientcontact' => $facture->getIdClient()->getContact(),
                     'clientnumeroCompteContribuable' => $facture->getIdClient()->getNumeroCompteContribuable(),
                     'codeFacture' => $facture->getCodeFacture(),
+                    'reference'=>$facture->getReference(),
                     'dateFacture' => $facture->getDate()->format('Y-m-d'),
                     'produit' => $detail->getProduit()->getLibelle(),
                     'quantite' => $detail->getQuantite(),

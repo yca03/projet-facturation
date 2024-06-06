@@ -156,6 +156,7 @@ class FactureController extends AbstractController
                     'clientnumeroCompteContribuable' => $facture->getIdClient()->getNumeroCompteContribuable(),
                     'modePayement'=>$facture->getModePayement(),
                     'codeFacture' => $facture->getCodeFacture(),
+                    'reference'=>$facture->getReference(),
                     'dateFacture' => $facture->getDate()->format('Y-m-d'),
                     'produit' => $detail->getProduit()->getLibelle(),
                     'quantite' => $detail->getQuantite(),
