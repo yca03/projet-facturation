@@ -138,13 +138,12 @@
 
                 {% set totalTTC = totalTTC + detail.montantTTC %}
 
-
-
             {% endfor %}
         </table>
 
         <div class="total">
             <p>NET A PAYER : {{ totalTTC | number_format(0, '.', ' ') }} Total TTC</p>
+             <p>NET À PAYER  : {{ facture.totalTTCInWords }} frcfa</p> 
 
         </div>
 

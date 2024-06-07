@@ -20,6 +20,15 @@ class ImpressionController extends AbstractController
             throw $this->createNotFoundException('Facture non trouvée');
         }
 
+        // Calculer le montant total TTC
+        $totalTTC = 0;
+        foreach ($facture->getDetailFactures() as $detail) {
+            $totalTTC += $detail->getMontantTTC();
+        }
+
+        // Convertir le montant total TTC en lettres
+        $totalTTCInWords = convertNumberToWords($totalTTC);
+
         // Préparer les données pour l'affichage
         $data = [
             'clientNom' => $facture->getIdClient()->getNom(),
@@ -29,7 +38,9 @@ class ImpressionController extends AbstractController
             'reference' => $facture->getReference(),
             'modePayement'=>$facture->getModePayement(),
             'dateFacture' => $facture->getDate()->format('y-m-d'),
-            'detailFactures' => []
+            'detailFactures' => [],
+            'totalTTC' => $totalTTC,
+            'totalTTCInWords' => $totalTTCInWords,
         ];
 
         // Récupérer les détails de la facture
