@@ -51,7 +51,7 @@
             margin-bottom: 20px;
         }
         .client-info {
-          text-align: right;
+            text-align: right;
         }
 
         .total {
@@ -138,19 +138,18 @@
 
                 {% set totalTTC = totalTTC + detail.montantTTC %}
 
-
-
             {% endfor %}
         </table>
 
         <div class="total">
             <p>NET A PAYER : {{ totalTTC | number_format(0, '.', ' ') }} Total TTC</p>
+            <p> {{ facture.totalTTCInWords }} frcfa</p>
 
         </div>
 
-{#        <div class="total">#}
-{#            <p>NET A PAYER : {{ detail.montantTTC }} Total TTC</p>#}
-{#        </div>#}
+        {#        <div class="total">#}
+        {#            <p>NET A PAYER : {{ detail.montantTTC }} Total TTC</p>#}
+        {#        </div>#}
 
 
         <p><em>Service commercial</em></p>
@@ -160,5 +159,3 @@
         </button>
     </div>
 {% endblock %}
-
-
