@@ -15,7 +15,7 @@
 
         <div class="col-3">
             <div class="form-group">
-                <label for="numero_fiche_besoin">Code de la facture *</label>
+                <label for="numero_fiche_besoin">Numéro de la Facture *</label>
                 {{ form_widget(form.codeFacture, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
@@ -39,10 +39,19 @@
 
         <div class="col-3">
             <div class="form-group">
-                <label for="objet">Reference de la facture *</label>
-                {{ form_widget(form.reference , {'attr' : {'class': 'form-control'}}) }}
+                <label for="objet">Date d'expiration *</label>
+                {{ form_widget(form.dateExpiration, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
+
+
+
+{#        <div class="col-3">#}
+{#            <div class="form-group">#}
+{#                <label for="objet">Reference de la facture *</label>#}
+{#                {{ form_widget(form.reference , {'attr' : {'class': 'form-control'}}) }}#}
+{#            </div>#}
+{#        </div>#}
 
 
     </div>

@@ -48,6 +48,7 @@
         {{ form_widget(form.montantTTC, {'attr': {"class": 'form-control montantTTC', "data-id": id}}) }}
         {{ form_errors(form.montantTTC) }}
     </td>
+
     <td class="text-center">
         <button type="button"
                 class="btn btn-sm btn-icon btn-secondary delete-detail-facture"
@@ -57,5 +58,9 @@
         </button>
     </td>
 </tr>
+{#    <tr>#}
+{#        <td colspan="8"> {{ form_widget(form.montantTTC, {'attr': {"class": 'form-control montantTTC', "data-id": id}}) }}#}
+{#            {{ form_errors(form.montantTTC) }}</td>#}
+{#    </tr>#}
 
 {% endblock %}

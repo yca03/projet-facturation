@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -41,7 +42,8 @@ class FactureType extends AbstractType
                 'allow_delete'=>true,
                 'prototype'=>true
             ])
-            ->add('reference');
+            ->add('reference',HiddenType::class,[])
+            ->add('dateExpiration');
 
         ;
 
@@ -53,7 +55,7 @@ $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
 
     // Vérifier si le champ codeFacture est vide
     if (empty($data->getCodeFacture())) {
-        $prefixe = "F 21 Z0075/ "; // Préfixe souhaité
+        $prefixe = "N 21 Z0075/ "; // Préfixe souhaité
         $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
 
         // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
@@ -79,7 +81,7 @@ $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event)
 
     // Vérifier si le champ codeFacture est vide
     if (empty($data->getCodeFacture())) {
-        $prefixe = "F 21 Z0075/ "; // Préfixe souhaité
+        $prefixe = "N 21 Z0075/ "; // Préfixe souhaité
         $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
 
         // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur

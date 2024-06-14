@@ -150,7 +150,7 @@ class Clients
         return $this->remise;
     }
 
-    public function setRemise(string $remise): static
+    public function setRemise(?string $remise): static
     {
         $this->remise = $remise;
 

@@ -31,7 +31,8 @@ class UserType extends AbstractType
             ->add('status', CheckboxType::class, [
                 'label' => 'Actif',
                 'required' => false,
-            ]);
+            ])
+        ->add('nomUtilisateur');
             
     }
 

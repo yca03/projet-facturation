@@ -37,6 +37,9 @@ class Facture
     #[ORM\Column(length: 255)]
     private ?string $reference = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateExpiration = null;
+
     public function __construct()
     {
         $this->detailFactures = new ArrayCollection();
@@ -142,6 +145,18 @@ class Facture
     public function setReference(string $reference): static
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getDateExpiration(): ?\DateTimeInterface
+    {
+        return $this->dateExpiration;
+    }
+
+    public function setDateExpiration(\DateTimeInterface $dateExpiration): static
+    {
+        $this->dateExpiration = $dateExpiration;
 
         return $this;
     }

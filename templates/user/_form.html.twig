@@ -57,13 +57,23 @@
 
             </div>
         </div>
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Nom d'utilisateur *</label>
+                {{ form_widget(form.nomUtilisateur, {'attr' : {'class': 'form-control  '}}) }}
+            </div>
+        </div>
 
 
         <div class="col-4">
             <div class="form-group">
                 <label for="objet"></label>
                 {{ form_widget(form.status, {'attr' : {'class': 'form-control  '}}) }}
-
             </div>
         </div>
     </div>

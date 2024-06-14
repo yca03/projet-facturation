@@ -8,11 +8,10 @@
     <div class="col-12 col-md-12">
     <div class="card">
       <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
-      <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp;  Liste des clients
-
-       
-
+        <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp;  Liste des clients
       </div>
+
+
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-striped table-hover bordered table-sm basic-datatable">
@@ -23,6 +22,7 @@
                   <th class="text-center">Type de Société</th>
                 <th class="text-center">Nom </th>
                   <th class="text-center">N.C.C</th>
+                  <th class="text-center">Remise</th>
                 <th class="text-center">Adresse</th>
                   <th class="text-center">Contact</th>
                 <th>actions</th>
@@ -35,6 +35,7 @@
                     <td class="text-center">{{client.typeSociete }}</td>
                     <td class="text-center">{{client.nom }} </td>
                     <td class="text-center">{{client.numeroCompteContribuable}}</td>
+                    <td class="text-center">{{client.remise}}</td>
                     <td class="text-center">{{client.adresse}}</td>
                     <td class="text-center">{{client.contact}}</td>
                     {# <td class="text-center">{{facture.dateFact ? facture.dateFact|date('Y-m-d H:i:s') : '' }}</td> #}

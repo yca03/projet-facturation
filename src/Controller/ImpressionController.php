@@ -33,6 +33,7 @@ class ImpressionController extends AbstractController
         $data = [
             'clientNom' => $facture->getIdClient()->getNom(),
             'clientadresse' => $facture->getIdClient()->getAdresse(),
+            'dateExpirationFacture'=>$facture->getDateExpiration(),
             'clientcontact'=>$facture->getIdClient()->getContact(),
             'codeFacture' => $facture->getCodeFacture(),
             'reference' => $facture->getReference(),
@@ -53,6 +54,7 @@ class ImpressionController extends AbstractController
                 'montantHT' => $detail->getMontantHT(),
                 'montantTVA' => $detail->getMontantTVA(),
                 'remise' => $detail->getRemise(),
+
             ];
         }
 

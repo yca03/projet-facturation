@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="" />
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FactureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ImpressionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ImpressionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Clients.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Facture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Facture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/Facture/FactureType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Facture/FactureType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/UserAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/UserAuthenticator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/convertion.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/convertion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/clients/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/clients/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/_collection.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/info.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/impression/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/impression/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/produit/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/produit/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -306,22 +329,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/projet-facturation/public&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AtomSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/wamp64/www/projet-angular2",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "AtomSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\projet-facturation\public" />
@@ -332,7 +355,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner configuration_file="$PROJECT_DIR$/projet-facturation/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
   </component>
@@ -360,7 +383,17 @@
       <workItem from="1717606369590" duration="2747000" />
       <workItem from="1717659022953" duration="26382000" />
       <workItem from="1717749404169" duration="486000" />
-      <workItem from="1718004380787" duration="1171000" />
+      <workItem from="1718004380787" duration="1397000" />
+      <workItem from="1718005788144" duration="423000" />
+      <workItem from="1718038290194" duration="165000" />
+      <workItem from="1718091700507" duration="65000" />
+      <workItem from="1718126392574" duration="335000" />
+      <workItem from="1718208915921" duration="3299000" />
+      <workItem from="1718266571360" duration="1406000" />
+      <workItem from="1718268170930" duration="27000" />
+      <workItem from="1718285093783" duration="6834000" />
+      <workItem from="1718295290165" duration="602000" />
+      <workItem from="1718358920031" duration="5633000" />
     </task>
     <servers />
   </component>

@@ -49,7 +49,7 @@
     
     <legend> CONNEXION</legend>
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger">Nom d'utilisateur ou mode de passe incorrect</div>
         {% endif %}
 
         {% for label, messages in app.flashes %}
@@ -61,7 +61,7 @@
         <div class="form-group mb-4">
             <label class="d-block text-left" for="inputEamil">Nom d'utilisateur </label>
             <input type="text" id="inputEmail"
-                   name="email"
+                   name="nomUtilisateur"
                    value="{{ last_username }}"
                    class="form-control"
                    required="" autofocus=""

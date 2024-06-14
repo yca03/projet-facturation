@@ -109,8 +109,13 @@
 
         <div class="client-info">
             <h5>CLIENT : {{ facture.clientNom }}</h5>
-            <p>08 BP 2714 ABIDJAN 08</p>
+            <p>{{ facture.clientadresse }}</p>
             <p>TEL : {{ facture.clientcontact }}</p> <br>
+        </div>
+
+        <div>
+            <h6>Date d'expiration : {{ facture.dateExpirationFacture|date("d/m/Y")  }} </i></h6>
+
         </div>
 
         <table>
@@ -143,11 +148,11 @@
 
         <div class="total">
             <p>NET A PAYER : {{ totalTTC | number_format(0, '.', ' ') }} Total TTC</p>
-<<<<<<< HEAD
-            <p> {{ facture.totalTTCInWords }} frcfa</p>
-=======
-             <p>NET À PAYER  : {{ facture.totalTTCInWords }} frcfa</p> 
->>>>>>> b8a72543873059f5d305120a8869dc5f5c5a3635
+
+{#            <p> {{ facture.totalTTCInWords }} frcfa</p>#}
+
+
+
 
         </div>
 

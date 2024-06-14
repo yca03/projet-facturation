@@ -1,8 +1,9 @@
 <?php
 
+use App\conversion;
 function convertNumberToWords($number) {
     $hyphen = '-';
-    $conjunction = ' et ';
+    $conjunction = '  ';
     $separator = ' ';
     $negative = 'moins ';
     $decimal = ' point ';
@@ -98,8 +99,4 @@ function convertNumberToWords($number) {
 
     return $string;
 }
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> b8a72543873059f5d305120a8869dc5f5c5a3635

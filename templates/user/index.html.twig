@@ -56,6 +56,7 @@
                             <th class="text-center">Nom</th>
                             <th class="text-center">Prenom</th>
                             <th class="text-center">Rôles</th>
+                            <th class="text-center">Nom d'utilisateur</th>
                             <th class="text-center">Adresse email</th>
                             <th class="text-center">Statut</th>
                             <th class="text-center">contact</th>
@@ -82,6 +83,7 @@
                                         {{ user.roles }}
                                     {% endif %}
                                 </td>
+                                <td class="text-center">{{user.nomUtilisateur }}</td>
                                 <td class="text-center">{{user.email }}</td>
                                 <td class="text-center">
                                     {% if user.status == 1 %}
@@ -93,8 +95,9 @@
 
                                 <td class="text-center">{{user.contact }}</td>
 
-                                <td class="text-center">
 
+
+                                <td class="text-center">
                                     <a href="{{ path('app_user_show', {'id': user.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
                                     <a href="{{ path('app_user_edit', {'id': user.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></i></a>
 

@@ -16,14 +16,15 @@
                         <tr>
                             <th class="text-center">ID</th>
                             <th class="text-center">Date </th>
-                            <th class="text-center">Reference</th>
-                            <th class="text-center">Type de Société</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Prix</th>
-                            <th class="text-center">Remise</th>
+                            <th class="text-center">Numéro Client</th>
+{#                            <th class="text-center">Type de Société</th>#}
+                            <th class="text-center">Client</th>
+{#                            <th class="text-center">Prix</th>#}
+{#                            <th class="text-center">Remise</th>#}
                             <th class="text-center">Montant HT</th>
                             <th class="text-center">montant TVA</th>
                             <th class="text-center">Montant TTC</th>
+                            <th class="text-center">Date d'expiration </th>
                             <th class="text-center">Contact</th>
                             <th>actions</th>
                         </tr>
@@ -36,14 +37,15 @@
                                 <tr>
                                     <th class="text-center">{{ facture.idFacture }}</th>
                                     <td class="text-center">{{ facture.dateFacture|date("d/m/Y")}}</td>
-                                    <td class="text-center">{{ facture.reference }}</td>
-                                    <td class="text-center">{{ facture.clientTypeSociete }}</td>
+                                    <td class="text-center">{{ facture.codeFacture }}</td>
+{#                                    <td class="text-center">{{ facture.clientTypeSociete }}</td>#}
                                     <td class="text-center">{{ facture.clientNom }}</td>
-                                    <td class="text-center">{{ facture.prix | number_format(0, '.', ' ')}}</td>
-                                    <td class="text-center">{{ facture.remise | number_format(0, '.', ' ') }}</td>
+{#                                    <td class="text-center">{{ facture.prix | number_format(0, '.', ' ')}}</td>#}
+{#                                    <td class="text-center">{{ facture.remise | number_format(0, '.', ' ') }}</td>#}
                                     <td class="text-center">{{ facture.montantHT | number_format(0, '.', ' ') }}</td>
                                     <td class="text-center">{{ facture.montantTVA | number_format(0, '.', ' ') }}</td>
                                     <td class="text-center">{{ facture.montantTTC| number_format(0, '.', ' ') }}</td>
+                                    <td class="text-center">{{ facture.dateExpirationFacture }}</td>
                                     <td class="text-center">{{ facture.clientcontact }}</td>
                                     <td class="text-center"><a href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>
                                 </tr>

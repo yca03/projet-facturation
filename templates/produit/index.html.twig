@@ -72,7 +72,7 @@
                         {% for produit in produits %}
                             <tr>
                                 <td class="text-center">{{produit.id }}</td>
-                                <td>{{ produit.updateDate ? produit.updateDate|date('Y-m-d H:i:s') : '' }}
+                                <td>{{ produit.updateDate ? produit.updateDate|date('d-m-Y') : '' }}
                                <td class="text-center">{{produit.typeProduit }}</td>
                                 <td class="text-center">{{produit.libelle }}</td>
                                  <td class="text-center">{{produit.prix}}</td>

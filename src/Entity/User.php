@@ -10,8 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity('email', message: 'Le mail {{ value }} existe déjà.')]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['nomUtilisateur'])]
+#[UniqueEntity('nomUtilisateur', message: 'Le mail {{ value }} existe déjà.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -46,6 +46,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?bool $status = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nomUtilisateur = null;
 
     public function getId(): ?int
     {
@@ -166,6 +169,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setStatus(bool $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getNomUtilisateur(): ?string
+    {
+        return $this->nomUtilisateur;
+    }
+
+    public function setNomUtilisateur(string $nomUtilisateur): static
+    {
+        $this->nomUtilisateur = $nomUtilisateur;
 
         return $this;
     }
