@@ -25,7 +25,6 @@ class ClientsType extends AbstractType
 
                 ],
                 'placeholder' => 'Sélectionner un type de société',
-                // D'autres options peuvent être ajoutées selon vos besoins
             ])
             ->add('nom')
             ->add('adresse')
