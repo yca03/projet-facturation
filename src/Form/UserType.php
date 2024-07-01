@@ -2,13 +2,16 @@
 
 namespace App\Form;
 
+use App\Entity\Societe;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class UserType extends AbstractType
 {
@@ -26,13 +29,16 @@ class UserType extends AbstractType
                 'multiple' => true,
                 'attr' => ['class' => 'select2'],
             ])
-            ->add('password')
+            ->add('password', HiddenType::class)
             ->add('contact')
             ->add('status', CheckboxType::class, [
                 'label' => 'Actif',
                 'required' => false,
             ])
-        ->add('nomUtilisateur');
+        ->add('nomUtilisateur')
+        ->add('relation',EntityType::class,[
+             'class'=>Societe::class
+        ]);
             
     }
 

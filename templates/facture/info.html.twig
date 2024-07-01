@@ -45,7 +45,7 @@
                                     <td class="text-center">{{ facture.montantHT | number_format(0, '.', ' ') }}</td>
                                     <td class="text-center">{{ facture.montantTVA | number_format(0, '.', ' ') }}</td>
                                     <td class="text-center">{{ facture.montantTTC| number_format(0, '.', ' ') }}</td>
-                                    <td class="text-center">{{ facture.dateExpirationFacture }}</td>
+                                    <td class="text-center">{{ facture.dateExpirationFacture |date("d/m/y") }}</td>
                                     <td class="text-center">{{ facture.clientcontact }}</td>
                                     <td class="text-center"><a href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>
                                 </tr>

@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Societe{% endblock %}
+
+{% block body %}
+{#    <h1>Societe</h1>#}
+
+{#    <table class="table">#}
+{#        <tbody>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ societe.id }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>RaisonSocial</th>#}
+{#                <td>{{ societe.RaisonSocial }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Forme</th>#}
+{#                <td>{{ societe.Forme }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Activite</th>#}
+{#                <td>{{ societe.Activite }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Numero</th>#}
+{#                <td>{{ societe.Numero }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Siege</th>#}
+{#                <td>{{ societe.Siege }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Telephone</th>#}
+{#                <td>{{ societe.Telephone }}</td>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    <a href="{{ path('app_societe_index') }}">back to list</a>#}
+
+{#    <a href="{{ path('app_societe_edit', {'id': societe.id}) }}">edit</a>#}
+
+{#    {{ include('societe/_delete_form.html.twig') }}#}
+
+
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom " style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Liste des clients
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+
+                        <tr>
+                            <<th class="text-center">Id</th>
+                            <th class="text-center">RaisonSocial</th>
+                            <th class="text-center">Forme</th>
+                            <th class="text-center">Ativité </th>
+                            <th class="text-center">N.C.C</th>
+                            <th class="text-center">Siège</th>
+                            <th class="text-center">Téléphone</th>
+{#                            <th>actions</th>#}
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td class="text-center">{{societe.id }}</td>
+                            <td class="text-center">{{societe.RaisonSocial }}</td>
+                            <td class="text-center">{{societe.Forme }}</td>
+                            <td class="text-center">{{societe.Activite }} </td>
+                            <td class="text-center">{{societe.Numero}}</td>
+                            <td class="text-center">{{societe.Siege}}</td>
+                            <td class="text-center">{{societe.Telephone}}</td>
+                            {# <td class="text-center">{{facture.dateFact ? facture.dateFact|date('Y-m-d H:i:s') : '' }}</td> #}
+                            {#                                <td class="text-center">#}
+
+                            {#                                    <a href="{{ path('app_clients_show', {'id': client.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>#}
+                            {#                                    <a href="{{ path('app_clients_edit', {'id': client.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></i></a>#}
+
+                            {#                                    <form method="post" action="{{ path('app_clients_delete', {'id': client.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">#}
+                            {#                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ client.id) }}">#}
+                            {#                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>#}
+                            {#                                    </form>#}
+
+                            {#                                    #}{# <a href="" style="color:black;"><i class="fa-solid fa-file-pen"></i></a> #}
+                            {#                                </td>#}
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {#            <div class="card-footer">#}
+            {#                <div class="card-footer-content">#}
+            {#                    <a href="{{path('app_clients_new')}}" class="btn btn-primary float-right ml-2">#}
+            {#                        Nouveau</a>#}
+            {#                    <a href="{{path('app_home')}}" class="btn btn-success float-right ml-3">#}
+            {#                        <i class="oi oi-home"></i>#}
+            {#                        Accueil</a>#}
+            {#                </div>#}
+            {#            </div>#}
+        </div>
+    </div>
+
+{% endblock %}

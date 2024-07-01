@@ -42,7 +42,8 @@ class FactureType extends AbstractType
                 'allow_delete'=>true,
                 'prototype'=>true
             ])
-            ->add('reference',HiddenType::class,[])
+//            ->add('reference',HiddenType::class,[])
+            ->add('reference')
             ->add('dateExpiration');
 
         ;

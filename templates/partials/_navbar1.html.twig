@@ -49,24 +49,45 @@
 	<!-- .menu-item -->
 </li><br>
 {% if is_granted('ROLE_ADMIN') %}
-<li class="menu-item has-child">
-	<a href="#" class="menu-link">
-		<span class="menu-icon fa fa-solid fa-user"></span>
-		<span class="menu-text">Utilisateur</span>
-	</a>
-	<!-- child menu -->
-	<ul class="menu">
-		<li class="menu-item {{ app.request.get('_route') == 'bonapprovisionnement_new' ? 'has-active': '' }}">
-			<a href="{{ path('app_user_new') }}" class="menu-link">Créer</a>
-		</li>
-		<li class="menu-item {{ app.request.get('_route') == 'bonapprovisionnement_index' ? 'has-active': '' }}">
-			<a href="{{ path('app_user_index') }}" class="menu-link">Liste</a>
-		</li>
-	</ul>
-	<!-- /child menu -->
-	<!-- .menu-item -->
-</li><br>
+
+	<li class="menu-item has-child">
+		<a href="#" class="menu-link">
+			<span class="menu-icon fa-solid fa-hotel"></span>
+			<span class="menu-text">Société</span>
+		</a>
+		<!-- child menu -->
+		<ul class="menu">
+			<li class="menu-item {{ app.request.get('_route') == 'bonapprovisionnement_new' ? 'has-active': '' }}">
+				<a href="{{ path('app_societe_new') }}" class="menu-link">Créer</a>
+			</li>
+			<li class="menu-item {{ app.request.get('_route') == 'bonapprovisionnement_index' ? 'has-active': '' }}">
+				<a href="{{ path('app_societe_index') }}" class="menu-link">Liste</a>
+			</li>
+		</ul>
+		<!-- /child menu -->
+		<!-- .menu-item -->
+	</li><br>
+
+	<li class="menu-item has-child">
+		<a href="#" class="menu-link">
+			<span class="menu-icon fa fa-solid fa-user"></span>
+			<span class="menu-text">Utilisateur</span>
+		</a>
+		<!-- child menu -->
+		<ul class="menu">
+			<li class="menu-item {{ app.request.get('_route') == 'bonapprovisionnement_new' ? 'has-active': '' }}">
+				<a href="{{ path('app_user_new') }}" class="menu-link">Créer</a>
+			</li>
+			<li class="menu-item {{ app.request.get('_route') == 'bonapprovisionnement_index' ? 'has-active': '' }}">
+				<a href="{{ path('app_user_index') }}" class="menu-link">Liste</a>
+			</li>
+		</ul>
+		<!-- /child menu -->
+		<!-- .menu-item -->
+	</li><br>
 {% endif %}
+
+
 <li class="menu-item has-child">
 	<a href="#" class="menu-link">
 		<span class="menu-icon fa fa-solid fa-users"></span>

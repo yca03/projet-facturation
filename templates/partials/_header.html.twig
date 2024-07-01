@@ -18,9 +18,7 @@
 			</a>
 		</div>
 		<!-- /.top-bar-brand -->
-		{% if app.user is defined and app.user.gare is defined %}
-			{% set gare = app.user.gare %}
-		{% endif %}
+
 		<!-- .top-bar-list -->
 		<div
 			class="top-bar-list">
@@ -41,17 +39,24 @@
 				class="top-bar-item px-0 d-none d-sm-flex">
 				<!-- .top-bar-item -->
 				<div class="top-bar-item top-bar-item-full">
-					{% if gare.name is defined %}
-						<button class="btn-account d-flex align-items-center" type="button" >
+					{% set societe = societe_info.info() %}
+					{% if societe %}
+						<button class="btn-account d-flex align-items-center" type="button">
+							<span  class=" fa-solid fa-hotel p-2"></span>
+							<strong class="pt-1">{{ societe.RaisonSocial }}</strong>
+						</button>
+
+						<button class="btn-account d-flex align-items-center" type="button">
 							<span class="oi oi-map-marker p-1"></span>
-							{# <strong class="pt-1">{{ gare.name }}</strong> #}
+							<strong class="pt-1">{{ societe.Siege }} , Abidjan</strong>
 						</button>
 					{% else %}
-						<button class="btn-account d-flex align-items-center" type="button" >
+						<button class="btn-account d-flex align-items-center" type="button">
 							<span class="fa-solid fa-building-columns p-1"></span>
-							<strong class="pt-1"> Facturation   </strong>
+							<strong class="pt-1">Facturation</strong>
 						</button>
 					{% endif %}
+
 
 					<button class="btn-account d-flex align-items-center" type="button" >
 						<span class="oi oi-clock p-1"></span>

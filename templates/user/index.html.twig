@@ -58,6 +58,7 @@
                             <th class="text-center">Rôles</th>
                             <th class="text-center">Nom d'utilisateur</th>
                             <th class="text-center">Adresse email</th>
+{#                            <th class="text-center">Société</th>#}
                             <th class="text-center">Statut</th>
                             <th class="text-center">contact</th>
                             <th>actions</th>
@@ -85,6 +86,13 @@
                                 </td>
                                 <td class="text-center">{{user.nomUtilisateur }}</td>
                                 <td class="text-center">{{user.email }}</td>
+{#                                <td class="text-center">#}
+{#                                    {% if user.relation is not null %}#}
+{#                                        {{ user.relation.RaisonSocial }}#}
+{#                                    {% else %}#}
+{#                                        Aucune société associée#}
+{#                                    {% endif %}#}
+{#                                </td>#}
                                 <td class="text-center">
                                     {% if user.status == 1 %}
                                         Actif

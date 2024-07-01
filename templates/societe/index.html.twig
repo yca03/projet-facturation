@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Sociétés{% endblock %}
+
+{% block body %}
+{#    <h1>Societe index</h1>#}
+
+{#    <table class="table">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <th>RaisonSocial</th>#}
+{#                <th>Forme</th>#}
+{#                <th>Activite</th>#}
+{#                <th>Numero</th>#}
+{#                <th>Siege</th>#}
+{#                <th>Telephone</th>#}
+{#                <th>actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for societe in societes %}#}
+{#            <tr>#}
+{#                <td>{{ societe.id }}</td>#}
+{#                <td>{{ societe.RaisonSocial }}</td>#}
+{#                <td>{{ societe.Forme }}</td>#}
+{#                <td>{{ societe.Activite }}</td>#}
+{#                <td>{{ societe.Numero }}</td>#}
+{#                <td>{{ societe.Siege }}</td>#}
+{#                <td>{{ societe.Telephone }}</td>#}
+{#                <td>#}
+{#                    <a href="{{ path('app_societe_show', {'id': societe.id}) }}">show</a>#}
+{#                    <a href="{{ path('app_societe_edit', {'id': societe.id}) }}">edit</a>#}
+{#                </td>#}
+{#            </tr>#}
+{#        {% else %}#}
+{#            <tr>#}
+{#                <td colspan="8">no records found</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    <a href="{{ path('app_societe_new') }}">Create new</a>#}
+
+
+
+
+
+
+
+
+
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp;  Liste des Sociétés
+            </div>
+
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+
+                        <tr>
+                            <th class="text-center">Id</th>
+                            <th class="text-center">Raison Social </th>
+                            <th class="text-center">Forme </th>
+                            <th class="text-center">Activité</th>
+                            <th class="text-center">N.C.C</th>
+                            <th class="text-center">Siège</th>
+                            <th class="text-center">Téléphone</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for societe in societes %}
+                            <tr>
+                                <td class="text-center">{{societe.id }}</td>
+                                <td class="text-center">{{societe.RaisonSocial }}</td>
+                                <td class="text-center">{{societe.Forme }} </td>
+                                <td class="text-center">{{societe.Activite}}</td>
+                                <td class="text-center">{{societe.Numero}}</td>
+                                <td class="text-center">{{societe.Siege}}</td>
+                                <td class="text-center">{{societe.Telephone}}</td>
+                                {# <td class="text-center">{{facture.dateFact ? facture.dateFact|date('Y-m-d H:i:s') : '' }}</td> #}
+                                <td class="text-center">
+
+                                    <a href="{{ path('app_societe_show', {'id': societe.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="{{ path('app_societe_edit', {'id': societe.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+
+                                    <form method="post" action="{{ path('app_societe_delete', {'id': societe.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ societe.id) }}">
+                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
+                                    </form>
+
+                                    {# <a href="" style="color:black;"><i class="fa-solid fa-file-pen"></i></a> #}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="card-footer-content">
+                    <a href="{{path('app_societe_new')}}" class="btn btn-primary float-right ml-2">
+                        Nouveau</a>
+                    <a href="{{path('app_home')}}" class="btn btn-success float-right ml-3">
+                        <i class="oi oi-home"></i>
+                        Accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

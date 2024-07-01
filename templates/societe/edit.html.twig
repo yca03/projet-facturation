@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Societe{% endblock %}
+
+{% block body %}
+{#    <h1>Edit Societe</h1>#}
+
+{#    {{ include('societe/_form.html.twig', {'button_label': 'Update'}) }}#}
+
+{#    <a href="{{ path('app_societe_index') }}">back to list</a>#}
+
+{#    {{ include('societe/_delete_form.html.twig') }}#}
+
+
+
+    <div class="col-12">
+        {{ form_start(form) }}
+        <div class="card card-fluid">
+            <div class="card-header bg-soft-custom" id="bg">
+                <h6> <i class="fa-solid fa-list" style="font-size:20px;"></i> Modification de la Société </h6>
+            </div>
+            <div class="card-body">
+                {{ include('societe/_form.html.twig') }}
+            </div>
+            <div class="card-footer">
+                <div class="card-footer-content">
+                    <button type="submit" class="btn btn-primary float-right ml-2">Enregistrer</button>
+                    {#                    <a href="{{path('app_clients_index')}}" class="btn btn-info float-right"><i class="oi oi-home"></i> Liste des Clients</a>#}
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

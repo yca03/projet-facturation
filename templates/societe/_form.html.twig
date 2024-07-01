@@ -1,0 +1,84 @@
+{#{{ form_start(form) }}#}
+{#    {{ form_widget(form) }}#}
+{#    <button class="btn">{{ button_label|default('Save') }}</button>#}
+{#{{ form_end(form) }}#}
+
+
+
+<fieldset>
+    <legend>Identification de la Société</legend>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="numero_fiche_besoin">Raison Social *</label>
+                {{ form_widget(form.RaisonSocial, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="numero_fiche_besoin">Forme de Société  *</label>
+                {{ form_widget(form.Forme, {'attr' : {'class': 'form-control selct2'}}) }}
+            </div>
+        </div>
+
+
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet"> Activité *</label>
+                {{ form_widget(form.Activite, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="date_etablissement">Numéro de Compte Contribuable *</label>
+                {{ form_widget(form.Numero, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet">Siège *</label>
+                {{ form_widget(form.Siege, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet">Téléphone * </label>
+                {{ form_widget(form.Telephone, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {# <div class="col-6">
+            <div class="form-group">
+                <label for="responsable_demande">Remise ( FCFA ) *</label>
+                {{ form_widget(form.remise, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="destinataire"> </label>
+                {{ form_widget(form.factClient, {'attr' : {'class': 'form-control '}}) }}
+            </div>
+
+
+    </div> #}
+
+
+</fieldset>
+

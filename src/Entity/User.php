@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,6 +51,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $nomUtilisateur = null;
+
+    /**
+     * @var Collection<int, Societe>
+     */
+    #[ORM\OneToMany(targetEntity: Societe::class, mappedBy: 'relation')]
+    private Collection $societes;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Societe $relation = null;
+
+    public function __construct()
+    {
+        $this->societes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -184,4 +200,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Societe>
+     */
+    public function getSocietes(): Collection
+    {
+        return $this->societes;
+    }
+
+    public function addSociete(Societe $societe): static
+    {
+        if (!$this->societes->contains($societe)) {
+            $this->societes->add($societe);
+            $societe->setRelation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSociete(Societe $societe): static
+    {
+        if ($this->societes->removeElement($societe)) {
+            // set the owning side to null (unless already changed)
+            if ($societe->getRelation() === $this) {
+                $societe->setRelation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRelation(): ?Societe
+    {
+        return $this->relation;
+    }
+
+    public function setRelation(?Societe $relation): static
+    {
+        $this->relation = $relation;
+
+        return $this;
+    }
+
+
 }

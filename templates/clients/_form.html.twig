@@ -15,17 +15,19 @@
 
         <div class="col-6">
             <div class="form-group">
-                <label for="numero_fiche_besoin">Type de Société  *</label>
-                {{ form_widget(form.typeSociete, {'attr' : {'class': 'form-control selct2'}}) }}
+                <label for="numero_fiche_besoin">Nom de la Société *</label>
+                {{ form_widget(form.nom, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
         <div class="col-6">
             <div class="form-group">
-                <label for="numero_fiche_besoin">Nom de la Société *</label>
-                {{ form_widget(form.nom, {'attr' : {'class': 'form-control'}}) }}
+                <label for="numero_fiche_besoin">Type de Société  *</label>
+                {{ form_widget(form.typeSociete, {'attr' : {'class': 'form-control selct2'}}) }}
             </div>
         </div>
+
+
 
         <div class="col-6">
             <div class="form-group">

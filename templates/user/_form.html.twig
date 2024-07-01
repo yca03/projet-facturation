@@ -20,7 +20,7 @@
 
             <div class="col-4">
                 <div class="form-group">
-                    <label for="date_etablissement">Prenom *</label>
+                    <label for="date_etablissement">Prénoms *</label>
                     {{ form_widget(form.prenom, {'attr' : {'class': 'form-control'}}) }}
                 </div>
             </div>
@@ -43,26 +43,7 @@
             </div>
         </div>
 
-        <div class="col-4">
-            <div class="form-group">
-                <label for="date_etablissement">Mot de passe *</label>
-                {{ form_widget(form.password, {'attr' : {'class': 'form-control'}}) }}
-            </div>
-        </div>
-
-        <div class="col-4">
-            <div class="form-group">
-                <label for="objet">Rôles d'utilisateur *</label>
-                {{ form_widget(form.roles, {'attr' : {'class': 'form-control select2 '}, 'expanded': false}) }}
-
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-
-        <div class="col-4">
+         <div class="col-4">
             <div class="form-group">
                 <label for="objet">Nom d'utilisateur *</label>
                 {{ form_widget(form.nomUtilisateur, {'attr' : {'class': 'form-control  '}}) }}
@@ -72,10 +53,36 @@
 
         <div class="col-4">
             <div class="form-group">
-                <label for="objet"></label>
-                {{ form_widget(form.status, {'attr' : {'class': 'form-control  '}}) }}
+                <label for="objet">Rôles d'utilisateur *</label>
+                {{ form_widget(form.roles, {'attr' : {'class': 'form-control select2 '}, 'expanded': false}) }}
             </div>
         </div>
+    </div>
+
+
+    <div class="row">
+
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="date_etablissement">Société *</label>
+                {{ form_widget(form.relation, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet"></label>
+                <div class="form-check form-check-inline">
+                    {{ form_widget(form.status, {'attr' : {'class': 'form-check-input'}}) }}
+                    <label class="form-check-label" for="status"> &nbsp; Si Oui Cocher la Case </label>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 
 
