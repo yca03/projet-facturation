@@ -29,23 +29,23 @@
         {{ form_errors(form.quantite) }}
     </td>
     <td>
-        {{ form_widget(form.prix , {'attr': {"class": 'form-control prix', "data-id": id}}) }}
+        {{ form_widget(form.prix , {'attr': {"class": 'form-control prix text-right', "data-id": id}}) }}
         {{ form_errors(form.prix) }}
     </td>
     <td>
-        {{ form_widget(form.remise, {'attr': {"class": 'form-control remise', "data-id": id}}) }}
+        {{ form_widget(form.remise, {'attr': {"class": 'form-control remise text-right', "data-id": id}}) }}
         {{ form_errors(form.remise) }}
     </td>
     <td>
-        {{ form_widget(form.montantHT, {'attr': {"class": 'form-control montantHT', "data-id": id}}) }}
+        {{ form_widget(form.montantHT, {'attr': {"class": 'form-control montantHT text-right', "data-id": id}}) }}
         {{ form_errors(form.montantHT) }}
     </td>
     <td>
-        {{ form_widget(form.montantTVA, {'attr': {"class": 'form-control montantTVA', "data-id": id}}) }}
+        {{ form_widget(form.montantTVA, {'attr': {"class": 'form-control montantTVA text-right', "data-id": id}}) }}
         {{ form_errors(form.montantTVA) }}
     </td>
     <td>
-        {{ form_widget(form.montantTTC, {'attr': {"class": 'form-control montantTTC', "data-id": id}}) }}
+        {{ form_widget(form.montantTTC, {'attr': {"class": 'form-control montantTTC text-right', "data-id": id}}) }}
         {{ form_errors(form.montantTTC) }}
     </td>
 
@@ -59,11 +59,6 @@
     </td>
 </tr>
 
-{# 
-<tr>
-    <td colspan="8">
-        <span>Total TTC : <span id="total-ttc">0.00</span></span>
-    </td>
-</tr> #}
+
 
 {% endblock %}
