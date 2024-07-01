@@ -62,17 +62,17 @@
 
     <div class="row">
 
-
         <div class="col-4">
             <div class="form-group">
-                <label for="date_etablissement">Société *</label>
-                {{ form_widget(form.relation, {'attr' : {'class': 'form-control'}}) }}
+                <label for="date_etablissement">Mot de passe *</label>
+                {{ form_widget(form.password, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
 
         <div class="col-4">
             <div class="form-group">
+                <br><br>
                 <label for="objet"></label>
                 <div class="form-check form-check-inline">
                     {{ form_widget(form.status, {'attr' : {'class': 'form-check-input'}}) }}
@@ -80,8 +80,6 @@
                 </div>
             </div>
         </div>
-
-
 
     </div>
 

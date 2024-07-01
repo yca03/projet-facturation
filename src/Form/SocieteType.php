@@ -20,6 +20,7 @@ class SocieteType extends AbstractType
             ->add('Numero')
             ->add('Siege')
             ->add('Telephone')
+            ->add('ville')
 //            ->add('relation', EntityType::class, [
 //                'class' => User::class,
 //                'choice_label' => 'id',

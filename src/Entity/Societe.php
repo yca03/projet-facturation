@@ -33,16 +33,15 @@ class Societe
     #[ORM\Column(length: 255)]
     private ?string $Telephone = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $ville = null;
+
     /**
      * @var Collection<int, User>
      */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'relation')]
-    private Collection $users;
 
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+
+
 
 
 
@@ -131,36 +130,17 @@ class Societe
     /**
      * @return Collection<int, User>
      */
-    public function getUsers(): Collection
+
+    public function getVille(): ?string
     {
-        return $this->users;
+        return $this->ville;
     }
 
-    public function addUser(User $user): static
+    public function setVille(string $ville): static
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setRelation($this);
-        }
+        $this->ville = $ville;
 
         return $this;
-    }
-
-    public function removeUser(User $user): static
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getRelation() === $this) {
-                $user->setRelation(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->RaisonSocial;
     }
 
 }

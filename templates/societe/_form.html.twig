@@ -50,6 +50,16 @@
             </div>
         </div>
 
+
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="responsable_demande">Ville *</label>
+                {{ form_widget(form.ville, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+    </div>
+
         <div class="col-6">
             <div class="form-group">
                 <label for="objet">Téléphone * </label>
@@ -61,23 +71,16 @@
 
 
 
-    {# <div class="col-6">
-            <div class="form-group">
-                <label for="responsable_demande">Remise ( FCFA ) *</label>
-                {{ form_widget(form.remise, {'attr' : {'class': 'form-control select2'}}) }}
-            </div>
-        </div>
+
+{#    <div class="row">#}
+{#        <div class="col-6">#}
+{#            <div class="form-group">#}
+{#                <label for="destinataire"> </label>#}
+{#                {{ form_widget(form.factClient, {'attr' : {'class': 'form-control '}}) }}#}
+{#            </div>#}
+
+
     </div>
-
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label for="destinataire"> </label>
-                {{ form_widget(form.factClient, {'attr' : {'class': 'form-control '}}) }}
-            </div>
-
-
-    </div> #}
 
 
 </fieldset>

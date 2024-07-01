@@ -29,16 +29,16 @@ class UserType extends AbstractType
                 'multiple' => true,
                 'attr' => ['class' => 'select2'],
             ])
-            ->add('password', HiddenType::class)
+            ->add('password')
             ->add('contact')
             ->add('status', CheckboxType::class, [
                 'label' => 'Actif',
                 'required' => false,
             ])
-        ->add('nomUtilisateur')
-        ->add('relation',EntityType::class,[
-             'class'=>Societe::class
-        ]);
+        ->add('nomUtilisateur');
+//        ->add('relation',EntityType::class,[
+//             'class'=>Societe::class
+//        ]);
             
     }
 
