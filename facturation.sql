@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 06 juin 2024 à 18:08
+-- Généré le : lun. 01 juil. 2024 à 10:56
 -- Version du serveur : 8.3.0
 -- Version de PHP : 8.2.18
 
@@ -37,20 +37,21 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `numero_compte_contribuable` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `remise` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `clients`
 --
 
 INSERT INTO `clients` (`id`, `nom`, `adresse`, `contact`, `type_societe`, `numero_compte_contribuable`, `remise`) VALUES
-(1, 'SIB', 'sib@gmail.com', '12121212', 'SA', '1234567899AAF', ''),
+(1, 'SIB', 'sib@gmail.com', '1212121249', 'SA', '1234567899AAF', NULL),
 (2, 'PETROCI', 'petroci@gmail.com', '258963542214', 'SARL', '123456789CB02', ''),
 (3, 'ORANGE', 'orangeci@gmail.com', '070707070707', 'SA', '123456789KHH25', '20000'),
-(4, 'AFRIKATOON', 'afrikatoonci@gmail.com', '2525252525', 'SARLU', '124555YA55', ''),
+(4, 'AFRIKATOON', 'afrikatoonci@gmail.com', '2525252525', 'SARLU', '124555YA55', NULL),
 (5, 'MTN', 'mtnci@gmail.com', '1515896336', 'SARL', '123456789CZ1236', ''),
 (6, 'SIR', 'sir@gmail.com', '1519191910', 'SA', '1254563333hD4', '100000'),
-(7, 'OFFSET-CONSULTING', 'offset@gmail.com', '1519191910', 'SARLU', '1254563333hD4765', NULL);
+(7, 'OFFSET-CONSULTING', 'offset@gmail.com', '1519191910', 'SARLU', '1254563333hD4765', NULL),
+(8, 'IVOIRE SOFT', 'ivoirsoft@gmail.com', '1595258566', 'SARL', '1254563333uay25', '20000');
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `detail_facture` (
   PRIMARY KEY (`id`),
   KEY `IDX_9949E4C5F347EFB` (`produit_id`),
   KEY `IDX_9949E4C57F2DEE08` (`facture_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `detail_facture`
@@ -97,10 +98,17 @@ INSERT INTO `detail_facture` (`id`, `quantite`, `prix`, `montant_ttc`, `montant_
 (16, 2, '500000', '1180000', '1000000', '180000', '0', 6, 13),
 (17, 1, '12000000', '11800000', '10000000', '1800000', '2000000', 1, 14),
 (18, 1, '12000000', '14042000', '11900000', '2142000', '100000', 1, 15),
-(19, 1, '1000000', '1 180 000', '1 000 000', '180 000', '0', 5, 16),
 (20, 2, '12000000', '28202000', '23900000', '4302000', '100000', 1, 17),
 (21, 1, '12000000', '14160000', '12000000', '2160000', NULL, 1, 18),
-(22, 2, '5000000', '11800000', '10000000', '1800000', NULL, 4, 19);
+(22, 2, '5000000', '11800000', '10000000', '1800000', NULL, 4, 19),
+(23, 1, '5000000', '5900000', '5000000', '900000', NULL, 4, 20),
+(24, 2, '500000', '1062000', '900000', '162000', '100000', 6, 20),
+(25, 1, '20000000', '23576400', '19980000', '3596400', '20000', 7, 21),
+(26, 2, '5000000', '11800000', '10000000', '1800000', NULL, 4, 22),
+(27, 2, '1000000', '2360000', '2000000', '360000', NULL, 5, 23),
+(28, 1, '5000000', '5900000', '5000000', '900000', NULL, 4, 23),
+(29, 2, '300000', '708000', '600000', '108000', '20000', 4, 24),
+(30, 3, '20000000', '70800000', '60000000', '10800000', NULL, 6, 24);
 
 -- --------------------------------------------------------
 
@@ -146,7 +154,17 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20240604135036', '2024-06-04 13:50:45', 80),
 ('DoctrineMigrations\\Version20240604152900', '2024-06-04 15:29:05', 28),
 ('DoctrineMigrations\\Version20240604155919', '2024-06-04 15:59:23', 71),
-('DoctrineMigrations\\Version20240606160038', '2024-06-06 16:01:03', 149);
+('DoctrineMigrations\\Version20240606160038', '2024-06-06 16:01:03', 149),
+('DoctrineMigrations\\Version20240613132813', '2024-06-13 13:29:28', 304),
+('DoctrineMigrations\\Version20240613141516', '2024-06-13 14:15:20', 19),
+('DoctrineMigrations\\Version20240613145407', '2024-06-13 14:54:23', 37),
+('DoctrineMigrations\\Version20240613145916', '2024-06-13 14:59:21', 51),
+('DoctrineMigrations\\Version20240614111206', '2024-06-14 11:12:29', 97),
+('DoctrineMigrations\\Version20240628101516', '2024-06-28 10:15:44', 134),
+('DoctrineMigrations\\Version20240628103454', '2024-06-28 10:34:58', 33),
+('DoctrineMigrations\\Version20240628103640', '2024-06-28 10:36:45', 97),
+('DoctrineMigrations\\Version20240701102235', '2024-07-01 10:22:51', 112),
+('DoctrineMigrations\\Version20240701104137', '2024-07-01 10:41:58', 18);
 
 -- --------------------------------------------------------
 
@@ -162,35 +180,40 @@ CREATE TABLE IF NOT EXISTS `facture` (
   `date` datetime NOT NULL,
   `mode_payement_id` int DEFAULT NULL,
   `reference` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_expiration` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_FE86641099DED506` (`id_client_id`),
   KEY `IDX_FE866410EF4F1912` (`mode_payement_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `facture`
 --
 
-INSERT INTO `facture` (`id`, `code_facture`, `id_client_id`, `date`, `mode_payement_id`, `reference`) VALUES
-(1, 'F001fd2d', 1, '2024-05-30 08:33:00', NULL, ''),
-(2, 'F0017725', 1, '2024-05-30 00:00:00', NULL, ''),
-(3, 'F00154d8', 2, '2024-05-30 00:00:00', NULL, ''),
-(4, 'F21 314 Z0075/66589fd84ca0b', 3, '2024-05-30 00:00:00', NULL, ''),
-(5, 'F 21 Z0075/ 658a08a7a229', 3, '2024-05-30 00:00:00', NULL, ''),
-(6, 'F 21 Z0075/ 659a3f71de71', 4, '2024-05-31 00:00:00', 1, ''),
-(7, 'F 21 Z0075/ 65daaed88158', 5, '2024-06-03 00:00:00', 2, ''),
-(8, 'F 21 Z0075/ 65eef8a50404', 2, '2024-06-04 00:00:00', 2, ''),
-(9, 'F 21 Z0075/ 65f20c8f1f7f', 4, '2024-06-04 00:00:00', 1, 'REF-2024-8f1f84'),
-(10, 'F 21 Z0075/ 65f22a0a3f51', 1, '2024-06-04 00:00:00', 1, 'REF-2024-0a3f56'),
-(11, 'F 21 Z0075/ 65f22dff0a3f', 1, '2024-06-04 00:00:00', 2, 'REF-2024-ff0a44'),
-(12, 'F 21 Z0075/ 660456aeede8', 6, '2024-06-05 00:00:00', 1, 'REF-2024-aeeded'),
-(13, 'F 21 Z0075/ 660935b7a784', 7, '2024-06-05 00:00:00', 1, 'REF-2024-b7a789'),
-(14, 'F 21 Z0075/ 661bcac21cef', 1, '2024-06-06 00:00:00', 1, 'REF-2024-c21cf4'),
-(15, 'F 21 Z0075/ 661c45653769', 4, '2024-06-06 00:00:00', 1, 'REF-2024-65376f'),
-(16, 'F 21 Z0075/ 661caaa09366', 1, '2024-06-06 00:00:00', 1, 'REF-2024-a0936c'),
-(17, 'F 21 Z0075/ 661cb2ba2c96', 6, '2024-06-06 00:00:00', 1, 'REF-2024-ba2c9c'),
-(18, 'F 21 Z0075/ 661dd436ce2f', 1, '2024-06-06 00:00:00', 1, 'REF-2024-36ce34'),
-(19, 'F 21 Z0075/ 661dd6283b0e', 4, '2024-06-06 00:00:00', 1, 'REF-2024-283b13');
+INSERT INTO `facture` (`id`, `code_facture`, `id_client_id`, `date`, `mode_payement_id`, `reference`, `date_expiration`) VALUES
+(1, 'F001fd2d', 1, '2024-05-30 08:33:00', NULL, '', '2024-06-03'),
+(2, 'F0017725', 1, '2024-05-30 00:00:00', NULL, '', '2024-06-11'),
+(3, 'F00154d8', 2, '2024-05-30 00:00:00', NULL, '', '2024-06-02'),
+(4, 'F21 314 Z0075/66589fd84ca0b', 3, '2024-05-30 00:00:00', NULL, '', '2024-06-18'),
+(5, 'F 21 Z0075/ 658a08a7a229', 3, '2024-05-30 00:00:00', NULL, '', '2024-06-01'),
+(6, 'F 21 Z0075/ 659a3f71de71', 4, '2024-05-31 00:00:00', 1, '', '2024-06-11'),
+(7, 'F 21 Z0075/ 65daaed88158', 5, '2024-06-03 00:00:00', 2, '', '2024-06-03'),
+(8, 'F 21 Z0075/ 65eef8a50404', 2, '2024-06-04 00:00:00', 2, '', '2024-06-03'),
+(9, 'F 21 Z0075/ 65f20c8f1f7f', 4, '2024-06-04 00:00:00', 1, 'REF-2024-8f1f84', '2024-06-06'),
+(10, 'F 21 Z0075/ 65f22a0a3f51', 1, '2024-06-04 00:00:00', 1, 'REF-2024-0a3f56', '2024-06-05'),
+(11, 'F 21 Z0075/ 65f22dff0a3f', 1, '2024-06-04 00:00:00', 2, 'REF-2024-ff0a44', '2024-06-10'),
+(12, 'F 21 Z0075/ 660456aeede8', 6, '2024-06-05 00:00:00', 1, 'REF-2024-aeeded', '2024-06-10'),
+(13, 'F 21 Z0075/ 660935b7a784', 7, '2024-06-05 00:00:00', 1, 'REF-2024-b7a789', '2024-06-22'),
+(14, 'F 21 Z0075/ 661bcac21cef', 1, '2024-06-06 00:00:00', 1, 'REF-2024-c21cf4', '2024-06-18'),
+(15, 'F 21 Z0075/ 661c45653769', 4, '2024-06-06 00:00:00', 1, 'REF-2024-65376f', '2024-06-11'),
+(17, 'F 21 Z0075/ 661cb2ba2c96', 6, '2024-06-06 00:00:00', 1, 'REF-2024-ba2c9c', '2024-06-17'),
+(18, 'F 21 Z0075/ 661dd436ce2f', 1, '2024-06-06 00:00:00', 1, 'REF-2024-36ce34', '2024-06-10'),
+(19, 'F 21 Z0075/ 661dd6283b0e', 4, '2024-06-06 00:00:00', 1, 'REF-2024-283b13', '2024-06-17'),
+(20, 'F 21 Z0075/ 666ad861b097', 7, '2024-06-10 00:00:00', 2, 'REF-2024-61b09d', '2024-06-19'),
+(21, 'N 21 Z0075/ 66af4a2a10cf', 2, '2024-06-13 00:00:00', 2, 'REF-2024-2a10d4', '2024-06-28'),
+(22, 'N 21 Z0075/ 66c233ec31a5', 1, '2024-06-14 00:00:00', 2, 'REF-2024-ec31aa', '2024-07-05'),
+(23, 'N 21 Z0075/ 67a9935c5ffa', 3, '2024-06-25 00:00:00', 1, 'REF-2024-5c6000', '2024-06-26'),
+(24, 'N 21 Z0075/ 6827c83e46ff', 8, '2024-07-01 00:00:00', 1, 'REF-2024-3e4705', '2024-07-07');
 
 -- --------------------------------------------------------
 
@@ -253,17 +276,44 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `tva` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_29A5EC271237A8DE` (`type_produit_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `produit`
 --
 
 INSERT INTO `produit` (`id`, `libelle`, `uid`, `date_creation`, `update_date`, `prix`, `type_produit_id`, `tva`) VALUES
-(1, 'logiciel', '665839a9094dc', '2024-05-30 08:32:55', '2024-06-04 00:00:00', '12000000', 1, '18'),
-(4, 'audit', '665868a3f2ae2', '2024-05-30 11:53:24', '2024-05-30 11:53:00', '5000000', 2, ''),
-(5, 'maintenance', '6658703c99f29', '2024-05-30 12:25:42', '2024-06-04 00:00:00', '1000000', 1, '18'),
-(6, 'materiels', '665d7f11a40d9', '2024-06-03 08:32:38', '2024-06-03 00:00:00', '500000', 1, '18');
+(1, 'loyer Orbis-station', '665839a9094dc', '2024-05-30 08:32:55', '2024-06-28 00:00:00', '200000', 1, '18'),
+(4, 'Assistance Comptable', '665868a3f2ae2', '2024-05-30 11:53:24', '2024-06-28 00:00:00', '300000', 2, '18'),
+(5, 'Réffacturation Serveur d\'application', '6658703c99f29', '2024-05-30 12:25:42', '2024-06-28 00:00:00', '500000', 1, '18'),
+(6, 'Conception de Logiciel', '665d7f11a40d9', '2024-06-03 08:32:38', '2024-06-28 00:00:00', '20000000', 1, '18'),
+(7, 'Assistance / Maintenance', '6669d46bc25a5', '2024-06-12 17:01:50', '2024-06-28 00:00:00', '10000000', 1, '18');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `societe`
+--
+
+DROP TABLE IF EXISTS `societe`;
+CREATE TABLE IF NOT EXISTS `societe` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `raison_social` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `forme` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activite` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numero` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `siege` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telephone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ville` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `societe`
+--
+
+INSERT INTO `societe` (`id`, `raison_social`, `forme`, `activite`, `numero`, `siege`, `telephone`, `ville`) VALUES
+(1, 'Offset-Consulting', 'moyen', 'informatique', '12365478HH52', 'Cocody', '2727272727', 'Abidjan');
 
 -- --------------------------------------------------------
 
@@ -302,18 +352,21 @@ CREATE TABLE IF NOT EXISTS `user` (
   `prenom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `contact` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
+  `nom_utilisateur` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`nom_utilisateur`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nom`, `prenom`, `contact`, `status`) VALUES
-(2, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$tMkbvtmBLDbysovEldvpl.al1UkMxTup7Pd56zdtKPvmufnMEutiq', 'admin', 'user', '12131615144', 1),
-(23, 'user@gmail.com', '[\"USER_ROLE\"]', '$2y$13$H6si8znCmA7pNQxeuOBgNOaqphGt0vI5bNj5sMxmEotPM4RbK0L/2', 'josias', 'yao', '0749162107', 1),
-(25, 'admin1@gmail.com', '[\"USER_ROLE\"]', '$2y$13$FYCeVrudvX2vDPAPpUtZbOtQyutiMQTvbTOhj3wb346LgtB8RaObG', 'Koffi', 'Amelie', '2225553686', 1);
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nom`, `prenom`, `contact`, `status`, `nom_utilisateur`) VALUES
+(2, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$tMkbvtmBLDbysovEldvpl.al1UkMxTup7Pd56zdtKPvmufnMEutiq', 'admin', 'user', '12131615144', 1, 'chris_arnold'),
+(23, 'user@gmail.com', '[\"USER_ROLE\"]', '$2y$13$H6si8znCmA7pNQxeuOBgNOaqphGt0vI5bNj5sMxmEotPM4RbK0L/2', 'josias', 'yao', '0749162107', 1, 'josias@'),
+(25, 'admin1@gmail.com', '[\"USER_ROLE\"]', '$2y$13$FYCeVrudvX2vDPAPpUtZbOtQyutiMQTvbTOhj3wb346LgtB8RaObG', 'Koffi', 'Amelie', '2225553686', 0, 'amelie#'),
+(26, 'yaograce@gmail.com', '[\"USER_ROLE\"]', '$2y$13$NlLxCLixioAnqtBd7sXdwundtWETVmGBaklDXsWE1SHFoTjl0tGV.', 'yao', 'grace', '010101010101', 0, 'grace@'),
+(27, 'franck@gmail.com', '[\"USER_ROLE\"]', '$2y$13$zoQ4kpPkN0yOB.s.vWcn7uWMxfTqUvBZaVqJxkRIGZe5SZlqwP8FK', 'konan', 'franck', '010101010101', 1, 'franck@');
 
 --
 -- Contraintes pour les tables déchargées
