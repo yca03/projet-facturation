@@ -5,7 +5,7 @@ namespace App\Service;
 use App\Entity\Societe;
 use App\Repository\SocieteRepository;
 
-class SocieteService
+class societeService
 {
     private SocieteRepository $societeRepository;
     public function __construct(SocieteRepository $societeRepository)
