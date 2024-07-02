@@ -35,7 +35,14 @@
                     <td class="text-center">{{client.typeSociete }}</td>
                     <td class="text-center">{{client.nom }} </td>
                     <td class="text-center">{{client.numeroCompteContribuable}}</td>
-                    <td class="text-center">{{client.remise}}</td>
+                    <td class="text-center">
+                       {% if (client.remise is empty) %}
+                           0
+                        {% else %}
+                           {{client.remise }}
+                        {% endif %}
+                          
+                    </td>
                     <td class="text-center">{{client.adresse}}</td>
                     <td class="text-center">{{client.contact}}</td>
                     {# <td class="text-center">{{facture.dateFact ? facture.dateFact|date('Y-m-d H:i:s') : '' }}</td> #}

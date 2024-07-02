@@ -42,12 +42,12 @@
 					{% set societe = societe_info.info() %}
 					{% if societe %}
 						<button class="btn-account d-flex align-items-center" type="button">
-							<span  class=" fa-solid fa-hotel p-2"></span>
+							<span  class=" fa-solid fa-landmark p-2"></span>
 							<strong class="pt-1">{{ societe.RaisonSocial }}</strong>
 						</button>
 
 						<button class="btn-account d-flex align-items-center" type="button">
-							<span class="oi oi-map-marker p-1"></span>
+							<span class="oi oi-map-marker p-2"></span>
 							<strong class="pt-1">{{ societe.Siege }}  ,  {{ societe.ville }}</strong>
 						</button>
 					{% else %}
@@ -59,7 +59,7 @@
 
 
 					<button class="btn-account d-flex align-items-center" type="button" >
-						<span class="oi oi-clock p-1"></span>
+						<span class="oi oi-clock p-2"></span>
 						<strong class="pt-1">Date du jour :	{{ "now"|date('d-m-Y') }}</strong>
 					</button>
 				</div>
@@ -82,19 +82,19 @@
 							</h6>
 							<!-- .dropdown-scroll -->
 							<div class="dropdown-scroll has-scrollable" id="notification-body">
-								<!-- .dropdown-item -->
-								<!--	<a href="" class="dropdown-item unread">
+								 <!-- .dropdown-item -->
+									<a href="" class="dropdown-item unread">
 										<div class="user-avatar">
-											<img src="https://ui-avatars.com/api/?name=" alt="Notification">
+											<img src="https://cdn-icons-png.flaticon.com/512/266/266033.png" alt="Notification">
 										</div>
 										<div class="dropdown-item-body">
 											<p class="subject">Notification</p>
 											<p class="text text-truncate"></p>
-											<span class="date"></span>
+											<span class="date"> {{"now" | date('d-m-y')}}</span>
 										</div>
-									</a>-->
+									</a>
 									<!-- /.dropdown-item -->
-									<!-- .dropdown-item -->
+									<!-- .dropdown-item --> 
 									<a href="#" class="dropdown-item unread">
 										<div class="user-avatar"></div>
 										<div class="dropdown-item-body">
