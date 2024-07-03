@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 01 juil. 2024 à 10:56
--- Version du serveur : 8.3.0
--- Version de PHP : 8.2.18
+-- Généré le : mer. 03 juil. 2024 à 15:59
+-- Version du serveur : 8.0.31
+-- Version de PHP : 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `contact` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `type_societe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `numero_compte_contribuable` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remise` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remise` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -67,13 +67,13 @@ CREATE TABLE IF NOT EXISTS `detail_facture` (
   `montant_ttc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `montant_ht` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `montant_tva` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remise` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remise` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `produit_id` int DEFAULT NULL,
   `facture_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_9949E4C5F347EFB` (`produit_id`),
   KEY `IDX_9949E4C57F2DEE08` (`facture_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `detail_facture`
@@ -108,7 +108,9 @@ INSERT INTO `detail_facture` (`id`, `quantite`, `prix`, `montant_ttc`, `montant_
 (27, 2, '1000000', '2360000', '2000000', '360000', NULL, 5, 23),
 (28, 1, '5000000', '5900000', '5000000', '900000', NULL, 4, 23),
 (29, 2, '300000', '708000', '600000', '108000', '20000', 4, 24),
-(30, 3, '20000000', '70800000', '60000000', '10800000', NULL, 6, 24);
+(30, 3, '20000000', '70800000', '60000000', '10800000', NULL, 6, 24),
+(31, 12, '200000', '2242000', '1900000', '342000', '500000', 1, 25),
+(32, 4, '20000000', '94388200', '79990000', '14398200', '10000', 6, 25);
 
 -- --------------------------------------------------------
 
@@ -164,7 +166,9 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20240628103454', '2024-06-28 10:34:58', 33),
 ('DoctrineMigrations\\Version20240628103640', '2024-06-28 10:36:45', 97),
 ('DoctrineMigrations\\Version20240701102235', '2024-07-01 10:22:51', 112),
-('DoctrineMigrations\\Version20240701104137', '2024-07-01 10:41:58', 18);
+('DoctrineMigrations\\Version20240701104137', '2024-07-01 10:41:58', 18),
+('DoctrineMigrations\\Version20240703152319', '2024-07-03 15:27:21', 22538),
+('DoctrineMigrations\\Version20240703153446', '2024-07-03 15:35:00', 2465);
 
 -- --------------------------------------------------------
 
@@ -179,12 +183,12 @@ CREATE TABLE IF NOT EXISTS `facture` (
   `id_client_id` int DEFAULT NULL,
   `date` datetime NOT NULL,
   `mode_payement_id` int DEFAULT NULL,
-  `reference` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reference` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_expiration` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_FE86641099DED506` (`id_client_id`),
   KEY `IDX_FE866410EF4F1912` (`mode_payement_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `facture`
@@ -213,7 +217,8 @@ INSERT INTO `facture` (`id`, `code_facture`, `id_client_id`, `date`, `mode_payem
 (21, 'N 21 Z0075/ 66af4a2a10cf', 2, '2024-06-13 00:00:00', 2, 'REF-2024-2a10d4', '2024-06-28'),
 (22, 'N 21 Z0075/ 66c233ec31a5', 1, '2024-06-14 00:00:00', 2, 'REF-2024-ec31aa', '2024-07-05'),
 (23, 'N 21 Z0075/ 67a9935c5ffa', 3, '2024-06-25 00:00:00', 1, 'REF-2024-5c6000', '2024-06-26'),
-(24, 'N 21 Z0075/ 6827c83e46ff', 8, '2024-07-01 00:00:00', 1, 'REF-2024-3e4705', '2024-07-07');
+(24, 'N 21 Z0075/ 6827c83e46ff', 8, '2024-07-01 00:00:00', 1, 'REF-2024-3e4705', '2024-07-07'),
+(25, 'N 21 Z0075/ 683fc5282cc8', 7, '2024-07-02 00:00:00', 1, 'REF-2024-282cd2', '2024-07-17');
 
 -- --------------------------------------------------------
 
@@ -273,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `update_date` datetime DEFAULT NULL,
   `prix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `type_produit_id` int DEFAULT NULL,
-  `tva` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tva` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_29A5EC271237A8DE` (`type_produit_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -298,13 +303,20 @@ INSERT INTO `produit` (`id`, `libelle`, `uid`, `date_creation`, `update_date`, `
 DROP TABLE IF EXISTS `societe`;
 CREATE TABLE IF NOT EXISTS `societe` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `raison_social` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `forme` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `activite` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `siege` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `telephone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ville` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `raison_social` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activite` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numero` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `siege` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telephone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ville` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pays` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `site_internet` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code_commercial` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `regime_fiscal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` datetime NOT NULL,
+  `forme_juridique` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `adresse_postal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -312,8 +324,8 @@ CREATE TABLE IF NOT EXISTS `societe` (
 -- Déchargement des données de la table `societe`
 --
 
-INSERT INTO `societe` (`id`, `raison_social`, `forme`, `activite`, `numero`, `siege`, `telephone`, `ville`) VALUES
-(1, 'Offset-Consulting', 'moyen', 'informatique', '12365478HH52', 'Cocody', '2727272727', 'Abidjan');
+INSERT INTO `societe` (`id`, `raison_social`, `activite`, `numero`, `siege`, `telephone`, `ville`, `pays`, `email`, `site_internet`, `code_commercial`, `regime_fiscal`, `date`, `forme_juridique`, `adresse_postal`) VALUES
+(1, 'Offset-Consulting', 'informatique', '12365478HH52', 'Cocody', '2727272727', 'Abidjan', '', '', '', '', '', '0000-00-00 00:00:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -352,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `prenom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `contact` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `nom_utilisateur` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nom_utilisateur` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`nom_utilisateur`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
