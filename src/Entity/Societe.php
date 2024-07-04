@@ -87,9 +87,9 @@ class Societe
         return $this->FormeJuridique;
     }
 
-    public function setForme(string $Forme): static
+    public function setFormeJuridique(string $FormeJuridique): static
     {
-        $this->FormeJuridique = $Forme;
+        $this->FormeJuridique = $FormeJuridique;
 
         return $this;
     }
@@ -162,7 +162,7 @@ class Societe
         return $this->AdressePostal;
     }
 
-    public function setActivitePostal(string $AdressePostal): static
+    public function setAdressePostal(string $AdressePostal): static
     {
         $this->AdressePostal = $AdressePostal;
 
