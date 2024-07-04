@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : mer. 03 juil. 2024 à 15:59
--- Version du serveur : 8.0.31
--- Version de PHP : 8.2.0
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jul 04, 2024 at 02:24 PM
+-- Server version: 8.0.31
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `facturation`
+-- Database: `facturation`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `clients`
+-- Table structure for table `clients`
 --
 
 DROP TABLE IF EXISTS `clients`;
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `clients`
+-- Dumping data for table `clients`
 --
 
 INSERT INTO `clients` (`id`, `nom`, `adresse`, `contact`, `type_societe`, `numero_compte_contribuable`, `remise`) VALUES
@@ -56,7 +56,7 @@ INSERT INTO `clients` (`id`, `nom`, `adresse`, `contact`, `type_societe`, `numer
 -- --------------------------------------------------------
 
 --
--- Structure de la table `detail_facture`
+-- Table structure for table `detail_facture`
 --
 
 DROP TABLE IF EXISTS `detail_facture`;
@@ -73,10 +73,10 @@ CREATE TABLE IF NOT EXISTS `detail_facture` (
   PRIMARY KEY (`id`),
   KEY `IDX_9949E4C5F347EFB` (`produit_id`),
   KEY `IDX_9949E4C57F2DEE08` (`facture_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `detail_facture`
+-- Dumping data for table `detail_facture`
 --
 
 INSERT INTO `detail_facture` (`id`, `quantite`, `prix`, `montant_ttc`, `montant_ht`, `montant_tva`, `remise`, `produit_id`, `facture_id`) VALUES
@@ -110,12 +110,15 @@ INSERT INTO `detail_facture` (`id`, `quantite`, `prix`, `montant_ttc`, `montant_
 (29, 2, '300000', '708000', '600000', '108000', '20000', 4, 24),
 (30, 3, '20000000', '70800000', '60000000', '10800000', NULL, 6, 24),
 (31, 12, '200000', '2242000', '1900000', '342000', '500000', 1, 25),
-(32, 4, '20000000', '94388200', '79990000', '14398200', '10000', 6, 25);
+(32, 4, '20000000', '94388200', '79990000', '14398200', '10000', 6, 25),
+(33, 2, '200000', '448400', '380000', '68400', '20000', 1, 26),
+(34, 1, '200000', '200600', '170000', '30600', '30000', 1, 26),
+(35, 3, '200000', '708000', '600000', '108000', NULL, 1, 26);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `doctrine_migration_versions`
+-- Table structure for table `doctrine_migration_versions`
 --
 
 DROP TABLE IF EXISTS `doctrine_migration_versions`;
@@ -127,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Déchargement des données de la table `doctrine_migration_versions`
+-- Dumping data for table `doctrine_migration_versions`
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
@@ -173,7 +176,7 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 -- --------------------------------------------------------
 
 --
--- Structure de la table `facture`
+-- Table structure for table `facture`
 --
 
 DROP TABLE IF EXISTS `facture`;
@@ -188,10 +191,10 @@ CREATE TABLE IF NOT EXISTS `facture` (
   PRIMARY KEY (`id`),
   KEY `IDX_FE86641099DED506` (`id_client_id`),
   KEY `IDX_FE866410EF4F1912` (`mode_payement_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `facture`
+-- Dumping data for table `facture`
 --
 
 INSERT INTO `facture` (`id`, `code_facture`, `id_client_id`, `date`, `mode_payement_id`, `reference`, `date_expiration`) VALUES
@@ -218,12 +221,13 @@ INSERT INTO `facture` (`id`, `code_facture`, `id_client_id`, `date`, `mode_payem
 (22, 'N 21 Z0075/ 66c233ec31a5', 1, '2024-06-14 00:00:00', 2, 'REF-2024-ec31aa', '2024-07-05'),
 (23, 'N 21 Z0075/ 67a9935c5ffa', 3, '2024-06-25 00:00:00', 1, 'REF-2024-5c6000', '2024-06-26'),
 (24, 'N 21 Z0075/ 6827c83e46ff', 8, '2024-07-01 00:00:00', 1, 'REF-2024-3e4705', '2024-07-07'),
-(25, 'N 21 Z0075/ 683fc5282cc8', 7, '2024-07-02 00:00:00', 1, 'REF-2024-282cd2', '2024-07-17');
+(25, 'N 21 Z0075/ 683fc5282cc8', 7, '2024-07-02 00:00:00', 1, 'REF-2024-282cd2', '2024-07-17'),
+(26, 'N 21 Z0075/ 6864e88521f1', 2, '2024-07-04 00:00:00', 1, 'REF-2024-8521fa', '2024-07-04');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `messenger_messages`
+-- Table structure for table `messenger_messages`
 --
 
 DROP TABLE IF EXISTS `messenger_messages`;
@@ -244,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `messenger_messages` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `mode_payement`
+-- Table structure for table `mode_payement`
 --
 
 DROP TABLE IF EXISTS `mode_payement`;
@@ -256,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `mode_payement` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `mode_payement`
+-- Dumping data for table `mode_payement`
 --
 
 INSERT INTO `mode_payement` (`id`, `nom`, `code`) VALUES
@@ -266,7 +270,7 @@ INSERT INTO `mode_payement` (`id`, `nom`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `produit`
+-- Table structure for table `produit`
 --
 
 DROP TABLE IF EXISTS `produit`;
@@ -284,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `produit` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `produit`
+-- Dumping data for table `produit`
 --
 
 INSERT INTO `produit` (`id`, `libelle`, `uid`, `date_creation`, `update_date`, `prix`, `type_produit_id`, `tva`) VALUES
@@ -297,7 +301,7 @@ INSERT INTO `produit` (`id`, `libelle`, `uid`, `date_creation`, `update_date`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `societe`
+-- Table structure for table `societe`
 --
 
 DROP TABLE IF EXISTS `societe`;
@@ -321,16 +325,16 @@ CREATE TABLE IF NOT EXISTS `societe` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `societe`
+-- Dumping data for table `societe`
 --
 
 INSERT INTO `societe` (`id`, `raison_social`, `activite`, `numero`, `siege`, `telephone`, `ville`, `pays`, `email`, `site_internet`, `code_commercial`, `regime_fiscal`, `date`, `forme_juridique`, `adresse_postal`) VALUES
-(1, 'Offset-Consulting', 'informatique', '12365478HH52', 'Cocody', '2727272727', 'Abidjan', '', '', '', '', '', '0000-00-00 00:00:00', '', '');
+(1, 'Offset-Consulting', 'informatique', '12365478HH52', 'Cocody', '2727272727', 'Abidjan', 'côte d\'ivoire', 'offset-consulting@gmail.com', 'www.offset-consulting.com', 'cm003', '8899433', '2024-07-04 00:00:00', 'SARL', '08 BP 2941 Abidjan 08');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `type_produit`
+-- Table structure for table `type_produit`
 --
 
 DROP TABLE IF EXISTS `type_produit`;
@@ -341,7 +345,7 @@ CREATE TABLE IF NOT EXISTS `type_produit` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `type_produit`
+-- Dumping data for table `type_produit`
 --
 
 INSERT INTO `type_produit` (`id`, `libelle`) VALUES
@@ -351,7 +355,7 @@ INSERT INTO `type_produit` (`id`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Table structure for table `user`
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -370,7 +374,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nom`, `prenom`, `contact`, `status`, `nom_utilisateur`) VALUES
@@ -381,25 +385,25 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nom`, `prenom`, `contac
 (27, 'franck@gmail.com', '[\"USER_ROLE\"]', '$2y$13$zoQ4kpPkN0yOB.s.vWcn7uWMxfTqUvBZaVqJxkRIGZe5SZlqwP8FK', 'konan', 'franck', '010101010101', 1, 'franck@');
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `detail_facture`
+-- Constraints for table `detail_facture`
 --
 ALTER TABLE `detail_facture`
   ADD CONSTRAINT `FK_9949E4C57F2DEE08` FOREIGN KEY (`facture_id`) REFERENCES `facture` (`id`),
   ADD CONSTRAINT `FK_9949E4C5F347EFB` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`);
 
 --
--- Contraintes pour la table `facture`
+-- Constraints for table `facture`
 --
 ALTER TABLE `facture`
   ADD CONSTRAINT `FK_FE86641099DED506` FOREIGN KEY (`id_client_id`) REFERENCES `clients` (`id`),
   ADD CONSTRAINT `FK_FE866410EF4F1912` FOREIGN KEY (`mode_payement_id`) REFERENCES `mode_payement` (`id`);
 
 --
--- Contraintes pour la table `produit`
+-- Constraints for table `produit`
 --
 ALTER TABLE `produit`
   ADD CONSTRAINT `FK_29A5EC271237A8DE` FOREIGN KEY (`type_produit_id`) REFERENCES `type_produit` (`id`);
