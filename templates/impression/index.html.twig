@@ -1,9 +1,6 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Impression Facture | {% endblock %}
-
-{% block stylesheets %}
-    <style>
+{# 
+ <style>
         body {
             font-family: Arial, sans-serif;
             margin: 60px;
@@ -80,10 +77,15 @@
             }
         }
     </style>
-{% endblock %}
 
-{% block body %}
-    <div class="invoice-container">
+
+
+
+
+    *********************
+
+
+ <div class="invoice-container">
         <h3>FACTURE N° {{ facture.codeFacture }}</h3>
         <h5 id="date">Date : {{ facture.dateFacture |date("d/m/Y") }}</h5>
 
@@ -149,13 +151,13 @@
         <div class="total">
             <p>NET A PAYER : {{ totalTTC | number_format(0, '.', ' ') }} Total TTC</p>
 
-           {# <p> {{ facture.totalTTCInWords }} frcfa</p> #}
+           {# <p> {{ facture.totalTTCInWords }} frcfa</p> 
 
         </div>
 
                {# <div class="total">
                    <p>NET A PAYER : {{ detail.montantTTC }} Total TTC</p>
-               </div> #}
+               </div> 
 
 
         <p><em>Service commercial</em></p>
@@ -164,4 +166,197 @@
             <i class="fa-solid fa-download"></i> &nbsp;&nbsp;Imprimer
         </button>
     </div>
+
+
+
+
+ #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Impression Facture | {% endblock %}
+
+{% block stylesheets %}
+<style>
+    .container {
+        max-width: 90%;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        font-size: 16px;
+        line-height: 24px;
+        color: #555;
+    }
+
+    .container-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        color: grey;
+        margin-bottom: 80px;
+    }
+
+    h4 {
+        height: 30px;
+        width: 250px;
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    p {
+        margin: 4px 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: right;
+        width: 16.66%; /* Set equal width for all columns */
+    }
+
+    .no-border {
+        border: none;
+    }
+
+    .highlight {
+        background: rgb(177, 175, 175);
+    }
+
+    .section {
+        flex: 1;
+    }
+
+    .section {
+        margin-left: 20px;
+    }
+    .right-align {
+        text-align: right;
+    }
+    .service
+    {
+        text-align:center; 
+    }
+
+    .total-row td {
+        font-weight: bold;
+    }
+
+    .print-button {
+        background: #21244e;
+        color: white;
+        padding: 15px;
+        border: 1px solid black;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 20px auto 0;
+        width: fit-content;
+    }
+
+    .print-button i {
+        margin-right: 10px;
+    }
+
+    @media print {
+        .print-button {
+            display: none !important;
+        }
+    }
+</style>
+
+
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="container-row">
+        <div class="section">
+            <h1>Facture</h1>
+            <p><strong>OFFSET CONSULTING</strong></p>
+            <p>Abidjan Cocody</p>
+            <p>Tél : (+225) 25 22 01 59 71</p>
+            <p>Cel : (+225) 07 78 63 63 06</p>
+            <p>Email : contact@offset-consulting.com</p>
+        </div>
+
+        <div class="section">
+            <table>
+                <tr class="highlight">
+                    <th colspan="2">N° Facture #</th>
+                    <th colspan="2">Date</th>
+                </tr>
+                <tr>
+                    <td colspan="2">{{ facture.codeFacture }}</td>
+                    <td colspan="2">{{ facture.dateFacture |date("d/m/Y") }}</td>
+                </tr>
+                <tr class="highlight">
+                    <th colspan="2">ID client</th>
+                    <th colspan="2">Date expiration</th>
+                </tr>
+                <tr>
+                    <td colspan="2">{{facture.idFacture}}</td>
+                    <td colspan="2">{{ facture.dateExpirationFacture|date("d/m/Y")  }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+<br><br>
+    <div class="container-row">
+        <div class="section">
+            <h4 class="highlight">Facture à</h4>
+            <p>{{ facture.clientNom }}</p>
+            <p>{{ facture.clientadresse }}</p>
+            <p>{{ facture.clientcontact }}</p>
+            <p>(001) 987-6543</p>
+        </div>
+
+        <div class="section1">
+            <h4 class="highlight">Expédier à</h4>
+            <p>{{ facture.clientNom }}</p>
+            <p>{{ facture.clientadresse }}</p>
+            <p>{{ facture.clientcontact }}</p>
+            <p>(001) 987-6543</p>
+        </div>
+    </div>
+<br>
+    <table>
+            <tr class="highlight">
+                <th class="service">Services</th>
+                <th>Quantité</th>
+                <th>Prix Unitaire</th>
+                <th>Montant HT</th>
+                <th>Montant TVA</th>
+                <th>Montant TTC</th>
+            </tr>
+       {% set totalTTC = 0 %}
+       {% for detail in facture.detailFactures %}
+            
+            <tr>
+                <td class="service">{{ detail.produit }}</td>
+                <td>{{detail.quantite}}</td>
+                <td>{{ detail.prix | number_format(0, '.', ' ') }} </td>
+                <td>{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
+                <td>{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
+                <td class="service1">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
+            </tr>
+            {% set totalTTC = totalTTC + detail.montantTTC %}
+        {% endfor %}
+        <tr class="total-row">
+            <td colspan="5" class="no-border right-align">Net à payer :</td>
+            <td>{{ totalTTC | number_format(0, '.', ' ') }} FCFA</td>
+        </tr>
+    </table>
+    <p><em>Service commercial</em></p>
+    <button class="print-button" onclick="window.print()">
+        <i class="fa-solid fa-download"></i> &nbsp;&nbsp;Imprimer
+    </button>
+</div>
 {% endblock %}

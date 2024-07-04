@@ -31,6 +31,7 @@ class ImpressionController extends AbstractController
 
         // Préparer les données pour l'affichage
         $data = [
+            'idFacture' => $facture->getId(),
             'clientNom' => $facture->getIdClient()->getNom(),
             'clientadresse' => $facture->getIdClient()->getAdresse(),
             'dateExpirationFacture'=>$facture->getDateExpiration(),
