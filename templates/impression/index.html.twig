@@ -294,16 +294,16 @@
                     <th colspan="2" style="text-align:center;">Date</th>
                 </tr>
                 <tr>
-                    <td colspan="2">{{ facture.codeFacture }}</td>
-                    <td colspan="2">{{ facture.dateFacture |date("d/m/Y") }}</td>
+                    <td colspan="2" style="text-align:center;">{{ facture.codeFacture }}</td>
+                    <td colspan="2" style="text-align:center;">{{ facture.dateFacture |date("d/m/Y") }}</td>
                 </tr>
                 <tr class="highlight">
                     <th colspan="2" style="text-align:center;">ID client</th>
-                    <th colspan="2" style="text-align:center;">Date expiration</th>
+                    <th colspan="2" style="text-align:center;">Date d'expiration</th>
                 </tr>
                 <tr>
-                    <td colspan="2">{{facture.idFacture}}</td>
-                    <td colspan="2">{{ facture.dateExpirationFacture|date("d/m/Y")  }}</td>
+                    <td colspan="2" style="text-align:center;">{{facture.idFacture}}</td>
+                    <td colspan="2" style="text-align:center;">{{ facture.dateExpirationFacture|date("d/m/Y")  }}</td>
                 </tr>
             </table>
         </div>
