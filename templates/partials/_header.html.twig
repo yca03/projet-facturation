@@ -48,7 +48,7 @@
 
 						<button class="btn-account d-flex align-items-center" type="button">
 							<span class="oi oi-map-marker p-2"></span>
-							<strong class="pt-1">{{ societe.Siege }}  ,  {{ societe.ville }}</strong>
+							<strong class="pt-1">{{ societe.Siege }} (  {{ societe.ville }} , {{societe.pays}}) </strong>
 						</button>
 					{% else %}
 						<button class="btn-account d-flex align-items-center" type="button">
@@ -121,8 +121,23 @@
 								<img src="https://ui-avatars.com/api/?name=Administrateur" alt="">
 							</span>
 							<span class="account-summary pr-lg-4 d-none d-lg-block">
-								<span class="account-name">Administrateur</span>
+								<span class="account-name">{{app.user.nomUtilisateur}}</span>
+
+								<span class="account-description">
+								 {% if app.user.roles is iterable %}
+                                        {% for role in app.user.roles %}
+                                            {% if role == 'USER_ROLE' %}
+                                                UTILISATEUR
+                                            {% elseif role == 'ROLE_ADMIN' %}
+                                               ADMINISTRATEUR
+                                            {% endif %}
+
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ app.user.roles }}
+                                    {% endif %}</span>
 							</span>
+							
 
 						{% else %}
 							<span class="user-avatar user-avatar-md">
@@ -130,7 +145,21 @@
 							</span>
 							<span class="account-summary pr-lg-4 d-none d-lg-block">
 								<span class="account-name"></span>
-								<span class="account-description">Utilisateur</span>
+								<span class="account-description">{{app.user.nomUtilisateur}}</span>
+
+								<span class="account-description">
+								 {% if app.user.roles is iterable %}
+                                        {% for role in app.user.roles %}
+                                            {% if role == 'USER_ROLE' %}
+                                                UTILISATEUR
+                                            {% elseif role == 'ROLE_ADMIN' %}
+                                               ADMINISTRATEUR
+                                            {% endif %}
+
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ app.user.roles }}
+                                    {% endif %}</span>
 							</span>
 						{% endif %}
 					</button>

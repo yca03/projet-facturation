@@ -3,52 +3,6 @@
 {% block title %}Liste des Sociétés{% endblock %}
 
 {% block body %}
-{#    <h1>Societe index</h1>#}
-
-{#    <table class="table">#}
-{#        <thead>#}
-{#            <tr>#}
-{#                <th>Id</th>#}
-{#                <th>RaisonSocial</th>#}
-{#                <th>Forme</th>#}
-{#                <th>Activite</th>#}
-{#                <th>Numero</th>#}
-{#                <th>Siege</th>#}
-{#                <th>Telephone</th>#}
-{#                <th>actions</th>#}
-{#            </tr>#}
-{#        </thead>#}
-{#        <tbody>#}
-{#        {% for societe in societes %}#}
-{#            <tr>#}
-{#                <td>{{ societe.id }}</td>#}
-{#                <td>{{ societe.RaisonSocial }}</td>#}
-{#                <td>{{ societe.Forme }}</td>#}
-{#                <td>{{ societe.Activite }}</td>#}
-{#                <td>{{ societe.Numero }}</td>#}
-{#                <td>{{ societe.Siege }}</td>#}
-{#                <td>{{ societe.Telephone }}</td>#}
-{#                <td>#}
-{#                    <a href="{{ path('app_societe_show', {'id': societe.id}) }}">show</a>#}
-{#                    <a href="{{ path('app_societe_edit', {'id': societe.id}) }}">edit</a>#}
-{#                </td>#}
-{#            </tr>#}
-{#        {% else %}#}
-{#            <tr>#}
-{#                <td colspan="8">no records found</td>#}
-{#            </tr>#}
-{#        {% endfor %}#}
-{#        </tbody>#}
-{#    </table>#}
-
-{#    <a href="{{ path('app_societe_new') }}">Create new</a>#}
-
-
-
-
-
-
-
 
 
     <div class="col-12 col-md-12">
@@ -65,12 +19,19 @@
 
                         <tr>
                             <th class="text-center">Id</th>
+                            <th class="text-center">date</th>
                             <th class="text-center">Raison Social </th>
-                            <th class="text-center">Forme </th>
+                            <th class="text-center">Forme Juridique </th>
                             <th class="text-center">Activité</th>
+                            {# <th class="text-center">Code Commercial</th> #}
+                            {# <th class="text-center">Regime Fiscal</th> #}
+                            <th class="text-center">Numéro</th>
                             <th class="text-center">N.C.C</th>
                             <th class="text-center">Siège</th>
                             <th class="text-center">Ville</th>
+                            <th class="text-center">Pays</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Site Internet</th>
                             <th class="text-center">Téléphone</th>
                             <th>actions</th>
                         </tr>
@@ -79,12 +40,20 @@
                         {% for societe in societes %}
                             <tr>
                                 <td class="text-center">{{societe.id }}</td>
+                                <td class="text-center">{{societe.date | date('d/m/y')}}</td>
                                 <td class="text-center">{{societe.RaisonSocial }}</td>
-                                <td class="text-center">{{societe.Forme }} </td>
+                                <td class="text-center">{{societe.FormeJuridique }} </td>
                                 <td class="text-center">{{societe.Activite}}</td>
+                                {# <td class="text-center">{{societe.CodeCommercial}}</td> #}
+                                {# <td class="text-center">{{societe.RegimeFiscal}}</td> #}
                                 <td class="text-center">{{societe.Numero}}</td>
                                 <td class="text-center">{{societe.Siege}}</td>
                                 <td class="text-center">{{societe.ville}}</td>
+
+                                <td class="text-center">{{societe.Ville}}</td>
+                                <td class="text-center">{{societe.Pays}}</td>
+                                <td class="text-center">{{societe.Email}}</td>
+                                <td class="text-center">{{societe.SiteInternet}}</td>
                                 <td class="text-center">{{societe.Telephone}}</td>
                                 {# <td class="text-center">{{facture.dateFact ? facture.dateFact|date('Y-m-d H:i:s') : '' }}</td> #}
                                 <td class="text-center">
