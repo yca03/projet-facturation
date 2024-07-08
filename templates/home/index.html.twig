@@ -2,6 +2,136 @@
 
 {% block title %}Acceuil | !{% endblock %}
 
+{% block stylesheets %}
+    
+    {# <link rel="stylesheet" href="{{ asset('css/style.css') }}"> #}
+{% endblock %}
+
 {% block body %}
 
+
+<div class="container">
+            <div class="overview">
+                
+                <div class="boxes">
+                    <div class="box box1">
+                        <ion-icon name="eye-outline"></ion-icon>
+                        <span class="text">Total Services </span>
+                        <span class="number">65</span>
+                    </div>
+                    <div class="box box2">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                        <span class="text">Total Factures</span>
+                        <span class="number">33</span>
+                    </div>
+                    <div class="box box3">
+                        <ion-icon name="arrow-redo-outline"></ion-icon>
+                        <span class="text">Nombre Client </span>
+                        <span class="number">90</span>
+                    </div>
+                    <div class="box box4">
+                        <ion-icon name="arrow-redo-outline"></ion-icon>
+                        <span class="text">Total de mort </span>
+                        <span class="number">12</span>
+                    </div>
+                </div>
+
+                            <div class="graph-box">
+                                <div class="graph1">
+                                    <canvas id="graph1"  width="550" height="400" ></canvas>
+                                </div>
+
+                                <div class="graph2">
+                                    <canvas id="graph2"  width="550" height="400"></canvas>
+                                </div>
+                            </div>
+
+                 <!-- Second Graph -->
+               
+            </div>
+            
+        </div>
+
+
 {% endblock %}
+
+{% block javascripts %}
+
+<script>
+
+        // Bar Chart 1
+        var ctx1 = document.getElementById('graph1').getContext('2d');
+        var chart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Total naissances', 'Total Filles', 'Total garçons', 'Total de mort'],
+                datasets: [{
+                    label: 'nombre de naissance',
+                   
+                    data: [nombreTotal, nombreFeminin, nombreMasculin, nombreDec],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+
+        // Bar Chart 2 (similar to the first one)
+
+
+         // Bar Chart 2
+         var ctx2 = document.getElementById('graph2').getContext('2d');
+    var chart2 = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['Total naissances', 'Total Filles', 'Total garçons', 'Total de mort'],
+            datasets: [{
+                label: 'nombre de naissance',
+                data: [nombreTotal, nombreFeminin, nombreMasculin, nombreDec],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+       
+</script>
+
+{% endblock %}
+
