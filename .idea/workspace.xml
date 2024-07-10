@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/convertion.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/convertion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/etat/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/etat/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/impression/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/impression/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -390,7 +394,12 @@
       <workItem from="1719909399268" duration="6729000" />
       <workItem from="1719993890942" duration="12594000" />
       <workItem from="1720082099900" duration="4511000" />
-      <workItem from="1720169735278" duration="303000" />
+      <workItem from="1720169735278" duration="600000" />
+      <workItem from="1720454854213" duration="5114000" />
+      <workItem from="1720514373381" duration="1266000" />
+      <workItem from="1720515702242" duration="14164000" />
+      <workItem from="1720603425863" duration="48000" />
+      <workItem from="1720603831884" duration="10835000" />
     </task>
     <servers />
   </component>
@@ -400,6 +409,17 @@
       <list>
         <option value="$PROJECT_DIR$/node_modules/fastest-levenshtein/test.js" />
       </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
     </option>
   </component>
 </project>

@@ -2,6 +2,137 @@
 
 {% block title %}Acceuil | !{% endblock %}
 
+{% block stylesheets %}
+
+    {# <link rel="stylesheet" href="{{ asset('css/style.css') }}"> #}
+{% endblock %}
+
 {% block body %}
 
-{% endblock %}
+    <div class="page-content">
+
+        <div class="analytics">
+
+            <div class="card">
+                <div class="card-head">
+                    <h2> Nombre client</h2>
+                    <span class="menu-icon fa fa-solid fa-users"></span>
+                </div>
+                <div class="card-progress">
+                    <small><a href="">{{ nombreClients }}</a></small>
+                    <div class="card-indicator">
+                        <div class="indicator one" style="width:{{ nombreClients }}%"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card">
+                <div class="card-head">
+                    <h2> Nombre facture </h2>
+                    <span class="fa fa-file-invoice-dollar"></span>
+                </div>
+                <div class="card-progress">
+                    <small><a href=""> {{ nombreDeFactures }}</a></small>
+                    <div class="card-indicator">
+                        <div class="indicator two" style="width: {{ nombreDeFactures }}%"></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-head">
+                    <h2> Nombre de Service </h2>
+                    <span class="fa fa-life-ring"></span>
+                </div>
+                <div class="card-progress">
+                    <small> <a href=""> {{ nombreProduits }}</a></small>
+                    <div class="card-indicator">
+                        <div class="indicator two" style="width: {{ nombreProduits }}%"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-head">
+                    <h2>Utilisateur</h2>
+                    <span class="fa fa-chart-line"></span>
+                </div>
+                <div class="card-progress">
+                    <small> <a href="">3</a></small>
+                    <div class="card-indicator">
+                        <div class="indicator two" style="width: 20%"></div>
+                    </div>
+                </div>
+            </div>
+
+
+   </div>
+
+        <div class="chart">
+            <div id="chart1">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div id="chart1">
+                <canvas id="myChart2"></canvas>
+            </div>
+        </div>
+
+
+
+
+
+        {% endblock %}
+        {% block javascripts %}
+
+            <script>
+                // Premier graphique
+                const ctx1 = document.getElementById('myChart');
+                new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        labels: ['janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'juillet','Août','Septembre','Octobre','Novembre','Decembre'],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [12, 19, 3, 5, 2, 16],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Deuxième graphique
+                const ctx2 = document.getElementById('myChart2');
+                new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: ['janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'juillet','Août','Septembre','Octobre','Novembre','Decembre'],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [100, 200, 150, 300, 250, 200, 180],
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+            </script>
+        {% endblock %}
