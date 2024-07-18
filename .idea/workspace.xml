@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0225327e-51af-48c5-a0be-422d70c31b68.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0225327e-51af-48c5-a0be-422d70c31b68.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/convertion.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/convertion.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/impression/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/impression/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -415,7 +409,7 @@
       <workItem from="1721213314501" duration="434000" />
       <workItem from="1721214297559" duration="698000" />
       <workItem from="1721215750489" duration="626000" />
-      <workItem from="1721216535097" duration="804000" />
+      <workItem from="1721216535097" duration="3025000" />
     </task>
     <servers />
   </component>
