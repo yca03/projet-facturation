@@ -18,7 +18,7 @@ import {runInputmask} from "./js/inputMark";
 
 require("datatables.net")
 require("datatables.net-responsive")
-require('datatables.net-buttons')
+// require('datatables.net-buttons')
 require('datatables.net-buttons-bs4')()
 require("datatables.net-buttons/js/buttons.html5")
 require("datatables.net-buttons/js/buttons.colVis")
@@ -29,6 +29,7 @@ require("datatables.net-fixedheader");
 
 /** Cutoms JS */
 import './js/page/feature/facture/add-collection-detail-facture'
+import './js/page/feature/facture/add-collection-detail-facture-pro'
 
 const moment = require('moment')
 global.moment = moment;

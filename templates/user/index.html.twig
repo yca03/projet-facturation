@@ -75,10 +75,15 @@
                                         {% for role in user.roles %}
                                             {% if role == 'USER_ROLE' %}
                                                 UTILISATEUR
+                                            {% elseif role == 'ROLE_CREATION' %}
+                                                EDITER
+                                            {% elseif role == 'ROLE_CONSULTER' %}
+                                                CONSULTER
+                                            {% elseif role == 'SUPER_ROLE' %}
+                                                SUPER ADMINISTRATEUR
                                             {% elseif role == 'ROLE_ADMIN' %}
-                                               ADMINISTRATEUR
+                                                ADMINISTRATEUR
                                             {% endif %}
-
                                         {% endfor %}
                                     {% else %}
                                         {{ user.roles }}

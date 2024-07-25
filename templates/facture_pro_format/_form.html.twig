@@ -1,0 +1,107 @@
+{% form_theme form 'facture_pro_format/_collection.html.twig' %}
+
+<fieldset>
+    <legend>Identification de la facture por-format</legend>
+    <div class="row">
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="date_etablissement">Date *</label>
+                {{ form_widget(form.date, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Reference de la facture pro-format *</label>
+                {{ form_widget(form.reference , {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="numero_fiche_besoin">Numéro de la Facture Pro-Format *</label>
+                {{ form_widget(form.numeroFacturePro, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Société *</label>
+                {{ form_widget(form.clients, {'attr' : {'class': 'form-control select2', 'onchange': 'updateRemise(this.value)'}}) }}
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Mode de Payement *</label>
+                {{ form_widget(form.modePayement, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Date d'écheance *</label>
+                {{ form_widget(form.dateEcheance, {'attr' : {'class': 'form-control '}}) }}
+            </div>
+        </div>
+
+{#        <div class="col-4">#}
+{#            <div class="form-group">#}
+{#                <label for="objet">Date d'échéance *</label>#}
+{#                {{ form_widget(form.dateExpiration, {'attr' : {'class': 'form-control'}}) }}#}
+{#            </div>#}
+{#        </div>#}
+
+    </div>
+
+
+
+    {#        <div class="col-3">#}
+    {#            <div class="form-group">#}
+    {#                <label for="objet">Reference de la facture *</label>#}
+    {#                {{ form_widget(form.reference , {'attr' : {'class': 'form-control'}}) }}#}
+    {#            </div>#}
+    {#        </div>#}
+
+
+
+</fieldset>
+
+<fieldset>
+
+    <input type="hidden" id="widget-counter-detail-facture-pro" name="widget-counter-detail-facture-pro"
+           value="{{ form.detailFacture|length }}">
+    <legend>Detail facture</legend>
+    <div class="table-responsive">
+        <table class="table table-sm bordered" id="table_detail_facture_pro">
+            <thead>
+            <tr>
+                <th>Service (s)</th>
+                <th>Quanité</th>
+                <th>prix (Fcfa)</th>
+                <th>Remise </th>
+                <th>Montant HT </th>
+                <th>Montant TVA </th>
+                <th>Montant TTC </th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{ form_widget(form.detailFacture) }}
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+
+
+
+
+
+
+

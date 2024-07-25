@@ -30,6 +30,20 @@ class ClientsType extends AbstractType
             ->add('adresse')
             ->add('contact')
             ->add('numeroCompteContribuable')
+            ->add('ville')
+            ->add('siege')
+            ->add('pays')
+            ->add('siteInternet')
+            ->add('regimeFiscal', ChoiceType::class, [
+                'choices' => [
+                    'Regime de l entrepreunant (RE)'=>'RE',
+                    'Regime des micro-entreprise (RME)'=>'RME',
+                    'Regime Simplifié d imposition (RSI)'=>'RSI',
+                    'Regime Réelle Normale d impossition (RNI)'=>'RNI',
+                ],
+                'placeholder' => 'Sélectionner le Regime fiscal',
+            ])
+            ->add('activite')
             ->add('remise',TextType::class,[
                 'required'=>false,
             ])

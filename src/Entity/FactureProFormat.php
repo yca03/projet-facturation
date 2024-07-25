@@ -1,0 +1,167 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\FactureProFormatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: FactureProFormatRepository::class)]
+class FactureProFormat
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $reference = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $numeroFacturePro = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateEcheance = null;
+
+    /**
+     * @var Collection<int, DetailFacture>
+     */
+    #[ORM\OneToMany(targetEntity: DetailFacture::class, mappedBy: 'factureProformat')]
+    private Collection $detailFacture;
+
+    #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
+    private ?Clients $clients = null;
+
+    #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
+    private ?ModePayement $modePayement = null;
+
+
+
+    public function __construct()
+    {
+        $this->detailFacture = new ArrayCollection();
+
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): static
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): static
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getNumeroFacturePro(): ?string
+    {
+        return $this->numeroFacturePro;
+    }
+
+    public function setNumeroFacturePro(string $numeroFacturePro): static
+    {
+        $this->numeroFacturePro = $numeroFacturePro;
+
+        return $this;
+    }
+
+    public function getDateEcheance(): ?\DateTimeInterface
+    {
+        return $this->dateEcheance;
+    }
+
+    public function setDateEcheance(\DateTimeInterface $dateEcheance): static
+    {
+        $this->dateEcheance = $dateEcheance;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetailFacture>
+     */
+    public function getDetailFacture(): Collection
+    {
+        return $this->detailFacture;
+    }
+
+    public function addDetailFacture(DetailFacture $detailFacture): static
+    {
+        if (!$this->detailFacture->contains($detailFacture)) {
+            $this->detailFacture->add($detailFacture);
+            $detailFacture->setFactureProformat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailFacture(DetailFacture $detailFacture): static
+    {
+        if ($this->detailFacture->removeElement($detailFacture)) {
+            // set the owning side to null (unless already changed)
+            if ($detailFacture->getFactureProformat() === $this) {
+                $detailFacture->setFactureProformat(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Clients>
+     */
+
+
+    /**
+     * @return Collection<int, ModePayement>
+     */
+
+    public function getClients(): ?Clients
+    {
+        return $this->clients;
+    }
+
+    public function setClients(?Clients $clients): static
+    {
+        $this->clients = $clients;
+
+        return $this;
+    }
+
+    public function getModePayement(): ?ModePayement
+    {
+        return $this->modePayement;
+    }
+
+    public function setModePayement(?ModePayement $modePayement): static
+    {
+        $this->modePayement = $modePayement;
+
+        return $this;
+    }
+
+}

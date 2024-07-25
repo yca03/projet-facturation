@@ -27,9 +27,19 @@ class ModePayement
     #[ORM\OneToMany(targetEntity: Facture::class, mappedBy: 'modePayement')]
     private Collection $factures;
 
+    #[ORM\ManyToOne(inversedBy: 'modePayement')]
+    private ?FactureProFormat $factureProFormat = null;
+
+    /**
+     * @var Collection<int, FactureProFormat>
+     */
+    #[ORM\OneToMany(targetEntity: FactureProFormat::class, mappedBy: 'modePayement')]
+    private Collection $factureProFormats;
+
     public function __construct()
     {
         $this->factures = new ArrayCollection();
+        $this->factureProFormats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,5 +104,47 @@ class ModePayement
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getFactureProFormat(): ?FactureProFormat
+    {
+        return $this->factureProFormat;
+    }
+
+    public function setFactureProFormat(?FactureProFormat $factureProFormat): static
+    {
+        $this->factureProFormat = $factureProFormat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FactureProFormat>
+     */
+    public function getFactureProFormats(): Collection
+    {
+        return $this->factureProFormats;
+    }
+
+    public function addFactureProFormat(FactureProFormat $factureProFormat): static
+    {
+        if (!$this->factureProFormats->contains($factureProFormat)) {
+            $this->factureProFormats->add($factureProFormat);
+            $factureProFormat->setModePayement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFactureProFormat(FactureProFormat $factureProFormat): static
+    {
+        if ($this->factureProFormats->removeElement($factureProFormat)) {
+            // set the owning side to null (unless already changed)
+            if ($factureProFormat->getModePayement() === $this) {
+                $factureProFormat->setModePayement(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -25,7 +25,7 @@
     </div>
 
     {% for facture in facture1 %}
-        <div id="tva" style="display: none"> {{ facture.tva }}</div>
+        <div id="tva" style="display: none"> {{ facture.  tva }}</div>
     {% endfor %}
 {% endblock %}
 
@@ -36,20 +36,22 @@
         // Fonction pour mettre à jour la remise du client en fonctionne du id
         function updateRemise(clientId) {
             if (clientId) {
-                fetch('/facture/client/' + clientId + '/remise')
+                fetch('/facture/pro/format/clients/' + clientId + '/remise')
                     .then(response => response.json())
                     .then(data => {
                         // Mettre à jour la valeur du champ de remise dans chaque ligne de la collection de détails de facture
                         document.querySelectorAll('.remise').forEach(function(element) {
                             element.value = data.remise;
                             // Recalculer les montants après la mise à jour de la remise
-                            var detailId = element.getAttribute('data-id');
+                            var QdetailId = element.getAttribute('data-id');
                             calculerMontants(detailId);
                         });
                     })
                     .catch(error => console.error('Erreur:', error));
             }
         }
+
+
 
 
 

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FactureProFormat index{% endblock %}
+
+{% block body %}
+    <h1>FactureProFormat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Reference</th>
+                <th>NumeroFacturePro</th>
+                <th>DateEcheance</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for facture_pro_format in facture_pro_formats %}
+            <tr>
+                <td>{{ facture_pro_format.id }}</td>
+                <td>{{ facture_pro_format.date ? facture_pro_format.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ facture_pro_format.reference }}</td>
+                <td>{{ facture_pro_format.numeroFacturePro }}</td>
+                <td>{{ facture_pro_format.dateEcheance ? facture_pro_format.dateEcheance|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_facture_pro_format_show', {'id': facture_pro_format.id}) }}">show</a>
+                    <a href="{{ path('app_facture_pro_format_edit', {'id': facture_pro_format.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_facture_pro_format_new') }}">Create new</a>
+{% endblock %}

@@ -4,11 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="" />
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/js/page/feature/facture/add-collection-detail-facture-pro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/facture_pro_format/_collection.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0225327e-51af-48c5-a0be-422d70c31b68.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0225327e-51af-48c5-a0be-422d70c31b68.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bb95f477-712e-48df-bd6d-168df79a3ff0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bb95f477-712e-48df-bd6d-168df79a3ff0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FactureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Clients.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/DetailFacture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/DetailFacture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/ModePayement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/ModePayement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ClientsType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ClientsType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/SocieteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SocieteType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/clients/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/clients/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/etat/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/etat/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/_navbar1.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_navbar1.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/societe/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/societe/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/societe/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/societe/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerConfigs">
+    <option name="configs">
+      <option value="$PROJECT_DIR$/projet-facturation/composer.json" />
+    </option>
   </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
@@ -23,6 +59,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
@@ -298,6 +335,7 @@
       <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/omines/datatables-bundle" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -314,7 +352,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/projet-facturation&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/projet-facturation/templates/facture_pro_format&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -332,15 +370,21 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\projet-facturation\templates\facture_pro_format" />
+      <recent name="C:\wamp64\www\projet-facturation\templates\facture" />
       <recent name="C:\wamp64\www\projet-facturation\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\projet-facturation\src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.Main">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="projet-facturation" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/projet-facturation/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
   </component>
@@ -409,6 +453,17 @@
       <workItem from="1721215750489" duration="626000" />
       <workItem from="1721216535097" duration="3025000" />
       <workItem from="1721292393015" duration="59000" />
+      <workItem from="1721320068847" duration="278000" />
+      <workItem from="1721323245003" duration="775000" />
+      <workItem from="1721383034986" duration="1857000" />
+      <workItem from="1721635798677" duration="181000" />
+      <workItem from="1721636322921" duration="15615000" />
+      <workItem from="1721655345795" duration="6347000" />
+      <workItem from="1721663236903" duration="9823000" />
+      <workItem from="1721722626534" duration="10128000" />
+      <workItem from="1721740786729" duration="12164000" />
+      <workItem from="1721807203356" duration="13000" />
+      <workItem from="1721897120917" duration="15000" />
     </task>
     <servers />
   </component>

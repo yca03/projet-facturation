@@ -3,48 +3,6 @@
 {% block title %}Societe{% endblock %}
 
 {% block body %}
-{#    <h1>Societe</h1>#}
-
-{#    <table class="table">#}
-{#        <tbody>#}
-{#            <tr>#}
-{#                <th>Id</th>#}
-{#                <td>{{ societe.id }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>RaisonSocial</th>#}
-{#                <td>{{ societe.RaisonSocial }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Forme</th>#}
-{#                <td>{{ societe.Forme }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Activite</th>#}
-{#                <td>{{ societe.Activite }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Numero</th>#}
-{#                <td>{{ societe.Numero }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Siege</th>#}
-{#                <td>{{ societe.Siege }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Telephone</th>#}
-{#                <td>{{ societe.Telephone }}</td>#}
-{#            </tr>#}
-{#        </tbody>#}
-{#    </table>#}
-
-{#    <a href="{{ path('app_societe_index') }}">back to list</a>#}
-
-{#    <a href="{{ path('app_societe_edit', {'id': societe.id}) }}">edit</a>#}
-
-{#    {{ include('societe/_delete_form.html.twig') }}#}
-
-
     <div class="col-12 col-md-12">
         <div class="card">
             <div class="card-header bg-soft-custom " style="background:#21244e; color:white;">
@@ -71,7 +29,7 @@
                         <tr>
                             <td class="text-center">{{societe.id }}</td>
                             <td class="text-center">{{societe.RaisonSocial }}</td>
-                            <td class="text-center">{{societe.Forme }}</td>
+                            <td class="text-center">{{societe.FormeJuridique }}</td>
                             <td class="text-center">{{societe.Activite }} </td>
                             <td class="text-center">{{societe.Numero}}</td>
                             <td class="text-center">{{societe.Siege}}</td>

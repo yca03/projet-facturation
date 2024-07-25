@@ -5,11 +5,12 @@ namespace App\Form;
 use App\Entity\User;
 use App\Entity\Societe;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class SocieteType extends AbstractType
 {
@@ -32,15 +33,23 @@ class SocieteType extends AbstractType
             ->add('Siege')
             ->add('Telephone')
             ->add('ville')
-            ->add('date',DateType::class,[
-                'data' => new \DateTime(),
-            ])
-            ->add('AdressePostal')
+//            ->add('date',DateType::class,[
+//                'data' => new \DateTime(),
+//            ])
+//            ->add('AdressePostal')
             ->add('pays')
             ->add('Email')
             ->add('SiteInternet')
             ->add('CodeCommercial')
-            ->add('RegimeFiscal')
+            ->add('RegimeFiscal', ChoiceType::class, [
+                'choices' => [
+                    'Regime de l entrepreunant (RE)'=>'RE',
+                    'Regime des micro-entreprise (RME)'=>'RME',
+                    'Regime Simplifié d imposition (RSI)'=>'RSI',
+                    'Regime Réelle Normale d impossition (RNI)'=>'RNI',
+                ],
+                'placeholder' => 'Sélectionner le Regime fiscal',
+            ])
 //            ->add('relation', EntityType::class, [
 //                'class' => User::class,
 //                'choice_label' => 'id',

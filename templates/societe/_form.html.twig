@@ -9,21 +9,21 @@
     <legend>Identification de la Société</legend><hr>
     <div class="row">
 
-         <div class="col-3">
-            <div class="form-group">
-                <label for="numero_fiche_besoin">Date *</label>
-                {{ form_widget(form.date, {'attr' : {'class': 'form-control'}}) }}
-            </div>
-        </div>
+{#         <div class="col-3">#}
+{#            <div class="form-group">#}
+{#                <label for="numero_fiche_besoin">Date *</label>#}
+{#                {{ form_widget(form.date, {'attr' : {'class': 'form-control'}}) }}#}
+{#            </div>#}
+{#        </div>#}
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Raison Social *</label>
                 {{ form_widget(form.RaisonSocial, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Forme Juridique  *</label>
                 {{ form_widget(form.FormeJuridique, {'attr' : {'class': 'form-control select2 '}}) }}
@@ -31,7 +31,7 @@
         </div>
 
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="form-group">
                 <label for="objet"> Activité *</label>
                 {{ form_widget(form.Activite, {'attr' : {'class': 'form-control'}}) }}
@@ -46,16 +46,16 @@
 
     <div class="row">
 
-         <div class="col-3">
-            <div class="form-group">
-                <label for="numero_fiche_besoin">Adresse Postal *</label>
-                {{ form_widget(form.AdressePostal, {'attr' : {'class': 'form-control'}}) }}
-            </div>
-        </div>
+{#         <div class="col-3">#}
+{#            <div class="form-group">#}
+{#                <label for="numero_fiche_besoin">Adresse Postal *</label>#}
+{#                {{ form_widget(form.AdressePostal, {'attr' : {'class': 'form-control'}}) }}#}
+{#            </div>#}
+{#        </div>#}
 
 
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="form-group">
                 <label for="date_etablissement"> Ville *</label>
                 {{ form_widget(form.ville, {'attr' : {'class': 'form-control'}}) }}
@@ -63,7 +63,7 @@
         </div>
 
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="form-group">
                 <label for="objet">Siège *</label>
                 {{ form_widget(form.Siege, {'attr' : {'class': 'form-control'}}) }}
@@ -72,10 +72,10 @@
 
 
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="form-group">
                 <label for="responsable_demande">Pays *</label>
-                {{ form_widget(form.pays, {'attr' : {'class': 'form-control select2'}}) }}
+                {{ form_widget(form.pays, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
     
@@ -87,14 +87,14 @@
 
     <div class="row">
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="form-group">
                 <label for="objet">Téléphone * </label>
                 {{ form_widget(form.Telephone, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-         <div class="col-3">
+         <div class="col-4">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Adresse Email *</label>
                 {{ form_widget(form.Email, {'attr' : {'class': 'form-control'}}) }}
@@ -102,7 +102,7 @@
         </div>
 
 
-         <div class="col-3">
+         <div class="col-4">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Site Internet *</label>
                 {{ form_widget(form.SiteInternet, {'attr' : {'class': 'form-control'}}) }}
@@ -118,24 +118,24 @@
 
      <div class="row">
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Code Commercial *</label>
                 {{ form_widget(form.CodeCommercial, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="form-group">
                 <label for="numero_fiche_besoin">N.C.C *</label>
                 {{ form_widget(form.Numero, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-         <div class="col-3">
+         <div class="col-4">
             <div class="form-group">
-                <label for="numero_fiche_besoin">Regime Fiscal *</label>
-                {{ form_widget(form.RegimeFiscal, {'attr' : {'class': 'form-control'}}) }}
+                <label for="objet">Regime Fiscal *</label>
+                {{ form_widget(form.RegimeFiscal,{'attr' : {'class': 'form-control select2'}}) }}
             </div>
         </div>
 
