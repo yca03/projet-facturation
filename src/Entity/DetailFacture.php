@@ -45,6 +45,9 @@ class DetailFacture
     #[ORM\JoinColumn(nullable: false)]
     private ?Facture $facture = null;
 
+    #[ORM\ManyToOne(inversedBy: 'detailFacture')]
+    private ?FactureProformat $factureProformat = null;
+
    
 
     public function getId(): ?int
@@ -168,6 +171,18 @@ class DetailFacture
     public function setFacture(?Facture $facture): static
     {
         $this->facture = $facture;
+
+        return $this;
+    }
+
+    public function getFactureProformat(): ?FactureProformat
+    {
+        return $this->factureProformat;
+    }
+
+    public function setFactureProformat(?FactureProformat $factureProformat): static
+    {
+        $this->factureProformat = $factureProformat;
 
         return $this;
     }

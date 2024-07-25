@@ -26,13 +26,18 @@ class FactureController extends AbstractController
         ]);
     }
 
-    //pour la recuperation de la remise du client 
+
+
+
+    //pour la recuperation de la remise du client
 
     #[Route('/client/{id}/remise', name: 'app_client_remise', methods: ['GET'])]
     public function getRemise(Clients $clients): JsonResponse
     {
         return new JsonResponse(['remise' => $clients->getRemise()]);
     }
+
+
 
 
 
@@ -174,7 +179,13 @@ class FactureController extends AbstractController
         return $this->render('facture/info.html.twig', [
             'factures' => $data,
         ]);
+
+
     }
+
+
+
+
 
 
 }

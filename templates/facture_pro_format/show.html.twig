@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FactureProFormat{% endblock %}
+
+{% block body %}
+    <h1>FactureProFormat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ facture_pro_format.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ facture_pro_format.date ? facture_pro_format.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ facture_pro_format.reference }}</td>
+            </tr>
+            <tr>
+                <th>NumeroFacturePro</th>
+                <td>{{ facture_pro_format.numeroFacturePro }}</td>
+            </tr>
+            <tr>
+                <th>DateEcheance</th>
+                <td>{{ facture_pro_format.dateEcheance ? facture_pro_format.dateEcheance|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_facture_pro_format_index') }}">back to list</a>
+
+    <a href="{{ path('app_facture_pro_format_edit', {'id': facture_pro_format.id}) }}">edit</a>
+
+    {{ include('facture_pro_format/_delete_form.html.twig') }}
+{% endblock %}

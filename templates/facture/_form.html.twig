@@ -33,14 +33,14 @@
         <div class="col-4">
             <div class="form-group">
                 <label for="objet">Société *</label>
-                {{ form_widget(form.IdClient, {'attr' : {'class': 'form-control', 'onchange': 'updateRemise(this.value)'}}) }}
+                {{ form_widget(form.IdClient, {'attr' : {'class': 'form-control select2', 'onchange': 'updateRemise(this.value)'}}) }}
             </div>
         </div>
 
         <div class="col-4">
             <div class="form-group">
                 <label for="objet">Mode de Payement *</label>
-                {{ form_widget(form.modePayement, {'attr' : {'class': 'form-control select2 '}}) }}
+                {{ form_widget(form.modePayement,{'attr' : {'class': 'form-control select2'}}) }}
             </div>
         </div>
  

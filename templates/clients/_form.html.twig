@@ -13,73 +13,121 @@
 
     <div class="row">
 
-        <div class="col-6">
+        <div class="col-4">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Nom de la Société *</label>
                 {{ form_widget(form.nom, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-4">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Type de Société  *</label>
                 {{ form_widget(form.typeSociete, {'attr' : {'class': 'form-control select2'}}) }}
             </div>
         </div>
 
-
-
-        <div class="col-6">
+        <div class="col-4">
             <div class="form-group">
-                <label for="objet"> Numero de Compte Contribuable (N.C.C) *</label>
-                {{ form_widget(form.numeroCompteContribuable, {'attr' : {'class': 'form-control'}}) }}
+                <label for="numero_fiche_besoin">Activité  *</label>
+                {{ form_widget(form.activite, {'attr' : {'class': 'form-control '}}) }}
+            </div>
+        </div>
+
+    </div>
+
+
+    <legend>Coordonnée géographique  de la Société</legend>
+    <hr>
+
+    <div class="row">
+
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Ville  *</label>
+                {{ form_widget(form.ville, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
 
-        <div class="col-6">
+        <div class="col-4">
             <div class="form-group">
-                <label for="date_etablissement">Adresse de la Société  *</label>
-                {{ form_widget(form.adresse, {'attr' : {'class': 'form-control'}}) }}
+                <label for="date_etablissement">Siège *</label>
+                {{ form_widget(form.siege, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
 
-        <div class="col-6">
+        <div class="col-4">
             <div class="form-group">
-                <label for="objet">Conatct *</label>
+                <label for="objet">pays *</label>
+                {{ form_widget(form.pays, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <legend>Contact de la Société</legend>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Téléphone *</label>
                 {{ form_widget(form.contact, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-4">
             <div class="form-group">
-                <label for="objet">Remise * <i style="color: red">facultatif</i></label>
+                <label for="objet">Email *</label>
+                {{ form_widget(form.adresse, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Site Internet *</label>
+                {{ form_widget(form.siteInternet, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <legend>Immantriculation de la Société</legend>
+    <hr>
+
+  <div class="row">
+
+      <div class="col-4">
+          <div class="form-group">
+              <label for="objet">N.C.C *</label>
+              {{ form_widget(form.numeroCompteContribuable, {'attr' : {'class': 'form-control'}}) }}
+          </div>
+      </div>
+      <div class="col-4">
+          <div class="form-group">
+              <label for="objet">Regime fiscal *</label>
+              {{ form_widget(form.regimeFiscal, {'attr' : {'class': 'form-control select2'}}) }}
+          </div>
+      </div>
+        <div class="col-4">
+            <div class="form-group">
+                    <label for="objet">Remise * <i style="color: red">facultatif</i></label>
                 {{ form_widget(form.remise, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
-    </div>
+  </div>
 
 
 
-
-        {# <div class="col-6">
-            <div class="form-group">
-                <label for="responsable_demande">Remise ( FCFA ) *</label>
-                {{ form_widget(form.remise, {'attr' : {'class': 'form-control select2'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label for="destinataire"> </label>
-                {{ form_widget(form.factClient, {'attr' : {'class': 'form-control '}}) }}
-            </div>
-
-            
-    </div> #}
 
        
 </fieldset>
