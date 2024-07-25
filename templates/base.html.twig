@@ -7,13 +7,15 @@
     <link rel="icon"
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet">
+    <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <!-- BEGIN PLUGINS STYLES -->
     {{ encore_entry_link_tags('app') }}
     <!-- BEGIN THEME STYLES -->
     <link rel="stylesheet" href="{{ asset('css/theme.min.css') }}" data-skin="default">
     <link rel="stylesheet" href="{{ asset('css/theme-dark.min.css') }}" data-skin="dark">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     {% block stylesheets %}
         <style>
@@ -250,7 +252,7 @@
 <script src="{{ asset('js/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('js/flatpickr.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/dual-listbox/dist/dual-listbox.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {{ encore_entry_script_tags('app') }}
 
 <!-- BEGIN BASE JS -->

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* table, th, td {
     font-size: 15px !important;
 }
@@ -59,126 +60,108 @@ body.dark {
     
 .container {
     padding-top: 50px;
+=======
+.analytics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+    margin-top: .5rem;
+    margin-bottom: 2rem;
 }
 
-.container .title {
-    display: flex;
-    align-items: center;
-    margin: 60px 0 30px;
+.card {
+    box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
+    background: #fff;
+    margin: 10px;
+    padding: 2rem;
+    border-radius: 3px;
+>>>>>>> 8034e37e7a69e17961e593b4a1d33dad120037c4
 }
 
-.container .title ion-icon {
-    width: 35px;
-    height: 35px;
-    padding: 5px;
-    background-color: var(--primary-color);
-    color: var(--title-icon-color);
-    border-radius: 6px;
-}
-
-.container .title .text {
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--text-color);
-    margin-left: 10px;
-}
-
-.container .boxes {
+.card-head {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.card-head h2 {
+    color: #333;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.card-head span {
+    font-size: 3.2rem;
+    color: grey;
+}
+
+.card-progress small {
+    color: #777;
+    font-size: 30px;
+}
+
+.card-indicator {
+    border-radius: 4px;
+    background: #e9edf2;
+    overflow: hidden;
+}
+
+.indicator {
+    height: 10px;
+    border-radius: 4px;
+}
+
+.indicator.one {
+    background: #22baa0;
+}
+
+.indicator.two {
+    background: #11a8c3;
+}
+
+.indicator.three {
+    background: #f6d433;
+}
+
+.indicator.four {
+    background: yellow;
+}
+
+.chart
+{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
     flex-wrap: wrap;
 }
-
-.container .boxes .box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    padding: 15px 20px;
-    border-radius: 10px;
-    background-color: var(--box1-color);
+#chart1
+{
+    width: 50%;
+    height: 50%;
 }
 
-.boxes .box ion-icon {
-    font-size: 35px;
-    color: var(--text-color);
-    margin: 5px;
-}
-
-.boxes .box .text {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-
-.boxes .box .number {
-    font-size: 40px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-
-.boxes .box.box2 {
-    background-color: var(--box2-color);
-}
-
-.boxes .box.box3 {
-    background-color: var(--box3-color);
-}
-
-.container .activity .activity-data {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    overflow-x: auto;
-}
-
-.activity-data .data {
-    display: flex;
-    flex-direction: column;
-    margin: 0 40px;
-}
-
-.activity-data .data-title {
-    font-size: 18px;
-    color: var(--text-color);
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-.activity-data .data-list {
-    font-size: 18px;
-    color: var(--text-color);
-    margin-top: 20px;
-    white-space: nowrap;
-}
-.graph-box {
-    display: flex;
-    flex-direction: row;
-}
-
-
-@media (max-width:768px) {
-    
-
-    .container .boxes .box {
-        width: calc(100%/2 - 15px);
-        margin-top: 30px;
+@media only screen and (max-width: 1200px) {
+    .analytics {
+        grid-template-columns: repeat(2, 1fr);
     }
-	.graph-box {
-		display: flex;
-		flex-direction: column;
-	}
 }
 
-@media (max-width: 560px) {
-    .container .boxes .box{
+@media only screen and (max-width: 768px) {
+
+    .card {
+        margin-left: 1px;
+    }
+
+    table {
+        width: 900px;
+    }
+    .add, .browse {
+        margin-left: 10px;
+    }
+    #chart1
+    {
         width: 100%;
+        height: 50%;
     }
-	.graph-box {
-		display: flex;
-		flex-direction: row;
-	}
-    .activity-data .data-list {
-        font-size: 16px;
-    }
+
 }

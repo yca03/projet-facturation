@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -323,8 +321,13 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AtomSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -384,6 +387,28 @@
       <workItem from="1719398069809" duration="737000" />
       <workItem from="1719559944523" duration="17876000" />
       <workItem from="1719819160656" duration="2630000" />
+      <workItem from="1719827426934" duration="15560000" />
+      <workItem from="1719909399268" duration="6729000" />
+      <workItem from="1719993890942" duration="12594000" />
+      <workItem from="1720082099900" duration="4511000" />
+      <workItem from="1720169735278" duration="600000" />
+      <workItem from="1720454854213" duration="5114000" />
+      <workItem from="1720514373381" duration="1266000" />
+      <workItem from="1720515702242" duration="14164000" />
+      <workItem from="1720603425863" duration="48000" />
+      <workItem from="1720603831884" duration="11433000" />
+      <workItem from="1720683212503" duration="18000" />
+      <workItem from="1720688135531" duration="205000" />
+      <workItem from="1720688488921" duration="10000" />
+      <workItem from="1720770941008" duration="827000" />
+      <workItem from="1720774170418" duration="4178000" />
+      <workItem from="1720781138562" duration="7350000" />
+      <workItem from="1721035058124" duration="2126000" />
+      <workItem from="1721213314501" duration="434000" />
+      <workItem from="1721214297559" duration="698000" />
+      <workItem from="1721215750489" duration="626000" />
+      <workItem from="1721216535097" duration="3025000" />
+      <workItem from="1721292393015" duration="59000" />
     </task>
     <servers />
   </component>
@@ -393,6 +418,17 @@
       <list>
         <option value="$PROJECT_DIR$/node_modules/fastest-levenshtein/test.js" />
       </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
     </option>
   </component>
 </project>

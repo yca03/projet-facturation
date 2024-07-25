@@ -78,6 +78,11 @@
         }
     </style>
 
+<<<<<<< HEAD
+{% block body %}
+    <div class="invoice-container">
+        <h3>FACTURE N° {{ facture.codeFacture }}</h3>   
+=======
 
 
 
@@ -87,6 +92,7 @@
 
  <div class="invoice-container">
         <h3>FACTURE N° {{ facture.codeFacture }}</h3>
+>>>>>>> f206a422462ecdcb3e7e75e7523c4811fe3f8600
         <h5 id="date">Date : {{ facture.dateFacture |date("d/m/Y") }}</h5>
 
         <div class="company-info">
@@ -222,10 +228,11 @@
         padding: 8px;
         text-align: right;
         width: 16.66%; /* Set equal width for all columns */
+        font-size: 18px !important;
     }
 
     .no-border {
-        border: none;
+        border:none;
     }
 
     .highlight {
