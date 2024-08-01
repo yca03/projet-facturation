@@ -13,7 +13,7 @@ class FactureProFormat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column ]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -31,7 +31,7 @@ class FactureProFormat
     /**
      * @var Collection<int, DetailFacture>
      */
-    #[ORM\OneToMany(targetEntity: DetailFacture::class, mappedBy: 'factureProformat')]
+    #[ORM\OneToMany(targetEntity: DetailFacture::class, mappedBy: 'factureProformat', cascade: ['persist'], orphanRemoval: true)]
     private Collection $detailFacture;
 
     #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
@@ -39,6 +39,15 @@ class FactureProFormat
 
     #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
     private ?ModePayement $modePayement = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $totalHT = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $totalTVA = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $totalTTC = null;
 
 
 
@@ -160,6 +169,42 @@ class FactureProFormat
     public function setModePayement(?ModePayement $modePayement): static
     {
         $this->modePayement = $modePayement;
+
+        return $this;
+    }
+
+    public function getTotalHT(): ?string
+    {
+        return $this->totalHT;
+    }
+
+    public function setTotalHT(?string $totalHT): static
+    {
+        $this->totalHT = $totalHT;
+
+        return $this;
+    }
+
+    public function getTotalTVA(): ?string
+    {
+        return $this->totalTVA;
+    }
+
+    public function setTotalTVA(?string $totalTVA): static
+    {
+        $this->totalTVA = $totalTVA;
+
+        return $this;
+    }
+
+    public function getTotalTTC(): ?string
+    {
+        return $this->totalTTC;
+    }
+
+    public function setTotalTTC(?string $totalTTC): static
+    {
+        $this->totalTTC = $totalTTC;
 
         return $this;
     }

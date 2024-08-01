@@ -5,24 +5,52 @@
 
 {% block body %}
 
-    <div class="col-12">
-        <div class="card card-fluid">
-            <div class="card-header bg-soft-custom" id="bg">
-                <h6><i class="fa-solid fa-list" style="font-size:20px;"></i> Recherche d'Etat</h6>
-            </div>
-            <div class="card-body">
-                <div class="d-flex justify-content-center">
-                    <form method="get" action="{{ path('app_recherche_date') }}" class="formDate align-items-center ">
-                        <label for="">Date debut : </label>
-                        <input type="date" name="dateDebut" class="input-large mx-2" style="padding: 5px; margin: 5px; border: 1px solid #ced4da;border-radius: 10px; width: 500px; height: 40px; ">
-                        <label for="">Date fin : </label>
-                        <input type="date" name="dateFin" class="input-large mx-2" style="padding: 5px; margin: 5px; border: 1px solid #ced4da;border-radius: 10px; width: 500px; height: 40px;">
-                        <button type="submit" class="btn btn-success ml-3">Rechercher</button>
-                    </form>
+{#    <div class="col-12">#}
+{#        <div class="card card-fluid">#}
+{#            <div class="card-header bg-soft-custom" id="bg">#}
+{#                <h6><i class="fa-solid fa-list" style="font-size:20px;"></i> Recherche d'Etat</h6>#}
+{#            </div>#}
+{#            <div class="card-body">#}
+{#                <div class="d-flex justify-content-center">#}
+{#                    <form method="get" action="{{ path('app_recherche_date') }}" class="formDate align-items-center ">#}
+{#                        <label for="">Date debut : </label>#}
+{#                        <input type="date" name="dateDebut" class="input-large mx-2" style="padding: 5px; margin: 5px; border: 1px solid #ced4da;border-radius: 10px; width: 500px; height: 40px; ">#}
+{#                        <label for="">Date fin : </label>#}
+{#                        <input type="date" name="dateFin" class="input-large mx-2" style="padding: 5px; margin: 5px; border: 1px solid #ced4da;border-radius: 10px; width: 500px; height: 40px;">#}
+{#                        <button type="submit" class="btn btn-success ml-3">Rechercher</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+        <div class="col-12">
+            <form method="get" action="{{ path('app_recherche_date') }}" class="formDate ">
+                <div class="card">
+                    <div class="card-header bg-soft-custom">
+                      Période
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-1 text-right">Date début <span
+                                        class="text-danger">*</span></label>
+                            <div class="col-md-2">
+                                <input type="date" name="dateDebut" class="form-control" required="required">
+                            </div>
+                            <label for="" class="col-form-label col-md-1 text-right">Date de fin <span
+                                        class="text-danger">*</span></label>
+                            <div class="col-md-2">
+                                <input type="date"  name="dateFin" class="form-control" required="required">
+                            </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-footer-content">
+                            <button type="submit" class="btn btn-primary float-right">Recherche</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </div>
 
 
 

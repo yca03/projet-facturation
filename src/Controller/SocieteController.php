@@ -34,6 +34,16 @@ class SocieteController extends AbstractController
             $entityManager->persist($societe);
             $entityManager->flush();
 
+
+
+//flasher
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations enregistrées avec succès.');
+
             return $this->redirectToRoute('app_societe_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -60,6 +70,16 @@ class SocieteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+
+
+//flasher
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations modifiées avec succès.');
+
             return $this->redirectToRoute('app_societe_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -75,6 +95,15 @@ class SocieteController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$societe->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($societe);
             $entityManager->flush();
+
+
+//flasher
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations supprimées avec succès.');
         }
 
         return $this->redirectToRoute('app_societe_index', [], Response::HTTP_SEE_OTHER);

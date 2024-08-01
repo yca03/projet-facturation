@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+
 #[Route('/facture/pro/format')]
 class FactureProFormatController extends AbstractController
 {
@@ -45,10 +46,28 @@ class FactureProFormatController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //pour setté dans la facture proforma
+            foreach ($factureProFormat->getDetailFacture() as $detail)
+            {
+                $detail->setFactureProformat($factureProFormat);
+                $entityManager->persist($detail);
+            }
             $entityManager->persist($factureProFormat);
+
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_facture_pro_format_index', [], Response::HTTP_SEE_OTHER);
+
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations enregistrées avec succès.');
+
+
+
+
+            return $this->redirectToRoute('app_facture_pro_format_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('facture_pro_format/new.html.twig', [
@@ -93,4 +112,33 @@ class FactureProFormatController extends AbstractController
 
         return $this->redirectToRoute('app_facture_pro_format_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('/facture_pro/all_info', name: 'app_facture_pro_format_info', methods: ['GET'])]
+    public function allFactureProInfo(FactureProFormatRepository $factureProFormatRepository): Response
+    {
+        // Obtenir toutes les factures avec les détails et les clients associés
+        $factureProFormats = $factureProFormatRepository->createQueryBuilder('fp')
+            ->leftJoin('fp.clients', 'c')
+            ->addSelect('c')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('facture_pro_format/info.html.twig', [
+            'facture_pro_formats' => $factureProFormats,
+        ]);
+    }
+
+    #[Route('/{id}/impression/facture_pro_format', name: 'app_facture_pro_format_impression')]
+    public function impression( FactureProFormat $factureProFormat): Response
+    {
+        return $this->render('facture_pro_format/impressionFactureProFormat.html.twig', [
+            'facture_pro_format' => $factureProFormat,
+
+        ]);
+    }
+
+
+
+
 }

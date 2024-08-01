@@ -41,6 +41,14 @@ class UserController extends AbstractController
             $hashedPassword = $passwordHasher->hashPassword( $user,$plaintextPassword);
             $user->setPassword($hashedPassword);
             $entityManager->persist($user);
+
+            flash()
+                ->options([
+                    'timeout' => 5000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('information enregistrer avec succes .');
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
@@ -78,6 +86,15 @@ class UserController extends AbstractController
             // Enregistrer les modifications dans la base de données
             $entityManager->flush();
 
+    // fhasher
+
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations modifiées avec succès.');
+
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -93,6 +110,16 @@ class UserController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($user);
             $entityManager->flush();
+
+
+            // fhasher
+
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('indormation supprimée avec succès');
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);

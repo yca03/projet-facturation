@@ -23,11 +23,14 @@ class UserType extends AbstractType
             ->add('email')
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'SUPER_ADMINISTRATEUR' => 'SUPER_ROLE',
-                    'ADMINISTRATEUR' => 'ROLE_ADMIN',
-                    'CREATEUR' => 'ROLE_CREATION',
-                    'CONSULTATION'=>'ROLE_CONSULTER',
-                    'Utilisateur' => 'USER_ROLE'
+                    'SUPER_ADMINISTRATEUR' => 'ROLE_SUPER_ADMIN',
+                    'ADMINISTRATEUR /  Créer un utilisateur ' => 'ROLE_ADMIN',
+                    'SOCIETE /  Créer une société ' => 'ROLE_SOCIETY',
+                    'CLIENT /  Créer un client(s) ' => 'ROLE_CLIENT',
+                    'CONSULTATION /  Consulter un état , imprimer une facture '=>'ROLE_CONSULTER',
+                    'FACTURE PRO-FORMA /  Créer,supprimer,modifier une facture pro-forma' => 'ROLE_CREATEUR',
+                    'FACTURE /  Créer , supprimer , modifier une facture' => 'ROLE_FACTURE',
+                    'PRODUIT / Créer , supprimer , modifier un produit'=> 'ROLE_PRODUIT'
                 ],
                 'multiple' => true,
                 'attr' => ['class' => 'select2'],

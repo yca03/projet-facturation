@@ -35,6 +35,12 @@ class ClientsController extends AbstractController
 
 
 
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations enrigistrées avec succès.');
 
 
 
@@ -66,6 +72,12 @@ class ClientsController extends AbstractController
 
 
 
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations modifiées avec succès.');
 
             return $this->redirectToRoute('app_clients_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -82,6 +94,14 @@ class ClientsController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($client);
             $entityManager->flush();
+
+
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations supprimées avec succès.');
         }
 
         return $this->redirectToRoute('app_clients_index', [], Response::HTTP_SEE_OTHER);

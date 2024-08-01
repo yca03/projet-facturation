@@ -9,6 +9,7 @@
 
 {% block body %}
 
+  {% if is_granted('ROLE_SUPER_ADMIN') %}
     <div class="page-content">
 
         <div class="analytics">
@@ -81,7 +82,7 @@
                 <canvas id="myChart2"></canvas>
             </div>
         </div>
-
+{% endif %}
 
         {% endblock %}
 
@@ -97,7 +98,7 @@
                         labels: ['janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'juillet','Août','Septembre','Octobre','Novembre','Decembre'],
                         datasets: [{
                             label: '# statistique mensuel',
-                            data: [12, 19, 3, 5, 2, 16],
+                            data: [12, 19, 3, 5, 2, 16,10],
                             borderWidth: 1
                         }]
                     },

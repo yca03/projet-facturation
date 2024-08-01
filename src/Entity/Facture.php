@@ -40,6 +40,15 @@ class Facture
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateExpiration = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $totalHT = null;
+
+    #[ORM\Column(length: 255 ,nullable: true)]
+    private ?string $totalTVA = null;
+
+    #[ORM\Column(length: 255 ,  nullable: true)]
+    private ?string $totalTTC = null;
+
     public function __construct()
     {
         $this->detailFactures = new ArrayCollection();
@@ -157,6 +166,42 @@ class Facture
     public function setDateExpiration(\DateTimeInterface $dateExpiration): static
     {
         $this->dateExpiration = $dateExpiration;
+
+        return $this;
+    }
+
+    public function getTotalHT(): ?string
+    {
+        return $this->totalHT;
+    }
+
+    public function setTotalHT(string $totalHT): static
+    {
+        $this->totalHT = $totalHT;
+
+        return $this;
+    }
+
+    public function getTotalTVA(): ?string
+    {
+        return $this->totalTVA;
+    }
+
+    public function setTotalTVA(string $totalTVA): static
+    {
+        $this->totalTVA = $totalTVA;
+
+        return $this;
+    }
+
+    public function getTotalTTC(): ?string
+    {
+        return $this->totalTTC;
+    }
+
+    public function setTotalTTC(string $totalTTC): static
+    {
+        $this->totalTTC = $totalTTC;
 
         return $this;
     }

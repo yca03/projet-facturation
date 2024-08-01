@@ -57,6 +57,14 @@ class FactureController extends AbstractController
 
             $entityManager->flush();
 
+//flasher
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations enregistrées avec succès.');
+
 
             return $this->redirectToRoute('app_facture_info', [], Response::HTTP_SEE_OTHER);
         }
@@ -113,6 +121,12 @@ class FactureController extends AbstractController
             $entityManager->flush();
 
 
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations modifiées avec succès.');
 
             return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -130,6 +144,14 @@ class FactureController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$facture->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($facture);
             $entityManager->flush();
+
+
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations supprimées avec succès.');
         }
 
         return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
@@ -160,6 +182,7 @@ class FactureController extends AbstractController
                     'dateExpirationFacture'=>$facture->getDateExpiration()->format('Y-m-d'),
                     'clientcontact' => $facture->getIdClient()->getContact(),
                     'clientnumeroCompteContribuable' => $facture->getIdClient()->getNumeroCompteContribuable(),
+
                     'modePayement'=>$facture->getModePayement(),
                     'codeFacture' => $facture->getCodeFacture(),
                     'reference'=>$facture->getReference(),
@@ -168,9 +191,9 @@ class FactureController extends AbstractController
                     'quantite' => $detail->getQuantite(),
                     'prix' => $detail->getPrix(),
                     'tva' => $detail->getProduit(),
-                    'montantTTC' => $detail->getMontantTTC(),
-                    'montantHT' => $detail->getMontantHT(),
-                    'montantTVA' => $detail->getMontantTVA(),
+                    'totalTTC' => $facture->getTotalTTC(),
+                    'totalHT'=>$facture->getTotalHT(),
+                    'totalTVA' => $facture->getTotalTVA(),
                     'remise' => $detail->getRemise(),
                 ];
             }
