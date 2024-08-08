@@ -182,6 +182,7 @@
         </tr>
     </table>
     <br><br>
+    {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_CONSULTER') %}
     <div style="text-align: right">
         <p><em>Service commercial</em></p>
         <button class="print-button" onclick="window.print()">
@@ -189,4 +190,5 @@
         </button>
     </div>
 </div>
+    {% endif %}
 {% endblock %}

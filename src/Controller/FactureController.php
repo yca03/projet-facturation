@@ -128,7 +128,7 @@ class FactureController extends AbstractController
                 ])
                 ->success('informations modifiées avec succès.');
 
-            return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_facture_info', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('facture/edit.html.twig', [

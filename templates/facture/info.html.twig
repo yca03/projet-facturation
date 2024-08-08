@@ -47,7 +47,18 @@
                                     <td class="text-center">{{ facture.totalTTC| number_format(0, '.', ' ') }}</td>
                                     <td class="text-center">{{ facture.dateExpirationFacture |date("d/m/y") }}</td>
                                     <td class="text-center">{{ facture.clientcontact }}</td>
-                                    <td class="text-center"><a href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>
+                                    <td class="text-center">
+                                        <a href="{{ path('app_facture_edit', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+
+
+                                        <form method="post" action="{{ path('app_facture_delete', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture.idFacture) }}">
+                                            <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
+                                        </form>
+
+
+                                        <a href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a>
+                                    </td>
                                 </tr>
                             {% endif %}
                         {% endfor %}

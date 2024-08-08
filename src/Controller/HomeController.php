@@ -13,22 +13,55 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(FactureRepository $factureRepository, ProduitRepository $produitRepository, ClientsRepository $clientsRepository, UserRepository $userRepository): Response
+    public function index(
+        FactureRepository $factureRepository,
+        ProduitRepository $produitRepository,
+        ClientsRepository $clientsRepository,
+        UserRepository $userRepository
+    ): Response
     {
-        $nombreDeFactures = $factureRepository->count();
-        $nombreProduits = $produitRepository->count();
-        $nomUsers = $userRepository->count();
+        // Compter le nombre total de factures
+        $nombreDeFactures = $factureRepository->count([]);
+
+        $nombreProduits = $produitRepository->count([]);
+
+        $nomUsers = $userRepository->count([]);
+
         $nombreClients = $clientsRepository->createQueryBuilder('c')
             ->select('COUNT(c)')
             ->getQuery()
             ->getSingleScalarResult();
 
+        // Récupérer les factures par mois
+        $facturesParMois = $factureRepository->createQueryBuilder('f')
+            ->select('MONTH(f.date) as month, COUNT(f.id) as count')
+            ->groupBy('month')
+            ->orderBy('month', 'ASC')
+            ->getQuery()
+            ->getArrayResult();
+
+        // Liste des mois en français
+        $moisFr = [
+            1 => 'Janvier', 2 => 'Février', 3 => 'Mars', 4 => 'Avril',
+            5 => 'Mai', 6 => 'Juin', 7 => 'Juillet', 8 => 'Août',
+            9 => 'Septembre', 10 => 'Octobre', 11 => 'Novembre', 12 => 'Décembre'
+        ];
+
+        // Formatage des données pour JavaScript
+        $formattedFacturesParMois = array_fill_keys(array_values($moisFr), 0);
+
+        foreach ($facturesParMois as $facture) {
+            $monthName = $moisFr[$facture['month']];
+            $formattedFacturesParMois[$monthName] = $facture['count'];
+        }
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'nomUsers'=>$nomUsers,
+            'nomUsers' => $nomUsers,
             'nombreDeFactures' => $nombreDeFactures,
             'nombreProduits' => $nombreProduits,
             'nombreClients' => $nombreClients,
+            'facturesParMois' => $formattedFacturesParMois,
         ]);
     }
 }

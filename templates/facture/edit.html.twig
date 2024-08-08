@@ -3,11 +3,34 @@
 {% block title %}Edit Facture{% endblock %}
 
 {% block body %}
-    <h1>Edit Facture</h1>
+{#    <h1>Edit Facture</h1>#}
 
-    {{ include('facture/_form.html.twig', {'button_label': 'Update'}) }}
+{#    {{ include('facture/_form.html.twig', {'button_label': 'Update'}) }}#}
 
-    <a href="{{ path('app_facture_index') }}">back to list</a>
+{#    <a href="{{ path('app_facture_index') }}">back to list</a>#}
 
-    {{ include('facture/_delete_form.html.twig') }}
+{#    {{ include('facture/_delete_form.html.twig') }}#}
+
+
+
+    <div class="col-12">
+        {{ form_start(form) }}
+        <div class="card card-fluid">
+            <div class="card-header bg-soft-custom">
+                <h6> <i class="fa-solid fa-list" style="font-size:20px;"></i> Créer une facture </h6>
+            </div>
+            <div class="card-body">
+                {{ include('facture/_form.html.twig') }}
+            </div>
+
+
+            <div class="card-footer">
+                <div class="card-footer-content">
+                    <button type="submit" class="btn btn-primary float-right ml-2">Enregistrer</button>
+                    <a href="" class="btn btn-info float-right"><i class="oi oi-home"></i> Retour</a>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
