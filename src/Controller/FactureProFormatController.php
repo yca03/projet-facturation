@@ -46,6 +46,7 @@ class FactureProFormatController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             //pour setté dans la facture proforma
             foreach ($factureProFormat->getDetailFacture() as $detail)
             {
@@ -93,7 +94,14 @@ class FactureProFormatController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_facture_pro_format_index', [], Response::HTTP_SEE_OTHER);
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations modifiées avec succès.');
+
+            return $this->redirectToRoute('app_facture_pro_format_info', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('facture_pro_format/edit.html.twig', [
@@ -108,9 +116,17 @@ class FactureProFormatController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$factureProFormat->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($factureProFormat);
             $entityManager->flush();
+
+
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('informations supprimées avec succès.');
         }
 
-        return $this->redirectToRoute('app_facture_pro_format_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_facture_pro_format_info', [], Response::HTTP_SEE_OTHER);
     }
 
 
