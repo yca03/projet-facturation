@@ -1,183 +1,4 @@
 
-{# 
- <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 60px;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f7f7f7;
-        }
-        .invoice-container {
-            background: #fff;
-            padding: 50px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-        }
-        h3, h5 {
-
-            margin-bottom: 20px;
-        }
-        #date
-        {
-            text-align: right;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-        #nom
-        {
-
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .company-info {
-            margin-bottom: 20px;
-        }
-        .client-info {
-            text-align: right;
-        }
-
-        .total {
-            font-size: 1.2em;
-            font-weight: bold;
-            text-align: right;
-            margin-top: 20px;
-
-        }
-        .print-button {
-            background: #21244e;
-            color: white;
-            padding: 15px;
-            border: 1px solid black;
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 20px auto 0;
-            width: fit-content;
-        }
-        .print-button i {
-            margin-right: 10px;
-        }
-        @media print {
-            .print-button {
-                display: none !important;
-            }
-        }
-    </style>
-
-<<<<<<< HEAD
-{% block body %}
-    <div class="invoice-container">
-        <h3>FACTURE N° {{ facture.codeFacture }}</h3>   
-=======
-
-
-
-
-    *********************
-
-
- <div class="invoice-container">
-        <h3>FACTURE N° {{ facture.codeFacture }}</h3>
->>>>>>> f206a422462ecdcb3e7e75e7523c4811fe3f8600
-        <h5 id="date">Date : {{ facture.dateFacture |date("d/m/Y") }}</h5>
-
-        <div class="company-info">
-            <p><strong>OFFSET CONSULTING</strong></p>
-            <p>Abidjan Cocody</p>
-            <p>Tél : (+225) 25 22 01 59 71</p>
-            <p>Cel : (+225) 07 78 63 63 06</p>
-            <p>Email : contact@offset-consulting.com</p>
-            <br>
-            <div>
-                <h6>Mode de Payement : <i>  {{ facture.modePayement }} </i></h6>
-
-            </div>
-
-            <div>
-                <h6>Reference : <i style="font-size: 14px; color: gray"> {{ facture.reference }} </i></h6>
-
-            </div>
-        </div>
-
-
-
-        <div class="client-info">
-            <h5>CLIENT : {{ facture.clientNom }}</h5>
-            <p>{{ facture.clientadresse }}</p>
-            <p>TEL : {{ facture.clientcontact }}</p> <br>
-        </div>
-
-        <div>
-            <h6>Date d'expiration : {{ facture.dateExpirationFacture|date("d/m/Y")  }} </i></h6>
-
-        </div>
-
-        <table>
-            <tr>
-                <th>Qté (mois)</th>
-                <th>Service(s)</th>
-                <th>Prix Unitaire TTC</th>
-                <th>Remise</th>
-                <th>Montant HT</th>
-                <th>Montant TVA</th>
-                <th>Montant TTC</th>
-            </tr>
-            {% set totalTTC = 0 %}
-            {% for detail in facture.detailFactures %}
-                <tr>
-                    <td>{{ detail.quantite }}</td>
-                    <td  class="text-center">{{ detail.produit }}</td>
-                    <td class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
-                    <td class="text-right">{{ detail.remise | number_format(0, '.', ' ') }}</td>
-                    <td class="text-right">{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
-                    <td class="text-right">{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
-                    <td class="text-right">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
-
-                </tr>
-
-                {% set totalTTC = totalTTC + detail.montantTTC %}
-
-            {% endfor %}
-        </table>
-
-        <div class="total">
-            <p>NET A PAYER : {{ totalTTC | number_format(0, '.', ' ') }} Total TTC</p>
-
-           {# <p> {{ facture.totalTTCInWords }} frcfa</p> 
-
-        </div>
-
-               {# <div class="total">
-                   <p>NET A PAYER : {{ detail.montantTTC }} Total TTC</p>
-               </div> 
-
-
-        <p><em>Service commercial</em></p>
-
-        <button class="print-button" onclick="window.print()">
-            <i class="fa-solid fa-download"></i> &nbsp;&nbsp;Imprimer
-        </button>
-    </div>
-
-
-
-
- #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Impression Facture | {% endblock %}
@@ -202,7 +23,6 @@
     }
 
     h1 {
-        color: grey;
         margin-bottom: 80px;
     }
 
@@ -228,7 +48,7 @@
         padding: 8px;
         text-align: right;
         width: 16.66%; /* Set equal width for all columns */
-        font-size: 18px !important;
+        font-size: 15px !important;
     }
 
     .no-border {
@@ -236,7 +56,7 @@
     }
 
     .highlight {
-        background: rgb(177, 175, 175);
+
     }
 
     .section {
@@ -326,7 +146,7 @@
         </div>
 
         <div class="section1">
-            <h4 class="highlight">Expédier à</h4>
+            <h4 class="highlight">Client </h4>
             <p>{{ facture.clientNom }}</p>
             <p>{{ facture.clientadresse }}</p>
             <p>{{ facture.clientcontact }}</p>
@@ -361,9 +181,12 @@
             <td>{{ totalTTC | number_format(0, '.', ' ') }} FCFA</td>
         </tr>
     </table>
-    <p><em>Service commercial</em></p>
-    <button class="print-button" onclick="window.print()">
-        <i class="fa-solid fa-download"></i> &nbsp;&nbsp;Imprimer
-    </button>
+    <br><br>
+    <div style="text-align: right">
+        <p><em>Service commercial</em></p>
+        <button class="print-button" onclick="window.print()">
+            <i class="fa-solid fa-download"></i> &nbsp;&nbsp;Imprimer
+        </button>
+    </div>
 </div>
 {% endblock %}

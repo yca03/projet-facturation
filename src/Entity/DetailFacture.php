@@ -42,7 +42,7 @@ class DetailFacture
     private ?Produit $produit = null;
 
     #[ORM\ManyToOne(inversedBy: 'detailFactures')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Facture $facture = null;
 
     #[ORM\ManyToOne(inversedBy: 'detailFacture')]

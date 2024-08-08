@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Impression FactureProForma | {% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        td,th
+        {
+            padding: 50px;
+        }
+        .invoice-container {
+            width: 80%;
+            height: 100%;
+            padding: 20px;
+            margin: auto;
+
+        }
+        .invoice-header {
+            text-align: center;
+            border: 2px solid grey;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+        .invoice-header h1 {
+            margin: 0;
+        }
+        .invoice-details, .invoice-items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .invoice-details th, .invoice-details td, .invoice-items th, .invoice-items td {
+            border: 2px solid grey;
+            padding: 20px;
+            text-align: center;
+            font-size: 15px !important;
+        }
+        .invoice-items th {
+            background-color: #f9f9f9;
+            padding: 30px;
+        }
+        .invoice-items td
+        {
+            text-align: right;
+        }
+        .total-row {
+            font-weight: bold;
+        }
+
+        .print-button {
+            background: #a4a2a2;
+            color: white;
+            padding: 15px;
+            border: 1px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px auto 0;
+            width: fit-content;
+        }
+
+        .print-button i {
+            margin-right: 10px;
+        }
+        button.back
+        { background: #21244e;
+            color: white;
+            padding: 15px;
+            border: 1px solid white;
+            background: #71cfed;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px auto 0;
+            width: fit-content;
+        }
+        button a
+        {
+            color: white;
+        }
+        button a:hover
+        {
+            color: white;
+            text-decoration: none;
+        }
+
+        @media print {
+            .print-button, .back {
+                display: none !important;
+            }
+        }
+        @media (max-width: 600px) {
+            .invoice-details, .invoice-items {
+                font-size: 12px;
+            }
+            .invoice-details th, .invoice-details td, .invoice-items th, .invoice-items td {
+                padding: 6px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>FACTURE PROFORMA N°: {{ facture_pro_format.numeroFacturePro }}</h1>
+        </div>
+        <table class="invoice-details">
+            <tr>
+                <th>Date d'émission</th>
+                <th>Référence</th>
+                <th>Client</th>
+                <th>Mode de règlement</th>
+            </tr>
+            <tr>
+                <td>{{ facture_pro_format.date|date("d/m/Y") }}</td>
+                <td> {{ facture_pro_format.reference }}</td>
+                <td>{{ facture_pro_format.clients.nom }}</td>
+                <td> {{ facture_pro_format.modePayement.nom }}</td>
+            </tr>
+        </table>
+        <table class="invoice-items">
+            <thead>
+            <tr>
+                <th>Produits</th>
+                <th>Quantités</th>
+                <th>Prix unitaire (Fcfa)</th>
+                <th>Montant HT</th>
+                <th>Montant TVA</th>
+                <th>Montant TTC</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for detail in facture_pro_format.detailFacture %}
+                <tr>
+                    <td>{{ detail.produit.libelle }}</td>
+                    <td>{{ detail.quantite }}</td>
+                    <td>{{ detail.prix  |number_format(0, '.', ' ') }}</td>
+                    <td>{{ detail.montantHT |number_format(0, '.', ' ') }}</td>
+                    <td>{{ detail.montantTVA |number_format(0, '.', ' ') }}</td>
+                    <td>{{ detail.montantTTC |number_format(0, '.', ' ')}}</td>
+                </tr>
+            {% endfor %}
+            <tr class="total-row">
+                <td colspan="3">TOTAL A PAYER</td>
+                <td>{{ facture_pro_format.totalHT |number_format(0, '.', ' ') }}</td>
+                <td>{{ facture_pro_format.totalTVA |number_format(0, '.', ' ') }}</td>
+                <td>{{ facture_pro_format.totalTTC |number_format(0, '.', ' ') }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    <div style="text-align: right;">
+        <p><em>Signature / date </em></p>
+        <button class="back" type="button" class="btn btn-info"><i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_pro_format_info') }}">retour</a> </button>
+        <button class="print-button" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> &nbsp;Imprimer
+        </button>
+
+    </div>
+
+
+
+{% endblock %}

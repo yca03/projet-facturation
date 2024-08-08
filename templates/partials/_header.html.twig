@@ -14,7 +14,7 @@
 			</button>
 			<!-- /toggle aside menu -->
 			<a href="" style="text-decoration:none">
-				GES - FACT |
+				ORBIS - FACT |
 			</a>
 		</div>
 		<!-- /.top-bar-brand -->
@@ -124,18 +124,7 @@
 								<span class="account-name">{{app.user.nomUtilisateur}}</span>
 
 								<span class="account-description">
-								 {% if app.user.roles is iterable %}
-                                        {% for role in app.user.roles %}
-                                            {% if role == 'USER_ROLE' %}
-                                                UTILISATEUR
-                                            {% elseif role == 'ROLE_ADMIN' %}
-                                               ADMINISTRATEUR
-                                            {% endif %}
-
-                                        {% endfor %}
-                                    {% else %}
-                                        {{ app.user.roles }}
-                                    {% endif %}</span>
+								{{ app.user.email }}</span>
 							</span>
 							
 
@@ -148,18 +137,8 @@
 								<span class="account-description">{{app.user.nomUtilisateur}}</span>
 
 								<span class="account-description">
-								 {% if app.user.roles is iterable %}
-                                        {% for role in app.user.roles %}
-                                            {% if role == 'USER_ROLE' %}
-                                                UTILISATEUR
-                                            {% elseif role == 'ROLE_ADMIN' %}
-                                               ADMINISTRATEUR
-                                            {% endif %}
-
-                                        {% endfor %}
-                                    {% else %}
-                                        {{ app.user.roles }}
-                                    {% endif %}</span>
+									{{ app.user.email }}
+								</span>
 							</span>
 						{% endif %}
 					</button>

@@ -3,9 +3,9 @@
 namespace App\Form\Facture;
 
 use App\Entity\Clients;
+use App\Entity\DetailFacture;
 use App\Entity\Facture;
 use App\Entity\ModePayement;
-
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -48,8 +48,30 @@ class FactureType extends AbstractType
 
         ;
 
+        $builder
+            ->addEventListener(
+                FormEvents::POST_SUBMIT,
+                function (FormEvent $event) {
+                    /** @var DetailFacture $data */
+                    $data = $event->getData();
+                    $totalHT = 0;
+                    $totalTVA = 0;
+                    $totalTTC = 0;
+                    foreach ($data->getDetailFactures() as $detailFactures) {
+                        // Assurez-vous que les méthodes sont appelées avec des parenthèses
+                        $totalHT += $detailFactures->getMontantHT();
+                        $totalTVA += $detailFactures->getMontantTVA();
+                        $totalTTC += $detailFactures->getMontantTTC();
+                    }
+                    // Mettez à jour les totaux dans l'objet DetailFacture
+                    $data->setTotalTTC($totalTTC);
+                    $data->setTotalHT($totalHT);
+                    $data->setTotalTVA($totalTVA);
+                }
+            );
 
-  // Écouteur d'événement pour générer le code de facture automatiquement avant la soumission du formulaire
+
+        // Écouteur d'événement pour générer le code de facture automatiquement avant la soumission du formulaire
 $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
     $data = $event->getData();
     $form = $event->getForm();
@@ -102,19 +124,9 @@ $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event)
         $data->setReference($reference); // Définir la référence générée
     }
 });
+
+
     }
-
-
-
-
-
-
-    //code automatique pour la reference
-
-
-    
-
-
 
 
     public function configureOptions(OptionsResolver $resolver): void

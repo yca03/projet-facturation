@@ -73,22 +73,27 @@
                                 <td class="text-center">
                                     {% if user.roles is iterable %}
                                         {% for role in user.roles %}
-                                            {% if role == 'USER_ROLE' %}
-                                                UTILISATEUR
+                                            {% if role == 'ROLE_SOCIETY' %}
+                                                SOCIETE
                                             {% elseif role == 'ROLE_CREATION' %}
-                                                EDITER
+                                                FACTURE-PROFORMAT
                                             {% elseif role == 'ROLE_CONSULTER' %}
                                                 CONSULTER
-                                            {% elseif role == 'SUPER_ROLE' %}
+                                            {% elseif role == 'ROLE_SUPER_ADMIN' %}
                                                 SUPER ADMINISTRATEUR
                                             {% elseif role == 'ROLE_ADMIN' %}
                                                 ADMINISTRATEUR
+                                            {% elseif role == 'ROLE_FACTURE' %}
+                                                FACTURE
+                                            {% elseif role == 'ROLE_PRODUIT' %}
+                                                PRODUIT
                                             {% endif %}
                                         {% endfor %}
                                     {% else %}
                                         {{ user.roles }}
                                     {% endif %}
                                 </td>
+
                                 <td class="text-center">{{user.nomUtilisateur }}</td>
                                 <td class="text-center">{{user.email }}</td>
 {#                                <td class="text-center">#}

@@ -3,14 +3,16 @@
 <!-- /.menu-header -->
 
 <!-- .menu-item -->
-{% if is_granted('SUPER_ROLE') %}
+{% if is_granted('ROLE_SUPER_ADMIN') %}
 	<li class="menu-item">
 		<a href="{{ path('app_home') }}" class="menu-link">
 			<span class="menu-icon fa fa-solid fa-home"></span>
 			<span class="menu-text">Accueil</span>
 		</a>
 	</li><br>
+{% endif %}
 
+{% if is_granted('ROLE_SOCIETY')  or is_granted('ROLE_SUPER_ADMIN') %}
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
 			<span class="menu-icon fa-solid fa-hotel"></span>
@@ -29,7 +31,8 @@
 	</li><br>
 {% endif %}
 
-{% if is_granted('ROLE_ADMIN')  or is_granted('SUPER_ROLE') %}
+{% if is_granted('ROLE_ADMIN')  or is_granted('ROLE_SUPER_ADMIN') %}
+
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
 			<span class="menu-icon fa fa-solid fa-user"></span>
@@ -45,14 +48,39 @@
 			</li>
 		</ul>
 		<!-- /child menu -->
+
 	</li><br>
+
 {% endif %}
 
-{% if is_granted('ROLE_CREATION') or is_granted('SUPER_ROLE') %}
+{% if is_granted('ROLE_CLIENT') or is_granted('ROLE_SUPER_ADMIN') %}
+<li class="menu-item has-child">
+	<a href="#" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-people-roof"></span>
+		<span class="menu-text">clients</span>
+	</a>
+	<!-- child menu -->
+	<ul class="menu">
+		<li class="menu-item {{ app.request.get('_route') == 'app_user_new' ? 'has-active': '' }}">
+			<a href="{{ path('app_clients_new') }}" class="menu-link">Créer</a>
+		</li>
+		<li class="menu-item {{ app.request.get('_route') == 'app_user_index' ? 'has-active': '' }}">
+			<a href="{{ path('app_clients_index') }}" class="menu-link">Liste</a>
+		</li>
+	</ul>
+	<!-- /child menu -->
+</li><br>
+
+{% endif %}
+
+
+
+
+{% if is_granted('ROLE_CREATION')  or is_granted('ROLE_SUPER_ADMIN') %}
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
-			<span class="menu-icon fa fa-solid fa-file-invoice"></span>
-			<span class="menu-text">Facture Pro-format</span>
+			<span class="menu-icon fa fa-solid fa-file-invoice-dollar"></span>
+			<span class="menu-text">Facture Pro-forma</span>
 		</a>
 		<!-- child menu -->
 		<ul class="menu">
@@ -60,11 +88,15 @@
 				<a href="{{ path('app_facture_pro_format_new') }}" class="menu-link">Créer</a>
 			</li>
 			<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index' ? 'has-active': '' }}">
-				<a href="" class="menu-link">Liste</a>
+				<a href="{{ path('app_facture_pro_format_info') }}" class="menu-link">Liste</a>
 			</li>
 		</ul>
+
 		<!-- /child menu -->
 	</li><br>
+{% endif %}
+
+{% if is_granted('ROLE_FACTURE')  or is_granted('ROLE_SUPER_ADMIN') %}
 
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
@@ -82,6 +114,9 @@
 		</ul>
 		<!-- /child menu -->
 	</li><br>
+{% endif %}
+
+{% if is_granted('ROLE_PRODUIT')  or is_granted('ROLE_SUPER_ADMIN') %}
 
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
@@ -101,7 +136,8 @@
 	</li><br>
 {% endif %}
 
-{% if is_granted('ROLE_CONSULTER') or is_granted('SUPER_ROLE')  %}
+
+{% if is_granted('ROLE_CONSULTER')  or is_granted('ROLE_SUPER_ADMIN') %}
 	<li class="menu-item">
 		<a href="{{ path('app_list_etat') }}" class="menu-link">
 			<span class="menu-icon fa fa-solid fa-layer-group"></span>
@@ -119,3 +155,4 @@
 		<!-- /child menu -->
 	</li><br>
 {% endif %}
+

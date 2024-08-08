@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Facture Pro-format{% endblock %}
+{% block title %}Facture Pro-forma{% endblock %}
 
 {% block body %}
     <div class="col-12 col-md-12">
         <div class="card">
             <div class="card-header bg-soft-custom" style="background:#21244e; color:white;">
-                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Liste des Factures pro-format
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Liste des Factures pro-forma
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -22,7 +22,7 @@
                             <th class="text-center">Montant TTC</th>
                             <th class="text-center">Date d'expiration</th>
                             <th class="text-center">Contact</th>
-
+                             <th class="text-center">action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,7 +37,7 @@
                                 <td class="text-center">{{ facture_pro_format.totalTTC|number_format(0, '.', ' ') }}</td>
                                 <td class="text-center">{{ facture_pro_format.dateEcheance|date("d/m/Y") }}</td>
                                 <td class="text-center">{{ facture_pro_format.clients.contact }}</td>
-
+                                <td class="text-center"><a href="{{ path('app_facture_pro_format_impression', {'id': facture_pro_format.id}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
