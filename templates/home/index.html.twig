@@ -9,11 +9,12 @@
 
 {% block body %}
 
-  {% if is_granted('ROLE_SUPER_ADMIN') %}
+
     <div class="page-content">
 
         <div class="analytics">
 
+        {% if is_granted('ROLE_ADMIN')  %}
             <div class="card">
                 <div class="card-head">
                     <h2> Nombre client</h2>
@@ -27,22 +28,27 @@
                 </div>
             </div>
 
+        {% endif %}
 
 
-            <div class="card">
-                <div class="card-head">
-                    <h2> Nombre facture </h2>
-                    <span class="fa fa-file-invoice-dollar"></span>
-                </div>
-                <div class="card-progress">
-                    <small><a href=""> {{ nombreDeFactures }}</a></small>
-                    <div class="card-indicator">
-                        <div class="indicator two" style="width: {{ nombreDeFactures }}%"></div>
+           {% if is_granted('ROLE_FACTURE') or is_granted('ROLE_VALIDED_FACTURE') %}
+                <div class="card">
+                    <div class="card-head">
+                        <h2> Nombre facture </h2>
+                        <span class="fa fa-file-invoice-dollar"></span>
                     </div>
+                    <div class="card-progress">
+                        <small><a href=""> {{ nombreDeFactures }}</a></small>
+                        <div class="card-indicator">
+                            <div class="indicator two" style="width: {{ nombreDeFactures }}%"></div>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
+            {% endif %}
 
+
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
 
             <div class="card">
                 <div class="card-head">
@@ -56,7 +62,9 @@
                     </div>
                 </div>
             </div>
+        {% endif %}
 
+         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
 
             <div class="card">
                 <div class="card-head">
@@ -70,9 +78,28 @@
                     </div>
                 </div>
             </div>
+         {% endif %}
+
+          {% if is_granted('ROLE_SUPER_ADMIN') %}
+               <div class="card">
+                    <div class="card-head">
+                        <h2> admininistrateur</h2>
+                        <span class="fa fa-user-alt"></span>
+                    </div>
+                    <div class="card-progress">
+                        <small> <a href="">{{ nomUsersAdmin }}</a></small>
+                        <div class="card-indicator">
+                            <div class="indicator two" style="width: {{ (nomUsersAdmin / nomUsers * 100)|round(2) }}%"></div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
 
 
    </div>
+
+    {% if is_granted('ROLE_FACTURE') or is_granted('ROLE_VALIDED_FACTURE') %}
 
         <div class="chart">
             <div id="chart1">
@@ -82,7 +109,11 @@
                 <canvas id="myChart2"></canvas>
             </div>
         </div>
-{% endif %}
+
+    {% endif %}
+
+
+
 
         {% endblock %}
 

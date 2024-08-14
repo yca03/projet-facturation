@@ -1,30 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Facture{% endblock %}
+{% block title %}Facture index{% endblock %}
 
 {% block body %}
-    <h1>Facture</h1>
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Lise des Factures
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Date </th>
+                            <th class="text-center">Numéro Client</th>
+                            <th class="text-center">Client</th>
+                            <th class="text-center">Montant HT</th>
+                            <th class="text-center">montant TVA</th>
+                            <th class="text-center">Montant TTC</th>
+                            <th class="text-center">Date d'expiration </th>
+                            <th class="text-center">Contact</th>
+                            <th class="text-center">Statut</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for facture in factures %}
+                            <tr>
+                                <th class="text-center">{{ facture.id }}</th>
+                                <td class="text-center">{{ facture.date|date("d/m/Y")}}</td>
+                                <td class="text-center">{{ facture.codeFacture }}</td>
+                                <td class="text-center">{{ facture.IdClient.nom }}</td>
+                                <td class="text-center">{{ facture.totalHT | number_format(0, '.', ' ') }}</td>
+                                <td class="text-center">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>
+                                <td class="text-center">{{ facture.totalTTC| number_format(0, '.', ' ') }}</td>
+                                <td class="text-center">{{ facture.dateExpiration |date("d/m/y") }}</td>
+                                <td class="text-center">{{ facture.IdClient.contact }}</td>
+                                <td class="text-center">
+                                    {% if facture.statut == 'brouillon' %}
+                                        <span class="badge badge-dark">{{ facture.statut }}</span>
+                                    {% elseif facture.statut == 'en attente' %}
+                                        <span class="badge badge-info">{{ facture.statut }}</span>
+                                    {% elseif facture.statut == 'validé' %}
+                                        <span class="badge badge-success">{{ facture.statut }}</span>
+                                    {% elseif facture.statut == 'annulé' %}
+                                        <span class="badge bg-danger">{{ facture.statut }}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{ path('app_facture_edit', {'id': facture.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ facture.id }}</td>
-            </tr>
-            <tr>
-                <th>CodeFacture</th>
-                <td>{{ facture.codeFacture }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ facture.date ? facture.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_facture_index') }}">back to list</a>
+                                    <form method="post" action="{{ path('app_facture_delete', {'id': facture.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture.id) }}">
+                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
+                                    </form>
 
-    <a href="{{ path('app_facture_edit', {'id': facture.id}) }}">edit</a>
 
-    {{ include('facture/_delete_form.html.twig') }}
+                                    <a href="{{ path('app_impression', {'id': facture.id}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

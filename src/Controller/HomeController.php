@@ -13,11 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(
-        FactureRepository $factureRepository,
-        ProduitRepository $produitRepository,
-        ClientsRepository $clientsRepository,
-        UserRepository $userRepository
+    public function index(FactureRepository $factureRepository, ProduitRepository $produitRepository, ClientsRepository $clientsRepository, UserRepository $userRepository
     ): Response
     {
         // Compter le nombre total de factures
@@ -26,6 +22,9 @@ class HomeController extends AbstractController
         $nombreProduits = $produitRepository->count([]);
 
         $nomUsers = $userRepository->count([]);
+
+        // Compter le nombre d'utilisateurs avec le rôle ROLE_ADMIN
+        $nomUsersAdmin = $userRepository->countUsersByRole('ROLE_ADMIN');
 
         $nombreClients = $clientsRepository->createQueryBuilder('c')
             ->select('COUNT(c)')
@@ -58,6 +57,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'nomUsers' => $nomUsers,
+            'nomUsersAdmin' => $nomUsersAdmin,
             'nombreDeFactures' => $nombreDeFactures,
             'nombreProduits' => $nombreProduits,
             'nombreClients' => $nombreClients,

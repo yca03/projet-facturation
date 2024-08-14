@@ -28,7 +28,14 @@ class UserController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+//        $form = $this->createForm(UserType::class, $user);
+
+
+        // pour afficher sorlement un role lorsque l user SUPER_ADMIN est connecté
+        $currentUserRoles = $this->getUser()->getRoles();
+        $form = $this->createForm(UserType::class, $user, [
+            'current_user_roles' => $currentUserRoles,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

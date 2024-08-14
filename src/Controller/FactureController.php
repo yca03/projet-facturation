@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Clients;
 use App\Entity\DetailFacture;
 use App\Entity\Facture;
+use App\Statut\Statut;
 use App\Form\Facture\FactureType;
 use App\Repository\ClientsRepository;
 use App\Repository\FactureRepository;
@@ -13,16 +14,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 #[Route('/facture')]
 class FactureController extends AbstractController
 {
-    #[Route('/', name: 'app_facture_index', methods: ['GET'])]
+    #[Route('/', name: 'app_facture_index_pending', methods: ['GET'])]
     public function index(FactureRepository $factureRepository): Response
     {
-        return $this->render('facture/index.html.twig', [
-            'factures' => $factureRepository->findAll(),
+
+        return $this->render('facture/index_valide.html.twig', [
+            'factures' => $factureRepository->findFacturePending(),
+        ]);
+    }
+
+    #[Route('/facture/valider', name: 'app_facture_show_valider', methods: ['GET'])]
+    public function valided(FactureRepository $factureRepository): Response
+    {
+
+        return $this->render('facture/show.html.twig', [
+            'factures' => $factureRepository->findFactureValided(),
         ]);
     }
 
@@ -50,10 +64,16 @@ class FactureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($facture);
 
+            // pour set la valeur en attente dans le champs status
+            $facture->setStatut(Statut::BROUILLON);
+
+
             foreach ($facture->getDetailFactures() as $detailFacture) {
                 $detailFacture->setFacture($facture);
                 $entityManager->persist($detailFacture);
             }
+
+
 
             $entityManager->flush();
 
@@ -182,7 +202,7 @@ class FactureController extends AbstractController
                     'dateExpirationFacture'=>$facture->getDateExpiration()->format('Y-m-d'),
                     'clientcontact' => $facture->getIdClient()->getContact(),
                     'clientnumeroCompteContribuable' => $facture->getIdClient()->getNumeroCompteContribuable(),
-
+                    'statut'=>$facture->getStatut(),
                     'modePayement'=>$facture->getModePayement(),
                     'codeFacture' => $facture->getCodeFacture(),
                     'reference'=>$facture->getReference(),
@@ -205,6 +225,92 @@ class FactureController extends AbstractController
 
 
     }
+
+
+
+
+
+
+    #[Route('/{id}/facture/valider', name: 'app_facture_valider', methods: ['POST'])]
+    public function valider(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): Response {
+
+        // Vérifie si le statut de la facture est en attente
+        if ($facture->getStatut() !== Statut::EN_ATTENTE) {
+            // Ajoute un message flash
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->warning('la facture  doit être soumise avant la validation.');
+
+            // Génére l'URL pour la redirection
+            $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
+
+            // Redirige vers la page de la facture avec le message flash
+            return new RedirectResponse($url);
+        }
+
+        // Met à jour le statut de la facture si elle est en attente
+        $facture->setStatut(Statut::VALIDATED);
+        $entityManager->flush();
+
+        flash()
+            ->options([
+                'timeout' => 3000, // 3 seconds
+                'position' => 'bottom-right',
+            ])
+            ->success('la facture  validée  avec succès .');
+
+        $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
+
+        return new RedirectResponse($url);
+    }
+
+    #[Route('/{id}/facture/soumission', name: 'app_facture_soumission', methods: ['POST'])]
+    public function soumission(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse
+    {
+        // Met à jour le statut de la facture
+        $facture->setStatut(Statut::EN_ATTENTE);
+        $entityManager->flush();
+
+
+        flash()
+            ->options([
+                'timeout' => 3000, // 3 seconds
+                'position' => 'bottom-right',
+            ])
+            ->success('la facture   soumise  avec succès .');
+
+        // Génére l'URL pour la redirection
+        $url1 = $urlGenerator->generate('app_facture_info', ['id' => $facture->getId()]);
+
+        // Redirige vers la page de la facture
+        return new RedirectResponse($url1);
+    }
+
+    #[Route('/{id}/facture/annulation', name: 'app_facture_annulation', methods: ['POST'])]
+    public function annulation(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse
+    {
+        // Met à jour le statut de la facture
+        $facture->setStatut(Statut::CANCELLED);
+        $entityManager->flush();
+
+        flash()
+            ->options([
+                'timeout' => 3000, // 3 seconds
+                'position' => 'bottom-right',
+            ])
+            ->success('la facture annulée avec succès .');
+
+        // Génére l'URL pour la redirection
+        $url2 = $urlGenerator->generate('app_facture_index_valider', ['id' => $facture->getId()]);
+
+        // Redirige vers la page de la facture
+        return new RedirectResponse($url2);
+    }
+
+
 
 
 

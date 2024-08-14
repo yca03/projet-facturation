@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\FactureProFormat;
+use App\Statut\Statut;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,4 +41,20 @@ class FactureProFormatRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findFactureProPending()
+    {
+        $qb = $this->createQueryBuilder('f');
+        $qb->where('f.statut = :statut')
+            ->setParameter('statut',Statut::EN_ATTENTE);
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findFactureProValided()
+    {
+        $qb = $this->createQueryBuilder('f');
+        $qb->where('f.statut = :statut')
+            ->setParameter('statut',Statut::VALIDATED);
+        return $qb->getQuery()->getResult();
+    }
 }

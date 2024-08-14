@@ -22,6 +22,7 @@
                             <th class="text-center">Montant TTC</th>
                             <th class="text-center">Date d'expiration</th>
                             <th class="text-center">Contact</th>
+                            <th class="text-center">Statut</th>
                              <th class="text-center">action</th>
                         </tr>
                         </thead>
@@ -37,6 +38,18 @@
                                 <td class="text-center">{{ facture_pro_format.totalTTC|number_format(0, '.', ' ') }}</td>
                                 <td class="text-center">{{ facture_pro_format.dateEcheance|date("d/m/Y") }}</td>
                                 <td class="text-center">{{ facture_pro_format.clients.contact }}</td>
+                                <td class="text-center align-middle">
+
+                                    {% if facture_pro_format.statut == 'brouillon' %}
+                                    <span class="badge badge-dark">{{ facture_pro_format.statut }}</span>
+                                    {% elseif facture_pro_format.statut == 'en attente' %}
+                                         <span class="badge badge-info">{{ facture_pro_format.statut }}</span>
+                                    {% elseif facture_pro_format.statut == 'validé' %}
+                                        <span class="badge badge-success">{{ facture_pro_format.statut }}</span>
+                                    {% elseif facture_pro_format.statut == 'annulé' %}
+                                        <span class="badge badge-warning">{{ facture_pro_format.statut }}</span>
+                                    {% endif %}
+                                </td>
                                 <td class="text-center">
                                     <a href="{{ path('app_facture_pro_format_edit', {'id': facture_pro_format.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
 
