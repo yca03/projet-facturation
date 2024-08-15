@@ -49,6 +49,9 @@ class Facture
     #[ORM\Column(length: 255 ,  nullable: true)]
     private ?string $totalTTC = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $statut = null;
+
     public function __construct()
     {
         $this->detailFactures = new ArrayCollection();
@@ -202,6 +205,18 @@ class Facture
     public function setTotalTTC(string $totalTTC): static
     {
         $this->totalTTC = $totalTTC;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): static
+    {
+        $this->statut = $statut;
 
         return $this;
     }

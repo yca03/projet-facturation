@@ -17,21 +17,27 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        $roles = [
+            'ADMINISTRATEUR / Créer un utilisateur ' => 'ROLE_ADMIN',
+            'CONSULTATION / Consulter un état , imprimer une facture ' => 'ROLE_CONSULTER',
+            'FACTURE PRO-FORMA / Créer , supprimer , modifier une facture pro-forma' => 'ROLE_FACTURE_PRO',
+            'FACTURE PRO-FORMA / valider , annuler   une facture pro-forma'=>'ROLE_USER_VALIDED_FACTURE_PRO',
+            'FACTURE / Créer , supprimer , modifier une facture' => 'ROLE_FACTURE',
+            'FACTURE / valider , anunler  une facture '=>'ROLE_USER_VALIDED_FACTURE',
+        ];
+
+        if (in_array('ROLE_SUPER_ADMIN', $options['current_user_roles'])) {
+            $roles = array_filter($roles, function($role) {
+                return $role === 'ROLE_ADMIN';
+            });
+        }
         $builder
             ->add('nom')
             ->add('prenom')
             ->add('email')
             ->add('roles', ChoiceType::class, [
-                'choices' => [
-                    'SUPER_ADMINISTRATEUR' => 'ROLE_SUPER_ADMIN',
-                    'ADMINISTRATEUR /  Créer un utilisateur ' => 'ROLE_ADMIN',
-                    'SOCIETE /  Créer une société ' => 'ROLE_SOCIETY',
-                    'CLIENT /  Créer un client(s) ' => 'ROLE_CLIENT',
-                    'CONSULTATION /  Consulter un état , imprimer une facture '=>'ROLE_CONSULTER',
-                    'FACTURE PRO-FORMA /  Créer,supprimer,modifier une facture pro-forma' => 'ROLE_CREATEUR',
-                    'FACTURE /  Créer , supprimer , modifier une facture' => 'ROLE_FACTURE',
-                    'PRODUIT / Créer , supprimer , modifier un produit'=> 'ROLE_PRODUIT'
-                ],
+                'choices' => $roles,
                 'multiple' => true,
                 'attr' => ['class' => 'select2'],
             ])
@@ -52,6 +58,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'current_user_roles' => [], // ajouter cette option
         ]);
     }
 }

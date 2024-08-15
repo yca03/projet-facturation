@@ -78,20 +78,6 @@
         font-weight: bold;
     }
 
-    .print-button {
-        background: #21244e;
-        color: white;
-        padding: 15px;
-        border: 1px solid black;
-        border-radius: 10px;
-        cursor: pointer;
-        margin: 20px auto 0;
-        width: fit-content;
-    }
-
-    .print-button i {
-        margin-right: 10px;
-    }
 
     @media print {
         .print-button {
@@ -182,13 +168,48 @@
         </tr>
     </table>
     <br><br>
-    {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_CONSULTER') %}
+
     <div style="text-align: right">
         <p><em>Service commercial</em></p>
-        <button class="print-button" onclick="window.print()">
+        <br><br>
+
+        {% if is_granted('ROLE_VALIDED_FACTURE') %}
+
+        <button class="btn btn-info print-button ">
+            <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_info') }}" style="color: white">retour</a>
+        </button>&nbsp;&nbsp;
+
+        <form method="post" action="{{ path('app_facture_valider', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
+            <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture.idFacture) }}">
+            <button type="submit"  class="btn btn-success text-dark print-button" ><i class="fa-solid fa-check"></i> &nbsp; valider</button>
+        </form>&nbsp;&nbsp;
+
+        {% endif %}
+
+        {% if is_granted('ROLE_FACTURE') %}
+
+        <form method="post" action="{{ path('app_facture_soumission', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment soumettre');" style="display: inline;">
+            <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture.idFacture) }}">
+            <button type="submit"  class="btn btn-warning text-dark print-button" > <i class="fa-solid fa-paper-plane"></i> &nbsp; soumettre</button>
+        </form>&nbsp;&nbsp;
+
+        {% endif %}
+
+        {% if is_granted('ROLE_VALIDED_FACTURE') %}
+
+        <form method="post" action="{{ path('app_facture_annulation', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment annulé');" style="display: inline;">
+            <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture.idFacture) }}">
+            <button type="submit"  class="btn btn-danger text-dark print-button" ><i class="fa-solid fa-xmark"></i>  &nbsp; annulé</button>
+        </form>&nbsp;&nbsp;
+
+        {% endif %}
+
+
+
+        <button class="btn btn-secondary print-button " onclick="window.print()">
             <i class="fa-solid fa-download"></i> &nbsp;&nbsp;Imprimer
         </button>
     </div>
 </div>
-    {% endif %}
+
 {% endblock %}

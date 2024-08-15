@@ -3,7 +3,7 @@
 <!-- /.menu-header -->
 
 <!-- .menu-item -->
-{% if is_granted('ROLE_SUPER_ADMIN') %}
+{% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN') or is_granted('ROLE_FACTURE') or is_granted('ROLE_VALIDED_FACTURE')%}
 	<li class="menu-item">
 		<a href="{{ path('app_home') }}" class="menu-link">
 			<span class="menu-icon fa fa-solid fa-home"></span>
@@ -53,7 +53,7 @@
 
 {% endif %}
 
-{% if is_granted('ROLE_CLIENT') or is_granted('ROLE_SUPER_ADMIN') %}
+{% if  is_granted('ROLE_ADMIN') %}
 <li class="menu-item has-child">
 	<a href="#" class="menu-link">
 		<span class="menu-icon fa fa-solid fa-people-roof"></span>
@@ -74,9 +74,7 @@
 {% endif %}
 
 
-
-
-{% if is_granted('ROLE_CREATION')  or is_granted('ROLE_SUPER_ADMIN') %}
+{% if is_granted('ROLE_FACTURE_PRO') or is_granted('ROLE_VALIDED_FACTURE_PRO') %}
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
 			<span class="menu-icon fa fa-solid fa-file-invoice-dollar"></span>
@@ -87,16 +85,26 @@
 			<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_new' ? 'has-active': '' }}">
 				<a href="{{ path('app_facture_pro_format_new') }}" class="menu-link">Créer</a>
 			</li>
-			<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index' ? 'has-active': '' }}">
-				<a href="{{ path('app_facture_pro_format_info') }}" class="menu-link">Liste</a>
-			</li>
+
+			{% if is_granted('ROLE_VALIDED_FACTURE_PRO') %}
+				<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index'  }}">
+					<a href="{{ path('app_facture_pro_format_index_pending') }}" class="menu-link">en attente</a>
+				</li>
+				<li class="menu-item {{ app.request.get('_route') == 'app_facture_info' }}">
+					<a href="{{ path('app_facture_pro_format_index_valider') }}" class="menu-link">valider</a>
+				</li>
+			{% endif %}
+				<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index'  }}">
+					<a href="{{ path('app_facture_pro_format_info') }}" class="menu-link">Liste</a>
+				</li>
+
 		</ul>
 
 		<!-- /child menu -->
 	</li><br>
 {% endif %}
 
-{% if is_granted('ROLE_FACTURE')  or is_granted('ROLE_SUPER_ADMIN') %}
+{% if is_granted('ROLE_FACTURE') or is_granted('ROLE_VALIDED_FACTURE') %}
 
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
@@ -104,19 +112,31 @@
 			<span class="menu-text">Facture</span>
 		</a>
 		<!-- child menu -->
+
 		<ul class="menu">
 			<li class="menu-item {{ app.request.get('_route') == 'app_facture_new' ? 'has-active': '' }}">
 				<a href="{{ path('app_facture_new') }}" class="menu-link">Créer</a>
 			</li>
-			<li class="menu-item {{ app.request.get('_route') == 'app_facture_info' ? 'has-active': '' }}">
-				<a href="{{ path('app_facture_info') }}" class="menu-link">Liste</a>
+			{% if is_granted('ROLE_VALIDED_FACTURE') %}
+			<li class="menu-item {{ app.request.get('_route') == 'app_facture_info' }}">
+				<a href="{{ path('app_facture_index_pending') }}" class="menu-link">en attente</a>
 			</li>
+
+			<li class="menu-item {{ app.request.get('_route') == 'app_facture_info' }}">
+				<a href="{{ path('app_facture_show_valider') }}" class="menu-link">validé</a>
+			</li>
+			{% endif %}
+
+			<li class="menu-item {{ app.request.get('_route') == 'app_facture_info' }}">
+					<a href="{{ path('app_facture_info') }}" class="menu-link">Liste</a>
+			</li>
+
 		</ul>
 		<!-- /child menu -->
 	</li><br>
 {% endif %}
 
-{% if is_granted('ROLE_PRODUIT')  or is_granted('ROLE_SUPER_ADMIN') %}
+{% if  is_granted('ROLE_ADMIN') %}
 
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
@@ -137,7 +157,7 @@
 {% endif %}
 
 
-{% if is_granted('ROLE_CONSULTER')  or is_granted('ROLE_SUPER_ADMIN') %}
+{% if is_granted('ROLE_CONSULTER') %}
 	<li class="menu-item">
 		<a href="{{ path('app_list_etat') }}" class="menu-link">
 			<span class="menu-icon fa fa-solid fa-layer-group"></span>

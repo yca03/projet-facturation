@@ -73,20 +73,20 @@
                                 <td class="text-center">
                                     {% if user.roles is iterable %}
                                         {% for role in user.roles %}
-                                            {% if role == 'ROLE_SOCIETY' %}
-                                                SOCIETE
-                                            {% elseif role == 'ROLE_CREATION' %}
-                                                FACTURE-PROFORMAT
-                                            {% elseif role == 'ROLE_CONSULTER' %}
-                                                CONSULTER
-                                            {% elseif role == 'ROLE_SUPER_ADMIN' %}
+                                            {% if role == 'ROLE_SUPER_ADMIN' %}
                                                 SUPER ADMINISTRATEUR
                                             {% elseif role == 'ROLE_ADMIN' %}
-                                                ADMINISTRATEUR
+                                                ADMINISTRATION
+                                            {% elseif role == 'ROLE_CONSULTER' %}
+                                                CONSULTER
+                                            {% elseif role == 'ROLE_FACTURE_PRO' %}
+                                                FACTURE PRO-FORMA
+                                            {% elseif role == 'ROLE_VALIDED_FACTURE_PRO' %}
+                                                VALIDER FACTURE PRO-FORMA
                                             {% elseif role == 'ROLE_FACTURE' %}
                                                 FACTURE
-                                            {% elseif role == 'ROLE_PRODUIT' %}
-                                                PRODUIT
+                                            {% elseif role == 'ROLE_VALIDED_FACTURE' %}
+                                                VALIDER FACTURE
                                             {% endif %}
                                         {% endfor %}
                                     {% else %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Clients;
+use App\Statut\Statut;
 use App\Entity\FactureProFormat;
 use App\Form\FactureProFormatType;
 use App\Repository\FactureProFormatRepository;
@@ -12,16 +13,27 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 
 #[Route('/facture/pro/format')]
 class FactureProFormatController extends AbstractController
 {
-    #[Route('/', name: 'app_facture_pro_format_index', methods: ['GET'])]
+    #[Route('/', name: 'app_facture_pro_format_index_pending', methods: ['GET'])]
     public function index(FactureProFormatRepository $factureProFormatRepository): Response
     {
         return $this->render('facture_pro_format/index.html.twig', [
-            'facture_pro_formats' => $factureProFormatRepository->findAll(),
+            'facture_pro_formats' => $factureProFormatRepository->findFactureProPending(),
+        ]);
+    }
+
+    #[Route('/index_valider/', name: 'app_facture_pro_format_index_valider', methods: ['GET'])]
+    public function indexValided(FactureProFormatRepository $factureProFormatRepository): Response
+    {
+        return $this->render('facture_pro_format/show.html.twig', [
+            'facture_pro_formats' => $factureProFormatRepository->findFactureProValided(),
         ]);
     }
 
@@ -46,6 +58,10 @@ class FactureProFormatController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+        // pour set la valeur en attente dans le champs status
+            $factureProFormat->setStatut(Statut::BROUILLON);
+
 
             //pour setté dans la facture proforma
             foreach ($factureProFormat->getDetailFacture() as $detail)
@@ -152,6 +168,93 @@ class FactureProFormatController extends AbstractController
             'facture_pro_format' => $factureProFormat,
 
         ]);
+    }
+
+
+
+    #[Route('/{id}/facture/pro/valider', name: 'app_facture_pro_format_valider', methods: ['POST'])]
+    public function valider(FactureProFormat $factureProFormat, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse
+    {
+        // Met à jour le statut de la facture
+        if ($factureProFormat->getStatut() !== Statut::EN_ATTENTE) {
+            // Ajoute un message flash
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->warning('la facture  doit être soumise avant la validation.');
+
+            // Génére l'URL pour la redirection
+            $url = $urlGenerator->generate('app_facture_pro_format_index_pending', ['id' => $factureProFormat->getId()]);
+
+            // Redirige vers la page de la facture avec le message flash
+            return new RedirectResponse($url);
+        }
+
+       $factureProFormat->setStatut(Statut::VALIDATED);
+        $entityManager->flush();
+
+
+        flash()
+            ->options([
+                'timeout' => 3000, // 3 seconds
+                'position' => 'bottom-right',
+            ])
+            ->success('la facture pro-forma  validée  avec succès .');
+
+        // Génére l'URL pour la redirection
+        $url = $urlGenerator->generate('app_facture_pro_format_index_pending', ['id' => $factureProFormat->getId()]);
+
+        // Redirige vers la page de la facture
+        return new RedirectResponse($url);
+    }
+
+
+
+    #[Route('/{id}/facture/pro/soumission', name: 'app_facture_pro_format_soumission', methods: ['POST'])]
+    public function soumission(FactureProFormat $factureProFormat, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse
+    {
+        // Met à jour le statut de la facture
+        $factureProFormat->setStatut(Statut::EN_ATTENTE);
+        $entityManager->flush();
+
+
+        flash()
+            ->options([
+                'timeout' => 3000, // 3 seconds
+                'position' => 'bottom-right',
+            ])
+            ->success('la facture pro-forma  soumise  avec succès .');
+
+        // Génére l'URL pour la redirection
+        $url1 = $urlGenerator->generate('app_facture_pro_format_info', ['id' => $factureProFormat->getId()]);
+
+        // Redirige vers la page de la facture
+        return new RedirectResponse($url1);
+    }
+
+
+    #[Route('/{id}/facture/pro/annulation', name: 'app_facture_pro_format_annulation', methods: ['POST'])]
+    public function annulation(FactureProFormat $factureProFormat, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse
+    {
+        // Met à jour le statut de la facture
+        $factureProFormat->setStatut(Statut::CANCELLED);
+        $entityManager->flush();
+
+
+        flash()
+            ->options([
+                'timeout' => 3000, // 3 seconds
+                'position' => 'bottom-right',
+            ])
+            ->success('la facture pro-forma  annulée  avec succès .');
+
+        // Génére l'URL pour la redirection
+        $url2 = $urlGenerator->generate('app_facture_pro_format_info', ['id' => $factureProFormat->getId()]);
+
+        // Redirige vers la page de la facture
+        return new RedirectResponse($url2);
     }
 
 

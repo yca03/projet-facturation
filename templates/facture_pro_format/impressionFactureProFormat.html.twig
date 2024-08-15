@@ -53,20 +53,6 @@
             font-weight: bold;
         }
 
-        .print-button {
-            background: #a4a2a2;
-            color: white;
-            padding: 15px;
-            border: 1px solid white;
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 20px auto 0;
-            width: fit-content;
-        }
-
-        .print-button i {
-            margin-right: 10px;
-        }
         button.back
         { background: #21244e;
             color: white;
@@ -157,10 +143,45 @@
         </table>
     <div style="text-align: right;">
         <p><em>Signature / date </em></p>
-        <button class="back" type="button" class="btn btn-info"><i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_pro_format_info') }}">retour</a> </button>
-        <button class="print-button" onclick="window.print()">
-            <i class="fa-solid fa-print"></i> &nbsp;Imprimer
+
+        <br><br>
+
+        {% if is_granted('ROLE_VALIDED_FACTURE_PRO') %}
+
+        <button class="btn btn-info print-button">
+            <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_pro_format_info') }}">retour</a>
+        </button>&nbsp;&nbsp;
+
+
+        <form method="post" action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
+            <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture_pro_format.id) }}">
+            <button type="submit"  class="btn btn-success text-dark print-button" ><i class="fa-solid fa-check"></i> &nbsp; valider</button>
+        </form>&nbsp;&nbsp;
+
+
+        {% endif %}
+
+        {% if is_granted('ROLE_FACTURE_PRO') %}
+        <form method="post" action="{{ path('app_facture_pro_format_soumission', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment soumettre');" style="display: inline;">
+            <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture_pro_format.id) }}">
+            <button type="submit"  class="btn btn-warning text-dark print-button" > <i class="fa-solid fa-paper-plane"></i> &nbsp; soumettre</button>
+        </form>&nbsp;&nbsp;
+
+        {% endif %}
+
+        {% if is_granted('ROLE_VALIDED_FACTURE_PRO') %}
+
+        <form method="post" action="{{ path('app_facture_pro_format_annulation', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment annulé');" style="display: inline;">
+            <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture_pro_format.id) }}">
+            <button type="submit"  class="btn btn-danger text-dark print-button" ><i class="fa-solid fa-xmark"></i>  &nbsp; annulé</button>
+        </form>&nbsp;&nbsp;
+
+        {% endif %}
+
+        <button class="btn btn-secondary print-button" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Imprimer
         </button>
+
 
     </div>
 

@@ -1,38 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FactureProFormat{% endblock %}
+{% block title %}Facture Pro-format{% endblock %}
 
 {% block body %}
-    <h1>FactureProFormat</h1>
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom" style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Liste des Factures pro-format
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Numéro Client</th>
+                            <th class="text-center">Client</th>
+                            <th class="text-center">Montant HT</th>
+                            <th class="text-center">Montant TVA</th>
+                            <th class="text-center">Montant TTC</th>
+                            <th class="text-center">Date d'expiration</th>
+                            <th class="text-center">Contact</th>
+                            <th class="text-center">Statut</th>
+                            <th class="text-center">Actions</th>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ facture_pro_format.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ facture_pro_format.date ? facture_pro_format.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Reference</th>
-                <td>{{ facture_pro_format.reference }}</td>
-            </tr>
-            <tr>
-                <th>NumeroFacturePro</th>
-                <td>{{ facture_pro_format.numeroFacturePro }}</td>
-            </tr>
-            <tr>
-                <th>DateEcheance</th>
-                <td>{{ facture_pro_format.dateEcheance ? facture_pro_format.dateEcheance|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for facture_pro_format in facture_pro_formats %}
+                            <tr>
+                                <th class="text-center">{{ facture_pro_format.id }}</th>
+                                <td class="text-center">{{ facture_pro_format.date|date("d/m/Y") }}</td>
+                                <td class="text-center">{{ facture_pro_format.numeroFacturePro }}</td>
+                                <td class="text-center">{{ facture_pro_format.clients.nom }}</td>
+                                <td class="text-center">{{ facture_pro_format.totalHT|number_format(0, '.', ' ') }}</td>
+                                <td class="text-center">{{ facture_pro_format.totalTVA|number_format(0, '.', ' ') }}</td>
+                                <td class="text-center">{{ facture_pro_format.totalTTC|number_format(0, '.', ' ') }}</td>
+                                <td class="text-center">{{ facture_pro_format.dateEcheance|date("d/m/Y") }}</td>
+                                <td class="text-center">{{ facture_pro_format.clients.contact }}</td>
+                                <td class="text-center align-middle">
 
-    <a href="{{ path('app_facture_pro_format_index') }}">back to list</a>
+                                    {% if facture_pro_format.statut == 'brouillon' %}
+                                        <span class="badge badge-dark">{{ facture_pro_format.statut }}</span>
+                                    {% elseif facture_pro_format.statut == 'en attente' %}
+                                        <span class="badge badge-info">{{ facture_pro_format.statut }}</span>
+                                    {% elseif facture_pro_format.statut == 'validé' %}
+                                        <span class="badge badge-success">{{ facture_pro_format.statut }}</span>
+                                    {% elseif facture_pro_format.statut == 'annulé' %}
+                                        <span class="badge badge-warning">{{ facture_pro_format.statut }}</span>
+                                    {% endif %}
+                                </td>
 
-    <a href="{{ path('app_facture_pro_format_edit', {'id': facture_pro_format.id}) }}">edit</a>
+                                <td class="text-center">
+                                    <a href="{{ path('app_facture_pro_format_edit', {'id': facture_pro_format.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
 
-    {{ include('facture_pro_format/_delete_form.html.twig') }}
+
+                                    <form method="post" action="{{ path('app_facture_pro_format_delete', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture_pro_format.id) }}">
+                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
+                                    </form>
+
+
+                                    <a href="{{ path('app_facture_pro_format_impression', {'id': facture_pro_format.id}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <!-- Contenu du pied de page -->
+            </div>
+        </div>
+    </div>
 {% endblock %}
