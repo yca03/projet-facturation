@@ -27,7 +27,7 @@ class ImpressionController extends AbstractController
         }
 
         // Convertir le montant total TTC en lettres
-        $totalTTCInWords = convertNumberToWords($totalTTC);
+      
 
         // Préparer les données pour l'affichage
         $data = [
@@ -42,7 +42,7 @@ class ImpressionController extends AbstractController
             'dateFacture' => $facture->getDate()->format('y-m-d'),
             'detailFactures' => [],
             'totalTTC' => $totalTTC,
-            'totalTTCInWords' => $totalTTCInWords,
+           
         ];
 
         // Récupérer les détails de la facture
