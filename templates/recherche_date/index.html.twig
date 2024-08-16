@@ -103,11 +103,11 @@
                                 <td class="text-center">{{ facture.clientNom }}</td>
 {#                                <td class="text-center">{{ facture.produit }}</td>#}
 {#                                <td class="text-center">{{ facture.quantite }}</td>#}
-                                <td class="text-center">{{ facture.prix | number_format(0, '.', ' ') }}</td>
-                                <td class="text-center">{{ facture.remise | number_format(0, '.', ' ')}}</td>
-                                <td class="text-center">{{ facture.montantHT | number_format(0, '.', ' ') }}</td>
-                                <td class="text-center">{{ facture.montantTVA | number_format(0, '.', ' ') }}</td>
-                                <td class="text-center">{{ facture.montantTTC | number_format(0, '.', ' ')  }}</td>
+                                <td class="text-right">{{ facture.prix | number_format(0, '.', ' ') }}</td>
+                                <td class="text-right">{{ facture.remise | number_format(0, '.', ' ')}}</td>
+                                <td class="text-right">{{ facture.montantHT | number_format(0, '.', ' ') }}</td>
+                                <td class="text-right">{{ facture.montantTVA | number_format(0, '.', ' ') }}</td>
+                                <td class="text-right">{{ facture.montantTTC | number_format(0, '.', ' ')  }}</td>
                                 <td class="text-center">{{ facture.clientcontact }}</td>
                                 <td class="text-center"><a href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>
 

@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etat des Factures {% endblock %}
+
+
+{% block body %}
+
+    <div class="col-12">
+        <form method="get" action="{{ path('app_recherche_date_facture_pro') }}" class="formDate ">
+            <div class="card">
+                <div class="card-header bg-soft-custom">
+                    Période
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-1 text-right">Date début <span
+                                    class="text-danger">*</span></label>
+                        <div class="col-md-2">
+                            <input type="date" name="dateDebut" class="form-control" required="required">
+                        </div>
+                        <label for="" class="col-form-label col-md-1 text-right">Date de fin <span
+                                    class="text-danger">*</span></label>
+                        <div class="col-md-2">
+                            <input type="date"  name="dateFin" class="form-control" required="required">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-footer-content">
+                            <button type="submit" class="btn btn-primary float-right">Recherche</button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+
+
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp;Etat des Factures Pro-forma
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm ">
+                        <thead class="thead-light">
+
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Date </th>
+                            <th class="text-center">Type de Société</th>
+                            <th class="text-center">Reference</th>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Prix</th>
+                            <th class="text-center">Montant HT</th>
+                            <th class="text-center">montant TVA</th>
+                            <th class="text-center">Montant TTC</th>
+                            <th class="text-center">Contact</th>
+                            <th class="text-center">Date d'expiration</th>
+                            <th class="text-center">actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
