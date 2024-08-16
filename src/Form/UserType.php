@@ -19,13 +19,13 @@ class UserType extends AbstractType
     {
 
         $roles = [
-          
+            'ADMINISTRATEUR / Créer un utilisateur ' => 'ROLE_ADMIN',
             'CONSULTATION / Consulter un état , imprimer une facture ' => 'ROLE_CONSULTER',
             'FACTURE PRO-FORMA / Créer , supprimer , modifier une facture pro-forma' => 'ROLE_FACTURE_PRO',
             'FACTURE PRO-FORMA / valider , annuler   une facture pro-forma'=>'ROLE_USER_VALIDED_FACTURE_PRO',
             'FACTURE / Créer , supprimer , modifier une facture' => 'ROLE_FACTURE',
             'FACTURE / valider , anunler  une facture '=>'ROLE_USER_VALIDED_FACTURE',
-            'ADMINISTRATEUR / Créer un utilisateur ' => 'ROLE_ADMIN',
+
         ];
 
         if (in_array('ROLE_SUPER_ADMIN', $options['current_user_roles'])) {
