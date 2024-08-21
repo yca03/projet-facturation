@@ -28,10 +28,8 @@ class UserController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
-//        $form = $this->createForm(UserType::class, $user);
 
-
-        // pour afficher sorlement un role lorsque l user SUPER_ADMIN est connecté
+        // Récupérer les rôles de l'utilisateur courant pour le formulaire
         $currentUserRoles = $this->getUser()->getRoles();
         $form = $this->createForm(UserType::class, $user, [
             'current_user_roles' => $currentUserRoles,
@@ -39,24 +37,24 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Générer un mot de passe par défaut
+            $plaintextPassword = 'password'; // Mot de passe par défaut
 
-            //recuperer le mot de passe
-            $plaintextPassword = $form->get('password')->getData();
-
-            // Utiliser le PasswordEncoder pour hasher le mot de passe
-
-            $hashedPassword = $passwordHasher->hashPassword( $user,$plaintextPassword);
+            // Hasher le mot de passe
+            $hashedPassword = $passwordHasher->hashPassword($user, $plaintextPassword);
             $user->setPassword($hashedPassword);
-            $entityManager->persist($user);
 
+            // Sauvegarder l'utilisateur en base de données
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            // Afficher un message de succès
             flash()
                 ->options([
-                    'timeout' => 5000, // 3 seconds
+                    'timeout' => 3000, // 3 seconds
                     'position' => 'bottom-right',
                 ])
-                ->success('information enregistrer avec succes .');
-
-            $entityManager->flush();
+                ->success('la facture   soumise  avec succès .');
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }

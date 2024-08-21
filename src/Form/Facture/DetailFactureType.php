@@ -25,6 +25,7 @@ class DetailFactureType extends AbstractType
                 'group_by' => function($typeProduit) {
                     return $typeProduit->getTypeProduit()->getLibelle();
                 },
+                'placeholder' => 'Sélectionnez un service',
             ]);
            
     }

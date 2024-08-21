@@ -8,6 +8,7 @@
     <!-- BEGIN THEME STYLES -->
     <link rel="stylesheet" href="{{ asset('css/theme.min.css') }}" data-skin="default">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Login : Se connecter</title>
 
     <style>
@@ -23,18 +24,27 @@
             background-color: #232754;
             color: #FFFFFF;
         }
-        header,#auth-header
-        {
-            border-bottom:1px solid #e2e204;
+        header, #auth-header {
+            border-bottom: 1px solid #e2e204;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 20px;
+            top: 75%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .form-group {
+            position: relative;
         }
     </style>
 </head>
 
-<body class="">
+<body>
 <!-- WRAPPER -->
 
 <main class="auth">
-     <header id="auth-header" class="auth-header">
+    <header id="auth-header" class="auth-header">
         <h2 style="font-size: 50px">ORBIS - FACTURATION</h2>
     </header>
     <!-- Logo -->
@@ -44,8 +54,8 @@
     <!-- /Logo -->
     <!-- form -->
     <form class="auth-form" method="post" action="{{ path('app_login') }}">
-    
-    <legend> CONNEXION</legend>
+
+        <legend> CONNEXION</legend>
         {% if error %}
             {% if error.messageKey == 'Invalid credentials.' %}
                 <div class="alert alert-danger">Nom d'utilisateur ou mot de passe incorrect.</div>
@@ -62,7 +72,7 @@
         {% endfor %}
 
         <div class="form-group mb-4">
-            <label class="d-block text-left" for="inputEamil">Nom d'utilisateur </label>
+            <label class="d-block text-left" for="inputEmail">Nom d'utilisateur </label>
             <input type="text" id="inputEmail"
                    name="nomUtilisateur"
                    value="{{ last_username }}"
@@ -76,7 +86,9 @@
             <label class="d-block text-left" for="inputPassword">Mot de passe</label>
             <input type="password" id="inputPassword" name="password" autocomplete="current-password"
                    class="form-control" required="" placeholder="">
+            <i class="fas fa-eye toggle-password" id="togglePassword"></i>
         </div>
+
         <!-- /.form-group -->
         <!-- .form-group -->
         <div class="form-group mb-4">
@@ -87,7 +99,7 @@
             <div class="custom-control custom-control-inline custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="remember-me" name="_remember_me"> <label
                         class="custom-control-label small" for="remember-me">Se souvenir de moi</label>
-            </div> 
+            </div>
         </div> #}
         <input type="hidden" name="_csrf_token"
                value="{{ csrf_token('authenticate') }}"
@@ -95,9 +107,9 @@
         <!-- /.form-group -->
         <!-- recovery links -->
         {#
-            <p class="py-2 text-center">
-            <a href="{{ path('app_reset_password') }}" class="small">Mot de passe oublié ?</a>
-            </p><!-- /recovery links -->
+        <p class="py-2 text-center">
+        <a href="{{ path('app_reset_password') }}" class="small">Mot de passe oublié ?</a>
+        </p><!-- /recovery links -->
         #}
 
         <!-- copyright -->
@@ -110,20 +122,35 @@
     <!-- /.auth-form -->
     <!-- .auth-announcement -->
     {#
-        <div id="announcement" class="auth-announcement"
-           style="background-image: url({{ asset('img/logo.jpeg') }});">
-           <div class="announcement-body">
-           </div>
-        </div>
+    <div id="announcement" class="auth-announcement"
+       style="background-image: url({{ asset('img/logo.jpeg') }});">
+       <div class="announcement-body">
+       </div>
+    </div>
     #}
 
     <!-- /.auth-announcement -->
 </main>
 <!-- END WRAPPER -->
+
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function (e) {
+        const passwordField = document.getElementById('inputPassword');
+        const icon = e.target;
 
-
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+</script>
 </body>
 </html>

@@ -12,6 +12,7 @@ import './js/select2-demo';
 import './js/add-form-collection'
 import './js/delete.form.collection'
 import './css/custom.min.css'
+import './js/userNameAutomatique';
 
 
 import {runInputmask} from "./js/inputMark";

@@ -11,6 +11,7 @@ use App\Repository\ClientsRepository;
 use App\Repository\FactureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -231,10 +232,28 @@ class FactureController extends AbstractController
 
 
 
-    #[Route('/{id}/facture/valider', name: 'app_facture_valider', methods: ['POST'])]
-    public function valider(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): Response {
 
-        // Vérifie si le statut de la facture est en attente
+    #[Route('/{id}/facture/valider', name: 'app_facture_valider', methods: ['POST'])]
+    public function valider(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, Security $security): Response {
+        // Vérifie si l'utilisateur a le rôle ROLE_VALIDATED_FACTURE
+        if ($security->isGranted('ROLE_VALIDED_FACTURE')) {
+            // Valide la facture sans vérifier le statut
+            $facture->setStatut(Statut::VALIDATED);
+            $entityManager->flush();
+
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('La facture a été validée avec succès.');
+
+            $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
+
+            return new RedirectResponse($url);
+        }
+
+        // Vérifie si le statut de la facture est en attente uniquement si l'utilisateur n'a pas le rôle ROLE_VALIDATED_FACTURE
         if ($facture->getStatut() !== Statut::EN_ATTENTE) {
             // Ajoute un message flash
             flash()
@@ -242,9 +261,9 @@ class FactureController extends AbstractController
                     'timeout' => 3000, // 3 seconds
                     'position' => 'bottom-right',
                 ])
-                ->warning('la facture  doit être soumise avant la validation.');
+                ->warning('La facture doit être soumise avant la validation.');
 
-            // Génére l'URL pour la redirection
+            // Génère l'URL pour la redirection
             $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
 
             // Redirige vers la page de la facture avec le message flash
@@ -260,12 +279,14 @@ class FactureController extends AbstractController
                 'timeout' => 3000, // 3 seconds
                 'position' => 'bottom-right',
             ])
-            ->success('la facture  validée  avec succès .');
+            ->success('La facture a été validée avec succès.');
 
         $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
 
         return new RedirectResponse($url);
     }
+
+
 
     #[Route('/{id}/facture/soumission', name: 'app_facture_soumission', methods: ['POST'])]
     public function soumission(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse

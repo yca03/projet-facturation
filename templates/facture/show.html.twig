@@ -23,7 +23,6 @@
                             <th class="text-center">Date d'expiration </th>
                             <th class="text-center">Contact</th>
                             <th class="text-center">Statut</th>
-                            <th>actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,18 +47,6 @@
                                     {% elseif facture.statut == 'annulé' %}
                                         <span class="badge bg-danger">{{ facture.statut }}</span>
                                     {% endif %}
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{ path('app_facture_edit', {'id': facture.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
-
-
-                                    <form method="post" action="{{ path('app_facture_delete', {'id': facture.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture.id) }}">
-                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
-                                    </form>
-
-
-                                    <a href="{{ path('app_impression', {'id': facture.id}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a>
                                 </td>
                             </tr>
 

@@ -5,16 +5,26 @@ namespace App\Form;
 use App\Entity\Societe;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class UserType extends AbstractType
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
@@ -28,31 +38,48 @@ class UserType extends AbstractType
 
         ];
 
-        if (in_array('ROLE_SUPER_ADMIN', $options['current_user_roles'])) {
+
+        // Filtrage des rôles en fonction du rôle de l'utilisateur connecté
+        if ($this->security->isGranted('ROLE_SUPER_ADMIN')) {
+
             $roles = array_filter($roles, function($role) {
                 return $role === 'ROLE_ADMIN';
+            });
+        } elseif ($this->security->isGranted('ROLE_ADMIN')) {
+
+            $roles = array_filter($roles, function($role) {
+                return $role !== 'ROLE_ADMIN';
             });
         }
         $builder
             ->add('nom')
             ->add('prenom')
             ->add('email')
-            ->add('roles', ChoiceType::class, [
-                'choices' => $roles,
-                'multiple' => true,
-                'attr' => ['class' => 'select2'],
-            ])
-            ->add('password')
             ->add('contact')
             ->add('status', CheckboxType::class, [
                 'label' => 'Actif',
                 'required' => false,
             ])
-        ->add('nomUtilisateur');
+            ->add('nomUtilisateur');
+
+        if ($this->security->isGranted('ROLE_ADMIN') or $this->security->isGranted('ROLE_SUPER_ADMIN')){
+            $builder
+                ->add('roles', ChoiceType::class, [
+                    'choices' => $roles,
+                     'multiple' => true,
+                     'attr' => ['class' => 'select2'],
+                ]);
+            }
+//            ->add('roles', ChoiceType::class, [
+//                'choices' => $roles,
+//                'multiple' => true,
+//                'attr' => ['class' => 'select2'],
+//            ])
+//            ->add('password')
 //        ->add('relation',EntityType::class,[
 //             'class'=>Societe::class
 //        ]);
-            
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

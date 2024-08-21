@@ -9,6 +9,7 @@ use App\Form\FactureProFormatType;
 use App\Repository\FactureProFormatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -173,8 +174,25 @@ class FactureProFormatController extends AbstractController
 
 
     #[Route('/{id}/facture/pro/valider', name: 'app_facture_pro_format_valider', methods: ['POST'])]
-    public function valider(FactureProFormat $factureProFormat, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse
+    public function valider(FactureProFormat $factureProFormat, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator ,  Security $security): RedirectResponse
     {
+
+        // Vérifie si l'utilisateur a le rôle ROLE_VALIDATED_FACTURE
+        if ($security->isGranted('ROLE_VALIDED_FACTURE_PRO')) {
+            // Valide la facture sans vérifier le statut
+            $factureProFormat->setStatut(Statut::VALIDATED);
+            $entityManager->flush();
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('La facture pro-forma a été validée avec succès.');
+            $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $factureProFormat->getId()]);
+            return new RedirectResponse($url);
+        }
+
+
         // Met à jour le statut de la facture
         if ($factureProFormat->getStatut() !== Statut::EN_ATTENTE) {
             // Ajoute un message flash
@@ -183,7 +201,7 @@ class FactureProFormatController extends AbstractController
                     'timeout' => 3000, // 3 seconds
                     'position' => 'bottom-right',
                 ])
-                ->warning('la facture  doit être soumise avant la validation.');
+                ->warning('la facture pro-forma  doit être soumise avant la validation.');
 
             // Génére l'URL pour la redirection
             $url = $urlGenerator->generate('app_facture_pro_format_index_pending', ['id' => $factureProFormat->getId()]);
@@ -194,8 +212,6 @@ class FactureProFormatController extends AbstractController
 
        $factureProFormat->setStatut(Statut::VALIDATED);
         $entityManager->flush();
-
-
         flash()
             ->options([
                 'timeout' => 3000, // 3 seconds
