@@ -52,9 +52,6 @@
         }
 
 
-
-
-
         document.addEventListener('DOMContentLoaded', function() {
             // Ajouter un écouteur d'événement sur le champ du client pour mettre à jour la remise
             document.querySelector('select[name="facture[IdClient]"]').addEventListener('change', function() {
@@ -141,7 +138,7 @@
 
 
     {#
-    
+
 
 {% block javascripts %}
     {{ parent() }}

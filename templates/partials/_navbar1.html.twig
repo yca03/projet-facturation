@@ -43,9 +43,16 @@
 			<li class="menu-item {{ app.request.get('_route') == 'app_user_new' ? 'has-active': '' }}">
 				<a href="{{ path('app_user_new') }}" class="menu-link">Créer</a>
 			</li>
+			{% if is_granted('ROLE_SUPER_ADMIN') %}
 			<li class="menu-item {{ app.request.get('_route') == 'app_user_index' ? 'has-active': '' }}">
 				<a href="{{ path('app_user_index') }}" class="menu-link">Liste</a>
 			</li>
+			{% endif %}
+			{% if is_granted('ROLE_ADMIN') %}
+			<li class="menu-item {{ app.request.get('_route') == 'app_user_index_user' ? 'has-active': '' }}">
+				<a href="{{ path('app_user_index_user') }}" class="menu-link">Liste</a>
+			</li>
+			{% endif %}
 		</ul>
 		<!-- /child menu -->
 

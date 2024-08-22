@@ -32,9 +32,9 @@ class UserType extends AbstractType
             'ADMINISTRATEUR / Créer un utilisateur ' => 'ROLE_ADMIN',
             'CONSULTATION / Consulter un état , imprimer une facture ' => 'ROLE_CONSULTER',
             'FACTURE PRO-FORMA / Créer , supprimer , modifier une facture pro-forma' => 'ROLE_FACTURE_PRO',
-            'FACTURE PRO-FORMA / valider , annuler   une facture pro-forma'=>'ROLE_USER_VALIDED_FACTURE_PRO',
+            'FACTURE PRO-FORMA / valider , annuler   une facture pro-forma'=>'ROLE_VALIDED_FACTURE_PRO',
             'FACTURE / Créer , supprimer , modifier une facture' => 'ROLE_FACTURE',
-            'FACTURE / valider , anunler  une facture '=>'ROLE_USER_VALIDED_FACTURE',
+            'FACTURE / valider , anunler  une facture '=>'ROLE_VALIDED_FACTURE',
 
         ];
 
@@ -62,14 +62,19 @@ class UserType extends AbstractType
             ])
             ->add('nomUtilisateur');
 
-        if ($this->security->isGranted('ROLE_ADMIN') or $this->security->isGranted('ROLE_SUPER_ADMIN')){
-            $builder
-                ->add('roles', ChoiceType::class, [
+
+
+        // Ajouter le champ roles seulement si ce n'est pas l'édition de soi-même
+        if (!$options['is_editing_self']) {
+            if ($this->security->isGranted('ROLE_ADMIN') or $this->security->isGranted('ROLE_SUPER_ADMIN')) {
+                $builder->add('roles', ChoiceType::class, [
                     'choices' => $roles,
-                     'multiple' => true,
-                     'attr' => ['class' => 'select2'],
+                    'multiple' => true,
+                    'attr' => ['class' => 'select2'],
+
                 ]);
             }
+        }
 //            ->add('roles', ChoiceType::class, [
 //                'choices' => $roles,
 //                'multiple' => true,
@@ -87,6 +92,7 @@ class UserType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
             'current_user_roles' => [], // ajouter cette option
+            'is_editing_self' => false,  // Ajoutez une option pour indiquer si l'utilisateur édite son propre profil
         ]);
     }
 }

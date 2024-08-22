@@ -8,13 +8,21 @@
                 <div class="card-header">
                     <button class="btn-account" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                        <span class="user-avatar user-avatar-md ">
-                            <img  src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-avatar-icon-in-trendy-style-isolated-background-png-image_4823713.jpg"
-                                 alt="">
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <span class="user-avatar user-avatar-md " style="width: 100px; height: 100px;">
+                            <img  src="https://ui-avatars.com/api/?name=Administrateur"
+                                 alt="" style="width: 100px; height: 100px;">
                         </span>
+                        {% endif %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <span class="user-avatar user-avatar-md " style="width: 100px; height: 100px;">
+                            <img  src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-avatar-icon-in-trendy-style-isolated-background-png-image_4823713.jpg"
+                                  alt="" style="width: 100px; height: 100px;">
+                        </span>
+                        {% endif %}
                         <span class="account-summary pr-lg-4 d-none d-lg-block">
                             <span class="account-name font-weight-bold"></span>
-                            <span class="account-description">Votre compte personnel</span>
+                            <span class="account-description" style="font-size: 20px">Votre compte personnel</span>
                         </span>
                     </button>
                 </div><!-- .nav -->

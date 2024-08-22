@@ -36,7 +36,9 @@ class UpdatePasswordController extends AbstractController
             ->setContact($user->getContact())
             ->setRoles($user->getRoles());
 
-        $form = $this->createForm(UserType::class, $account);
+        $form = $this->createForm(UserType::class, $account,[
+            'is_editing_self' => true, // On édite le profil de l'utilisateur connecté
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -93,4 +95,11 @@ class UpdatePasswordController extends AbstractController
             'form' => $form
         ]);
     }
+
+
+
+
+    //c est pour le nouveau edit profil rien avoir avec les deux autre en haut
+
+
 }

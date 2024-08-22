@@ -1,0 +1,90 @@
+{% extends 'user/indexUpdate.html.twig' %}
+{% block title %}Edit User{% endblock %}
+
+{% block layout %}
+
+    <div class="col-8">
+
+        {{ form_start(form) }}
+        <div class="card card-fluid">
+            <div class="card-header bg-soft-custom" id="bg">
+                <h6> <i class="fa-solid fa-list" style="font-size:20px;"></i> Modification de l'utilisateur </h6>
+            </div>
+            <div class="card-body">
+                <fieldset>
+                    <legend>Identification de l'utilisateur</legend>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="form_nom">Nom *</label>
+                                {{ form_widget(form.nom, {'attr': {'id': 'form_nom', 'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="form_prenom">Prénoms *</label>
+                                {{ form_widget(form.prenom, {'attr': {'id': 'form_prenom', 'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="form_contact">Contact *</label>
+                                {{ form_widget(form.contact, {'attr': {'class': 'form-control'}, 'expanded': false}) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="form_email">Email *</label>
+                                {{ form_widget(form.email, {'attr': {'id': 'form_email', 'class': 'form-control'}}) }}
+                                {{ form_errors(form.email) }}
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="form_nomUtilisateur">Nom d'utilisateur *</label>
+                                {{ form_widget(form.nomUtilisateur, {'attr': {'id': 'form_nomUtilisateur', 'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="form_roles">Rôles d'utilisateur *</label>
+                                    {{ form_widget(form.roles, {'attr': {'class': 'form-control select2'}, 'expanded': false}) }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <br><br>
+                                <label for="form_status"></label>
+                                <div class="form-check form-check-inline">
+                                    {{ form_widget(form.status, {'attr': {'class': 'form-check-input'}}) }}
+                                    <label class="form-check-label" for="form_status"> &nbsp; Si Oui Cocher la Case </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="card-footer">
+                <div class="card-footer-content">
+                    <button type="submit" class="btn btn-primary float-right ml-2">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

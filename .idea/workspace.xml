@@ -4,33 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="etat-factureProForma">
-      <change afterPath="$PROJECT_DIR$/assets/js/userNameAutomatique.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/UpdatePassword/UpdatePasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/UpdatePassword/UpdatePassword.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/UpdatePassword/UpdatePasswordType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/indexUpdate.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/updatePassword.html.twig" afterDir="false" />
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="derniere-modification">
+      <change afterPath="$PROJECT_DIR$/templates/user/editProfil.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FactureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UpdatePassword/UpdatePasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UpdatePassword/UpdatePasswordController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/Facture/DetailFactureType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Facture/DetailFactureType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/facture/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/_collection.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/new.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/_collection.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/partials/_header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_header.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/_navbar1.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_navbar1.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/indexUpdate.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/indexUpdate.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -493,7 +483,9 @@
       <workItem from="1724092538262" duration="1681000" />
       <workItem from="1724140040969" duration="11078000" />
       <workItem from="1724167257602" duration="11073000" />
-      <workItem from="1724226684558" duration="23102000" />
+      <workItem from="1724226684558" duration="23195000" />
+      <workItem from="1724315383389" duration="17572000" />
+      <workItem from="1724341278308" duration="4058000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -543,7 +535,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723810222516</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="derniere-modification">
+      <option name="closed" value="true" />
+      <created>1724261825321</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1724261825321</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,6 +571,7 @@
     <MESSAGE value="jeu-role" />
     <MESSAGE value="correct" />
     <MESSAGE value="etat-factureProForma" />
-    <option name="LAST_COMMIT_MESSAGE" value="etat-factureProForma" />
+    <MESSAGE value="derniere-modification" />
+    <option name="LAST_COMMIT_MESSAGE" value="derniere-modification" />
   </component>
 </project>

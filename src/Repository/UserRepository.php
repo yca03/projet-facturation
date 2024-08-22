@@ -60,11 +60,39 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     public function countUsersByRole(string $role): int
     {
-        $qb = $this->createQueryBuilder('u')
-            ->select('COUNT(u.id)')
+        $qb = $this->createQueryBuilder('u');
+
+        $qb->select('COUNT(u.id)')
             ->where('u.roles LIKE :role')
-            ->setParameter('role', '%' . $role . '%');
+            ->setParameter('role', '%'.$role.'%');
 
         return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findUsersByRoleAdmin()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->where('u.roles LIKE :role')
+            ->setParameter('role', '%ROLE_ADMIN%');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findUsersExcludingRoles(array $excludedRoles): array
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        // Création de la condition NOT LIKE pour chaque rôle
+        $expr = $qb->expr();
+        $andX = $expr->andX();
+
+        foreach ($excludedRoles as $role) {
+            $andX->add($expr->notLike('u.roles', ':role_' . $role));
+            $qb->setParameter('role_' . $role, '%' . $role . '%');
+        }
+
+        $qb->where($andX);
+
+        return $qb->getQuery()->getResult();
     }
 }

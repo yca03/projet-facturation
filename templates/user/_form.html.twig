@@ -42,12 +42,14 @@
         </div>
 
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="form_roles">Rôles d'utilisateur *</label>
-                    {{ form_widget(form.roles, {'attr': {'class': 'form-control select2'}, 'expanded': false}) }}
+             {% if form.roles is defined %}
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="form_roles">Rôles d'utilisateur *</label>
+                        {{ form_widget(form.roles, {'attr': {'class': 'form-control select2'}, 'expanded': false}) }}
+                    </div>
                 </div>
-            </div>
+             {% endif %}
         {% endif %}
     </div>
 

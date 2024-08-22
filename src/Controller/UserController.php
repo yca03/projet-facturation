@@ -20,7 +20,18 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $userRepository->findUsersByRoleAdmin(),
+        ]);
+    }
+
+    #[Route('/inedx_user', name: 'app_user_index_user', methods: ['GET'])]
+    public function index_user(UserRepository $userRepository): Response
+    {
+        $excludedRoles = ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN'];
+        $users = $userRepository->findUsersExcludingRoles($excludedRoles);
+
+        return $this->render('user/index.html.twig', [
+            'users' => $users,
         ]);
     }
 
@@ -82,7 +93,8 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Récupérer le mot de passe en clair depuis le formulaire
-            $plaintextPassword = $form->get('password')->getData();
+//            $plaintextPassword = $form->get('password')->getData();
+            $plaintextPassword = 'password';
 
             // Utiliser le UserPasswordHasherInterface pour hasher le mot de passe
             $hashedPassword = $passwordHasher->hashPassword($user, $plaintextPassword);
@@ -100,7 +112,7 @@ class UserController extends AbstractController
                 ])
                 ->success('informations modifiées avec succès.');
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('user/edit.html.twig', [

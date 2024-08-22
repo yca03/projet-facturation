@@ -52,7 +52,6 @@
                         <thead class="thead-light">
 
                         <tr>
-                            <th class="text-center">Id</th>
                             <th class="text-center">Nom</th>
                             <th class="text-center">Prenom</th>
                             <th class="text-center">Rôles</th>
@@ -67,7 +66,6 @@
                         <tbody>
                         {% for user in users %}
                             <tr>
-                                <td class="text-center">{{user.id }}</td>
                                 <td class="text-center">{{user.nom }}</td>
                                 <td class="text-center">{{user.prenom }}</td>
                                 <td class="text-center">
@@ -81,7 +79,7 @@
                                                 CONSULTER
                                             {% elseif role == 'ROLE_FACTURE_PRO' %}
                                                 FACTURE PRO-FORMA
-                                            {% elseif role == 'ROLE_VALIDED_FACTURE_PRO' %}
+                                            {% elseif role == 'ROLEVALIDED_FACTURE_PRO' %}
                                                 VALIDER FACTURE PRO-FORMA
                                             {% elseif role == 'ROLE_FACTURE' %}
                                                 FACTURE
