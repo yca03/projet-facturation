@@ -179,7 +179,7 @@
 
         <form method="post" action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}" id="validationForm" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
             <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture_pro_format.id) }}">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 valider
             </button>
         </form>&nbsp;&nbsp;
@@ -214,7 +214,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Validation</h5>
+                <h3 class="modal-title" id="exampleModalLabel">Validation</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
