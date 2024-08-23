@@ -3,6 +3,8 @@
 {% block title %}Impression FactureProForma | {% endblock %}
 
 {% block stylesheets %}
+
+
     <style>
         body {
             margin: 0;
@@ -153,11 +155,12 @@
         </button>&nbsp;&nbsp;
 
 
-        <form method="post" action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
+        <form method="post" action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}" id="validationForm" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
             <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture_pro_format.id) }}">
-            <button type="submit"  class="btn btn-success text-dark print-button" ><i class="fa-solid fa-check"></i> &nbsp; valider</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                valider
+            </button>
         </form>&nbsp;&nbsp;
-
 
         {% endif %}
 
@@ -166,7 +169,6 @@
             <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture_pro_format.id) }}">
             <button type="submit"  class="btn btn-warning text-dark print-button" > <i class="fa-solid fa-paper-plane"></i> &nbsp; soumettre</button>
         </form>&nbsp;&nbsp;
-
         {% endif %}
 
         {% if is_granted('ROLE_VALIDED_FACTURE_PRO') %}
@@ -182,9 +184,46 @@
             <i class="fa-solid fa-print"></i> Imprimer
         </button>
 
-
     </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Voulez-vous vraiment valider le document ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NON</button>
+                    <button type="button" class="btn btn-primary" id="confirmValidationButton">OUI</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}
+{% block javascripts %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Trouver la modal et le bouton "OUI"
+    var modal = document.getElementById('exampleModal');
+    var confirmButton = document.getElementById('confirmValidationButton');
+    var form = document.querySelector('form[action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}"]');
+
+    if (confirmButton) {
+        confirmButton.addEventListener('click', function () {
+            // Soumettre le formulaire lorsque le bouton "OUI" est cliqué
+            form.submit();
+        });
+    }
+});
+</script>
+
+{% endblock  %}
