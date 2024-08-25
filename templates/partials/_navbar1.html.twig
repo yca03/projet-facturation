@@ -83,37 +83,71 @@
 
 {% if is_granted('ROLE_FACTURE_PRO') or is_granted('ROLE_VALIDED_FACTURE_PRO') %}
 	<li class="menu-item has-child">
-		<a href="#" class="menu-link">
-			<span class="menu-icon fa fa-solid fa-file-invoice-dollar"></span>
-			<span class="menu-text">Facture Pro-forma</span>
-		</a>
-		<!-- child menu -->
-		<ul class="menu">
-			<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_new' ? 'has-active': '' }}">
-				<a href="{{ path('app_facture_pro_format_new') }}" class="menu-link">Créer</a>
-			</li>
+    <a href="#" class="menu-link">
+        <span class="menu-icon fa fa-solid fa-file-invoice-dollar"></span>
+        <span class="menu-text">Facture Pro-forma</span>
+    </a>
+    <!-- child menu -->
+    <ul class="menu">
+        <li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_new' ? 'has-active' : '' }}">
+            <a href="{{ path('app_facture_pro_format_new') }}" class="menu-link">Créer</a>
+        </li>
+        <li class="menu-item has-child {{ app.request.get('_route') starts with 'app_facture_pro_format_index' ? 'has-active' : '' }}">
+            <a href="#" class="menu-link">Liste</a>
+            <ul class="menu">
+                {% if is_granted('ROLE_VALIDED_FACTURE_PRO') %}
+                    <li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index_pending' ? 'has-active' : '' }}">
+                        <a href="{{ path('app_facture_pro_format_index_pending') }}" class="menu-link">En attente</a>
+                    </li>
+                    <li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index_valider' ? 'has-active' : '' }}">
+                        <a href="{{ path('app_facture_pro_format_index_valider') }}" class="menu-link">Valider</a>
+                    </li>
+                {% endif %}
+                <li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_info' ? 'has-active' : '' }}">
+                    <a href="{{ path('app_facture_pro_format_info') }}" class="menu-link">Toute la liste</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- /child menu -->
+</li>
 
-			{% if is_granted('ROLE_VALIDED_FACTURE_PRO') %}
-				<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index'  }}">
-					<a href="{{ path('app_facture_pro_format_index_pending') }}" class="menu-link">en attente</a>
-				</li>
-				<li class="menu-item {{ app.request.get('_route') == 'app_facture_info' }}">
-					<a href="{{ path('app_facture_pro_format_index_valider') }}" class="menu-link">valider</a>
-				</li>
-			{% endif %}
-				<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index'  }}">
-					<a href="{{ path('app_facture_pro_format_info') }}" class="menu-link">Liste</a>
-				</li>
-
-		</ul>
-
-		<!-- /child menu -->
-	</li><br>
 {% endif %}
 
 {% if is_granted('ROLE_FACTURE') or is_granted('ROLE_VALIDED_FACTURE') %}
 
-	<li class="menu-item has-child">
+<li class="menu-item has-child">
+    <a href="#" class="menu-link">
+        <span class="menu-icon fa fa-solid fa-file-invoice"></span>
+        <span class="menu-text">Facture</span>
+    </a>
+    <!-- child menu -->
+    <ul class="menu">
+        <li class="menu-item {{ app.request.get('_route') == 'app_facture_new' ? 'has-active' : '' }}">
+            <a href="{{ path('app_facture_new') }}" class="menu-link">Créer</a>
+        </li>
+        <li class="menu-item has-child {{ app.request.get('_route') starts with 'app_facture_index' ? 'has-active' : '' }}">
+            <a href="#" class="menu-link">Liste</a>
+            <ul class="menu">
+                {% if is_granted('ROLE_VALIDED_FACTURE') %}
+                    <li class="menu-item {{ app.request.get('_route') == 'app_facture_index_pending' ? 'has-active' : '' }}">
+                        <a href="{{ path('app_facture_index_pending') }}" class="menu-link">En attente</a>
+                    </li>
+                    <li class="menu-item {{ app.request.get('_route') == 'app_facture_show_valider' ? 'has-active' : '' }}">
+                        <a href="{{ path('app_facture_show_valider') }}" class="menu-link">Validé</a>
+                    </li>
+                {% endif %}
+                <li class="menu-item {{ app.request.get('_route') == 'app_facture_info' ? 'has-active' : '' }}">
+                    <a href="{{ path('app_facture_info') }}" class="menu-link">Toute la liste</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- /child menu -->
+</li>
+
+
+	{# <li class="menu-item has-child">
 		<a href="#" class="menu-link">
 			<span class="menu-icon fa fa-solid fa-file-invoice"></span>
 			<span class="menu-text">Facture</span>
@@ -140,7 +174,9 @@
 
 		</ul>
 		<!-- /child menu -->
-	</li><br>
+	</li><br> #}
+
+
 {% endif %}
 
 {% if  is_granted('ROLE_ADMIN') %}

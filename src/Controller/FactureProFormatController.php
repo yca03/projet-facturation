@@ -30,7 +30,7 @@ class FactureProFormatController extends AbstractController
         ]);
     }
 
-    #[Route('/index_valider/', name: 'app_facture_pro_format_index_valider', methods: ['GET'])]
+    #[Route('index_valider/', name: 'app_facture_pro_format_index_valider', methods: ['GET'])]
     public function indexValided(FactureProFormatRepository $factureProFormatRepository): Response
     {
         return $this->render('facture_pro_format/show.html.twig', [

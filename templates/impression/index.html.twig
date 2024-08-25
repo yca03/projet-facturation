@@ -84,6 +84,29 @@
             display: none !important;
         }
     }
+
+
+    
+        .btn-oui {
+            background-color: #28a745; /* Couleur verte */
+            color: white;
+            border: none;
+        }
+
+        .btn-oui:hover {
+            background-color: #218838; /* Couleur verte plus foncée au survol */
+        }
+
+        /* Style pour le bouton NON */
+        .btn-non {
+            background-color: #dc3545; /* Couleur rouge */
+            color: white;
+            border: none;
+        }
+
+        .btn-non:hover {
+            background-color: #c82333; /* Couleur rouge plus foncée au survol */
+        }
 </style>
 
 
@@ -179,10 +202,12 @@
             <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_info') }}" style="color: white">retour</a>
         </button>&nbsp;&nbsp;
 
-        <form method="post" action="{{ path('app_facture_valider', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
-            <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture.idFacture) }}">
-            <button type="submit"  class="btn btn-success text-dark print-button" ><i class="fa-solid fa-check"></i> &nbsp; valider</button>
-        </form>&nbsp;&nbsp;
+
+            <form method="post" action="{{ path('app_facture_valider', {'id': facture.idFacture}) }}" id="validationForm" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
+                <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture.idFacture) }}">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#validationModal">  valider </button>
+           </form>&nbsp;&nbsp;
+        
 
         {% endif %}
 
@@ -190,7 +215,9 @@
 
         <form method="post" action="{{ path('app_facture_soumission', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment soumettre');" style="display: inline;">
             <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture.idFacture) }}">
-            <button type="submit"  class="btn btn-warning text-dark print-button" > <i class="fa-solid fa-paper-plane"></i> &nbsp; soumettre</button>
+           <button type="button" class="btn btn-warning text-dark print-button" data-bs-toggle="modal" data-bs-target="#soumissionModal">
+    <i class="fa-solid fa-paper-plane"></i> &nbsp; soumettre
+</button>
         </form>&nbsp;&nbsp;
 
         {% endif %}
@@ -199,7 +226,8 @@
 
         <form method="post" action="{{ path('app_facture_annulation', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment annulé');" style="display: inline;">
             <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture.idFacture) }}">
-            <button type="submit"  class="btn btn-danger text-dark print-button" ><i class="fa-solid fa-xmark"></i>  &nbsp; annulé</button>
+            <button type="button" class="btn btn-danger text-dark print-button" data-bs-toggle="modal" data-bs-target="#annulationModal"> <i class="fa-solid fa-xmark"></i> &nbsp; annuler</button>
+
         </form>&nbsp;&nbsp;
 
         {% endif %}
@@ -212,4 +240,102 @@
     </div>
 </div>
 
+
+
+<!-- Modal pour la validation -->
+<div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="validationModalLabel">Validation</h3>
+            </div>
+            <div class="modal-body">
+                <p> Voulez-vous vraiment valider le document ?</p>
+                <p style="color:red;">{{ facture.codeFacture }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
+                <button type="button" class="btn btn-oui" id="confirmValidationButton">OUI</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal pour la soumission -->
+<div class="modal fade" id="soumissionModal" tabindex="-1" aria-labelledby="soumissionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="soumissionModalLabel">Soumission</h3>
+            </div>
+            <div class="modal-body">
+                <p>Voulez-vous vraiment soumettre le document ?</p>
+                <p style="color:red;">{{ facture.codeFacture }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
+                <button type="button" class="btn btn-oui" id="confirmSoumissionButton">OUI</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal pour l'annulation -->
+<div class="modal fade" id="annulationModal" tabindex="-1" aria-labelledby="annulationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="annulationModalLabel">Annulation</h3>
+            </div>
+            <div class="modal-body">
+                <p>Voulez-vous vraiment annuler le document ?</p>
+                <p style="color:red;">{{ facture.codeFacture }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
+                <button type="button" class="btn btn-oui" id="confirmAnnulationButton">OUI</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
+
+{% block javascripts %}
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+       // Validation
+       var validationForm = document.querySelector('form[action="{{ path('app_facture_valider', {'id': facture.idFacture}) }}"]');
+       var validationButton = document.getElementById('confirmValidationButton');
+       if (validationButton) {
+           validationButton.addEventListener('click', function () {
+               validationForm.submit(); // Soumet le formulaire lorsqu'on clique sur "OUI"
+           });
+       }
+
+       // Soumission
+       var soumissionForm = document.querySelector('form[action="{{ path('app_facture_soumission', {'id': facture.idFacture}) }}"]');
+       var soumissionButton = document.getElementById('confirmSoumissionButton');
+       if (soumissionButton) {
+           soumissionButton.addEventListener('click', function () {
+               soumissionForm.submit(); // Soumet le formulaire lorsqu'on clique sur "OUI"
+           });
+       }
+
+       // Annulation
+       var annulationForm = document.querySelector('form[action="{{ path('app_facture_annulation', {'id': facture.idFacture}) }}"]');
+       var annulationButton = document.getElementById('confirmAnnulationButton');
+       if (annulationButton) {
+           annulationButton.addEventListener('click', function () {
+               annulationForm.submit(); // Soumet le formulaire lorsqu'on clique sur "OUI"
+           });
+       }
+   });
+</script>
+{% endblock %}
+
+
