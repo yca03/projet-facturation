@@ -325,7 +325,7 @@ class FactureController extends AbstractController
             ->success('la facture annulée avec succès .');
 
         // Génére l'URL pour la redirection
-        $url2 = $urlGenerator->generate('app_facture_index_valider', ['id' => $facture->getId()]);
+        $url2 = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
 
         // Redirige vers la page de la facture
         return new RedirectResponse($url2);
