@@ -6,6 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="alert-modal2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/clients/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/clients/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/index_valide.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/index_valide.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/info.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/produit/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/societe/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/societe/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -473,6 +481,7 @@
       <workItem from="1724341278308" duration="4058000" />
       <workItem from="1724348638459" duration="74000" />
       <workItem from="1724408382919" duration="6084000" />
+      <workItem from="1724658359125" duration="3790000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />

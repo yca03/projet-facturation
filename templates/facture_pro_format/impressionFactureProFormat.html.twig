@@ -92,7 +92,7 @@
 
 
         .btn-oui {
-            background-color: #28a745; /* Couleur verte */
+            background-color: #02024a; /* Couleur verte */
             color: white;
             border: none;
         }
@@ -147,7 +147,7 @@
 
         {% for detail in facture_pro_format.detailFacture %}
             <tr>
-                <td>{{ detail.produit.libelle }}</td>
+                <td class="text-center">{{ detail.produit.libelle }}</td>
                 <td>{{ detail.quantite }}</td>
                 <td>{{ detail.prix  |number_format(0, '.', ' ') }}</td>
                 <td>{{ detail.montantHT |number_format(0, '.', ' ') }}</td>

@@ -58,10 +58,10 @@
                                 {# <td class="text-center">{{facture.dateFact ? facture.dateFact|date('Y-m-d H:i:s') : '' }}</td> #}
                                 <td class="text-center">
 
-                                    <a href="{{ path('app_societe_show', {'id': societe.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
-                                    <a href="{{ path('app_societe_edit', {'id': societe.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_societe_show', {'id': societe.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_societe_edit', {'id': societe.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
 
-                                    <form method="post" action="{{ path('app_societe_delete', {'id': societe.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                    <form  class="btn btn-sm btn-icon btn-secondary" method="post" action="{{ path('app_societe_delete', {'id': societe.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
                                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ societe.id) }}">
                                         <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
                                     </form>

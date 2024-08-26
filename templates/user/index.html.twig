@@ -114,10 +114,10 @@
 
 
                                 <td class="text-center">
-                                    <a href="{{ path('app_user_show', {'id': user.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
-                                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></i></a>
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_user_show', {'id': user.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></i></a>
 
-                                    <form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                    <form  class="btn btn-sm btn-icon btn-secondary" method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
                                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
                                         <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
                                     </form>
