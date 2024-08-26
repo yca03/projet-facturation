@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="alert-modal2">
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="icon">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/clients/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/clients/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/index_valide.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/index_valide.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/produit/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/societe/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/societe/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -481,7 +474,7 @@
       <workItem from="1724341278308" duration="4058000" />
       <workItem from="1724348638459" duration="74000" />
       <workItem from="1724408382919" duration="6084000" />
-      <workItem from="1724658359125" duration="3790000" />
+      <workItem from="1724658359125" duration="5038000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -571,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724413836362</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="icon">
+      <option name="closed" value="true" />
+      <created>1724685572976</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1724685572976</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,6 +604,7 @@
     <MESSAGE value="derniere-modification-profile" />
     <MESSAGE value="alert-modal" />
     <MESSAGE value="alert-modal2" />
-    <option name="LAST_COMMIT_MESSAGE" value="alert-modal2" />
+    <MESSAGE value="icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="icon" />
   </component>
 </project>

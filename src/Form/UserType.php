@@ -30,7 +30,7 @@ class UserType extends AbstractType
 
         $roles = [
             'ADMINISTRATEUR / Créer un utilisateur ' => 'ROLE_ADMIN',
-            'CONSULTATION / Consulter un état , imprimer une facture ' => 'ROLE_CONSULTER',
+            'CONSULTATION / Consulter les états , imprimer des factures ' => 'ROLE_CONSULTER',
             'FACTURE PRO-FORMA / Créer , supprimer , modifier une facture pro-forma' => 'ROLE_FACTURE_PRO',
             'FACTURE PRO-FORMA / valider , annuler   une facture pro-forma'=>'ROLE_VALIDED_FACTURE_PRO',
             'FACTURE / Créer , supprimer , modifier une facture' => 'ROLE_FACTURE',
