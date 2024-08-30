@@ -1,0 +1,92 @@
+{% form_theme form 'encaissement/_collection.html.twig' %}
+<fieldset>
+    <legend>Identification de l'encaissement</legend>
+    <div class="row">
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="date_etablissement">Date *</label>
+                {{ form_widget(form.date, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet">Réference d'encaissement *</label>
+                {{ form_widget(form.reference , {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet">Société *</label>
+                {{ form_widget(form.clients, {'attr': {'id': 'encaissement_clients', 'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet">Mode de Payement *</label>
+                {{ form_widget(form.modePayement, {'attr' : {'id': 'encaissement_modePayement', 'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+
+<fieldset>
+    <input type="hidden" id="widget-counter-detail-encaissement" name="widget-counter-detail-encaissement"
+           value="{{ form.detatilEncaissements|length }}">
+    <legend>Détail d'encaissement</legend>
+    <div class="table-responsive">
+        <table class="table table-sm bordered" id="table_detail_encaissement">
+            <thead>
+            <tr>
+                <th>Réference</th>
+                <th>Montant Dû</th>
+                <th>Montant Versé</th>
+                <th>Solde</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{ form_widget(form.detatilEncaissements) }}
+            </tbody>
+        </table>
+    </div>
+</fieldset> <br><br><br>
+
+{#deuxième collection#}
+{# Deuxième collection #}
+{% form_theme form 'encaissement/modePayement/_collection.html.twig' %}
+<fieldset>
+    <input type="hidden" id="widget-counter-detail-ModePayement" name="widget-counter-detail-ModePayement"
+           value="{{ form.detailModePayements|length }}">
+    <legend>Détail Mode de règlement</legend>
+    <div class="table-responsive">
+        <table class="table table-sm bordered" id="table_detail_ModePayement">
+            <thead>
+            <tr>
+                <th>Référence</th>
+                <th class="compte-banque">Numéro Compte Banque</th>
+                <th class="banque-client">Banque client</th>
+                <th>Montant</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{ form_widget(form.detailModePayements) }}
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}BanqueOnly index{% endblock %}#}
+
+{#{% block body %}#}
+{#    <h1>BanqueOnly index</h1>#}
+
+{#    <table class="table">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <th>Nom</th>#}
+{#                <th>CodeBanque</th>#}
+{#                <th>actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for banque_only in banque_onlies %}#}
+{#            <tr>#}
+{#                <td>{{ banque_only.id }}</td>#}
+{#                <td>{{ banque_only.nom }}</td>#}
+{#                <td>{{ banque_only.codeBanque }}</td>#}
+{#                <td>#}
+{#                    <a href="{{ path('app_banque_only_show', {'id': banque_only.id}) }}">show</a>#}
+{#                    <a href="{{ path('app_banque_only_edit', {'id': banque_only.id}) }}">edit</a>#}
+{#                </td>#}
+{#            </tr>#}
+{#        {% else %}#}
+{#            <tr>#}
+{#                <td colspan="4">no records found</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    <a href="{{ path('app_banque_only_new') }}">Create new</a>#}
+{#{% endblock %}#}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Banque Only{% endblock %}
+
+{% block body %}
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Liste des Banques
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>CodeBanque</th>
+                             <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for banque_only in banque_onlies %}
+                            <tr>
+                                <th class="text-center">{{ banque_only.id }}</th>
+                                <td class="text-center">{{ banque_only.nom}}</td>
+                                <td class="text-center">{{ banque_only.codeBanque }}</td>
+                                <td class="text-center">
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_banque_only_edit', {'id': banque_only.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_banque_only_show', {'id': banque_only.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
+
+                                    <form method="post" action="{{ path('app_banque_only_edit', {'id': banque_only.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ banque_only.id) }}">
+                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

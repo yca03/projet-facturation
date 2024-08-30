@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BanqueClient index{% endblock %}
+
+{% block body %}
+    <h1>BanqueClient index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Uid</th>
+                <th>NumeroCompteBanque</th>
+                <th>Rib</th>
+                <th>CodeAgent</th>
+                <th>NumeroBic</th>
+                <th>Gestionnaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for banque_client in banque_clients %}
+            <tr>
+                <td>{{ banque_client.id }}</td>
+                <td>{{ banque_client.uid }}</td>
+                <td>{{ banque_client.numeroCompteBanque }}</td>
+                <td>{{ banque_client.rib }}</td>
+                <td>{{ banque_client.codeAgent }}</td>
+                <td>{{ banque_client.numeroBic }}</td>
+                <td>{{ banque_client.gestionnaire }}</td>
+                <td>
+                    <a href="{{ path('app_banque_client_show', {'id': banque_client.id}) }}">show</a>
+                    <a href="{{ path('app_banque_client_edit', {'id': banque_client.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_banque_client_new') }}">Create new</a>
+{% endblock %}

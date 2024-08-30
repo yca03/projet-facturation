@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Encaissement{% endblock %}
+
+{% block body %}
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom" style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Liste des encaissements
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Réference</th>
+                            <th class="text-center">Client</th>
+                            <th class="text-center">Contact</th>
+                            <th class="text-center">Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for encaissement in encaissements %}
+                            <tr>
+                                <th class="text-center">{{ encaissement.id }}</th>
+                                <td class="text-center">{{ encaissement.date|date("d/m/Y") }}</td>
+                                <td class="text-center">{{ encaissement.reference }}</td>
+                                <td class="text-left">{{ encaissement.clients.nom }}</td>
+                                <td class="text-center">{{ encaissement.clients.contact }}</td>
+                                <td class="text-center">
+                                    {% if encaissement.statut == 'validé' %}
+                                        <span class="badge badge-success">{{ encaissement.statut }}</span>
+                                    {% elseif encaissement.statut == 'en attente' %}
+                                        <span class="badge badge-info">{{ encaissement.statut }}</span>
+                                    {% elseif encaissement.statut == 'annulé' %}
+                                        <span class="badge badge-danger">{{ encaissement.statut }}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_encaissement_edit', {'id': encaissement.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_encaissement_show', {'id': encaissement.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
+
+                                    <form method="post" action="{{ path('app_encaissement_delete', {'id': encaissement.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ encaissement.id) }}">
+                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
