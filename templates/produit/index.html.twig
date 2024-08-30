@@ -74,8 +74,8 @@
                                 <td class="text-center">{{produit.id }}</td>
                                 <td class="text-center">{{ produit.updateDate ? produit.updateDate|date('d-m-Y') : '' }}
                                <td class="text-center">{{produit.typeProduit }}</td>
-                                <td class="text-center">{{produit.libelle }}</td>
-                                 <td class="text-center">{{produit.prix}}</td>
+                                <td class="text-left">{{produit.libelle }}</td>
+                                 <td class="text-right">{{produit.prix}}</td>
                                 <td class="text-center">
 
                                     <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_produit_show', {'id': produit.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>

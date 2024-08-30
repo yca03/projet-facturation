@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Clients;
+use App\Entity\Facture;
+use  App\Entity\DetailFacture;
+use App\Form\Facture\FactureType;
+use App\Repository\DetailFactureRepository;
 use App\Statut\Statut;
 use App\Entity\FactureProFormat;
 use App\Form\FactureProFormatType;
@@ -271,6 +275,74 @@ class FactureProFormatController extends AbstractController
 
         // Redirige vers la page de la facture
         return new RedirectResponse($url2);
+    }
+
+
+
+    #[Route('/{id}/convert-to-invoice', name: 'app_convert_to_invoice', methods: ['GET', 'POST'])]
+    public function convertToInvoice(
+        FactureProFormat             $factureProForma,
+        Request                      $request,
+        FactureProFormatRepository   $factureProFormatRepository,
+        DetailFacture                $detailFacture,
+        DetailFactureRepository      $detailFactureRepository,
+        EntityManagerInterface       $entityManager
+    ): Response
+    {
+        // Créer une nouvelle facture basée sur la facture pro forma
+        $invoice = (new Facture())
+            ->setDate($factureProForma->getDate())
+            ->setReference($factureProForma->getReference())
+            ->setCodeFacture($factureProForma->getNumeroFacturePro())
+            ->setIdClient($factureProForma->getClients())
+            ->setModePayement($factureProForma->getModePayement())
+            ->setDateExpiration($factureProForma->getDateEcheance())
+            ->setStatut(Statut::BROUILLON);
+
+        // Copier les détails de la facture pro forma vers la nouvelle facture
+        $detailsFactureProForma = $factureProForma->getDetailFacture();
+        foreach ($detailsFactureProForma as $detail) {
+            $newDetail = (new DetailFacture())
+                ->setProduit($detail->getProduit())
+                ->setQuantite($detail->getQuantite())
+                ->setPrix($detail->getPrix())
+                ->setMontantBrut($detail->getMontantBrut())
+                ->setMontantHT($detail->getMontantHT())
+                ->setMontantTVA($detail->getMontantTVA())
+                ->setMontantTTC($detail->getMontantTTC())
+                ->setFacture($invoice);
+
+
+            // Ajouter chaque détail à la facture
+            $invoice->addDetailFacture($newDetail);
+        }
+
+        // Créer et traiter le formulaire pour la facture
+        $form = $this->createForm(FactureType::class, $invoice);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Mettre à jour le statut de la facture pro-forma
+            $factureProForma->setStatut(Statut::CONVERTED);
+
+            $entityManager->persist($invoice);
+            $entityManager->persist($factureProForma);
+            $entityManager->flush();
+
+            // Ajouter un message flash et rediriger vers la page de visualisation de la facture
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('Conversion effectuée avec succès.');
+            return $this->redirectToRoute('app_facture_pro_format_index_valider', ['id' => $invoice->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        // Afficher le formulaire pour la création de la facture
+        return $this->render('facture/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 

@@ -36,7 +36,7 @@
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
 			<span class="menu-icon fa fa-solid fa-user"></span>
-			<span class="menu-text">Utilisateur</span>
+			<span class="menu-text">utilisateur</span>
 		</a>
 		<!-- child menu -->
 		<ul class="menu">
@@ -97,10 +97,10 @@
             <ul class="menu">
                 {% if is_granted('ROLE_VALIDED_FACTURE_PRO') %}
                     <li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index_pending' ? 'has-active' : '' }}">
-                        <a href="{{ path('app_facture_pro_format_index_pending') }}" class="menu-link">En attente</a>
+                        <a href="{{ path('app_facture_pro_format_index_pending') }}" class="menu-link">pro-forma en attente</a>
                     </li>
                     <li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index_valider' ? 'has-active' : '' }}">
-                        <a href="{{ path('app_facture_pro_format_index_valider') }}" class="menu-link">Valider</a>
+                        <a href="{{ path('app_facture_pro_format_index_valider') }}" class="menu-link">pro-forma validée</a>
                     </li>
                 {% endif %}
                 <li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_info' ? 'has-active' : '' }}">
@@ -131,10 +131,10 @@
             <ul class="menu">
                 {% if is_granted('ROLE_VALIDED_FACTURE') %}
                     <li class="menu-item {{ app.request.get('_route') == 'app_facture_index_pending' ? 'has-active' : '' }}">
-                        <a href="{{ path('app_facture_index_pending') }}" class="menu-link">En attente</a>
+                        <a href="{{ path('app_facture_index_pending') }}" class="menu-link"> facture en attente</a>
                     </li>
                     <li class="menu-item {{ app.request.get('_route') == 'app_facture_show_valider' ? 'has-active' : '' }}">
-                        <a href="{{ path('app_facture_show_valider') }}" class="menu-link">Validé</a>
+                        <a href="{{ path('app_facture_show_valider') }}" class="menu-link">facture validée</a>
                     </li>
                 {% endif %}
                 <li class="menu-item {{ app.request.get('_route') == 'app_facture_info' ? 'has-active' : '' }}">
@@ -145,37 +145,6 @@
     </ul>
     <!-- /child menu -->
 </li>
-
-
-	{# <li class="menu-item has-child">
-		<a href="#" class="menu-link">
-			<span class="menu-icon fa fa-solid fa-file-invoice"></span>
-			<span class="menu-text">Facture</span>
-		</a>
-		<!-- child menu -->
-
-		<ul class="menu">
-			<li class="menu-item {{ app.request.get('_route') == 'app_facture_new' ? 'has-active': '' }}">
-				<a href="{{ path('app_facture_new') }}" class="menu-link">Créer</a>
-			</li>
-			{% if is_granted('ROLE_VALIDED_FACTURE') %}
-			<li class="menu-item {{ app.request.get('_route') == 'app_facture_info' }}">
-				<a href="{{ path('app_facture_index_pending') }}" class="menu-link">en attente</a>
-			</li>
-
-			<li class="menu-item {{ app.request.get('_route') == 'app_facture_info' }}">
-				<a href="{{ path('app_facture_show_valider') }}" class="menu-link">validé</a>
-			</li>
-			{% endif %}
-
-			<li class="menu-item {{ app.request.get('_route') == 'app_facture_info' }}">
-					<a href="{{ path('app_facture_info') }}" class="menu-link">Liste</a>
-			</li>
-
-		</ul>
-		<!-- /child menu -->
-	</li><br> #}
-
 
 {% endif %}
 
@@ -218,4 +187,62 @@
 		<!-- /child menu -->
 	</li><br>
 {% endif %}
+<br>
+<li class="menu-item has-child">
+	<a href="#" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-box"></span>
+		<span class="menu-text">Encaissement</span>
+	</a>
+	<!-- child menu -->
+	<ul class="menu">
+		<li class="menu-item {{ app.request.get('_route') == 'app_produit_new' ? 'has-active': '' }}">
+			<a href="{{ path('app_encaissement_new') }}" class="menu-link">Créer</a>
+		</li>
+		<li class="menu-item {{ app.request.get('_route') == 'app_produit_index' ? 'has-active': '' }}">
+			<a href="{{ path('app_encaissement_index') }}" class="menu-link">Liste</a>
+		</li>
+	</ul>
+	<!-- /child menu -->
+</li><br>
+
+
+
+<li class="menu-item has-child">
+	<a href="#" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-dollar"></span>
+		<span class="menu-text">Banque</span>
+	</a>
+	<!-- child menu -->
+	<ul class="menu">
+		<li class="menu-item has-child {{ app.request.get('_route') starts with 'app_facture_pro_format_index' ? 'has-active' : '' }}">
+			<a href="#" class="menu-link">Banque </a>
+			<ul class="menu">
+
+				<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index_pending' ? 'has-active' : '' }}">
+					<a href="{{ path('app_banque_only_new') }}" class="menu-link">créer</a>
+				</li>
+				<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index_valider' ? 'has-active' : '' }}">
+					<a href="{{ path('app_banque_only_index') }}" class="menu-link">liste</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="menu-item has-child {{ app.request.get('_route') starts with 'app_facture_pro_format_index' ? 'has-active' : '' }}">
+			<a href="#" class="menu-link">Banque client</a>
+			<ul class="menu">
+
+				<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index_pending' ? 'has-active' : '' }}">
+					<a href="{{ path('app_banque_client_new') }}" class="menu-link">créer</a>
+				</li>
+				<li class="menu-item {{ app.request.get('_route') == 'app_facture_pro_format_index_valider' ? 'has-active' : '' }}">
+					<a href="{{ path('app_banque_client_index') }}" class="menu-link">liste</a>
+				</li>
+			</ul>
+		</li>
+
+	</ul>
+	<!-- /child menu -->
+</li><br>
+
+
 

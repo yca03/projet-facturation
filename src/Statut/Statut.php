@@ -16,4 +16,8 @@ class Statut
 
     const VALIDATED = 'validé';
 
+    const CONVERTED = 'convertir';
+    const PAID = 'payé';
+    const  PARTIAL_PAID = 'parial-paye';
+
 }

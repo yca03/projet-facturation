@@ -52,6 +52,9 @@ class FactureProFormat
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $statut = null;
 
+    #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
+    private ?Facture $convertir = null;
+
 
 
     public function __construct()
@@ -220,6 +223,18 @@ class FactureProFormat
     public function setStatut(?string $statut): static
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getConvertir(): ?Facture
+    {
+        return $this->convertir;
+    }
+
+    public function setConvertir(?Facture $convertir): static
+    {
+        $this->convertir = $convertir;
 
         return $this;
     }

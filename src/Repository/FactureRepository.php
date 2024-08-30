@@ -58,4 +58,16 @@ class FactureRepository extends ServiceEntityRepository
             ->setParameter('statut',Statut::VALIDATED);
         return $qb->getQuery()->getResult();
     }
+
+    public function findByClientAndStatut(array $criteria, string $statut)
+    {
+        return $this->createQueryBuilder('f')
+            ->where('f.IdClient = :clientId')
+            ->andWhere('f.statut = :statut')
+            ->setParameter('clientId', $criteria['IdClient'])
+            ->setParameter('statut', $statut)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

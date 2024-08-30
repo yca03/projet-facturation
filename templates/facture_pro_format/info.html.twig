@@ -32,10 +32,10 @@
                                 <th class="text-center">{{ facture_pro_format.id }}</th>
                                 <td class="text-center">{{ facture_pro_format.date|date("d/m/Y") }}</td>
                                 <td class="text-center">{{ facture_pro_format.numeroFacturePro }}</td>
-                                <td class="text-center">{{ facture_pro_format.clients.nom }}</td>
-                                <td class="text-center">{{ facture_pro_format.totalHT|number_format(0, '.', ' ') }}</td>
-                                <td class="text-center">{{ facture_pro_format.totalTVA|number_format(0, '.', ' ') }}</td>
-                                <td class="text-center">{{ facture_pro_format.totalTTC|number_format(0, '.', ' ') }}</td>
+                                <td class="text-left">{{ facture_pro_format.clients.nom }}</td>
+                                <td class="text-right">{{ facture_pro_format.totalHT|number_format(0, '.', ' ') }}</td>
+                                <td class="text-right">{{ facture_pro_format.totalTVA|number_format(0, '.', ' ') }}</td>
+                                <td class="text-right">{{ facture_pro_format.totalTTC|number_format(0, '.', ' ') }}</td>
                                 <td class="text-center">{{ facture_pro_format.dateEcheance|date("d/m/Y") }}</td>
                                 <td class="text-center">{{ facture_pro_format.clients.contact }}</td>
                                 <td class="text-center align-middle">
@@ -51,17 +51,28 @@
                                     {% endif %}
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_pro_format_edit', {'id': facture_pro_format.id}) }}" style="color:black;"> <i class="fa fa-pencil-alt"></i></a>
+                                    {% if facture_pro_format.statut != 'validé' %}
+                                        {% if facture_pro_format.statut != 'en attente' and facture_pro_format.statut != 'annulé' %}
+                                            <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_pro_format_edit', {'id': facture_pro_format.id}) }}" style="color:black;">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
 
 
-                                    <form method="post" action="{{ path('app_facture_pro_format_delete', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture_pro_format.id) }}">
-                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
-                                    </form>
+                                        <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_pro_format_impression', {'id': facture_pro_format.id}) }}" style="color:black;">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
 
 
-                                    <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_pro_format_impression', {'id': facture_pro_format.id}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a>
+                                        <form method="post" action="{{ path('app_facture_pro_format_delete', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture_pro_format.id) }}">
+                                            <button type="submit" style="border:none; background:none">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                        {% endif %}
+                                    {% endif %}
                                 </td>
+
                             </tr>
                         {% endfor %}
                         </tbody>

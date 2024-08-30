@@ -53,8 +53,14 @@ class FactureProFormatRepository extends ServiceEntityRepository
     public function findFactureProValided()
     {
         $qb = $this->createQueryBuilder('f');
-        $qb->where('f.statut = :statut')
-            ->setParameter('statut',Statut::VALIDATED);
+        $qb->where($qb->expr()->orX(
+            $qb->expr()->eq('f.statut', ':validated'),
+            $qb->expr()->eq('f.statut', ':converted')
+        ))
+            ->setParameter('validated', Statut::VALIDATED)
+            ->setParameter('converted', Statut::CONVERTED);
+
         return $qb->getQuery()->getResult();
     }
+
 }

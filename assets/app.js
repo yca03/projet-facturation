@@ -31,6 +31,11 @@ require("datatables.net-fixedheader");
 /** Cutoms JS */
 import './js/page/feature/facture/add-collection-detail-facture'
 import './js/page/feature/facture/add-collection-detail-facture-pro'
+import './js/page/feature/facture/add-collection-detailEncaissement'
+import './js/page/feature/facture/add-collection-detailEncaissement-modePayement'
+
+import './js/page/feature/encaissement/encaissement'
+import './js/page/feature/encaissement/modePayement'
 
 const moment = require('moment')
 global.moment = moment;

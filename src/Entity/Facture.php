@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\Encaissement\DetatilEncaissement;
+use App\Repository\FactureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\FactureRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: FactureRepository::class)]
 class Facture
@@ -28,7 +29,7 @@ class Facture
     /**
      * @var Collection<int, DetailFacture>
      */
-    #[ORM\OneToMany(targetEntity: DetailFacture::class, mappedBy: 'facture', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: DetailFacture::class, mappedBy: 'facture', cascade: ['persist'], orphanRemoval: true)]
     private Collection $detailFactures;
 
     #[ORM\ManyToOne(inversedBy: 'factures')]
@@ -52,9 +53,29 @@ class Facture
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $statut = null;
 
+    /**
+     * @var Collection<int, FactureProFormat>
+     */
+    #[ORM\OneToMany(targetEntity: FactureProFormat::class, mappedBy: 'convertir')]
+    private Collection $factureProFormats;
+
+    /**
+     * @var Collection<int, DetatilEncaissement>
+     */
+    #[ORM\OneToMany(targetEntity: DetatilEncaissement::class, mappedBy: 'facture')]
+    private Collection $detatilEncaissements;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $StatutPaye = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $reste = null;
+
     public function __construct()
     {
         $this->detailFactures = new ArrayCollection();
+        $this->factureProFormats = new ArrayCollection();
+        $this->detatilEncaissements = new ArrayCollection();
     }
 
     /**
@@ -217,6 +238,90 @@ class Facture
     public function setStatut(?string $statut): static
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FactureProFormat>
+     */
+    public function getFactureProFormats(): Collection
+    {
+        return $this->factureProFormats;
+    }
+
+    public function addFactureProFormat(FactureProFormat $factureProFormat): static
+    {
+        if (!$this->factureProFormats->contains($factureProFormat)) {
+            $this->factureProFormats->add($factureProFormat);
+            $factureProFormat->setConvertir($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFactureProFormat(FactureProFormat $factureProFormat): static
+    {
+        if ($this->factureProFormats->removeElement($factureProFormat)) {
+            // set the owning side to null (unless already changed)
+            if ($factureProFormat->getConvertir() === $this) {
+                $factureProFormat->setConvertir(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetatilEncaissement>
+     */
+    public function getDetatilEncaissements(): Collection
+    {
+        return $this->detatilEncaissements;
+    }
+
+    public function addDetatilEncaissement(DetatilEncaissement $detatilEncaissement): static
+    {
+        if (!$this->detatilEncaissements->contains($detatilEncaissement)) {
+            $this->detatilEncaissements->add($detatilEncaissement);
+            $detatilEncaissement->setFacture($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetatilEncaissement(DetatilEncaissement $detatilEncaissement): static
+    {
+        if ($this->detatilEncaissements->removeElement($detatilEncaissement)) {
+            // set the owning side to null (unless already changed)
+            if ($detatilEncaissement->getFacture() === $this) {
+                $detatilEncaissement->setFacture(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getStatutPaye(): ?string
+    {
+        return $this->StatutPaye;
+    }
+
+    public function setStatutPaye(?string $StatutPaye): static
+    {
+        $this->StatutPaye = $StatutPaye;
+
+        return $this;
+    }
+
+    public function getReste(): ?string
+    {
+        return $this->reste;
+    }
+
+    public function setReste(?string $reste): static
+    {
+        $this->reste = $reste;
 
         return $this;
     }

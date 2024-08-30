@@ -36,10 +36,10 @@ class ClientsType extends AbstractType
             ->add('siteInternet')
             ->add('regimeFiscal', ChoiceType::class, [
                 'choices' => [
-                    'Regime de l entrepreunant (RE)'=>'RE',
+                    'Regime de l\'entreprenant (RE)'=>'RE',
                     'Regime des micro-entreprise (RME)'=>'RME',
-                    'Regime Simplifié d imposition (RSI)'=>'RSI',
-                    'Regime Réelle Normale d impossition (RNI)'=>'RNI',
+                    'Regime Simplifié d\'imposition (RSI)'=>'RSI',
+                    'Regime Réel Normale d\'imposition (RNI)'=>'RNI',
                 ],
                 'placeholder' => 'Sélectionner le Regime fiscal',
             ])

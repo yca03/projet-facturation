@@ -20,6 +20,7 @@ class DetailFactureType extends AbstractType
             ->add('montantHT')
             ->add('montantTVA')
             ->add('remise')
+            ->add('montantBrut')
             ->add('produit', EntityType::class, [
                 'class' => Produit::class,
                 'group_by' => function($typeProduit) {

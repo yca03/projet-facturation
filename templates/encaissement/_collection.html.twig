@@ -1,0 +1,45 @@
+
+{% block _encaissement_detatilEncaissements_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+{% block _encaissement_detatilEncaissements_widget %}
+    <div class="col-md-12">
+        <div class="form-group float-right">
+            <button type="button"
+                    id="add-collection-detail-encaissement"
+                    data-list-selector="#encaissement_detatilEncaissements"
+                    class="btn btn-outline-primary">
+                Nouvelle ligne
+            </button>
+        </div>
+    </div>
+    {{ form_widget(form) }}
+{% endblock %}
+{% block _encaissement_detatilEncaissements_entry_widget %}
+    <tr id="block_{{ id }}" data-id="{{ id }}" class="data-row">
+        <td>
+            {{ form_widget(form.facture, {'attr': {"class": 'form-control select2 encaissement_detatilEncaissements_0_facture', "data-id": id}}) }}
+            {{ form_errors(form.facture) }}
+        </td>
+        <td>
+            {{ form_widget(form.MontantDu, {'attr': {"class": 'form-control encaissement_detatilEncaissements_0_montantDu text-right', "data-id": id}}) }}
+            {{ form_errors(form.MontantDu) }}
+        </td>
+        <td>
+            {{ form_widget(form.montantVerse, {'attr': {"class": 'form-control montantVerse text-right', "data-id": id, "value": "0"}}) }}
+            {{ form_errors(form.montantVerse) }}
+        </td>
+        <td>
+            {{ form_widget(form.solde, {'attr': {"class": 'form-control soled text-right', "data-id": id, "value": "0"}}) }}
+            {{ form_errors(form.solde) }}
+        </td>
+        <td class="text-center">
+            <button type="button"
+                    class="btn btn-sm btn-icon btn-secondary delete-encaissement"
+                    data-action="delete"
+                    data-target="#block_{{ id }}">
+                <i class="oi oi-trash"></i>
+            </button>
+        </td>
+    </tr>
+{% endblock %}

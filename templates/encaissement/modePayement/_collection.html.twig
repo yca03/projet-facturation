@@ -1,0 +1,46 @@
+{% block _encaissement_detailModePayements_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _encaissement_detailModePayements_widget %}
+    <div class="col-md-12">
+        <div class="form-group float-right">
+            <button type="button"
+                    id="add-collection-detail-ModePayement"
+                    data-list-selector="#encaissement_detailModePayements"
+                    class="btn btn-outline-primary">
+                Nouvelle ligne
+            </button>
+        </div>
+    </div>
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _encaissement_detailModePayements_entry_widget %}
+    <tr id="block_{{ id }}" data-id="{{ id }}" class="data-row">
+        <td>
+            {{ form_widget(form.reference, {'attr': {"class": 'form-control', "data-id": id}}) }}
+            {{ form_errors(form.reference) }}
+        </td>
+        <td class="compte-banque" >
+            {{ form_widget(form.BanqueClient, {'attr': {"class": 'form-control', "data-id": id}}) }}
+            {{ form_errors(form.BanqueClient) }}
+        </td>
+        <td class="banque-client">
+            {{ form_widget(form.banque, {'attr': {"class": 'form-control', "data-id": id}}) }}
+            {{ form_errors(form.banque) }}
+        </td>
+        <td>
+            {{ form_widget(form.montant, {'attr': {"class": 'form-control text-right', "data-id": id}}) }}
+            {{ form_errors(form.montant) }}
+        </td>
+        <td class="text-center">
+            <button type="button"
+                    class="btn btn-sm btn-icon btn-secondary delete-ModePayement"
+                    data-action="delete"
+                    data-target="#block_{{ id }}">
+                <i class="oi oi-trash"></i>
+            </button>
+        </td>
+    </tr>
+{% endblock %}

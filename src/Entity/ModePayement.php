@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Encaissement\Encaissement;
 use App\Repository\ModePayementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -36,10 +37,17 @@ class ModePayement
     #[ORM\OneToMany(targetEntity: FactureProFormat::class, mappedBy: 'modePayement')]
     private Collection $factureProFormats;
 
+    /**
+     * @var Collection<int, Encaissement>
+     */
+    #[ORM\OneToMany(targetEntity: Encaissement::class, mappedBy: 'modePayement')]
+    private Collection $encaissements;
+
     public function __construct()
     {
         $this->factures = new ArrayCollection();
         $this->factureProFormats = new ArrayCollection();
+        $this->encaissements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +150,36 @@ class ModePayement
             // set the owning side to null (unless already changed)
             if ($factureProFormat->getModePayement() === $this) {
                 $factureProFormat->setModePayement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Encaissement>
+     */
+    public function getEncaissements(): Collection
+    {
+        return $this->encaissements;
+    }
+
+    public function addEncaissement(Encaissement $encaissement): static
+    {
+        if (!$this->encaissements->contains($encaissement)) {
+            $this->encaissements->add($encaissement);
+            $encaissement->setModePayement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEncaissement(Encaissement $encaissement): static
+    {
+        if ($this->encaissements->removeElement($encaissement)) {
+            // set the owning side to null (unless already changed)
+            if ($encaissement->getModePayement() === $this) {
+                $encaissement->setModePayement(null);
             }
         }
 

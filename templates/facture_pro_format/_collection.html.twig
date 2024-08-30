@@ -33,6 +33,10 @@
         {{ form_errors(form.prix) }}
     </td>
     <td>
+        {{ form_widget(form.montantBrut , {'attr': {"class": 'form-control montantBrut text-right', "data-id": id}}) }}
+        {{ form_errors(form.montantBrut) }}
+    </td>
+    <td>
         {{ form_widget(form.remise, {'attr': {"class": 'form-control remise text-right', "data-id": id}}) }}
         {{ form_errors(form.remise) }}
     </td>

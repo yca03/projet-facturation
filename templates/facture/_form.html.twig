@@ -13,7 +13,7 @@
 
         <div class="col-4">
             <div class="form-group">
-                <label for="objet">Reference de la facture *</label>
+                <label for="objet">Réference de la facture *</label>
                 {{ form_widget(form.reference , {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
@@ -68,7 +68,7 @@
 <fieldset>
     <input type="hidden" id="widget-counter-detail-facture" name="widget-counter-detail-facture"
            value="{{ form.detailFactures|length }}">
-    <legend>Detail facture</legend>
+    <legend>Détails factures</legend>
     <div class="table-responsive">
         <table class="table table-sm bordered" id="table_detail_facture">
             <thead>
@@ -76,7 +76,8 @@
                 <th>Service (s)</th>
                 <th>Quanité</th>
                 <th>prix (fcfa)</th>
-                <th>Remise (fcfa)</th>
+                <th>Montant Brut (%)</th>
+                <th>Remise (%)</th>
                 <th>Montant HT (fcfa)</th>
                 <th>Montant TVA (fcfa)</th>
                 <th>Montant TTC (fcfa)</th>

@@ -84,36 +84,52 @@
                 });
             }
 
-            // Function pour le calcul des montants
-            // Fonction pour le calcul des montants
+            // Fonction pour calculer les montants d'une ligne de facture
             function calculerMontants(detailId) {
-                var quantite = parseFloat(document.querySelector('.quantite[data-id="' + detailId + '"]').value) || 0;
-                var prix = parseFloat(document.querySelector('.prix[data-id="' + detailId + '"]').value) || 0;
-                var remise = parseFloat(document.querySelector('.remise[data-id="' + detailId + '"]').value) || 0;
+                const quantite = parseFloat(document.querySelector(`.quantite[data-id="${detailId}"]`).value) || 0;
+                const prix = parseFloat(document.querySelector(`.prix[data-id="${detailId}"]`).value) || 0;
+                const remise = parseFloat(document.querySelector(`.remise[data-id="${detailId}"]`).value) || 0;
 
-                var montantHT = (prix * quantite) - remise;
-                var tauxTva1 = 0.18; // Utilisation de tauxTva1 pour calculer la TVA
-                var montantTVA = montantHT * tauxTva1;
-                var montantTTC = montantHT + montantTVA;
+                const montantBrut = prix * quantite;
+                const montantHT = montantBrut - (montantBrut * remise / 100);
+                const tauxTva = 0.18; // Taux de TVA à 18%
+                const montantTVA = montantHT * tauxTva;
+                const montantTTC = montantHT + montantTVA;
 
-                document.querySelector('.montantHT[data-id="' + detailId + '"]').value = montantHT.toFixed(0);
-                document.querySelector('.montantTVA[data-id="' + detailId + '"]').value = montantTVA.toFixed(0);
-                document.querySelector('.montantTTC[data-id="' + detailId + '"]').value = montantTTC.toFixed(0);
+                document.querySelector(`.montantBrut[data-id="${detailId}"]`).value = montantBrut.toFixed(0);
+                document.querySelector(`.montantHT[data-id="${detailId}"]`).value = montantHT.toFixed(0);
+                document.querySelector(`.montantTVA[data-id="${detailId}"]`).value = montantTVA.toFixed(0);
+                document.querySelector(`.montantTTC[data-id="${detailId}"]`).value = montantTTC.toFixed(0);
             }
 
-
+            // Fonction pour attacher les événements de changement de quantité, prix, remise
             function attacherEvenementChangeMontants() {
                 document.querySelectorAll('.quantite, .prix, .remise').forEach(function(element) {
                     element.addEventListener('input', function(event) {
-                        var detailId = event.target.getAttribute('data-id');
+                        const detailId = event.target.getAttribute('data-id');
                         calculerMontants(detailId);
+                        calculateTotalTTC();
                     });
                 });
             }
 
+            // Initialisation des événements
             attacherEvenementChangeProduit();
             attacherEvenementChangeMontants();
 
+            // Fonction pour calculer le total TTC global
+            function calculateTotalTTC() {
+                let totalTTC = 0;
+                document.querySelectorAll('.montantTTC').forEach(function(element) {
+                    totalTTC += parseFloat(element.value) || 0;
+                });
+                const totalElement = document.getElementById('total-ttc');
+                if (totalElement) {
+                    totalElement.textContent = totalTTC.toFixed(2);
+                }
+            }
+
+            // Ajout d'un écouteur d'événement pour le bouton d'ajout de nouvelle ligne
             document.getElementById('add-collection-detail-facture-pro').addEventListener('click', function() {
                 attacherEvenementChangeProduit();
                 attacherEvenementChangeMontants();

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Banque\BanqueClient\BanqueClient;
+use App\Entity\Encaissement\Encaissement;
 use App\Repository\ClientsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -66,10 +68,24 @@ class Clients
     #[ORM\OneToMany(targetEntity: FactureProFormat::class, mappedBy: 'clients')]
     private Collection $factureProFormats;
 
+    /**
+     * @var Collection<int, Encaissement>
+     */
+    #[ORM\OneToMany(targetEntity: Encaissement::class, mappedBy: 'clients')]
+    private Collection $encaissements;
+
+    /**
+     * @var Collection<int, BanqueClient>
+     */
+    #[ORM\OneToMany(targetEntity: BanqueClient::class, mappedBy: 'client')]
+    private Collection $banqueClients;
+
     public function __construct()
     {
         $this->factures = new ArrayCollection();
         $this->factureProFormats = new ArrayCollection();
+        $this->encaissements = new ArrayCollection();
+        $this->banqueClients = new ArrayCollection();
     }
 
    
@@ -293,6 +309,66 @@ class Clients
             // set the owning side to null (unless already changed)
             if ($factureProFormat->getClients() === $this) {
                 $factureProFormat->setClients(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Encaissement>
+     */
+    public function getEncaissements(): Collection
+    {
+        return $this->encaissements;
+    }
+
+    public function addEncaissement(Encaissement $encaissement): static
+    {
+        if (!$this->encaissements->contains($encaissement)) {
+            $this->encaissements->add($encaissement);
+            $encaissement->setClients($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEncaissement(Encaissement $encaissement): static
+    {
+        if ($this->encaissements->removeElement($encaissement)) {
+            // set the owning side to null (unless already changed)
+            if ($encaissement->getClients() === $this) {
+                $encaissement->setClients(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BanqueClient>
+     */
+    public function getBanqueClients(): Collection
+    {
+        return $this->banqueClients;
+    }
+
+    public function addBanqueClient(BanqueClient $banqueClient): static
+    {
+        if (!$this->banqueClients->contains($banqueClient)) {
+            $this->banqueClients->add($banqueClient);
+            $banqueClient->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBanqueClient(BanqueClient $banqueClient): static
+    {
+        if ($this->banqueClients->removeElement($banqueClient)) {
+            // set the owning side to null (unless already changed)
+            if ($banqueClient->getClient() === $this) {
+                $banqueClient->setClient(null);
             }
         }
 

@@ -55,17 +55,6 @@
             font-weight: bold;
         }
 
-        button.back
-        { background: #21244e;
-            color: white;
-            padding: 15px;
-            border: 1px solid white;
-            background: #71cfed;
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 20px auto 0;
-            width: fit-content;
-        }
         button a
         {
             color: white;
@@ -178,23 +167,24 @@
 
     <form method="post" action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}" id="validationForm" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
         <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture_pro_format.id) }}">
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#validationModal">
+        <button type="button" class="btn btn-success print-button" data-bs-toggle="modal" data-bs-target="#validationModal">
             valider
         </button>
     </form>&nbsp;&nbsp;
 
     {% endif %}
 
-    {% if is_granted('ROLE_FACTURE_PRO') %}
-    <form method="post" action="{{ path('app_facture_pro_format_soumission', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment soumettre');" style="display: inline;">
-        <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture_pro_format.id) }}">
-        <button type="button" class="btn btn-warning text-dark print-button" data-bs-toggle="modal" data-bs-target="#soumissionModal"> 
-            <i class="fa-solid fa-paper-plane"></i> &nbsp; soumettre
-        </button>
-    </form>&nbsp;&nbsp;
+    {% if is_granted('ROLE_FACTURE_PRO') and facture_pro_format.statut != 'validé' and facture_pro_format.statut != 'en attente' and facture_pro_format.statut != 'annulé' %}
+        <form method="post" action="{{ path('app_facture_pro_format_soumission', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment soumettre ?');" style="display: inline;">
+            <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture_pro_format.id) }}">
+            <button type="submit" class="btn btn-warning text-dark print-button">
+                <i class="fa-solid fa-paper-plane"></i> &nbsp; Soumettre
+            </button>
+        </form>&nbsp;&nbsp;
     {% endif %}
 
-    {% if is_granted('ROLE_VALIDED_FACTURE_PRO') %}
+
+    {% if is_granted('ROLE_VALIDED_FACTURE_PRO')  %}
 
     <form method="post" action="{{ path('app_facture_pro_format_annulation', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment annulé');" style="display: inline;">
         <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture_pro_format.id) }}">

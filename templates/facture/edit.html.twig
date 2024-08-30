@@ -3,13 +3,6 @@
 {% block title %}Edit Facture{% endblock %}
 
 {% block body %}
-{#    <h1>Edit Facture</h1>#}
-
-{#    {{ include('facture/_form.html.twig', {'button_label': 'Update'}) }}#}
-
-{#    <a href="{{ path('app_facture_index') }}">back to list</a>#}
-
-{#    {{ include('facture/_delete_form.html.twig') }}#}
 
 
 
@@ -33,4 +26,110 @@
         </div>
         {{ form_end(form) }}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    // Fonction pour mettre à jour la remise du client en fonctionne du id
+    function updateRemise(clientId) {
+        if (clientId) {
+            fetch('/facture/pro/format/clients/' + clientId + '/remise')
+                .then(response => response.json())
+                .then(data => {
+                    // Mettre à jour la valeur du champ de remise dans chaque ligne de la collection de détails de facture
+                    document.querySelectorAll('.remise').forEach(function(element) {
+                        element.value = data.remise;
+                        // Recalculer les montants après la mise à jour de la remise
+                        var QdetailId = element.getAttribute('data-id');
+                        calculerMontants(detailId);
+                    });
+                })
+                .catch(error => console.error('Erreur:', error));
+        }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ajouter un écouteur d'événement sur le champ du client pour mettre à jour la remise
+        document.querySelector('select[name="facture[IdClient]"]').addEventListener('change', function() {
+            updateRemise(this.value);
+        });
+
+        // initialisation de l evenement
+        function attacherEvenementChangeProduit() {
+            document.querySelectorAll('.produit-selector').forEach(function(element) {
+                element.addEventListener('change', function(event) {
+                    var produitId = event.target.value;
+                    var detailId = event.target.getAttribute('data-id');
+                    if (produitId) {
+                        fetch('/produit/' + produitId + '/prix')
+                            .then(response => response.json())
+                            .then(data => {
+                                var champPrix = document.querySelector('.prix[data-id="' + detailId + '"]');
+                                if (champPrix) {
+                                    champPrix.value = data.prix;
+                                    calculerMontants(detailId);
+                                }
+                            })
+                            .catch(error => console.error('Erreur:', error));
+                    }
+                });
+
+                var event = new Event('change');
+                element.dispatchEvent(event);
+            });
+        }
+
+        // Fonction pour calculer les montants d'une ligne de facture
+        function calculerMontants(detailId) {
+            const quantite = parseFloat(document.querySelector(`.quantite[data-id="${detailId}"]`).value) || 0;
+            const prix = parseFloat(document.querySelector(`.prix[data-id="${detailId}"]`).value) || 0;
+            const remise = parseFloat(document.querySelector(`.remise[data-id="${detailId}"]`).value) || 0;
+
+            const montantBrut = prix * quantite;
+            const montantHT = montantBrut - (montantBrut * remise / 100);
+            const tauxTva = 0.18; // Taux de TVA à 18%
+            const montantTVA = montantHT * tauxTva;
+            const montantTTC = montantHT + montantTVA;
+
+            document.querySelector(`.montantBrut[data-id="${detailId}"]`).value = montantBrut.toFixed(0);
+            document.querySelector(`.montantHT[data-id="${detailId}"]`).value = montantHT.toFixed(0);
+            document.querySelector(`.montantTVA[data-id="${detailId}"]`).value = montantTVA.toFixed(0);
+            document.querySelector(`.montantTTC[data-id="${detailId}"]`).value = montantTTC.toFixed(0);
+        }
+
+        // Fonction pour attacher les événements de changement de quantité, prix, remise
+        function attacherEvenementChangeMontants() {
+            document.querySelectorAll('.quantite, .prix, .remise').forEach(function(element) {
+                element.addEventListener('input', function(event) {
+                    const detailId = event.target.getAttribute('data-id');
+                    calculerMontants(detailId);
+                    calculateTotalTTC();
+                });
+            });
+        }
+
+        // Initialisation des événements
+        attacherEvenementChangeProduit();
+        attacherEvenementChangeMontants();
+
+        // Fonction pour calculer le total TTC global
+        function calculateTotalTTC() {
+            let totalTTC = 0;
+            document.querySelectorAll('.montantTTC').forEach(function(element) {
+                totalTTC += parseFloat(element.value) || 0;
+            });
+            const totalElement = document.getElementById('total-ttc');
+            if (totalElement) {
+                totalElement.textContent = totalTTC.toFixed(2);
+            }
+        }
+
+        // Ajout d'un écouteur d'événement pour le bouton d'ajout de nouvelle ligne
+        document.getElementById('add-collection-detail-facture').addEventListener('click', function() {
+            attacherEvenementChangeProduit();
+            attacherEvenementChangeMontants();
+        });
+    });
+</script>
 {% endblock %}

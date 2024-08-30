@@ -41,12 +41,15 @@ class DetailFacture
     #[ORM\ManyToOne(inversedBy: 'detailFactures')]
     private ?Produit $produit = null;
 
-    #[ORM\ManyToOne(inversedBy: 'detailFactures')]
+    #[ORM\ManyToOne(targetEntity: Facture::class, inversedBy: 'detailFactures')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Facture $facture = null;
 
     #[ORM\ManyToOne(inversedBy: 'detailFacture')]
     private ?FactureProformat $factureProformat = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $montantBrut = null;
 
    
 
@@ -183,6 +186,18 @@ class DetailFacture
     public function setFactureProformat(?FactureProformat $factureProformat): static
     {
         $this->factureProformat = $factureProformat;
+
+        return $this;
+    }
+
+    public function getMontantBrut(): ?string
+    {
+        return $this->montantBrut;
+    }
+
+    public function setMontantBrut(string $montantBrut): static
+    {
+        $this->montantBrut = $montantBrut;
 
         return $this;
     }

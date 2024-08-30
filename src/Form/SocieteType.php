@@ -43,10 +43,10 @@ class SocieteType extends AbstractType
             ->add('CodeCommercial')
             ->add('RegimeFiscal', ChoiceType::class, [
                 'choices' => [
-                    'Regime de l entrepreunant (RE)'=>'RE',
+                    'Regime de l\'entreprenant (RE)'=>'RE',
                     'Regime des micro-entreprise (RME)'=>'RME',
-                    'Regime Simplifié d imposition (RSI)'=>'RSI',
-                    'Regime Réelle Normale d impossition (RNI)'=>'RNI',
+                    'Regime Simplifié d\'imposition (RSI)'=>'RSI',
+                    'Regime Réelle Normale d\'imposition (RNI)'=>'RNI',
                 ],
                 'placeholder' => 'Sélectionner le Regime fiscal',
             ])

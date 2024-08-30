@@ -1,7 +1,7 @@
 {% form_theme form 'facture_pro_format/_collection.html.twig' %}
 
 <fieldset>
-    <legend>Identification de la facture por-format</legend>
+    <legend>Identification de la facture pro-forma</legend>
     <div class="row">
 
         <div class="col-4">
@@ -13,14 +13,14 @@
 
         <div class="col-4">
             <div class="form-group">
-                <label for="objet">Reference de la facture pro-format *</label>
+                <label for="objet">Réference de la facture pro-format *</label>
                 {{ form_widget(form.reference , {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
         <div class="col-4">
             <div class="form-group">
-                <label for="numero_fiche_besoin">Numéro de la Facture Pro-Format *</label>
+                <label for="numero_fiche_besoin">Numéro de la Facture Pro-Forma *</label>
                 {{ form_widget(form.numeroFacturePro, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
@@ -84,7 +84,8 @@
                 <th>Service (s)</th>
                 <th>Quanité</th>
                 <th>prix (Fcfa)</th>
-                <th>Remise </th>
+                <th>Montant Brut (%)</th>
+                <th>Remise (%) </th>
                 <th>Montant HT </th>
                 <th>Montant TVA </th>
                 <th>Montant TTC </th>

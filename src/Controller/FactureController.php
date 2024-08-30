@@ -74,11 +74,8 @@ class FactureController extends AbstractController
                 $entityManager->persist($detailFacture);
             }
 
-
-
             $entityManager->flush();
 
-//flasher
             flash()
                 ->options([
                     'timeout' => 3000, // 3 seconds
@@ -287,14 +284,12 @@ class FactureController extends AbstractController
     }
 
 
-
     #[Route('/{id}/facture/soumission', name: 'app_facture_soumission', methods: ['POST'])]
     public function soumission(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse
     {
         // Met à jour le statut de la facture
         $facture->setStatut(Statut::EN_ATTENTE);
         $entityManager->flush();
-
 
         flash()
             ->options([
@@ -333,8 +328,81 @@ class FactureController extends AbstractController
 
 
 
+    #[Route('{id}/tableFacture', name: 'app_table_facture')]
+    public function vueFacture($id, FactureRepository $factureRepository): Response
+    {
+        $facture = $factureRepository->find($id);
+
+        if (!$facture) {
+            throw $this->createNotFoundException('Facture non trouvée');
+        }
+
+        $totalTTC = 0;
+        foreach ($facture->getDetailFactures() as $detail) {
+            $totalTTC += $detail->getMontantTTC();
+        }
 
 
+        // Préparer les données pour l'affichage
+        $data = [
+            'idFacture' => $facture->getId(),
+            'clientNom' => $facture->getIdClient()->getNom(),
+            'clientadresse' => $facture->getIdClient()->getAdresse(),
+            'dateExpirationFacture'=>$facture->getDateExpiration(),
+            'clientcontact'=>$facture->getIdClient()->getContact(),
+            'codeFacture' => $facture->getCodeFacture(),
+            'reference' => $facture->getReference(),
+            'modePayement'=>$facture->getModePayement(),
+            'dateFacture' => $facture->getDate()->format('y-m-d'),
+            'statut'=>$facture->getStatut(),
+            'detailFactures' => [],
+            'totalTTC' => $totalTTC,
+
+        ];
+
+        // Récupérer les détails de la facture
+        foreach ($facture->getDetailFactures() as $detail) {
+            $data['detailFactures'][] = [
+                'produit' => $detail->getProduit()->getLibelle(),
+                'quantite' => $detail->getQuantite(),
+                'prix' => $detail->getPrix(),
+                'montantTTC' => $detail->getMontantTTC(),
+                'montantHT' => $detail->getMontantHT(),
+                'montantTVA' => $detail->getMontantTVA(),
+                'remise' => $detail->getRemise(),
+
+            ];
+        }
+
+        return $this->render('facture/table_facture.html.twig', [
+            'facture' => $data,
+        ]);
+    }
+
+
+    #[Route('/get/references', name: 'get_facture_references', methods: ['GET'])]
+    public function getReferences(Request $request, FactureRepository $factureRepository): JsonResponse
+    {
+        $clientId = $request->query->get('clientId');
+
+        if (!$clientId) {
+            return new JsonResponse(['error' => 'Client ID non fourni'], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        // Trouver les factures pour le client donné avec le statut valide
+        $factures = $factureRepository->findByClientAndStatut(['IdClient' => $clientId], 'valide');
+
+        // Formater les données pour la réponse JSON
+        $data = array_map(function($facture) {
+            return [
+                'id' => $facture->getId(),
+                'label' => $facture->getReference(),
+                'totalTTC' => $facture->getTotalTTC()
+            ];
+        }, $factures);
+
+        return new JsonResponse($data);
+    }
 
 
 

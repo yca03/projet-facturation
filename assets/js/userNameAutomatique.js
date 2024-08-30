@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log('Script Loaded'); // Assurez-vous que le script est exécuté
 
     $('#user_nom, #user_prenom').on('input', function () {
         const firstName = $('#user_prenom').val().toLowerCase().trim();

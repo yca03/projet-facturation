@@ -32,10 +32,10 @@
              {% for client in clients %}
                 <tr>
                     <td class="text-center">{{client.id }}</td>
-                    <td class="text-center">{{client.typeSociete }}</td>
-                    <td class="text-center">{{client.nom }} </td>
-                    <td class="text-center">{{client.numeroCompteContribuable}}</td>
-                    <td class="text-center">
+                    <td class="text-left">{{client.typeSociete }}</td>
+                    <td class="text-left">{{client.nom }} </td>
+                    <td class="text-left">{{client.numeroCompteContribuable}}</td>
+                    <td class="text-right">
                        {% if (client.remise is empty) %}
                            0
                         {% else %}
@@ -43,7 +43,7 @@
                         {% endif %}
                           
                     </td>
-                    <td class="text-center">{{client.adresse}}</td>
+                    <td class="text-left">{{client.adresse}}</td>
                     <td class="text-center">{{client.contact}}</td>
                     {# <td class="text-center">{{facture.dateFact ? facture.dateFact|date('Y-m-d H:i:s') : '' }}</td> #}
                       <td class="text-center">

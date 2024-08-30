@@ -6,7 +6,7 @@
     <div class="col-12 col-md-12">
         <div class="card">
             <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
-                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Lise des Factures
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Liste des Factures
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -31,10 +31,10 @@
                                 <th class="text-center">{{ facture.id }}</th>
                                 <td class="text-center">{{ facture.date|date("d/m/Y")}}</td>
                                 <td class="text-center">{{ facture.codeFacture }}</td>
-                                <td class="text-center">{{ facture.IdClient.nom }}</td>
-                                <td class="text-center">{{ facture.totalHT | number_format(0, '.', ' ') }}</td>
-                                <td class="text-center">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>
-                                <td class="text-center">{{ facture.totalTTC| number_format(0, '.', ' ') }}</td>
+                                <td class="text-left">{{ facture.IdClient.nom }}</td>
+                                <td class="text-right">{{ facture.totalHT | number_format(0, '.', ' ') }}</td>
+                                <td class="text-right">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>
+                                <td class="text-right">{{ facture.totalTTC| number_format(0, '.', ' ') }}</td>
                                 <td class="text-center">{{ facture.dateExpiration |date("d/m/y") }}</td>
                                 <td class="text-center">{{ facture.IdClient.contact }}</td>
                                 <td class="text-center">

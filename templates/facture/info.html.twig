@@ -38,11 +38,11 @@
                                 <tr>
                                     <th class="text-center">{{ facture.idFacture }}</th>
                                     <td class="text-center">{{ facture.dateFacture|date("d/m/Y")}}</td>
-                                    <td class="text-center">{{ facture.codeFacture }}</td>
-                                    <td class="text-center">{{ facture.clientNom }}</td>
-                                    <td class="text-center">{{ facture.totalHT | number_format(0, '.', ' ') }}</td>
-                                    <td class="text-center">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>
-                                    <td class="text-center">{{ facture.totalTTC| number_format(0, '.', ' ') }}</td>
+                                    <td class="text-left">{{ facture.codeFacture }}</td>
+                                    <td class="text-left">{{ facture.clientNom }}</td>
+                                    <td class="text-right">{{ facture.totalHT | number_format(0, '.', ' ') }}</td>
+                                    <td class="text-right">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>
+                                    <td class="text-right">{{ facture.totalTTC| number_format(0, '.', ' ') }}</td>
                                     <td class="text-center">{{ facture.dateExpirationFacture |date("d/m/y") }}</td>
                                     <td class="text-center">{{ facture.clientcontact }}</td>
                                     <td class="text-center">
@@ -57,16 +57,16 @@
                                         {% endif %}
                                     </td>
                                     <td class="text-center">
-                                        <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_edit', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
-
-
+                                        {% if facture.statut != 'annulé' %}
+                                             {% if facture.statut != 'en attente' %}
+                                                <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_edit', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+                                             {% endif %}
+                                            <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_table_facture', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
+                                        {% endif %}
                                         <form  class="btn btn-sm btn-icon btn-secondary" method="post" action="{{ path('app_facture_delete', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture.idFacture) }}">
                                             <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
                                         </form>
-
-
-                                        <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a>
                                     </td>
                                 </tr>
                             {% endif %}

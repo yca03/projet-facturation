@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Clients;
 use App\Form\ClientsType;
 use App\Repository\ClientsRepository;
+use App\Repository\FactureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -106,4 +108,6 @@ class ClientsController extends AbstractController
 
         return $this->redirectToRoute('app_clients_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }
