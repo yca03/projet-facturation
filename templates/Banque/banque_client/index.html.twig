@@ -1,45 +1,56 @@
+
+
 {% extends 'base.html.twig' %}
 
-{% block title %}BanqueClient index{% endblock %}
+{% block title %}Banque Client{% endblock %}
 
 {% block body %}
-    <h1>BanqueClient index</h1>
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Liste des Banques Clients
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Id</th>
+                            <th>NumeroCompteBanque</th>
+                            <th>Rib</th>
+                            <th>CodeAgent</th>
+                            <th>NumeroBic</th>
+                            <th>Gestionnaire</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                     {% for banque_client in banque_clients %}
+                            <tr>
+                             <td class="text-center">{{ banque_client.id }}</td>
+                               <td  class="text-center">{{ banque_client.numeroCompteBanque }}</td>
+                               <td  class="text-center">{{ banque_client.rib }}</td>
+                               <td  class="text-center">{{ banque_client.codeAgent }}</td>
+                               <td  class="text-center">{{ banque_client.numeroBic }}</td>
+                               <td  class="text-center">{{ banque_client.gestionnaire }}</td>
+                                <td class="text-center">
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_banque_client_edit', {'id': banque_client.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Uid</th>
-                <th>NumeroCompteBanque</th>
-                <th>Rib</th>
-                <th>CodeAgent</th>
-                <th>NumeroBic</th>
-                <th>Gestionnaire</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for banque_client in banque_clients %}
-            <tr>
-                <td>{{ banque_client.id }}</td>
-                <td>{{ banque_client.uid }}</td>
-                <td>{{ banque_client.numeroCompteBanque }}</td>
-                <td>{{ banque_client.rib }}</td>
-                <td>{{ banque_client.codeAgent }}</td>
-                <td>{{ banque_client.numeroBic }}</td>
-                <td>{{ banque_client.gestionnaire }}</td>
-                <td>
-                    <a href="{{ path('app_banque_client_show', {'id': banque_client.id}) }}">show</a>
-                    <a href="{{ path('app_banque_client_edit', {'id': banque_client.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_banque_client_show', {'id': banque_client.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
 
-    <a href="{{ path('app_banque_client_new') }}">Create new</a>
+                                    <form method="post" action="{{ path('app_banque_client_edit', {'id': banque_client.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ banque_client.id) }}">
+                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

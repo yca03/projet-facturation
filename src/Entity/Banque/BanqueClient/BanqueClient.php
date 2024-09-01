@@ -18,9 +18,6 @@ class BanqueClient
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $uid = null;
-
     #[ORM\Column(length: 255)]
     private ?string $numeroCompteBanque = null;
 
@@ -57,19 +54,6 @@ class BanqueClient
     {
         return $this->id;
     }
-
-    public function getUid(): ?string
-    {
-        return $this->uid;
-    }
-
-    public function setUid(?string $uid): static
-    {
-        $this->uid = $uid;
-
-        return $this;
-    }
-
     public function getNumeroCompteBanque(): ?string
     {
         return $this->numeroCompteBanque;

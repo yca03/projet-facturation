@@ -1,59 +1,62 @@
 
 <fieldset>
     <legend>Identification de la Banque du Client</legend>
-    <div class="row">
 
-        <div class="col-4">
+    <hr>
+     <legend>Informations Bancaires</legend>
+    <div class="row">
+        <div class="col-6">
             <div class="form-group">
-                <label for="date_etablissement">numero compte de banque *</label>
+                <label for="date_etablissement">Numero Compte de banque *</label>
                 {{ form_widget(form.numeroCompteBanque, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-6">
             <div class="form-group">
                 <label for="objet">R I B *</label>
                 {{ form_widget(form.rib , {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
+    </div>
 
-        <div class="col-4">
+    <div class="row">
+
+        <div class="col-6">
             <div class="form-group">
                 <label for="numero_fiche_besoin">code Agence *</label>
                 {{ form_widget(form.codeAgent, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
-    </div>
 
-
-    <div class="row">
-
-        <div class="col-4">
+          <div class="col-6">
             <div class="form-group">
                 <label for="objet">numero BIC *</label>
                 {{ form_widget(form.numeroBic, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
+    </div>
 
-        <div class="col-4">
+   <legend>Informations Client</legend>
+
+    <div class="row">
+
+        <div class="col-6">
             <div class="form-group">
                 <label for="objet">gestionnaire *</label>
                 {{ form_widget(form.gestionnaire, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-    </div>
 
-    <div class="row">
-
-        <div class="col-4">
+        <div class="col-6">
             <div class="form-group">
                 <label for="objet">Client *</label>
                 {{ form_widget(form.client, {'attr' : {'class': 'form-control select2'}}) }}
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-6">
             <div class="form-group">
                 <label for="objet">Banque *</label>
                 {{ form_widget(form.banqueOnly,{'attr' : {'class': 'form-control select2'}}) }}

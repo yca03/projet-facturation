@@ -34,6 +34,11 @@ class EncaissementController extends AbstractController
 
             $encaissement->setStatut(Statut::EN_ATTENTE);
 
+            
+            foreach($encaissement->getDetailModePayements() as $detailModePayement){
+                $detailModePayement->setEncaissement($encaissement);
+             }
+
             foreach ($encaissement->getDetatilEncaissements() as $detailEncaissement) {
                 $detailEncaissement->setEncaissement($encaissement);
             }
@@ -57,6 +62,10 @@ class EncaissementController extends AbstractController
                     $entityManager->persist($facture);
                 }
             }
+
+           
+
+
             $entityManager->flush();
             return $this->redirectToRoute('app_encaissement_index', [], Response::HTTP_SEE_OTHER);
         }

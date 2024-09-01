@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const compteBanqueCell = row.querySelector('.compte-banque');
             const banqueClientCell = row.querySelector('.banque-client');
 
-            if (selectedValue === '2') { // Par exemple, '2' pour le mode de paiement 'cheque'
+            if (selectedValue === '2' || selectedValue === '3') { // Chèque bancaire ou Espèces
                 compteBanqueCell.style.display = 'none';
                 banqueClientCell.style.display = '';
-            } else if (selectedValue === '1') { // Par exemple, '1' pour un autre mode de paiement
+            } else if (selectedValue === '1') { // Autre mode de paiement
                 compteBanqueCell.style.display = '';
                 banqueClientCell.style.display = 'none';
             } else {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         headerCells.forEach(cell => {
             const textContent = cell.textContent.trim();
             if (textContent === 'Numéro Compte Banque') {
-                cell.style.display = selectedValue === '2' ? 'none' : initialDisplay.headerCompteBanque;
+                cell.style.display = selectedValue === '2' || selectedValue === '3' ? 'none' : initialDisplay.headerCompteBanque;
             }
             if (textContent === 'Banque client') {
                 cell.style.display = selectedValue === '1' ? 'none' : initialDisplay.headerBanqueClient;

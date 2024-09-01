@@ -45,7 +45,7 @@ class BanqueClientController extends AbstractController
     #[Route('/{id}', name: 'app_banque_client_show', methods: ['GET'])]
     public function show(BanqueClient $banqueClient): Response
     {
-        return $this->render('banque_client/show.html.twig', [
+        return $this->render('Banque/banque_client/show.html.twig', [
             'banque_client' => $banqueClient,
         ]);
     }
@@ -62,7 +62,7 @@ class BanqueClientController extends AbstractController
             return $this->redirectToRoute('app_banque_client_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('banque_client/edit.html.twig', [
+        return $this->render('Banque/banque_client/edit.html.twig', [
             'banque_client' => $banqueClient,
             'form' => $form,
         ]);
