@@ -4,55 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="icon1">
-      <change afterPath="$PROJECT_DIR$/assets/js/page/feature/encaissement/encaissement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/page/feature/encaissement/modePayement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/page/feature/facture/add-collection-detailEncaissement-modePayement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/page/feature/facture/add-collection-detailEncaissement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20240828161024.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/encaissement/_collection.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/encaissement/modePayement/_collection.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/facture/table_facture.html.twig" afterDir="false" />
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="encaissement-fonction">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/userNameAutomatique.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/userNameAutomatique.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ClientsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ClientsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FactureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ImpressionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ImpressionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Clients.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/DetailFacture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/DetailFacture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Facture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Facture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/FactureProFormat.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FactureProFormat.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ModePayement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/ModePayement.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ClientsType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ClientsType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Facture/DetailFactureType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Facture/DetailFactureType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SocieteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SocieteType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/FactureProFormatRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FactureProFormatRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/FactureRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FactureRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Statut/Statut.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Statut/Statut.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/clients/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/clients/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/clients/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/clients/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/_collection.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/index_valide.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/index_valide.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/_collection.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/impression/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/impression/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/partials/_navbar1.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_navbar1.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/produit/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -527,7 +480,7 @@
       <workItem from="1724747843914" duration="27726000" />
       <workItem from="1724832530052" duration="27852000" />
       <workItem from="1724918055865" duration="38612000" />
-      <workItem from="1725005707495" duration="30025000" />
+      <workItem from="1725005707495" duration="30450000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -633,7 +586,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724686223955</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="encaissement-fonction">
+      <option name="closed" value="true" />
+      <created>1725045074244</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1725045074244</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,6 +628,7 @@
     <MESSAGE value="alert-modal2" />
     <MESSAGE value="icon" />
     <MESSAGE value="icon1" />
-    <option name="LAST_COMMIT_MESSAGE" value="icon1" />
+    <MESSAGE value="encaissement-fonction" />
+    <option name="LAST_COMMIT_MESSAGE" value="encaissement-fonction" />
   </component>
 </project>
