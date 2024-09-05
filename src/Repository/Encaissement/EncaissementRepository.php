@@ -40,4 +40,17 @@ class EncaissementRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
+    public function findEncaissementsWithDetails()
+    {
+        return $this->createQueryBuilder('e')
+            ->leftJoin('e.detatilEncaissements', 'de')
+            ->leftJoin('de.facture', 'f')
+            ->leftJoin('e.detailModePayements', 'dmp')
+            ->leftJoin('dmp.banque', 'b')
+            ->addSelect('de', 'f', 'dmp', 'b')
+            ->getQuery()
+            ->getResult();
+    }
 }

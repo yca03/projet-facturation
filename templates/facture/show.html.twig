@@ -44,6 +44,9 @@
                                         <span class="badge badge-info">{{ facture.statut }}</span>
                                     {% elseif facture.statut == 'validé' %}
                                         <span class="badge badge-success">{{ facture.statut }}</span>
+                                        {% if facture.statutPaye is defined %}
+                                            <span class="badge badge-info">{{ facture.statutPaye }}</span>
+                                        {% endif %}
                                     {% elseif facture.statut == 'annulé' %}
                                         <span class="badge bg-danger">{{ facture.statut }}</span>
                                     {% endif %}

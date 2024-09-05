@@ -18,6 +18,6 @@ class Statut
 
     const CONVERTED = 'convertir';
     const PAID = 'payé';
-    const  PARTIAL_PAID = 'parial-paye';
+    const  PARTIAL_PAID = 'moitié-payé';
 
 }

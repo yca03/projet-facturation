@@ -44,7 +44,7 @@ class Encaissement
     /**
      * @var Collection<int, DetailModePayement>
      */
-    #[ORM\OneToMany(targetEntity: DetailModePayement::class, mappedBy: 'encaissement')]
+    #[ORM\OneToMany(targetEntity: DetailModePayement::class, mappedBy: 'encaissement', cascade: ['persist'], orphanRemoval: true)]
     private Collection $detailModePayements;
 
     public function __construct()

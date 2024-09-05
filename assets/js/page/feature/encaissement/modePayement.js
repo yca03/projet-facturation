@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modePayementSelect = $('#encaissement_modePayement');
 
     if (!modePayementSelect.length) {
-        console.error('Le sélecteur de mode de paiement avec l\'ID "encaissement_modePayement" est introuvable.');
+        // console.error('Le sélecteur de mode de paiement avec l\'ID "encaissement_modePayement" est introuvable.');
         return;
     }
 
@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function toggleFields() {
         const selectedValue = modePayementSelect.val();
-        console.log('Mode de paiement sélectionné:', selectedValue);
+        // console.log('Mode de paiement sélectionné:', selectedValue);
 
         const table = document.getElementById('table_detail_ModePayement');
         if (!table) {
-            console.error('Le tableau avec l\'ID "table_detail_ModePayement" est introuvable.');
+            // console.error('Le tableau avec l\'ID "table_detail_ModePayement" est introuvable.');
             return;
         }
 
@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const compteBanqueCell = row.querySelector('.compte-banque');
             const banqueClientCell = row.querySelector('.banque-client');
 
-            if (selectedValue === '2') { // Par exemple, '2' pour le mode de paiement 'cheque'
+            if (selectedValue === '2' || selectedValue === '3') { // Chèque bancaire ou Espèces
                 compteBanqueCell.style.display = 'none';
                 banqueClientCell.style.display = '';
-            } else if (selectedValue === '1') { // Par exemple, '1' pour un autre mode de paiement
+            } else if (selectedValue === '1') { // Autre mode de paiement
                 compteBanqueCell.style.display = '';
                 banqueClientCell.style.display = 'none';
             } else {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         headerCells.forEach(cell => {
             const textContent = cell.textContent.trim();
             if (textContent === 'Numéro Compte Banque') {
-                cell.style.display = selectedValue === '2' ? 'none' : initialDisplay.headerCompteBanque;
+                cell.style.display = selectedValue === '2' || selectedValue === '3' ? 'none' : initialDisplay.headerCompteBanque;
             }
             if (textContent === 'Banque client') {
                 cell.style.display = selectedValue === '1' ? 'none' : initialDisplay.headerBanqueClient;
@@ -88,13 +88,13 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleFields();
 
     modePayementSelect.on('change.select2', function() {
-        console.log('Changement détecté dans le mode de paiement');
+        // console.log('Changement détecté dans le mode de paiement');
         toggleFields();
     });
 
     // Observer pour gérer les lignes ajoutées dynamiquement
     const observer = new MutationObserver(() => {
-        console.log('Changement dans le DOM détecté');
+        // console.log('Changement dans le DOM détecté');
         initNewRows(); // Initialiser les nouvelles lignes
     });
 
@@ -102,6 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (tableElement) {
         observer.observe(tableElement, { childList: true, subtree: true });
     } else {
-        console.error('Le tableau à observer n\'existe pas.');
+        // console.error('Le tableau à observer n\'existe pas.');
     }
 });

@@ -64,10 +64,13 @@ class FactureRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('f')
             ->where('f.IdClient = :clientId')
             ->andWhere('f.statut = :statut')
+            ->andWhere('f.StatutPaye IS NULL OR f.StatutPaye = :moitiePaye') //2
             ->setParameter('clientId', $criteria['IdClient'])
             ->setParameter('statut', $statut)
+            ->setParameter('moitiePaye', 'moitié-payé') //2
             ->getQuery()
             ->getResult();
     }
+
 
 }

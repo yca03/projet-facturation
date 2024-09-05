@@ -1,0 +1,214 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'Encaissement{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .container {
+            box-shadow: 2px 2px 4px grey;
+            padding: 50px;
+            width: 100%;
+        }
+        h4 {
+            padding: 15px;
+            border: 1px solid black;
+            border-radius: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 80px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 20px;
+            text-align: left;
+            font-size: 15px !important;
+        }
+        .header {
+            background-color: #f2f2f2;
+        }
+        .buttons {
+            text-align: right;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        .btn-oui {
+            background-color: #02024a; /* Couleur bleue */
+            color: white;
+            border: none;
+        }
+        .btn-oui:hover {
+            background-color: #218838; /* Couleur verte plus foncée au survol */
+        }
+        .btn-non {
+            background-color: #dc3545; /* Couleur rouge */
+            color: white;
+            border: none;
+        }
+        .btn-non:hover {
+            background-color: #c82333; /* Couleur rouge plus foncée au survol */
+        }
+        @media print {
+            .print-button, .back {
+                display: none !important;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h4 class="text-center">Règlement Facture</h4><br><br>
+
+        <h5>Informations de l'opération</h5>
+        <hr>
+        <table>
+            <thead>
+            <tr class="header text-center">
+                <th class="text-center">Date</th>
+                <th class="text-center">Référence</th>
+                <th class="text-center">Client</th>
+                {% if encaissement.statut == 'validé' %}
+                    <th class="text-center">Statut</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-center">{{ encaissement.date|date('d/m/y') }}</td>
+                <td class="text-center">{{ encaissement.reference }}</td>
+                <td class="text-center">{{ encaissement.clients.nom }}</td>
+                {% if encaissement.statut == 'validé' %}
+                    <td class="text-center"><i>{{ encaissement.statut }}</i></td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+
+        <h5>Détails de l'opération</h5>
+        <hr>
+        <table>
+            <thead>
+            <tr class="header">
+                <th class="text-center">Référence Facture</th>
+                <th class="text-center">Montant Versé (F.cfa)</th>
+                <th class="text-center">Solde (F.cfa)</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for detail in detatilEncaissements %}
+                <tr>
+                    <td class="text-center">{{ detail.facture.reference }}</td>
+                    <td class="text-right">{{ detail.montantVerse | number_format(0, '.', ' ') }}</td>
+                    <td class="text-right">{{ detail.solde | number_format(0, '.', ' ') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun détail disponible</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <h5>Modes de Règlement : <i style="font-size: 15px">{{ encaissement.modePayement.nom }}</i></h5>
+        <hr>
+        <table>
+            <thead>
+            <tr class="header">
+                <th class="text-center">Référence</th>
+                {% if detailModePayements is not empty and detailModePayements[0].banque.nom is defined and detailModePayements[0].banque.nom %}
+                    <th class="text-center">Banque Client</th>
+                {% else %}
+                    <th class="text-center">Numéro de Compte Banque</th>
+                {% endif %}
+                <th class="text-center">Montant (F.cfa)</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for mode in detailModePayements %}
+                <tr>
+                    <td class="text-center">{{ mode.reference }}</td>
+                    {% if mode.banque.nom is defined and mode.banque.nom %}
+                        <td class="text-center">{{ mode.banque.nom }}</td>
+                    {% else %}
+                        <td class="text-center">{{ mode.BanqueClient.numeroCompteBanque }}</td>
+                    {% endif %}
+                    <td class="text-right">{{ mode.montant | number_format(0, '.', ' ') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun mode de paiement disponible</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if encaissement.statut != 'validé' %}
+            <div class="buttons">
+                <button class="btn-primary print-button"><a style="color: white" href="{{ path('app_encaissement_index') }}">Retour</a></button>&nbsp;&nbsp;
+
+                <form action="{{ path('app_encaissement_annule', {'id': encaissement.id}) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn-non print-button">Annuler</button>
+                </form>
+
+                <form action="{{ path('app_encaissement_valider', {'id': encaissement.id}) }}" id="validationForm" method="POST" style="display:inline;">
+                    <button type="button" class="btn-oui print-button" data-bs-toggle="modal" data-bs-target="#validationModal">Valider</button>
+                </form>
+
+                <button class="btn-warning print-button" onclick="window.print()"><i class="fa fa-print"></i>&nbsp;Imprimer</button>
+            </div>
+        {% else %}
+            <div class="buttons">
+                <button class="btn-primary print-button"><a style="color: white" href="{{ path('app_encaissement_index') }}">Retour</a></button>&nbsp;&nbsp;
+
+                <button class="btn-warning print-button" onclick="window.print()"><i class="fa fa-print"></i>&nbsp;Imprimer</button>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Modal pour la validation -->
+    <div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="validationModalLabel">Validation</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment valider le document ?</p>
+                    <p style="color:red;">{{ encaissement.reference }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
+                    <button type="button" class="btn btn-oui" id="confirmValidationButton">OUI</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var validationForm = document.querySelector('form[action="{{ path('app_encaissement_valider', {'id': encaissement.id}) }}"]');
+            var validationButton = document.getElementById('confirmValidationButton');
+            if (validationButton) {
+                validationButton.addEventListener('click', function () {
+                    validationForm.submit(); // Soumet le formulaire lorsqu'on clique sur "OUI"
+                });
+            }
+        });
+    </script>
+{% endblock %}

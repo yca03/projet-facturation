@@ -62,3 +62,8 @@ services:
         public: false
         autowire: false
         autoconfigure: false
+
+    # Définir le service Mailer
+    App\Service\Mailer:
+        arguments:
+            $mailer: '@mailer.mailer'

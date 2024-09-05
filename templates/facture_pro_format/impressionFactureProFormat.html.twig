@@ -3,16 +3,13 @@
 {% block title %}Impression FactureProForma | {% endblock %}
 
 {% block stylesheets %}
-
-
     <style>
         body {
             margin: 0;
             padding: 0;
             height: 100%;
         }
-        td,th
-        {
+        td, th {
             padding: 50px;
         }
         .invoice-container {
@@ -20,7 +17,6 @@
             height: 100%;
             padding: 20px;
             margin: auto;
-
         }
         .invoice-header {
             text-align: center;
@@ -47,24 +43,19 @@
             background-color: #f9f9f9;
             padding: 30px;
         }
-        .invoice-items td
-        {
+        .invoice-items td {
             text-align: right;
         }
         .total-row {
             font-weight: bold;
         }
-
-        button a
-        {
+        button a {
             color: white;
         }
-        button a:hover
-        {
+        button a:hover {
             color: white;
             text-decoration: none;
         }
-
         @media print {
             .print-button, .back {
                 display: none !important;
@@ -78,30 +69,25 @@
                 padding: 6px;
             }
         }
-
-
         .btn-oui {
             background-color: #02024a; /* Couleur verte */
             color: white;
             border: none;
         }
-
         .btn-oui:hover {
             background-color: #218838; /* Couleur verte plus foncée au survol */
         }
-
-        /* Style pour le bouton NON */
         .btn-non {
             background-color: #dc3545; /* Couleur rouge */
             color: white;
             border: none;
         }
-
         .btn-non:hover {
             background-color: #c82333; /* Couleur rouge plus foncée au survol */
         }
     </style>
 {% endblock %}
+
 {% block body %}
 <div class="invoice-container">
     <div class="invoice-header">
@@ -116,9 +102,9 @@
         </tr>
         <tr>
             <td>{{ facture_pro_format.date|date("d/m/Y") }}</td>
-            <td> {{ facture_pro_format.reference }}</td>
+            <td>{{ facture_pro_format.reference }}</td>
             <td>{{ facture_pro_format.clients.nom }}</td>
-            <td> {{ facture_pro_format.modePayement.nom }}</td>
+            <td>{{ facture_pro_format.modePayement.nom }}</td>
         </tr>
     </table>
     <table class="invoice-items">
@@ -133,161 +119,148 @@
         </tr>
         </thead>
         <tbody>
-
         {% for detail in facture_pro_format.detailFacture %}
             <tr>
                 <td class="text-center">{{ detail.produit.libelle }}</td>
                 <td>{{ detail.quantite }}</td>
-                <td>{{ detail.prix  |number_format(0, '.', ' ') }}</td>
-                <td>{{ detail.montantHT |number_format(0, '.', ' ') }}</td>
-                <td>{{ detail.montantTVA |number_format(0, '.', ' ') }}</td>
-                <td>{{ detail.montantTTC |number_format(0, '.', ' ')}}</td>
+                <td>{{ detail.prix | number_format(0, '.', ' ') }}</td>
+                <td>{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
+                <td>{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
+                <td>{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
             </tr>
         {% endfor %}
         <tr class="total-row">
             <td colspan="3">TOTAL A PAYER</td>
-            <td>{{ facture_pro_format.totalHT |number_format(0, '.', ' ') }}</td>
-            <td>{{ facture_pro_format.totalTVA |number_format(0, '.', ' ') }}</td>
-            <td>{{ facture_pro_format.totalTTC |number_format(0, '.', ' ') }}</td>
+            <td>{{ facture_pro_format.totalHT | number_format(0, '.', ' ') }}</td>
+            <td>{{ facture_pro_format.totalTVA | number_format(0, '.', ' ') }}</td>
+            <td>{{ facture_pro_format.totalTTC | number_format(0, '.', ' ') }}</td>
         </tr>
-
         </tbody>
     </table>
-<div style="text-align: right;">
-    <p><em>Signature / date </em></p>
+    <div style="text-align: right;">
+        <p><em>Signature / date</em></p>
+        <br><br>
 
-    <br><br>
+        <button class="btn btn-info print-button">
+            <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_pro_format_info') }}">retour</a>
+        </button>&nbsp;&nbsp;
 
-    {% if is_granted('ROLE_VALIDED_FACTURE_PRO') %}
+        {% if is_granted('ROLE_VALIDED_FACTURE_PRO') and facture_pro_format.statut != 'validé' and facture_pro_format.statut != 'convertir'  %}
+            <form method="post" action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}" id="validationForm" onsubmit="return confirm('Voulez-vous vraiment valider ?');" style="display: inline;">
+                <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture_pro_format.id) }}">
+                <button type="button" class="btn btn-success print-button" data-bs-toggle="modal" data-bs-target="#validationModal">
+                    valider
+                </button>
+            </form>&nbsp;&nbsp;
+        {% endif %}
 
-    <button class="btn btn-info print-button">
-        <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_pro_format_info') }}">retour</a>
-    </button>&nbsp;&nbsp;
-
-
-    <form method="post" action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}" id="validationForm" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
-        <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture_pro_format.id) }}">
-        <button type="button" class="btn btn-success print-button" data-bs-toggle="modal" data-bs-target="#validationModal">
-            valider
-        </button>
-    </form>&nbsp;&nbsp;
-
-    {% endif %}
-
-    {% if is_granted('ROLE_FACTURE_PRO') and facture_pro_format.statut != 'validé' and facture_pro_format.statut != 'en attente' and facture_pro_format.statut != 'annulé' %}
-        <form method="post" action="{{ path('app_facture_pro_format_soumission', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment soumettre ?');" style="display: inline;">
-            <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture_pro_format.id) }}">
-            <button type="submit" class="btn btn-warning text-dark print-button">
+        {% if is_granted('ROLE_FACTURE_PRO') and facture_pro_format.statut != 'validé' and facture_pro_format.statut != 'en attente' and facture_pro_format.statut != 'annulé' and facture_pro_format.statut != 'convertir' %}
+            <button type="button" class="btn btn-warning text-dark print-button" data-bs-toggle="modal" data-bs-target="#soumissionModal">
                 <i class="fa-solid fa-paper-plane"></i> &nbsp; Soumettre
-            </button>
-        </form>&nbsp;&nbsp;
-    {% endif %}
+            </button>&nbsp;&nbsp;
+        {% endif %}
 
+        {% if is_granted('ROLE_VALIDED_FACTURE_PRO') and facture_pro_format.statut != 'validé'  and facture_pro_format.statut != 'convertir' %}
+            <form method="post" action="{{ path('app_facture_pro_format_annulation', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment annuler ?');" style="display: inline;">
+                <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture_pro_format.id) }}">
+                <button type="button" class="btn btn-danger text-dark print-button" data-bs-toggle="modal" data-bs-target="#annulationModal">
+                    <i class="fa-solid fa-xmark"></i> &nbsp; annuler
+                </button>
+            </form>&nbsp;&nbsp;
+        {% endif %}
 
-    {% if is_granted('ROLE_VALIDED_FACTURE_PRO')  %}
-
-    <form method="post" action="{{ path('app_facture_pro_format_annulation', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment annulé');" style="display: inline;">
-        <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture_pro_format.id) }}">
-        <button type="button" class="btn btn-danger text-dark print-button" data-bs-toggle="modal" data-bs-target="#annulationModal">
-            <i class="fa-solid fa-xmark"></i>  &nbsp; annulé
+        <button class="btn btn-secondary print-button" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Imprimer
         </button>
-    </form>&nbsp;&nbsp;
+    </div>
 
-    {% endif %}
-
-    <button class="btn btn-secondary print-button" onclick="window.print()">
-        <i class="fa-solid fa-print"></i> Imprimer
-    </button>
-
-</div>
-
-<!-- Modal pour la validation -->
-<div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="validationModalLabel">Validation</h3>
-            </div>
-            <div class="modal-body">
-                <p> Voulez-vous vraiment valider le document ?</p>
-                <p style="color:red;">{{ facture_pro_format.numeroFacturePro }}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
-                <button type="button" class="btn btn-oui" id="confirmValidationButton">OUI</button>
+    <!-- Modal pour la validation -->
+    <div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="validationModalLabel">Validation</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment valider le document ?</p>
+                    <p style="color:red;">{{ facture_pro_format.numeroFacturePro }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
+                    <button type="button" class="btn btn-oui" id="confirmValidationButton">OUI</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal pour la soumission -->
-<div class="modal fade" id="soumissionModal" tabindex="-2" aria-labelledby="soumissionModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="soumissionModalLabel">Soumission</h3>
-            </div>
-            <div class="modal-body">
-                  <p>Voulez-vous vraiment soumettre le document ?</p>
-                  <p style="color:red;">{{ facture_pro_format.numeroFacturePro }}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
-                <button type="button" class="btn btn-oui" id="confirmSoumissionButton">OUI</button>
+    <!-- Modal pour la soumission -->
+    <div class="modal fade" id="soumissionModal" tabindex="-1" aria-labelledby="soumissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="soumissionModalLabel">Soumission</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment soumettre le document ?</p>
+                    <p style="color:red;">{{ facture_pro_format.numeroFacturePro }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
+                    <button type="button" class="btn btn-oui" id="confirmSoumissionButton">OUI</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal pour l'annulation -->
-<div class="modal fade" id="annulationModal" tabindex="-1" aria-labelledby="annulationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="annulationModalLabel">Annulation</h3>
-            </div>
-            <div class="modal-body">
-                 <p> Voulez-vous vraiment annuler le document ?</p>
-                  <p style="color:red;">{{ facture_pro_format.numeroFacturePro }}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
-                <button type="button" class="btn btn-oui" id="confirmAnnulationButton">OUI</button>
+    <!-- Modal pour l'annulation -->
+    <div class="modal fade" id="annulationModal" tabindex="-1" aria-labelledby="annulationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="annulationModalLabel">Annulation</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment annuler le document ?</p>
+                    <p style="color:red;">{{ facture_pro_format.numeroFacturePro }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
+                    <button type="button" class="btn btn-oui" id="confirmAnnulationButton">OUI</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    {% endblock %}
 
-{% endblock %}
-{% block javascripts %}
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Validation
-    var validationForm = document.querySelector('form[action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}"]');
-    var validationButton = document.getElementById('confirmValidationButton');
-    if (validationButton) {
-        validationButton.addEventListener('click', function () {
-            validationForm.submit();
-        });
-    }
+    {% block javascripts %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Validation
+                var validationForm = document.querySelector('form[action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}"]');
+                var validationButton = document.getElementById('confirmValidationButton');
+                if (validationButton) {
+                    validationButton.addEventListener('click', function () {
+                        validationForm.submit();
+                    });
+                }
 
-    // Soumission
-    var soumissionForm = document.querySelector('form[action="{{ path('app_facture_pro_format_soumission', {'id': facture_pro_format.id}) }}"]');
-    var soumissionButton = document.getElementById('confirmSoumissionButton');
-    if (soumissionButton) {
-        soumissionButton.addEventListener('click', function () {
-            soumissionForm.submit();
-        });
-    }
+                // Soumission
+                var soumissionForm = document.querySelector('form[action="{{ path('app_facture_pro_format_soumission', {'id': facture_pro_format.id}) }}"]');
+                var soumissionButton = document.getElementById('confirmSoumissionButton');
+                if (soumissionButton) {
+                    soumissionButton.addEventListener('click', function () {
+                        soumissionForm.submit();
+                    });
+                }
 
-    // Annulation
-    var annulationForm = document.querySelector('form[action="{{ path('app_facture_pro_format_annulation', {'id': facture_pro_format.id}) }}"]');
-    var annulationButton = document.getElementById('confirmAnnulationButton');
-    if (annulationButton) {
-        annulationButton.addEventListener('click', function () {
-            annulationForm.submit();
-        });
-    }
-});
-</script>
-{% endblock %}
+                // Annulation
+                var annulationForm = document.querySelector('form[action="{{ path('app_facture_pro_format_annulation', {'id': facture_pro_format.id}) }}"]');
+                var annulationButton = document.getElementById('confirmAnnulationButton');
+                if (annulationButton) {
+                    annulationButton.addEventListener('click', function () {
+                        annulationForm.submit();
+                    });
+                }
+            });
+        </script>
+    {% endblock %}

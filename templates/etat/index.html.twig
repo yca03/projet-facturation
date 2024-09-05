@@ -4,26 +4,6 @@
 
 
 {% block body %}
-
-{#    <div class="col-12">#}
-{#        <div class="card card-fluid">#}
-{#            <div class="card-header bg-soft-custom" id="bg">#}
-{#                <h6><i class="fa-solid fa-list" style="font-size:20px;"></i> Recherche d'Etat</h6>#}
-{#            </div>#}
-{#            <div class="card-body">#}
-{#                <div class="d-flex justify-content-center">#}
-{#                    <form method="get" action="{{ path('app_recherche_date') }}" class="formDate align-items-center ">#}
-{#                        <label for="">Date debut : </label>#}
-{#                        <input type="date" name="dateDebut" class="input-large mx-2" style="padding: 5px; margin: 5px; border: 1px solid #ced4da;border-radius: 10px; width: 500px; height: 40px; ">#}
-{#                        <label for="">Date fin : </label>#}
-{#                        <input type="date" name="dateFin" class="input-large mx-2" style="padding: 5px; margin: 5px; border: 1px solid #ced4da;border-radius: 10px; width: 500px; height: 40px;">#}
-{#                        <button type="submit" class="btn btn-success ml-3">Rechercher</button>#}
-{#                    </form>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-
         <div class="col-12">
             <form method="get" action="{{ path('app_recherche_date') }}" class="formDate ">
                 <div class="card">
@@ -65,14 +45,11 @@
                         <thead class="thead-light">
 
                             <tr>
-                                {# <th class="text-center">ID</th> #}
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Date </th>
                                 <th class="text-center">Type de Société</th>
                                 <th class="text-center">Reference</th>
                                 <th class="text-center">Nom</th>
-                                {# <th class="text-center">Services</th> #}
-                                {# <th class="text-center">quantite</th> #}
                                 <th class="text-center">Prix</th>
                                 <th class="text-center">Remise</th>
                                 <th class="text-center">Montant HT</th>
@@ -85,18 +62,7 @@
                         <tbody>
                         {% for facture in factures %}
                             <tr>
-{#                                <th class="text-center">{{ facture.idFacture }}</th>#}
-{#                                <td class="text-center">{{ facture.dateFacture|date("d/m/Y")}}</td>#}
-{#                                <td class="text-center">{{ facture.clientNom }} {{ facture.clientPrenom }}</td>#}
-{#                                <td class="text-center">{{ facture.produit }}</td>#}
-{#                                <td class="text-center">{{ facture.quantite }}</td>#}
-{#                                <td class="text-center">{{ facture.prix }}</td>#}
-{#                                <td class="text-center">{{ facture.remise }}</td>#}
-{#                                <td class="text-center">{{ facture.montantHT }}</td>#}
-{#                                <td class="text-center">{{ facture.montantTVA }}</td>#}
-{#                                <td class="text-center">{{ facture.montantTTC }}</td>#}
-{#                                <td class="text-center"><a href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>#}
-
+                                <td class="text-center"><a href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -104,13 +70,6 @@
                 </div>
             </div>
             <div class="card-footer">
-                {#                <div class="card-footer-content">#}
-                {#                    <a href="{{path('app_clients_new')}}" class="btn btn-primary float-right ml-2">#}
-                {#                        Nouveau</a>#}
-                {#                    <a href="{{path('app_home')}}" class="btn btn-success float-right ml-3">#}
-                {#                        <i class="oi oi-home"></i>#}
-                {#                        Accueil</a>#}
-                {#                </div>#}
             </div>
         </div>
     </div>

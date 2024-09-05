@@ -32,22 +32,24 @@
                                 <td class="text-center">{{ encaissement.clients.contact }}</td>
                                 <td class="text-center">
                                     {% if encaissement.statut == 'validé' %}
-                                        <span class="badge badge-success">{{ encaissement.statut }}</span>
+                                        <i class="badge badge-success">{{ encaissement.statut }}</i>
                                     {% elseif encaissement.statut == 'en attente' %}
-                                        <span class="badge badge-info">{{ encaissement.statut }}</span>
+                                        <i  class="badge badge-info">{{ encaissement.statut }}</i>
                                     {% elseif encaissement.statut == 'annulé' %}
-                                        <span class="badge badge-danger">{{ encaissement.statut }}</span>
+                                        <i  class="badge badge-warning">{{ encaissement.statut }}</i>
                                     {% endif %}
                                 </td>
                                 <td class="text-center">
+                                    {% if  encaissement.statut != 'validé'  %}
                                     <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_encaissement_edit', {'id': encaissement.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+                                     {% endif %}
 
-                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_encaissement_show', {'id': encaissement.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_encaissement_details', {'id': encaissement.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
 
-                                    <form method="post" action="{{ path('app_encaissement_delete', {'id': encaissement.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ encaissement.id) }}">
-                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
-                                    </form>
+{#                                    <form method="post" action="{{ path('app_encaissement_delete', {'id': encaissement.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">#}
+{#                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ encaissement.id) }}">#}
+{#                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>#}
+{#                                    </form>#}
                                 </td>
                             </tr>
                         {% endfor %}

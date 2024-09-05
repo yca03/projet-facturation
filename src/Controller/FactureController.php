@@ -35,7 +35,6 @@ class FactureController extends AbstractController
     #[Route('/facture/valider', name: 'app_facture_show_valider', methods: ['GET'])]
     public function valided(FactureRepository $factureRepository): Response
     {
-
         return $this->render('facture/show.html.twig', [
             'factures' => $factureRepository->findFactureValided(),
         ]);
@@ -87,7 +86,6 @@ class FactureController extends AbstractController
             return $this->redirectToRoute('app_facture_info', [], Response::HTTP_SEE_OTHER);
         }
 
-        //pour recuperer  la donnee de tva
 
         // Obtenir toutes les factures avec les détails et les clients associés
         $facture1 = $factureRepository->createQueryBuilder('f')
@@ -110,10 +108,6 @@ class FactureController extends AbstractController
                 ];
             }
         }
-
-
-
-
     return $this->render('facture/new.html.twig', [
         'facture' => $facture,
         'form' => $form,
@@ -138,17 +132,15 @@ class FactureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-
             flash()
                 ->options([
-                    'timeout' => 3000, // 3 seconds
+                    'timeout' => 3000,
                     'position' => 'bottom-right',
                 ])
                 ->success('informations modifiées avec succès.');
 
             return $this->redirectToRoute('app_facture_info', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('facture/edit.html.twig', [
             'facture' => $facture,
             'form' => $form,
@@ -212,6 +204,7 @@ class FactureController extends AbstractController
                     'totalTTC' => $facture->getTotalTTC(),
                     'totalHT'=>$facture->getTotalHT(),
                     'totalTVA' => $facture->getTotalTVA(),
+                    'statutPaye'=>$facture->getStatutPaye(),
                     'remise' => $detail->getRemise(),
                 ];
             }
@@ -220,7 +213,6 @@ class FactureController extends AbstractController
         return $this->render('facture/info.html.twig', [
             'factures' => $data,
         ]);
-
 
     }
 
@@ -232,54 +224,43 @@ class FactureController extends AbstractController
 
     #[Route('/{id}/facture/valider', name: 'app_facture_valider', methods: ['POST'])]
     public function valider(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, Security $security): Response {
-        // Vérifie si l'utilisateur a le rôle ROLE_VALIDATED_FACTURE
+
         if ($security->isGranted('ROLE_VALIDED_FACTURE')) {
-            // Valide la facture sans vérifier le statut
             $facture->setStatut(Statut::VALIDATED);
             $entityManager->flush();
-
             flash()
                 ->options([
-                    'timeout' => 3000, // 3 seconds
+                    'timeout' => 3000,
                     'position' => 'bottom-right',
                 ])
                 ->success('La facture a été validée avec succès.');
 
             $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
-
             return new RedirectResponse($url);
         }
-
-        // Vérifie si le statut de la facture est en attente uniquement si l'utilisateur n'a pas le rôle ROLE_VALIDATED_FACTURE
         if ($facture->getStatut() !== Statut::EN_ATTENTE) {
-            // Ajoute un message flash
             flash()
                 ->options([
-                    'timeout' => 3000, // 3 seconds
+                    'timeout' => 3000,
                     'position' => 'bottom-right',
                 ])
                 ->warning('La facture doit être soumise avant la validation.');
 
-            // Génère l'URL pour la redirection
             $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
-
-            // Redirige vers la page de la facture avec le message flash
             return new RedirectResponse($url);
         }
 
-        // Met à jour le statut de la facture si elle est en attente
         $facture->setStatut(Statut::VALIDATED);
         $entityManager->flush();
 
         flash()
             ->options([
-                'timeout' => 3000, // 3 seconds
+                'timeout' => 3000,
                 'position' => 'bottom-right',
             ])
             ->success('La facture a été validée avec succès.');
 
         $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
-
         return new RedirectResponse($url);
     }
 
@@ -287,42 +268,35 @@ class FactureController extends AbstractController
     #[Route('/{id}/facture/soumission', name: 'app_facture_soumission', methods: ['POST'])]
     public function soumission(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse
     {
-        // Met à jour le statut de la facture
         $facture->setStatut(Statut::EN_ATTENTE);
         $entityManager->flush();
 
         flash()
             ->options([
-                'timeout' => 3000, // 3 seconds
+                'timeout' => 3000,
                 'position' => 'bottom-right',
             ])
             ->success('la facture   soumise  avec succès .');
 
-        // Génére l'URL pour la redirection
         $url1 = $urlGenerator->generate('app_facture_info', ['id' => $facture->getId()]);
 
-        // Redirige vers la page de la facture
         return new RedirectResponse($url1);
     }
 
     #[Route('/{id}/facture/annulation', name: 'app_facture_annulation', methods: ['POST'])]
     public function annulation(Facture $facture, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): RedirectResponse
     {
-        // Met à jour le statut de la facture
         $facture->setStatut(Statut::CANCELLED);
         $entityManager->flush();
 
         flash()
             ->options([
-                'timeout' => 3000, // 3 seconds
+                'timeout' => 3000,
                 'position' => 'bottom-right',
             ])
             ->success('la facture annulée avec succès .');
 
-        // Génére l'URL pour la redirection
         $url2 = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
-
-        // Redirige vers la page de la facture
         return new RedirectResponse($url2);
     }
 
@@ -332,7 +306,6 @@ class FactureController extends AbstractController
     public function vueFacture($id, FactureRepository $factureRepository): Response
     {
         $facture = $factureRepository->find($id);
-
         if (!$facture) {
             throw $this->createNotFoundException('Facture non trouvée');
         }
@@ -373,7 +346,6 @@ class FactureController extends AbstractController
 
             ];
         }
-
         return $this->render('facture/table_facture.html.twig', [
             'facture' => $data,
         ]);
@@ -384,12 +356,10 @@ class FactureController extends AbstractController
     public function getReferences(Request $request, FactureRepository $factureRepository): JsonResponse
     {
         $clientId = $request->query->get('clientId');
-
         if (!$clientId) {
             return new JsonResponse(['error' => 'Client ID non fourni'], JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        // Trouver les factures pour le client donné avec le statut valide
         $factures = $factureRepository->findByClientAndStatut(['IdClient' => $clientId], 'valide');
 
         // Formater les données pour la réponse JSON
@@ -397,7 +367,8 @@ class FactureController extends AbstractController
             return [
                 'id' => $facture->getId(),
                 'label' => $facture->getReference(),
-                'totalTTC' => $facture->getTotalTTC()
+                'totalTTC' => $facture->getTotalTTC(),
+                'reste'=>$facture->getReste(),
             ];
         }, $factures);
 

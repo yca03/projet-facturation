@@ -20,9 +20,9 @@
 		</a>
 		<!-- child menu -->
 		<ul class="menu">
-			<li class="menu-item {{ app.request.get('_route') == 'app_societe_new' ? 'has-active': '' }}">
-				<a href="{{ path('app_societe_new') }}" class="menu-link">Créer</a>
-			</li>
+{#			<li class="menu-item {{ app.request.get('_route') == 'app_societe_new' ? 'has-active': '' }}">#}
+{#				<a href="{{ path('app_societe_new') }}" class="menu-link">Créer</a>#}
+{#			</li>#}
 			<li class="menu-item {{ app.request.get('_route') == 'app_societe_index' ? 'has-active': '' }}">
 				<a href="{{ path('app_societe_index') }}" class="menu-link">Liste</a>
 			</li>
@@ -165,7 +165,7 @@
 			</li>
 		</ul>
 		<!-- /child menu -->
-	</li><br>
+	</li>
 {% endif %}
 
 
@@ -188,6 +188,8 @@
 	</li><br>
 {% endif %}
 <br>
+
+{% if is_granted('ROLE_VALIDED_FACTURE') %}
 <li class="menu-item has-child">
 	<a href="#" class="menu-link">
 		<span class="menu-icon fa fa-solid fa-box"></span>
@@ -204,9 +206,10 @@
 	</ul>
 	<!-- /child menu -->
 </li><br>
+{% endif %}
 
 
-
+{% if is_granted('ROLE_ADMIN') %}
 <li class="menu-item has-child">
 	<a href="#" class="menu-link">
 		<span class="menu-icon fa fa-solid fa-dollar"></span>
@@ -242,7 +245,8 @@
 
 	</ul>
 	<!-- /child menu -->
-</li><br>
+</li>
+{% endif %}
 
 
 

@@ -34,7 +34,7 @@ class UserType extends AbstractType
             'FACTURE PRO-FORMA / Créer , supprimer , modifier une facture pro-forma' => 'ROLE_FACTURE_PRO',
             'FACTURE PRO-FORMA / valider , annuler   une facture pro-forma'=>'ROLE_VALIDED_FACTURE_PRO',
             'FACTURE / Créer , supprimer , modifier une facture' => 'ROLE_FACTURE',
-            'FACTURE / valider , anunler  une facture '=>'ROLE_VALIDED_FACTURE',
+            'FACTURE / Valider , Anunler , Encaisser une facture '=>'ROLE_VALIDED_FACTURE',
 
         ];
 
