@@ -32,9 +32,11 @@ class FactureProFormatType extends AbstractType
             ])
             ->add('clients', EntityType::class, [
                 'class' => Clients::class,
+                'placeholder'=>'Sélectionnez la Client'
             ])
             ->add('modePayement', EntityType::class, [
                 'class' => ModePayement::class,
+                'placeholder'=>'Sélectionnez un mode de payement'
             ])
             ->add('detailFacture', CollectionType::class, [
                 'entry_type' => DetailFactureType::class,

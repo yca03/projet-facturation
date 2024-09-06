@@ -155,9 +155,12 @@
         {% endif %}
 
         {% if is_granted('ROLE_FACTURE_PRO') and facture_pro_format.statut != 'validé' and facture_pro_format.statut != 'en attente' and facture_pro_format.statut != 'annulé' and facture_pro_format.statut != 'convertir' %}
-            <button type="button" class="btn btn-warning text-dark print-button" data-bs-toggle="modal" data-bs-target="#soumissionModal">
-                <i class="fa-solid fa-paper-plane"></i> &nbsp; Soumettre
-            </button>&nbsp;&nbsp;
+            <form method="post" action="{{ path('app_facture_pro_format_soumission',{'id':facture_pro_format.id}) }}" id="soumissionForm" onsubmit="return confirm('Voulez-vous vraiment soumenttre ?');" style="display: inline;">
+                <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture_pro_format.id) }}">
+                <button type="button" class="btn btn-warning text-dark print-button" data-bs-toggle="modal" data-bs-target="#soumissionModal">
+                    <i class="fa-solid fa-paper-plane"></i> &nbsp; Soumettre
+                </button>&nbsp;&nbsp;
+            </form>
         {% endif %}
 
         {% if is_granted('ROLE_VALIDED_FACTURE_PRO') and facture_pro_format.statut != 'validé'  and facture_pro_format.statut != 'convertir' %}

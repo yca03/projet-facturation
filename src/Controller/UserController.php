@@ -17,14 +17,6 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 #[Route('/user')]
 class UserController extends AbstractController
 {
-    private $mailer; // Déclaration correcte de la propriété
-
-    // Injection du service Mailer via le constructeur
-    public function __construct(Mailer $mailer)
-    {
-        $this->mailer = $mailer; // Assignation correcte dans le constructeur
-    }
-
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
@@ -68,17 +60,6 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Envoyer un e-mail à l'utilisateur
-            $this->mailer->sendEmail(
-                $user->getEmail(),
-                'Bienvenue à notre service',
-                sprintf(
-                    'Hello %s, votre Nom d\'utilisateur est et %s votre mot de passe est %s',
-                    $user->getNomUtilisateur(),
-                    $user->getNomUtilisateur(),
-                    $plaintextPassword
-                )
-            );
 
             // Afficher un message de succès
             flash()
