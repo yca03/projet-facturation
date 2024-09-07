@@ -10,14 +10,14 @@ class Statut
 
     const EN_ATTENTE = 'en attente';
 
-    const CANCELLED = 'annulé';
+    const CANCELLED = 'annulée';
 
     const APPROUVE = 'approuvé';
 
-    const VALIDATED = 'validé';
+    const VALIDATED = 'validée';
 
     const CONVERTED = 'convertir';
-    const PAID = 'payé';
-    const  PARTIAL_PAID = 'moitié-payé';
+    const PAID = 'Soldée';
+    const  PARTIAL_PAID = 'Partielle';
 
 }

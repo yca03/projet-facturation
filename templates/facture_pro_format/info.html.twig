@@ -44,15 +44,15 @@
                                     <span class="badge badge-dark">{{ facture_pro_format.statut }}</span>
                                     {% elseif facture_pro_format.statut == 'en attente' %}
                                          <span class="badge badge-info">{{ facture_pro_format.statut }}</span>
-                                    {% elseif facture_pro_format.statut == 'validé' or facture_pro_format.statut == 'convertir'   %}
+                                    {% elseif facture_pro_format.statut == 'validée' or facture_pro_format.statut == 'convertir'   %}
                                         <span class="badge badge-success">{{ facture_pro_format.statut }}</span>
-                                    {% elseif facture_pro_format.statut == 'annulé' %}
+                                    {% elseif facture_pro_format.statut == 'annulée' %}
                                         <span class="badge badge-warning">{{ facture_pro_format.statut }}</span>
                                     {% endif %}
                                 </td>
                                 <td class="text-center">
 
-                                    {% if facture_pro_format.statut != 'validé' and facture_pro_format.statut != 'convertir' %}
+                                    {% if facture_pro_format.statut != 'validée' and facture_pro_format.statut != 'convertir' %}
                                             <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_pro_format_edit', {'id': facture_pro_format.id}) }}" style="color:black;">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
@@ -62,7 +62,7 @@
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
 
-                                    {% if facture_pro_format.statut != 'validé' and facture_pro_format.statut != 'convertir' %}
+                                    {% if facture_pro_format.statut != 'validée' and facture_pro_format.statut != 'convertir' %}
                                         <form method="post" action="{{ path('app_facture_pro_format_delete', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture_pro_format.id) }}">
                                             <button type="submit" style="border:none; background:none">

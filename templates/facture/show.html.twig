@@ -42,7 +42,7 @@
                                         <span class="badge badge-dark">{{ facture.statut }}</span>
                                     {% elseif facture.statut == 'en attente' %}
                                         <span class="badge badge-info">{{ facture.statut }}</span>
-                                    {% elseif facture.statut == 'validé' %}
+                                    {% elseif facture.statut == 'validée' %}
                                         <span class="badge badge-success">{{ facture.statut }}</span>
                                         {% if facture.statutPaye is defined %}
                                             <span class="badge badge-info">{{ facture.statutPaye }}</span>

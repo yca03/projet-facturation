@@ -145,16 +145,16 @@
             <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_pro_format_info') }}">retour</a>
         </button>&nbsp;&nbsp;
 
-        {% if is_granted('ROLE_VALIDED_FACTURE_PRO') and facture_pro_format.statut != 'validé' and facture_pro_format.statut != 'convertir'  %}
+        {% if is_granted('ROLE_VALIDED_FACTURE_PRO') and facture_pro_format.statut != 'validée' and facture_pro_format.statut != 'convertir'  %}
             <form method="post" action="{{ path('app_facture_pro_format_valider', {'id': facture_pro_format.id}) }}" id="validationForm" onsubmit="return confirm('Voulez-vous vraiment valider ?');" style="display: inline;">
-                <input type="hidden" name="_token" value="{{ csrf_token('validé' ~ facture_pro_format.id) }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('validée' ~ facture_pro_format.id) }}">
                 <button type="button" class="btn btn-success print-button" data-bs-toggle="modal" data-bs-target="#validationModal">
                     valider
                 </button>
             </form>&nbsp;&nbsp;
         {% endif %}
 
-        {% if is_granted('ROLE_FACTURE_PRO') and facture_pro_format.statut != 'validé' and facture_pro_format.statut != 'en attente' and facture_pro_format.statut != 'annulé' and facture_pro_format.statut != 'convertir' %}
+        {% if is_granted('ROLE_FACTURE_PRO') and facture_pro_format.statut != 'validée' and facture_pro_format.statut != 'en attente' and facture_pro_format.statut != 'annulée' and facture_pro_format.statut != 'convertir' %}
             <form method="post" action="{{ path('app_facture_pro_format_soumission',{'id':facture_pro_format.id}) }}" id="soumissionForm" onsubmit="return confirm('Voulez-vous vraiment soumenttre ?');" style="display: inline;">
                 <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture_pro_format.id) }}">
                 <button type="button" class="btn btn-warning text-dark print-button" data-bs-toggle="modal" data-bs-target="#soumissionModal">
@@ -163,7 +163,7 @@
             </form>
         {% endif %}
 
-        {% if is_granted('ROLE_VALIDED_FACTURE_PRO') and facture_pro_format.statut != 'validé'  and facture_pro_format.statut != 'convertir' %}
+        {% if is_granted('ROLE_VALIDED_FACTURE_PRO') and facture_pro_format.statut != 'validée'  and facture_pro_format.statut != 'convertir' %}
             <form method="post" action="{{ path('app_facture_pro_format_annulation', {'id': facture_pro_format.id}) }}" onsubmit="return confirm('Voulez-vous vraiment annuler ?');" style="display: inline;">
                 <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture_pro_format.id) }}">
                 <button type="button" class="btn btn-danger text-dark print-button" data-bs-toggle="modal" data-bs-target="#annulationModal">

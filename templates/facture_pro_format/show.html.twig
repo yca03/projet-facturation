@@ -45,13 +45,13 @@
                                         <span class="badge badge-dark">{{ facture_pro_format.statut }}</span>
                                     {% elseif facture_pro_format.statut == 'en attente' %}
                                         <span class="badge badge-info">{{ facture_pro_format.statut }}</span>
-                                    {% elseif facture_pro_format.statut == 'validé' %}
+                                    {% elseif facture_pro_format.statut == 'validée' %}
                                         <span class="badge badge-success">{{ facture_pro_format.statut }}</span>
-                                    {% elseif facture_pro_format.statut == 'annulé' %}
+                                    {% elseif facture_pro_format.statut == 'annulée' %}
                                         <span class="badge badge-warning">{{ facture_pro_format.statut }}</span>
 
                                     {% elseif facture_pro_format.statut == 'convertir' %}
-                                        <span class="badge badge-primary">{{ facture_pro_format.statut }}</span>
+                                        <span class="badge badge-success">{{ facture_pro_format.statut }}</span>
 
                                     {% endif %}
 
@@ -61,7 +61,7 @@
                                     <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_pro_format_impression', {'id': facture_pro_format.id}) }}" ><i class="fa-solid fa-file-pen"></i></a>
                                     &nbsp;
                                     {% if facture_pro_format.statut != 'convertir' %}
-                                        <span><a  class="btn btn-sm btn-icon btn-secondary"  href="{{ path('app_convert_to_invoice', {'id': facture_pro_format.id}) }}"><i class="fa-solid fa-repeat"></i></a></span>
+                                        <span><a  class="btn btn-sm btn-icon btn-secondary"  href="{{ path('app_convert_to_invoice', {'factureProFormaId': facture_pro_format.id}) }}"><i class="fa-solid fa-repeat"></i></a></span>
                                     {% endif %}
                                 </td>
                             </tr>

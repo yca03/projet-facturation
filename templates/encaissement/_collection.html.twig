@@ -18,19 +18,19 @@
 {% block _encaissement_detatilEncaissements_entry_widget %}
     <tr id="block_{{ id }}" data-id="{{ id }}" class="data-row">
         <td>
-            {{ form_widget(form.facture, {'attr': {"class": 'form-control select2 encaissement_detatilEncaissements_0_facture', "data-id": id}}) }}
+            {{ form_widget(form.facture, {'attr': {"class": 'form-control separator select2 encaissement_detatilEncaissements_0_facture', "data-id": id}}) }}
             {{ form_errors(form.facture) }}
         </td>
         <td>
-            {{ form_widget(form.MontantDu, {'attr': {"class": 'form-control encaissement_detatilEncaissements_0_montantDu text-right', "data-id": id}}) }}
+            {{ form_widget(form.MontantDu, {'attr': {"class": 'form-control separator encaissement_detatilEncaissements_0_montantDu text-right', "data-id": id}}) }}
             {{ form_errors(form.MontantDu) }}
         </td>
         <td>
-            {{ form_widget(form.montantVerse, {'attr': {"class": 'form-control montantVerse text-right', "data-id": id, "value": "0"}}) }}
+            {{ form_widget(form.montantVerse, {'attr': {"class": 'form-control separator montantVerse text-right', "data-id": id, "value": "0"}}) }}
             {{ form_errors(form.montantVerse) }}
         </td>
         <td>
-            {{ form_widget(form.solde, {'attr': {"class": 'form-control soled text-right', "data-id": id, "value": "0"}}) }}
+            {{ form_widget(form.solde, {'attr': {"class": 'form-control separator soled text-right', "data-id": id, "value": "0"}}) }}
             {{ form_errors(form.solde) }}
         </td>
         <td class="text-center">

@@ -360,7 +360,7 @@ class FactureController extends AbstractController
             return new JsonResponse(['error' => 'Client ID non fourni'], JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        $factures = $factureRepository->findByClientAndStatut(['IdClient' => $clientId], 'valide');
+        $factures = $factureRepository->findByClientAndStatut(['IdClient' => $clientId], 'validée');
 
         // Formater les données pour la réponse JSON
         $data = array_map(function($facture) {

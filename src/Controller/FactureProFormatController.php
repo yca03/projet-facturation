@@ -279,16 +279,22 @@ class FactureProFormatController extends AbstractController
 
 
 
-    #[Route('/{id}/convert-to-invoice', name: 'app_convert_to_invoice', methods: ['GET', 'POST'])]
+    #[Route('/{factureProFormaId}/convert-to-invoice', name: 'app_convert_to_invoice', methods: ['GET', 'POST'])]
+
     public function convertToInvoice(
-        FactureProFormat             $factureProForma,
-        Request                      $request,
-        FactureProFormatRepository   $factureProFormatRepository,
-        DetailFacture                $detailFacture,
-        DetailFactureRepository      $detailFactureRepository,
-        EntityManagerInterface       $entityManager
-    ): Response
-    {
+        int $factureProFormaId,
+        Request $request,
+        FactureProFormatRepository $factureProFormatRepository,
+        DetailFactureRepository $detailFactureRepository,
+        EntityManagerInterface $entityManager
+    ): Response {
+        // Récupérer l'entité FactureProFormat
+        $factureProForma = $factureProFormatRepository->find($factureProFormaId);
+
+        if (!$factureProForma) {
+            throw $this->createNotFoundException('Facture pro forma not found');
+        }
+
         // Créer une nouvelle facture basée sur la facture pro forma
         $invoice = (new Facture())
             ->setDate($factureProForma->getDate())
@@ -312,7 +318,6 @@ class FactureProFormatController extends AbstractController
                 ->setMontantTTC($detail->getMontantTTC())
                 ->setFacture($invoice);
 
-
             // Ajouter chaque détail à la facture
             $invoice->addDetailFacture($newDetail);
         }
@@ -329,13 +334,12 @@ class FactureProFormatController extends AbstractController
             $entityManager->persist($factureProForma);
             $entityManager->flush();
 
-            // Ajouter un message flash et rediriger vers la page de visualisation de la facture
             flash()
                 ->options([
                     'timeout' => 3000, // 3 seconds
                     'position' => 'bottom-right',
                 ])
-                ->success('Conversion effectuée avec succès.');
+                ->success('la facture pro-forma  convertir  avec succès .');
             return $this->redirectToRoute('app_facture_pro_format_index_valider', ['id' => $invoice->getId()], Response::HTTP_SEE_OTHER);
         }
 

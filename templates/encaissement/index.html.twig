@@ -31,7 +31,7 @@
                                 <td class="text-left">{{ encaissement.clients.nom }}</td>
                                 <td class="text-center">{{ encaissement.clients.contact }}</td>
                                 <td class="text-center">
-                                    {% if encaissement.statut == 'validé' %}
+                                    {% if encaissement.statut == 'validée' %}
                                         <i class="badge badge-success">{{ encaissement.statut }}</i>
                                     {% elseif encaissement.statut == 'en attente' %}
                                         <i  class="badge badge-info">{{ encaissement.statut }}</i>
@@ -40,7 +40,7 @@
                                     {% endif %}
                                 </td>
                                 <td class="text-center">
-                                    {% if  encaissement.statut != 'validé'  %}
+                                    {% if  encaissement.statut != 'validée'  %}
                                     <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_encaissement_edit', {'id': encaissement.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
                                      {% endif %}
 

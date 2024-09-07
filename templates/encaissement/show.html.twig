@@ -30,7 +30,7 @@
                             <td class="text-left">{{ encaissement.clients.nom }}</td>
                             <td class="text-center">{{ encaissement.clients.contact }}</td>
                             <td class="text-center">
-                                {% if encaissement.statut == 'validé' %}
+                                {% if encaissement.statut == 'validée' %}
                                     <span class="badge badge-success">{{ encaissement.statut }}</span>
                                 {% elseif encaissement.statut == 'en attente' %}
                                     <span class="badge badge-info">{{ encaissement.statut }}</span>

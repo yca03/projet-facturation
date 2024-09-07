@@ -81,7 +81,7 @@
                 <th class="text-center">Date</th>
                 <th class="text-center">Référence</th>
                 <th class="text-center">Client</th>
-                {% if encaissement.statut == 'validé' %}
+                {% if encaissement.statut == 'validée' %}
                     <th class="text-center">Statut</th>
                 {% endif %}
             </tr>
@@ -91,7 +91,7 @@
                 <td class="text-center">{{ encaissement.date|date('d/m/y') }}</td>
                 <td class="text-center">{{ encaissement.reference }}</td>
                 <td class="text-center">{{ encaissement.clients.nom }}</td>
-                {% if encaissement.statut == 'validé' %}
+                {% if encaissement.statut == 'validée' %}
                     <td class="text-center"><i>{{ encaissement.statut }}</i></td>
                 {% endif %}
             </tr>
@@ -156,7 +156,7 @@
             </tbody>
         </table>
 
-        {% if encaissement.statut != 'validé' %}
+        {% if encaissement.statut != 'validée' %}
             <div class="buttons">
                 <button class="btn-primary print-button"><a style="color: white" href="{{ path('app_encaissement_index') }}">Retour</a></button>&nbsp;&nbsp;
 
