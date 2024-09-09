@@ -49,6 +49,7 @@ class DetailFacture
     #[ORM\ManyToOne(targetEntity: FactureProformat::class, inversedBy: 'detailFacture')]
     private ?FactureProformat $factureProformat;
 
+
     #[ORM\Column(length: 255)]
     private ?string $montantBrut = null;
 
