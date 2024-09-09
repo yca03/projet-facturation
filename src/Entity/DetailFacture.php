@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\DetailFactureRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\FactureProformat;
+use App\Entity\FactureProFormat;
 
 #[ORM\Entity(repositoryClass: DetailFactureRepository::class)]
 class DetailFacture
@@ -14,9 +14,6 @@ class DetailFacture
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-//    #[ORM\Column(length: 255)]
-//    private ?string $libelle = null;
 
     #[ORM\Column]
     private ?int $quantite = null;
@@ -33,44 +30,25 @@ class DetailFacture
     #[ORM\Column(length: 255)]
     private ?string $montantTVA = null;
 
-    #[ORM\Column(length: 255,nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $remise = null;
 
-//    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-//    private ?\DateTimeInterface $date = null;
-
-    #[ORM\ManyToOne(inversedBy: 'detailFactures')]
+    #[ORM\ManyToOne(targetEntity: Produit::class, inversedBy: 'detailFactures')]
     private ?Produit $produit = null;
 
     #[ORM\ManyToOne(targetEntity: Facture::class, inversedBy: 'detailFactures')]
-    #[ORM\JoinColumn(nullable: true)]
     private ?Facture $facture = null;
 
-    #[ORM\ManyToOne(targetEntity: FactureProformat::class, inversedBy: 'detailFacture')]
-    private ?FactureProformat $factureProformat;
-
+    #[ORM\ManyToOne(targetEntity: FactureProFormat::class, inversedBy: 'detailFactures')]
+    private ?FactureProFormat $factureProformat = null;
 
     #[ORM\Column(length: 255)]
     private ?string $montantBrut = null;
-
-
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-////    public function getLibelle(): ?string
-////    {
-////        return $this->libelle;
-////    }
-//
-//    public function setLibelle(string $libelle): static
-//    {
-//        $this->libelle = $libelle;
-//
-//        return $this;
-//    }
 
     public function getQuantite(): ?int
     {
@@ -80,7 +58,6 @@ class DetailFacture
     public function setQuantite(int $quantite): static
     {
         $this->quantite = $quantite;
-
         return $this;
     }
 
@@ -92,7 +69,6 @@ class DetailFacture
     public function setPrix(string $prix): static
     {
         $this->prix = $prix;
-
         return $this;
     }
 
@@ -104,7 +80,6 @@ class DetailFacture
     public function setMontantTTC(string $montantTTC): static
     {
         $this->montantTTC = $montantTTC;
-
         return $this;
     }
 
@@ -116,7 +91,6 @@ class DetailFacture
     public function setMontantHT(string $montantHT): static
     {
         $this->montantHT = $montantHT;
-
         return $this;
     }
 
@@ -128,7 +102,6 @@ class DetailFacture
     public function setMontantTVA(string $montantTVA): static
     {
         $this->montantTVA = $montantTVA;
-
         return $this;
     }
 
@@ -137,24 +110,11 @@ class DetailFacture
         return $this->remise;
     }
 
-    public function setRemise(string $remise): static
+    public function setRemise(?string $remise): static
     {
         $this->remise = $remise;
-
         return $this;
     }
-
-//    public function getDate(): ?\DateTimeInterface
-//    {
-//        return $this->date;
-//    }
-//
-//    public function setDate(\DateTimeInterface $date): static
-//    {
-//        $this->date = $date;
-//
-//        return $this;
-//    }
 
     public function getProduit(): ?Produit
     {
@@ -164,7 +124,6 @@ class DetailFacture
     public function setProduit(?Produit $produit): static
     {
         $this->produit = $produit;
-
         return $this;
     }
 
@@ -176,19 +135,17 @@ class DetailFacture
     public function setFacture(?Facture $facture): static
     {
         $this->facture = $facture;
-
         return $this;
     }
 
-    public function getFactureProformat(): ?FactureProformat
+    public function getFactureProformat(): ?FactureProFormat
     {
         return $this->factureProformat;
     }
 
-    public function setFactureProformat(?FactureProformat $factureProformat): static
+    public function setFactureProformat(?FactureProFormat $factureProformat): static
     {
         $this->factureProformat = $factureProformat;
-
         return $this;
     }
 
@@ -200,8 +157,6 @@ class DetailFacture
     public function setMontantBrut(string $montantBrut): static
     {
         $this->montantBrut = $montantBrut;
-
         return $this;
     }
-
 }

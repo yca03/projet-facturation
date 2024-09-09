@@ -13,7 +13,7 @@ class FactureProFormat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column ]
+    #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -32,8 +32,7 @@ class FactureProFormat
      * @var Collection<int, DetailFacture>
      */
     #[ORM\OneToMany(targetEntity: DetailFacture::class, mappedBy: 'factureProformat', cascade: ['persist'], orphanRemoval: true)]
-    private Collection $detailFacture;
-
+    private Collection $detailFactures;
 
     #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
     private ?Clients $clients = null;
@@ -56,12 +55,9 @@ class FactureProFormat
     #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
     private ?Facture $convertir = null;
 
-
-
     public function __construct()
     {
-        $this->detailFacture = new ArrayCollection();
-
+        $this->detailFactures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,7 +73,6 @@ class FactureProFormat
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
-
         return $this;
     }
 
@@ -89,7 +84,6 @@ class FactureProFormat
     public function setReference(string $reference): static
     {
         $this->reference = $reference;
-
         return $this;
     }
 
@@ -101,7 +95,6 @@ class FactureProFormat
     public function setNumeroFacturePro(string $numeroFacturePro): static
     {
         $this->numeroFacturePro = $numeroFacturePro;
-
         return $this;
     }
 
@@ -113,48 +106,36 @@ class FactureProFormat
     public function setDateEcheance(\DateTimeInterface $dateEcheance): static
     {
         $this->dateEcheance = $dateEcheance;
-
         return $this;
     }
 
     /**
      * @return Collection<int, DetailFacture>
      */
-    public function getDetailFacture(): Collection
+    public function getDetailFactures(): Collection
     {
-        return $this->detailFacture;
+        return $this->detailFactures;
     }
 
     public function addDetailFacture(DetailFacture $detailFacture): static
     {
-        if (!$this->detailFacture->contains($detailFacture)) {
-            $this->detailFacture->add($detailFacture);
+        if (!$this->detailFactures->contains($detailFacture)) {
+            $this->detailFactures->add($detailFacture);
             $detailFacture->setFactureProformat($this);
         }
-
         return $this;
     }
 
     public function removeDetailFacture(DetailFacture $detailFacture): static
     {
-        if ($this->detailFacture->removeElement($detailFacture)) {
+        if ($this->detailFactures->removeElement($detailFacture)) {
             // set the owning side to null (unless already changed)
             if ($detailFacture->getFactureProformat() === $this) {
                 $detailFacture->setFactureProformat(null);
             }
         }
-
         return $this;
     }
-
-    /**
-     * @return Collection<int, Clients>
-     */
-
-
-    /**
-     * @return Collection<int, ModePayement>
-     */
 
     public function getClients(): ?Clients
     {
@@ -164,7 +145,6 @@ class FactureProFormat
     public function setClients(?Clients $clients): static
     {
         $this->clients = $clients;
-
         return $this;
     }
 
@@ -176,7 +156,6 @@ class FactureProFormat
     public function setModePayement(?ModePayement $modePayement): static
     {
         $this->modePayement = $modePayement;
-
         return $this;
     }
 
@@ -188,7 +167,6 @@ class FactureProFormat
     public function setTotalHT(?string $totalHT): static
     {
         $this->totalHT = $totalHT;
-
         return $this;
     }
 
@@ -200,7 +178,6 @@ class FactureProFormat
     public function setTotalTVA(?string $totalTVA): static
     {
         $this->totalTVA = $totalTVA;
-
         return $this;
     }
 
@@ -212,7 +189,6 @@ class FactureProFormat
     public function setTotalTTC(?string $totalTTC): static
     {
         $this->totalTTC = $totalTTC;
-
         return $this;
     }
 
@@ -224,7 +200,6 @@ class FactureProFormat
     public function setStatut(?string $statut): static
     {
         $this->statut = $statut;
-
         return $this;
     }
 
@@ -236,13 +211,11 @@ class FactureProFormat
     public function setConvertir(?Facture $convertir): static
     {
         $this->convertir = $convertir;
-
         return $this;
     }
 
     public function __toString(): string
     {
-        return $this->id;
+        return (string)$this->id;
     }
-
 }
