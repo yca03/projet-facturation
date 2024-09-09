@@ -9,7 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FactureProFormatRepository::class)]
-class FactureProFormat
+class FactureProformat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
