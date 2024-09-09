@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\DetailFactureRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\FactureProformat;
 
 #[ORM\Entity(repositoryClass: DetailFactureRepository::class)]
 class DetailFacture
@@ -45,13 +46,13 @@ class DetailFacture
     #[ORM\JoinColumn(nullable: true)]
     private ?Facture $facture = null;
 
-    #[ORM\ManyToOne(targetEntity: FactureProformat::class, inversedBy: 'detailFacture')]
-    private ?FactureProformat $factureProformat = null;
+    #[ManyToOne(targetEntity: FactureProformat::class, inversedBy: 'detailFacture')]
+    private ?FactureProformat $factureProformat;
 
     #[ORM\Column(length: 255)]
     private ?string $montantBrut = null;
 
-   
+
 
     public function getId(): ?int
     {
