@@ -46,7 +46,7 @@ class DetailFacture
     #[ORM\JoinColumn(nullable: true)]
     private ?Facture $facture = null;
 
-    #[ManyToOne(targetEntity: FactureProformat::class, inversedBy: 'detailFacture')]
+    #[ORM\ManyToOne(targetEntity: FactureProformat::class, inversedBy: 'detailFacture')]
     private ?FactureProformat $factureProformat;
 
     #[ORM\Column(length: 255)]
