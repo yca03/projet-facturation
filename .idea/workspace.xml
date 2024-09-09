@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="last-modif-09-06-24-last">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20240902080036.php" afterDir="false" />
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="last-modif-09-06-24-last1">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -511,6 +509,7 @@
       <workItem from="1725877692203" duration="441000" />
       <workItem from="1725878382079" duration="150000" />
       <workItem from="1725878550687" duration="9000" />
+      <workItem from="1725880000986" duration="5108000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -688,7 +687,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725877202916</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="last-modif-09-06-24-last1">
+      <option name="closed" value="true" />
+      <created>1725883526580</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1725883526580</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -731,6 +738,7 @@
     <MESSAGE value="last-modif-07-06-24" />
     <MESSAGE value="last-modif-09-06-24" />
     <MESSAGE value="last-modif-09-06-24-last" />
-    <option name="LAST_COMMIT_MESSAGE" value="last-modif-09-06-24-last" />
+    <MESSAGE value="last-modif-09-06-24-last1" />
+    <option name="LAST_COMMIT_MESSAGE" value="last-modif-09-06-24-last1" />
   </component>
 </project>
