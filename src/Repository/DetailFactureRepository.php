@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\DetailFacture;
+use App\Entity\FactureProFormat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<DetailFacture>
@@ -16,28 +18,13 @@ class DetailFactureRepository extends ServiceEntityRepository
         parent::__construct($registry, DetailFacture::class);
     }
 
-//    /**
-//     * @return detailFacture[] Returns an array of detailFacture objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?detailFacture
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findDetailFactureByFacture(FactureProFormat $factureProFormat): array
+    {
+        $qb = $this->createQueryBuilder('df');
+        $qb
+            ->where($qb->expr()->eq('df.factureProformat', $factureProFormat))
+        ;
+        return  $qb->getQuery()->getResult();
+    }
 }

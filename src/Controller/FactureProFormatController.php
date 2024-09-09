@@ -63,35 +63,25 @@ class FactureProFormatController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-        // pour set la valeur en attente dans le champs status
+        // pour setté la valeur en attente dans le champs status
             $factureProFormat->setStatut(Statut::BROUILLON);
 
-
-            //pour setté dans la facture proforma
+            //pour setté dans la facture proforma dans detail
             foreach ($factureProFormat->getDetailFacture() as $detail)
             {
                 $detail->setFactureProformat($factureProFormat);
                 $entityManager->persist($detail);
             }
             $entityManager->persist($factureProFormat);
-
             $entityManager->flush();
-
-
             flash()
                 ->options([
                     'timeout' => 3000, // 3 seconds
                     'position' => 'bottom-right',
                 ])
                 ->success('informations enregistrées avec succès.');
-
-
-
-
             return $this->redirectToRoute('app_facture_pro_format_new', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('facture_pro_format/new.html.twig', [
             'facture_pro_format' => $factureProFormat,
             'form' => $form,
@@ -146,7 +136,6 @@ class FactureProFormatController extends AbstractController
                 ])
                 ->success('informations supprimées avec succès.');
         }
-
         return $this->redirectToRoute('app_facture_pro_format_info', [], Response::HTTP_SEE_OTHER);
     }
 
@@ -167,11 +156,13 @@ class FactureProFormatController extends AbstractController
     }
 
     #[Route('/{id}/impression/facture_pro_format', name: 'app_facture_pro_format_impression')]
-    public function impression( FactureProFormat $factureProFormat): Response
+    public function impression(FactureProFormat $factureProFormat, DetailFactureRepository $detailFactureRepository): Response
     {
+
+
         return $this->render('facture_pro_format/impressionFactureProFormat.html.twig', [
             'facture_pro_format' => $factureProFormat,
-
+            'detail_factures' => $detailFactureRepository->findDetailFactureByFacture($factureProFormat)
         ]);
     }
 

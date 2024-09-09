@@ -4,31 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="base de donnee">
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="last-modif-09-06-24-last">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20240902080036.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/page/feature/encaissement/encaissement.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/page/feature/encaissement/encaissement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/page/feature/encaissement/modePayement.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/page/feature/encaissement/modePayement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FactureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/FactureRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FactureRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/mailer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Statut/Statut.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Statut/Statut.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/encaissement/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/encaissement/_collection.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/encaissement/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/encaissement/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/encaissement/modePayement/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/encaissement/modePayement/_collection.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/encaissement/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/encaissement/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/encaissement/show_detail.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/encaissement/show_detail.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/_collection.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/index_valide.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/index_valide.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/table_facture.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/table_facture.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/_collection.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +34,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
@@ -512,7 +504,13 @@
       <workItem from="1725525275695" duration="8668000" />
       <workItem from="1725537470079" duration="10984000" />
       <workItem from="1725615810653" duration="13362000" />
-      <workItem from="1725706607373" duration="13647000" />
+      <workItem from="1725706607373" duration="13960000" />
+      <workItem from="1725729071320" duration="22000" />
+      <workItem from="1725869880327" duration="6279000" />
+      <workItem from="1725877450187" duration="117000" />
+      <workItem from="1725877692203" duration="441000" />
+      <workItem from="1725878382079" duration="150000" />
+      <workItem from="1725878550687" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -666,7 +664,31 @@
       <option name="project" value="LOCAL" />
       <updated>1725632341445</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="last-modif-07-06-24">
+      <option name="closed" value="true" />
+      <created>1725720627001</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1725720627001</updated>
+    </task>
+    <task id="LOCAL-00021" summary="last-modif-09-06-24">
+      <option name="closed" value="true" />
+      <created>1725873701944</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1725873701944</updated>
+    </task>
+    <task id="LOCAL-00022" summary="last-modif-09-06-24-last">
+      <option name="closed" value="true" />
+      <created>1725877202916</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1725877202916</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -706,6 +728,9 @@
     <MESSAGE value="last-modif3" />
     <MESSAGE value=".env" />
     <MESSAGE value="base de donnee" />
-    <option name="LAST_COMMIT_MESSAGE" value="base de donnee" />
+    <MESSAGE value="last-modif-07-06-24" />
+    <MESSAGE value="last-modif-09-06-24" />
+    <MESSAGE value="last-modif-09-06-24-last" />
+    <option name="LAST_COMMIT_MESSAGE" value="last-modif-09-06-24-last" />
   </component>
 </project>
