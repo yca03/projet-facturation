@@ -41,7 +41,6 @@ class EncaissementController extends AbstractController
                 $encaissement->setStatut(Statut::EN_ATTENTE);
             }
 
-            
             foreach($encaissement->getDetailModePayements() as $detailModePayement){
                 $detailModePayement->setEncaissement($encaissement);
              }

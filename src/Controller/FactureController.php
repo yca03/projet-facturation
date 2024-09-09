@@ -82,7 +82,6 @@ class FactureController extends AbstractController
                 ])
                 ->success('informations enregistrées avec succès.');
 
-
             return $this->redirectToRoute('app_facture_info', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -24,7 +24,8 @@ class FactureType extends AbstractType
         $builder
             ->add('modePayement' , EntityType::class,
             [
-                'class'=> ModePayement::class
+                'class'=> ModePayement::class,
+                'placeholder'=>'Sélectionnez le Mode de payement'
             ])
             ->add('codeFacture')
             ->add('date', dateType::class, [
@@ -33,6 +34,7 @@ class FactureType extends AbstractType
             ])
             ->add('IdClient', EntityType::class, [
                 'class' => Clients::class,
+                'placeholder'=>'Sélectionnez un Client'
             ])
 //            ->add('libelle', TextType::class)
             ->add('detailFactures', CollectionType::class, [
