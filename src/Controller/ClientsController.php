@@ -34,9 +34,6 @@ class ClientsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($client);
             $entityManager->flush();
-
-
-
             flash()
                 ->options([
                     'timeout' => 3000, // 3 seconds
@@ -44,9 +41,7 @@ class ClientsController extends AbstractController
                 ])
                 ->success('informations enrigistrées avec succès.');
 
-
-
-            return $this->redirectToRoute('app_facture_new', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_clients_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('clients/new.html.twig', [
@@ -71,9 +66,6 @@ class ClientsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
-
-
             flash()
                 ->options([
                     'timeout' => 3000, // 3 seconds

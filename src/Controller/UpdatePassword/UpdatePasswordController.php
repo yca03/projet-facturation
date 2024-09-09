@@ -91,7 +91,7 @@ class UpdatePasswordController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('user/UpdatePassword.html.twig', [
+        return $this->render('user/updatePassword.html.twig', [
             'form' => $form
         ]);
     }
