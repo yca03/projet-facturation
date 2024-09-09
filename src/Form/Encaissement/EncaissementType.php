@@ -27,12 +27,12 @@ class EncaissementType extends AbstractType
             ])
             ->add('clients', EntityType::class, [
                 'class' => Clients::class,
-                'placeholder'=> 'Sélectonnez un client',
+                'placeholder'=> 'Sélectionnez un client',
             ])
             ->add('reference')
             ->add('modePayement', EntityType::class, [
                 'class' => ModePayement::class,
-                'placeholder'=> 'Sélectonnez un Mode de payement',
+                'placeholder'=> 'Sélectionnez un Mode de payement',
             ])
             ->add('detatilEncaissements', CollectionType::class, [
                 'entry_type' => DetatilEncaissementType::class,
