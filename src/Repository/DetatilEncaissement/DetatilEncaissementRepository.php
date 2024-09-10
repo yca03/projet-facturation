@@ -40,4 +40,14 @@ class DetatilEncaissementRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function getTotalAmountByStatus(string $status): float
+    {
+        return (float) $this->createQueryBuilder('f')
+            ->select('SUM(f.totalTTC)')
+            ->where('f.StatutPaye = :status')
+            ->setParameter('status', $status)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

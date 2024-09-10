@@ -16,12 +16,23 @@ class HomeController extends AbstractController
     public function index(FactureRepository $factureRepository, ProduitRepository $produitRepository, ClientsRepository $clientsRepository, UserRepository $userRepository
     ): Response
     {
+
+
+        // Calculer les montants totaux
+        $montantTotalFactures = $factureRepository->getTotalAmount();
+        $statuses = ['soldée', 'partielle'];
+        $montantFacturesPartielleEtSoldee = $factureRepository->getTotalAmountByStatuses($statuses);
+
+
         // Compter le nombre total de factures
         $nombreDeFactures = $factureRepository->count([]);
 
         $nombreProduits = $produitRepository->count([]);
 
         $nomUsers = $userRepository->count([]);
+
+        $nombreFacturesEncaissees = $factureRepository->countFacturesByStatuses(['soldée', 'partielle']);
+
 
         // Compter le nombre d'utilisateurs avec le rôle ROLE_ADMIN
         $nomUsersAdmin = $userRepository->countUsersByRole('ROLE_ADMIN');
@@ -49,6 +60,7 @@ class HomeController extends AbstractController
         // Formatage des données pour JavaScript
         $formattedFacturesParMois = array_fill_keys(array_values($moisFr), 0);
 
+
         foreach ($facturesParMois as $facture) {
             $monthName = $moisFr[$facture['month']];
             $formattedFacturesParMois[$monthName] = $facture['count'];
@@ -62,6 +74,9 @@ class HomeController extends AbstractController
             'nombreProduits' => $nombreProduits,
             'nombreClients' => $nombreClients,
             'facturesParMois' => $formattedFacturesParMois,
+            'montantTotalFactures' => $montantTotalFactures,
+            'montantFacturesPartielleEtSoldee' => $montantFacturesPartielleEtSoldee,
+            'nombreFacturesEncaissees'=>$nombreFacturesEncaissees,
         ]);
     }
 }

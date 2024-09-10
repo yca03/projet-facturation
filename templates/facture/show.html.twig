@@ -39,7 +39,7 @@
                                 <td class="text-center">{{ facture.IdClient.contact }}</td>
                                 <td class="text-center">
                                     {% if facture.statut == 'brouillon' %}
-                                        <span class="badge badge-dark">{{ facture.statut }}</span>
+                                        <span class="badge badge-primary">{{ facture.statut }}</span>
                                     {% elseif facture.statut == 'en attente' %}
                                         <span class="badge badge-info">{{ facture.statut }}</span>
                                     {% elseif facture.statut == 'validée' %}
@@ -47,7 +47,7 @@
                                         {% if facture.statutPaye is defined %}
                                             <span class="badge badge-info">{{ facture.statutPaye }}</span>
                                         {% endif %}
-                                    {% elseif facture.statut == 'annulé' %}
+                                    {% elseif facture.statut == 'annulée' %}
                                         <span class="badge bg-danger">{{ facture.statut }}</span>
                                     {% endif %}
                                 </td>

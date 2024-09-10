@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="last-modif-09-06-24-last1">
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="last">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/DetatilEncaissement/DetatilEncaissementRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/DetatilEncaissement/DetatilEncaissementRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/FactureRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FactureRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/info.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/table_facture.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/table_facture.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,19 +39,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <excluded-from-favorite>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="main" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </excluded-from-favorite>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
@@ -510,6 +504,8 @@
       <workItem from="1725878382079" duration="150000" />
       <workItem from="1725878550687" duration="9000" />
       <workItem from="1725880000986" duration="5108000" />
+      <workItem from="1725887784295" duration="10818000" />
+      <workItem from="1725955346845" duration="4986000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -695,7 +691,63 @@
       <option name="project" value="LOCAL" />
       <updated>1725883526580</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="last">
+      <option name="closed" value="true" />
+      <created>1725893417889</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1725893417889</updated>
+    </task>
+    <task id="LOCAL-00025" summary="last1">
+      <option name="closed" value="true" />
+      <created>1725893869120</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1725893869120</updated>
+    </task>
+    <task id="LOCAL-00026" summary="last">
+      <option name="closed" value="true" />
+      <created>1725894614189</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1725894614189</updated>
+    </task>
+    <task id="LOCAL-00027" summary="last1">
+      <option name="closed" value="true" />
+      <created>1725895571510</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1725895571510</updated>
+    </task>
+    <task id="LOCAL-00028" summary="last">
+      <option name="closed" value="true" />
+      <created>1725895835869</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1725895835869</updated>
+    </task>
+    <task id="LOCAL-00029" summary="last1">
+      <option name="closed" value="true" />
+      <created>1725895917627</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1725895917627</updated>
+    </task>
+    <task id="LOCAL-00030" summary="last">
+      <option name="closed" value="true" />
+      <created>1725902863088</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1725902863088</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,6 +791,8 @@
     <MESSAGE value="last-modif-09-06-24" />
     <MESSAGE value="last-modif-09-06-24-last" />
     <MESSAGE value="last-modif-09-06-24-last1" />
-    <option name="LAST_COMMIT_MESSAGE" value="last-modif-09-06-24-last1" />
+    <MESSAGE value="last1" />
+    <MESSAGE value="last" />
+    <option name="LAST_COMMIT_MESSAGE" value="last" />
   </component>
 </project>

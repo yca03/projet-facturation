@@ -41,7 +41,7 @@
                                 <td class="text-center align-middle">
 
                                     {% if facture_pro_format.statut == 'brouillon' %}
-                                    <span class="badge badge-dark">{{ facture_pro_format.statut }}</span>
+                                    <span class="badge badge-primary">{{ facture_pro_format.statut }}</span>
                                     {% elseif facture_pro_format.statut == 'en attente' %}
                                          <span class="badge badge-info">{{ facture_pro_format.statut }}</span>
                                     {% elseif facture_pro_format.statut == 'validée' or facture_pro_format.statut == 'convertir'   %}

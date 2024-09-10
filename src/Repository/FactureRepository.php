@@ -42,6 +42,41 @@ class FactureRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+
+// pour le home
+    public function getTotalAmount(): float
+    {
+        return (float) $this->createQueryBuilder('f')
+            ->select('SUM(f.totalTTC)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getTotalAmountByStatuses(array $statuses): float
+    {
+        return (float) $this->createQueryBuilder('f')
+            ->select('SUM(f.totalTTC)')
+            ->where('f.StatutPaye IN (:statuses)')
+            ->setParameter('statuses', $statuses)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
+    public function countFacturesByStatuses(array $statuses): int
+    {
+        return (int) $this->createQueryBuilder('f')
+            ->select('COUNT(f.id)')
+            ->where('f.StatutPaye IN (:statuses)')
+            ->setParameter('statuses', $statuses)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    //end
+
+
+
     public function findFacturePending()
     {
         $qb = $this->createQueryBuilder('f');

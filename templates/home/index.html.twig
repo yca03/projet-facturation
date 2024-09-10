@@ -32,21 +32,64 @@
 
 
            {% if is_granted('ROLE_FACTURE') or is_granted('ROLE_VALIDED_FACTURE') %}
-                <div class="card">
-                    <div class="card-head">
-                        <h2> Nombre facture </h2>
-                        <span class="fa fa-file-invoice-dollar"></span>
-                    </div>
-                    <div class="card-progress">
-                        <small><a href=""> {{ nombreDeFactures }}</a></small>
-                        <div class="card-indicator">
-                            <div class="indicator two" style="width: {{ nombreDeFactures }}%"></div>
+                    <div class="card">
+                        <div class="card-head">
+                            <h2> Total Facture </h2>
+                            <span class="fa fa-file-invoice-dollar"></span>
                         </div>
+                        <div class="card-progress">
+                            <small><a href=""> {{ nombreDeFactures }}</a></small>
+                            <div class="card-indicator">
+                                <div class="indicator two" style="width: {{ nombreDeFactures }}%"></div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
-            {% endif %}
 
+
+                     <div class="card">
+                            <div class="card-head">
+                                <h2> Montant Facture</h2>
+                                <span class="fa fa-dollar"></span>
+                            </div>
+                            <div class="card-progress">
+                                <small> <a href="">{{ montantTotalFactures }} </a></small>
+                                <div class="card-indicator">
+                                    <div class="indicator two" style="width:{{ montantTotalFactures }}%"></div>
+                                </div>
+                            </div>
+                    </div>
+
+                     <div class="card">
+                        <div class="card-head">
+                            <h2> Total Facture Encaissées </h2>
+                            <span class="fa fa-file-invoice-dollar"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small><a href="">{{ nombreFacturesEncaissees }} </a></small>
+                            <div class="card-indicator">
+                                <div class="indicator two" style="width: {{ nombreFacturesEncaissees }}%"></div>
+                            </div>
+
+                        </div>
+                     </div>
+
+
+                     <div class="card">
+                        <div class="card-head">
+                            <h2> Montant Facture Encaissées </h2>
+                            <span class="fa fa-dollar"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small><a href=""> {{ montantFacturesPartielleEtSoldee }} </a></small>
+                            <div class="card-indicator">
+                                <div class="indicator two" style="width: {{ montantFacturesPartielleEtSoldee }}%"></div>
+                            </div>
+
+                        </div>
+                     </div>
+
+           {% endif %}
 
         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
 
@@ -74,7 +117,7 @@
                 <div class="card-progress">
                     <small> <a href="">{{ nomUsers }}</a></small>
                     <div class="card-indicator">
-                        <div class="indicator two" style="width: 20%"></div>
+                        <div class="indicator two" style="width: {{ nomUsers }}%"></div>
                     </div>
                 </div>
             </div>

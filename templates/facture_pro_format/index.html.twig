@@ -42,12 +42,12 @@
                                 <td class="text-center align-middle">
 
                                     {% if facture_pro_format.statut == 'brouillon' %}
-                                        <span class="badge badge-dark">{{ facture_pro_format.statut }}</span>
+                                        <span class="badge badge-primary">{{ facture_pro_format.statut }}</span>
                                     {% elseif facture_pro_format.statut == 'en attente' %}
                                         <span class="badge badge-info">{{ facture_pro_format.statut }}</span>
-                                    {% elseif facture_pro_format.statut == 'validé' %}
+                                    {% elseif facture_pro_format.statut == 'validée' %}
                                         <span class="badge badge-success">{{ facture_pro_format.statut }}</span>
-                                    {% elseif facture_pro_format.statut == 'annulé' %}
+                                    {% elseif facture_pro_format.statut == 'annulée' %}
                                         <span class="badge badge-warning">{{ facture_pro_format.statut }}</span>
                                     {% elseif facture_pro_format.statut == 'convertir' %}
                                         <span class="badge badge-success">{{ facture_pro_format.statut }}</span>
