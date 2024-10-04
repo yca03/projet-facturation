@@ -55,11 +55,18 @@ class FactureProFormat
     #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
     private ?Facture $convertir = null;
 
+    /**
+     * @var Collection<int, Notify>
+     */
+    #[ORM\OneToMany(targetEntity: Notify::class, mappedBy: 'FactureProFormat')]
+    private Collection $notifies;
+
 
 
     public function __construct()
     {
         $this->detailFacture = new ArrayCollection();
+        $this->notifies = new ArrayCollection();
 
     }
 
@@ -242,6 +249,36 @@ class FactureProFormat
     public function __toString(): string
     {
         return $this->id;
+    }
+
+    /**
+     * @return Collection<int, Notify>
+     */
+    public function getNotifies(): Collection
+    {
+        return $this->notifies;
+    }
+
+    public function addNotify(Notify $notify): static
+    {
+        if (!$this->notifies->contains($notify)) {
+            $this->notifies->add($notify);
+            $notify->setFactureProFormat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotify(Notify $notify): static
+    {
+        if ($this->notifies->removeElement($notify)) {
+            // set the owning side to null (unless already changed)
+            if ($notify->getFactureProFormat() === $this) {
+                $notify->setFactureProFormat(null);
+            }
+        }
+
+        return $this;
     }
 
 }

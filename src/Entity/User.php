@@ -52,6 +52,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $nomUtilisateur = null;
 
+    /**
+     * @var Collection<int, Notify>
+     */
+    #[ORM\OneToMany(targetEntity: Notify::class, mappedBy: 'utilisateur')]
+    private Collection $utilisateurs;
+
+    public function __construct()
+    {
+        $this->utilisateurs = new ArrayCollection();
+    }
+
 
 
 
@@ -195,6 +206,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Societe>
      */
+
+    /**
+     * @return Collection<int, Notify>
+     */
+    public function getUtilisateurs(): Collection
+    {
+        return $this->utilisateurs;
+    }
+
+    public function addUtilisateur(Notify $utilisateur): static
+    {
+        if (!$this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs->add($utilisateur);
+            $utilisateur->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUtilisateur(Notify $utilisateur): static
+    {
+        if ($this->utilisateurs->removeElement($utilisateur)) {
+            // set the owning side to null (unless already changed)
+            if ($utilisateur->getUtilisateur() === $this) {
+                $utilisateur->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
 
 
 

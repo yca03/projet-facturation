@@ -71,11 +71,18 @@ class Facture
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $reste = null;
 
+    /**
+     * @var Collection<int, Notify>
+     */
+    #[ORM\OneToMany(targetEntity: Notify::class, mappedBy: 'Facture')]
+    private Collection $notifies;
+
     public function __construct()
     {
         $this->detailFactures = new ArrayCollection();
         $this->factureProFormats = new ArrayCollection();
         $this->detatilEncaissements = new ArrayCollection();
+        $this->notifies = new ArrayCollection();
     }
 
     /**
@@ -322,6 +329,36 @@ class Facture
     public function setReste(?string $reste): static
     {
         $this->reste = $reste;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notify>
+     */
+    public function getNotifies(): Collection
+    {
+        return $this->notifies;
+    }
+
+    public function addNotify(Notify $notify): static
+    {
+        if (!$this->notifies->contains($notify)) {
+            $this->notifies->add($notify);
+            $notify->setFacture($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotify(Notify $notify): static
+    {
+        if ($this->notifies->removeElement($notify)) {
+            // set the owning side to null (unless already changed)
+            if ($notify->getFacture() === $this) {
+                $notify->setFacture(null);
+            }
+        }
 
         return $this;
     }
