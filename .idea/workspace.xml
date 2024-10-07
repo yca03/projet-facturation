@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="10-09-24">
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="notify">
+      <change afterPath="$PROJECT_DIR$/src/Service/notifyService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Facture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Facture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/FactureProFormat.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FactureProFormat.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/Facture/FactureType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Facture/FactureType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/FactureProFormatRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FactureProFormatRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/FactureRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FactureRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Statut/Statut.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Statut/Statut.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/partials/_header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_header.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -508,7 +512,8 @@
       <workItem from="1726141846371" duration="162000" />
       <workItem from="1726478840921" duration="1147000" />
       <workItem from="1726586892334" duration="433000" />
-      <workItem from="1728043102933" duration="7143000" />
+      <workItem from="1728043102933" duration="8856000" />
+      <workItem from="1728288923588" duration="14328000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -758,7 +763,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725960693345</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="notify">
+      <option name="closed" value="true" />
+      <created>1728059642905</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1728059642905</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -805,6 +818,7 @@
     <MESSAGE value="last1" />
     <MESSAGE value="last" />
     <MESSAGE value="10-09-24" />
-    <option name="LAST_COMMIT_MESSAGE" value="10-09-24" />
+    <MESSAGE value="notify" />
+    <option name="LAST_COMMIT_MESSAGE" value="notify" />
   </component>
 </project>

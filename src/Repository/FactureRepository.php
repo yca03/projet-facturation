@@ -108,4 +108,17 @@ class FactureRepository extends ServiceEntityRepository
     }
 
 
+    // c est requete pour la notification juste en bas
+    public function countFacturesPending(): int
+    {
+        return (int) $this->createQueryBuilder('f')
+            ->select('COUNT(f.id)')
+            ->where('f.statut = :statut')
+            ->setParameter('statut', Statut::EN_ATTENTE)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
+
 }

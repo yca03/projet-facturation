@@ -1,3 +1,18 @@
+
+
+<style>
+	.notification-count {
+		position: absolute;
+		top: -5px; /* Ajustez la position selon vos besoins */
+		right: -10px; /* Ajustez la position selon vos besoins */
+		background-color: red; /* Couleur de fond */
+		color: white; /* Couleur du texte */
+		border-radius: 50%; /* Forme circulaire */
+		padding: 2px 6px; /* Espacement */
+		font-size: 12px; /* Taille de la police */
+	}
+</style>
+
 <header
 	class="app-header app-header-dark">
 	<!-- .top-bar -->
@@ -72,10 +87,18 @@
 				<ul class="header-nav nav">
 
                 {#	notification #}
+
 					<li class="nav-item dropdown header-nav-dropdown has-notified" id="header-notification">
+						{% set notifyCount = notify_number.infoNotify() %}
+						{% set pendingFactures = notify_number.getPendingFactures() %}
+
 						<a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<span class="oi oi-envelope-open"></span>
+							{% if notifyCount %}
+								<span class="notification-count">{{ notifyCount }}</span>
+							{% endif %}
 						</a>
+
 						<!-- .dropdown-menu -->
 						<div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
 							<div class="dropdown-arrow"></div>
@@ -84,36 +107,38 @@
 							</h6>
 							<!-- .dropdown-scroll -->
 							<div class="dropdown-scroll has-scrollable" id="notification-body">
-								 <!-- .dropdown-item -->
-									<a href="" class="dropdown-item unread">
-										<div class="user-avatar">
-											<img src="https://cdn-icons-png.flaticon.com/512/266/266033.png" alt="Notification">
-										</div>
-										<div class="dropdown-item-body">
-											<p class="subject">Notification</p>
-											<p class="text text-truncate"></p>
-											<span class="date"> {{"now" | date('d-m-y')}}</span>
-										</div>
-									</a>
-									<!-- /.dropdown-item -->
-									<!-- .dropdown-item -->
+								{% if pendingFactures is not empty %}
+									{% for facture in pendingFactures %}
+										<a href="{{ path('app_facture_info') }}" class="dropdown-item unread">
+											<div class="user-avatar">
+												<img src="https://cdn-icons-png.flaticon.com/512/266/266033.png" alt="Notification">
+											</div>
+											<div class="dropdown-item-body">
+												<p class="subject">Facture : {{ facture.reference }}</p>
+												<p class="text text-truncate">en attente de validation</p>
+												<span class="date">{{ facture.date | date('d-m-Y H:i') }}</span>
+											</div>
+										</a>
+									{% endfor %}
+								{% else %}
 									<a href="#" class="dropdown-item unread">
 										<div class="user-avatar"></div>
 										<div class="dropdown-item-body">
-											<p class="subject">Vous n'avez pas de notification
-											</p>
+											<p class="subject">Aucune facture en attente</p>
 										</div>
 									</a>
+								{% endif %}
 							</div>
 							<!-- /.dropdown-scroll -->
-							<a href="#" class="dropdown-footer">Tous les messages
-								<i class="fas fa-fw fa-long-arrow-alt-right"></i>
-							</a>
+{#							<a href="#" class="dropdown-footer">Tous les messages#}
+{#								<i class="fas fa-fw fa-long-arrow-alt-right"></i>#}
+{#							</a>#}
 						</div>
 						<!-- /.dropdown-menu -->
 					</li>
+					{# end notification #}
 
-					{# end notification#}
+
 					<!-- /.nav-item -->
 					<!-- .nav-item -->
 				</ul>

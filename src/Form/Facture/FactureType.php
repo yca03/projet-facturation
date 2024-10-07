@@ -30,7 +30,9 @@ class FactureType extends AbstractType
             ->add('codeFacture')
             ->add('date', dateType::class, [
                 'widget' => 'single_text',
-                 'data' => new \DateTime(),
+                'data' => new \DateTime(),
+                'html5' => false,
+                'format' => 'dd-MM-yyyy HH:mm',
             ])
             ->add('IdClient', EntityType::class, [
                 'class' => Clients::class,
