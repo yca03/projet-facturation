@@ -30,11 +30,15 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($produit->getDetailProduits() as $detailProduit) {
+                $detailProduit->setProduit($produit);
+                $entityManager->persist($detailProduit);
+            }
+
             $entityManager->persist($produit);
             $entityManager->flush();
 
-
-//flasher
             flash()
                 ->options([
                     'timeout' => 3000, // 3 seconds
@@ -68,11 +72,12 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($produit->getDetailProduits() as $detailProduit) {
+                $detailProduit->setProduit($produit);
+                $entityManager->persist($detailProduit);
+            }
             $entityManager->flush();
-
-
-
-//flasher
             flash()
                 ->options([
                     'timeout' => 3000, // 3 seconds

@@ -5,7 +5,7 @@ namespace App\Service;
 use App\Repository\NotifyRepository;
 use App\Repository\FactureRepository;
 
-class NotifyService
+class notifyService
 {
     private NotifyRepository $notifyRepository;
     private FactureRepository $factureRepository;

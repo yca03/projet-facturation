@@ -44,11 +44,18 @@ class Produit
     #[ORM\Column(length: 255)]
     private ?string $tva = null;
 
+    /**
+     * @var Collection<int, DetailProduit>
+     */
+    #[ORM\OneToMany(targetEntity: DetailProduit::class, mappedBy: 'produit')]
+    private Collection $detailProduits;
 
     public function __construct()
     {
-        $this->detailFactures = new ArrayCollection();
+        $this->detailProduits = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -176,7 +183,35 @@ class Produit
         return $this;
     }
 
+    /**
+     * @return Collection<int, DetailProduit>
+     */
+    public function getDetailProduits(): Collection
+    {
+        return $this->detailProduits;
+    }
 
+    public function addDetailProduit(DetailProduit $detailProduit): static
+    {
+        if (!$this->detailProduits->contains($detailProduit)) {
+            $this->detailProduits->add($detailProduit);
+            $detailProduit->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailProduit(DetailProduit $detailProduit): static
+    {
+        if ($this->detailProduits->removeElement($detailProduit)) {
+            // set the owning side to null (unless already changed)
+            if ($detailProduit->getProduit() === $this) {
+                $detailProduit->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
 
 
 }

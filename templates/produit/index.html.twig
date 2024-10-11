@@ -3,48 +3,6 @@
 {% block title %}Produit index{% endblock %}
 
 {% block body %}
-{#    <h1>Produit index</h1>#}
-
-{#    <table class="table">#}
-{#        <thead>#}
-{#            <tr>#}
-{#                <th>Id</th>#}
-{#                <th>Libelle</th>#}
-{#                <th>Uid</th>#}
-{#                <th>DateCreation</th>#}
-{#                <th>UpdateDate</th>#}
-{#                <th>Prix</th>#}
-{#                <th>actions</th>#}
-{#            </tr>#}
-{#        </thead>#}
-{#        <tbody>#}
-{#        {% for produit in produits %}#}
-{#            <tr>#}
-{#                <td>{{ produit.id }}</td>#}
-{#                <td>{{ produit.libelle }}</td>#}
-{#                <td>{{ produit.uid }}</td>#}
-{#                <td>{{ produit.dateCreation ? produit.dateCreation|date('Y-m-d H:i:s') : '' }}</td>#}
-{#                <td>{{ produit.updateDate ? produit.updateDate|date('Y-m-d H:i:s') : '' }}</td>#}
-{#                <td>{{ produit.prix }}</td>#}
-{#                <td>#}
-{#                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>#}
-{#                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>#}
-{#                </td>#}
-{#            </tr>#}
-{#        {% else %}#}
-{#            <tr>#}
-{#                <td colspan="7">no records found</td>#}
-{#            </tr>#}
-{#        {% endfor %}#}
-{#        </tbody>#}
-{#    </table>#}
-
-{#    <a href="{{ path('app_produit_new') }}">Create new</a>#}
-
-
-
-
-
 
     <div class="col-12 col-md-12">
         <div class="card">
@@ -58,7 +16,6 @@
                 <div class="table-responsive">
                     <table class="table table-striped table-hover bordered table-sm basic-datatable">
                         <thead class="thead-light">
-
                         <tr>
                             <th class="text-center">Id</th>
                             <th class="text-center">Date de creation</th>
@@ -74,8 +31,16 @@
                                 <td class="text-center">{{produit.id }}</td>
                                 <td class="text-center">{{ produit.updateDate ? produit.updateDate|date('d-m-Y') : '' }}
                                <td class="text-center">{{produit.typeProduit }}</td>
-                                <td class="text-left">{{produit.libelle }}</td>
-                                 <td class="text-right">{{produit.prix}}</td>
+                                <td class="text-left">
+                                   {{ produit.libelle }}
+{#                                    <div style="margin-left: 20px;">#}
+{#                                        {% for detail in produit.detailProduits %}#}
+{#                                            - {{ detail.libelle }}<br>#}
+{#                                        {% endfor %}#}
+{#                                    </div>#}
+                                </td>
+
+                                <td class="text-right">{{produit.prix}}</td>
                                 <td class="text-center">
 
                                     <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_produit_show', {'id': produit.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>

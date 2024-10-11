@@ -24,10 +24,7 @@ class TypeProduit
     #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'typeProduit')]
     private Collection $produits;
 
-    public function __construct()
-    {
-        $this->produits = new ArrayCollection();
-    }
+
 
     public function getId(): ?int
     {
@@ -80,4 +77,6 @@ class TypeProduit
     {
             return $this->libelle;
     }
+
+
 }

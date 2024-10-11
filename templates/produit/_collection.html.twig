@@ -1,0 +1,33 @@
+{% block _produit_detailProduits_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _produit_detailProduits_widget %}
+    <div class="col-md-12">
+        <div class="form-group float-right">
+            <button type="button"
+                    id="add-collection-detail-produit"
+                    data-list-selector="#produit_detailProduits"
+                    class="btn btn-outline-primary">
+                Nouvelle ligne
+            </button>
+        </div>
+    </div>
+    {{ form_widget(form) }}
+{% endblock %}
+{% block _produit_detailProduits_entry_widget %}
+    <tr id="block_{{ id }}" data-id="{{ id }}" class="data-row">
+        <td>
+            {{ form_widget(form.libelle, {'attr': {"class": 'form-control quantite text-left', "data-id": id}}) }}
+            {{ form_errors(form.libelle) }}
+        </td>
+        <td class="text-center">
+            <button type="button"
+                    class="btn btn-sm btn-icon btn-secondary delete-detail-Produit"
+                    data-action="delete"
+                    data-target="#block_{{ id }}">
+                <i class="oi oi-trash"></i>
+            </button>
+        </td>
+    </tr>
+{% endblock %}
