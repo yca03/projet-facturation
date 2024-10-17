@@ -38,7 +38,7 @@
                             <span class="fa fa-file-invoice-dollar"></span>
                         </div>
                         <div class="card-progress">
-                            <small><a href=""> {{ nombreDeFactures }}</a></small>
+                            <small><a href=""> {{ nombreDeFactures | number_format(0, ',', ' ') }}</a></small>
                             <div class="card-indicator">
                                 <div class="indicator two" style="width: {{ nombreDeFactures }}%"></div>
                             </div>
@@ -53,7 +53,7 @@
                                 <span class="fa fa-dollar"></span>
                             </div>
                             <div class="card-progress">
-                                <small> <a href="">{{ montantTotalFactures }} </a></small>
+                                <small> <a href="">{{ montantTotalFactures| number_format(0, ',', ' ') }} </a></small>
                                 <div class="card-indicator">
                                     <div class="indicator two" style="width:{{ montantTotalFactures }}%"></div>
                                 </div>
@@ -66,7 +66,7 @@
                             <span class="fa fa-file-invoice-dollar"></span>
                         </div>
                         <div class="card-progress">
-                            <small><a href="">{{ nombreFacturesEncaissees }} </a></small>
+                            <small><a href="">{{ nombreFacturesEncaissees | number_format(0, ',', ' ')}} </a></small>
                             <div class="card-indicator">
                                 <div class="indicator two" style="width: {{ nombreFacturesEncaissees }}%"></div>
                             </div>
@@ -81,7 +81,7 @@
                             <span class="fa fa-dollar"></span>
                         </div>
                         <div class="card-progress">
-                            <small><a href=""> {{ montantFacturesPartielleEtSoldee }} </a></small>
+                            <small><a href=""> {{ montantFacturesPartielleEtSoldee | number_format(0, ',', ' ') }} </a></small>
                             <div class="card-indicator">
                                 <div class="indicator two" style="width: {{ montantFacturesPartielleEtSoldee }}%"></div>
                             </div>
@@ -99,7 +99,7 @@
                     <span class="fa fa-life-ring"></span>
                 </div>
                 <div class="card-progress">
-                    <small> <a href=""> {{ nombreProduits }}</a></small>
+                    <small> <a href=""> {{ nombreProduits  }}</a></small>
                     <div class="card-indicator">
                         <div class="indicator two" style="width: {{ nombreProduits }}%"></div>
                     </div>

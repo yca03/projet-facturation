@@ -116,7 +116,7 @@
 {% block body %}
 <div class="invoice-container">
     <div class="invoice-header">
-        <h1>FACTURE N°: {{ facture.codeFacture }}</h1>
+        <h1>FACTURE N°{{ facture.codeFacture }}</h1>
     </div>
     <table class="invoice-details">
         <tr>
@@ -148,7 +148,7 @@
         {% for detail in facture.detailFactures %}
 
             <tr>
-                <td class="service">{{ detail.produit }}</td>
+                <td class="service text-center">{{ detail.produit }}</td>
                 <td>{{detail.quantite}}</td>
                 <td>{{ detail.prix | number_format(0, '.', ' ') }} </td>
                 <td>{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
@@ -159,7 +159,7 @@
         {% endfor %}
         <tr class="total-row">
             <td colspan="5" class="no-border right-align">Net à payer :</td>
-            <td>{{ totalTTC | number_format(0, '.', ' ') }} FCFA</td>
+            <td>{{ totalTTC | number_format(0, '.', ' ') }} F CFA</td>
         </tr>
     </table>
     <div style="text-align: right;">

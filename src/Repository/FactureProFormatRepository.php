@@ -63,7 +63,16 @@ class FactureProFormatRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-// pour con
+    public function findDetailFacturePro() : array
+    {
+        return $this->createQueryBuilder('f')
+            ->join('f.detailFacture','fdf')
+            ->join('fdf.produit','fdfp')
+            ->join('fdfp.detailProduits','fdfpdp')
+            ->groupBy('fdfp.id')
+            ->getQuery()
+            ->getResult();
+    }
 
 
 }

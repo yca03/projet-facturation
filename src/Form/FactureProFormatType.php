@@ -77,7 +77,7 @@ class FactureProFormatType extends AbstractType
 
             // Vérifier si le champ numeroFacturePro est vide
             if (empty($data->getNumeroFacturePro())) {
-                $prefixe = "N°2024 / "; // Préfixe souhaité
+                $prefixe = "2024/ "; // Préfixe souhaité
                 $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
 
                 // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
@@ -104,7 +104,7 @@ class FactureProFormatType extends AbstractType
 
             // Vérifier si le champ numeroFacturePro est vide
             if (empty($data->getNumeroFacturePro())) {
-                $prefixe = "N 21 Z0075/ "; // Préfixe souhaité
+                $prefixe = "2024/ "; // Préfixe souhaité
                 $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
 
                 // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur

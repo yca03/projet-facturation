@@ -82,7 +82,7 @@ $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
 
     // Vérifier si le champ codeFacture est vide
     if (empty($data->getCodeFacture())) {
-        $prefixe = "N 21 Z0075/ "; // Préfixe souhaité
+        $prefixe = "2024/ "; // Préfixe souhaité
         $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
 
         // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
@@ -108,7 +108,7 @@ $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event)
 
     // Vérifier si le champ codeFacture est vide
     if (empty($data->getCodeFacture())) {
-        $prefixe = "N 21 Z0075/ "; // Préfixe souhaité
+        $prefixe = "2024/ "; // Préfixe souhaité
         $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
 
         // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur

@@ -167,6 +167,30 @@ class FactureProFormatController extends AbstractController
     }
 
 
+    #[Route('/detail/{id}/facture_pro_format', name: 'app_facture_pro_format_detail')]
+    public function detailFacturePro(FactureProFormat $factureProFormat, DetailFactureRepository $detailFactureRepository, FactureProFormatRepository $factureProFormatRepository): Response
+    {
+        $detailProduits = $factureProFormatRepository->findDetailFacturePro($factureProFormat);
+
+        $listeProduits = [];
+        foreach ($detailProduits as $detail) {
+            foreach ($detail->getDetailFacture() as $facture) {
+                $produit = $facture->getProduit();
+                    foreach ($produit->getDetailProduits() as $produitDetail) {
+                        $listeProduits[] = [
+                            'libelle' => $produitDetail->getLibelle(),
+                            'id' => $produitDetail->getProduit()->getId(),
+                        ];
+                    }
+            }
+        }
+        return $this->render('facture_pro_format/detailFacturePro.html.twig', [
+            'facture_pro_format' => $factureProFormat,
+            'detail_factures' => $detailFactureRepository->findDetailFactureByFacture($factureProFormat),
+            'detail_produits' => $listeProduits,
+        ]);
+    }
+
 
     #[Route('/{id}/facture/pro/valider', name: 'app_facture_pro_format_valider', methods: ['POST'])]
     public function valider(FactureProFormat $factureProFormat, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator ,  Security $security): RedirectResponse

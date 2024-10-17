@@ -54,15 +54,9 @@
     .no-border {
         border:none;
     }
-
-    .highlight {
-
-    }
-
     .section {
         flex: 1;
     }
-
     .section {
         margin-left: 20px;
     }
@@ -73,39 +67,33 @@
     {
         text-align:center; 
     }
-
     .total-row td {
         font-weight: bold;
     }
-
-
     @media print {
         .print-button {
             display: none !important;
         }
     }
-
-
-    
         .btn-oui {
-            background-color: #28a745; /* Couleur verte */
+            background-color: #28a745;
             color: white;
             border: none;
         }
 
         .btn-oui:hover {
-            background-color: #218838; /* Couleur verte plus foncée au survol */
+            background-color: #218838;
         }
 
-        /* Style pour le bouton NON */
+
         .btn-non {
-            background-color: #dc3545; /* Couleur rouge */
+            background-color: #dc3545;
             color: white;
             border: none;
         }
 
         .btn-non:hover {
-            background-color: #c82333; /* Couleur rouge plus foncée au survol */
+            background-color: #c82333;
         }
 </style>
 
@@ -187,7 +175,7 @@
         {% endfor %}
         <tr class="total-row">
             <td colspan="5" class="no-border right-align">Net à payer :</td>
-            <td>{{ totalTTC | number_format(0, '.', ' ') }} FCFA</td>
+            <td>{{ totalTTC | number_format(0, '.', ' ') }} F CFA</td>
         </tr>
     </table>
     <br><br>

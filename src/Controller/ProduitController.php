@@ -73,10 +73,6 @@ class ProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            foreach ($produit->getDetailProduits() as $detailProduit) {
-                $detailProduit->setProduit($produit);
-                $entityManager->persist($detailProduit);
-            }
             $entityManager->flush();
             flash()
                 ->options([

@@ -4,21 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="succes-notify">
-      <change afterPath="$PROJECT_DIR$/assets/js/page/feature/Produit/add-collection-detail-produit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/produit/_collection.html.twig" afterDir="false" />
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="detail-facture">
+      <change afterPath="$PROJECT_DIR$/templates/facture_pro_format/detailFacturePro.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProduitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProduitController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Produit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TypeProduit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TypeProduit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ProduitType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProduitType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/notifyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/notifyService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/Facture/FactureType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Facture/FactureType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/FactureProFormatType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/FactureProFormatType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/FactureProFormatRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FactureProFormatRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ProduitRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ProduitRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/encaissement/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/encaissement/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/encaissement/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/encaissement/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/table_facture.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/table_facture.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/impression/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/impression/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/partials/_header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_header.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/produit/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/produit/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,27 +341,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/wamp64/www/projet-facturation/templates/produit",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "terminal",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/projet-facturation/templates/produit&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\projet-facturation\templates\produit" />
@@ -520,7 +524,11 @@
       <workItem from="1728288923588" duration="18072000" />
       <workItem from="1728556059143" duration="1689000" />
       <workItem from="1728559560480" duration="2401000" />
-      <workItem from="1728634638088" duration="17802000" />
+      <workItem from="1728634638088" duration="18162000" />
+      <workItem from="1728892854259" duration="27276000" />
+      <workItem from="1728981199251" duration="8343000" />
+      <workItem from="1729069218456" duration="5619000" />
+      <workItem from="1729156488382" duration="1241000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -786,7 +794,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728312652216</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="detail-facture">
+      <option name="closed" value="true" />
+      <created>1728669597613</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1728669597613</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -809,7 +825,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update-of-chart" />
     <MESSAGE value="jeu-role" />
     <MESSAGE value="correct" />
     <MESSAGE value="etat-factureProForma" />
@@ -834,6 +849,7 @@
     <MESSAGE value="10-09-24" />
     <MESSAGE value="notify" />
     <MESSAGE value="succes-notify" />
-    <option name="LAST_COMMIT_MESSAGE" value="succes-notify" />
+    <MESSAGE value="detail-facture" />
+    <option name="LAST_COMMIT_MESSAGE" value="detail-facture" />
   </component>
 </project>
