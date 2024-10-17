@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="detail-facture">
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="detail-facture1">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/notifyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/NotifyService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/NotifyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/notifyService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -514,7 +513,7 @@
       <workItem from="1728892854259" duration="27276000" />
       <workItem from="1728981199251" duration="8343000" />
       <workItem from="1729069218456" duration="5619000" />
-      <workItem from="1729156488382" duration="2541000" />
+      <workItem from="1729156488382" duration="4852000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -796,7 +795,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729158247709</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="detail-facture1">
+      <option name="closed" value="true" />
+      <created>1729159573778</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1729159573778</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -819,7 +826,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="jeu-role" />
     <MESSAGE value="correct" />
     <MESSAGE value="etat-factureProForma" />
     <MESSAGE value="derniere-modification" />
@@ -844,6 +850,7 @@
     <MESSAGE value="notify" />
     <MESSAGE value="succes-notify" />
     <MESSAGE value="detail-facture" />
-    <option name="LAST_COMMIT_MESSAGE" value="detail-facture" />
+    <MESSAGE value="detail-facture1" />
+    <option name="LAST_COMMIT_MESSAGE" value="detail-facture1" />
   </component>
 </project>

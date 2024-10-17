@@ -5,14 +5,14 @@ namespace App\Service;
 use App\Repository\NotifyRepository;
 use App\Repository\FactureRepository;
 
-class NotifyService
+class notifyService
 {
-    private NotifyRepository $notifyRepository;
+//    private NotifyRepository $notifyRepository;
     private FactureRepository $factureRepository;
 
     public function __construct(NotifyRepository $notifyRepository, FactureRepository $factureRepository)
     {
-        $this->notifyRepository = $notifyRepository;
+//        $this->notifyRepository = $notifyRepository;
         $this->factureRepository = $factureRepository;
     }
 
@@ -26,3 +26,5 @@ class NotifyService
         return $this->factureRepository->findFacturePending();
     }
 }
+
+

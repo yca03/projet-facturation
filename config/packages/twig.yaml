@@ -2,7 +2,7 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
         societe_info: '@App\Service\societeService'
-        notify_number: '@App\Service\NotifyService'
+        notify_number: '@App\Service\notifyService'
 
 when@test:
     twig:
