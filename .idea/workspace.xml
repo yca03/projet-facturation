@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="detail-facture">
-      <change afterPath="$PROJECT_DIR$/templates/facture_pro_format/detailFacturePro.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureProFormatController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProduitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProduitController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Facture/FactureType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Facture/FactureType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/FactureProFormatType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/FactureProFormatType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/FactureProFormatRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FactureProFormatRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ProduitRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ProduitRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/encaissement/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/encaissement/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/encaissement/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/encaissement/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/table_facture.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/table_facture.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/impressionFactureProFormat.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture_pro_format/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture_pro_format/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/impression/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/impression/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/partials/_header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_header.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/notifyService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/NotifyService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -528,7 +514,7 @@
       <workItem from="1728892854259" duration="27276000" />
       <workItem from="1728981199251" duration="8343000" />
       <workItem from="1729069218456" duration="5619000" />
-      <workItem from="1729156488382" duration="1241000" />
+      <workItem from="1729156488382" duration="2541000" />
     </task>
     <task id="LOCAL-00001" summary="facture-proForma">
       <option name="closed" value="true" />
@@ -802,7 +788,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728669597613</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="detail-facture">
+      <option name="closed" value="true" />
+      <created>1729158247709</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1729158247709</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
