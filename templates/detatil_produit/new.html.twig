@@ -1,0 +1,37 @@
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}New DetatilProduit{% endblock %}#}
+
+{#{% block body %}#}
+{#    <h1>Create new DetatilProduit</h1>#}
+
+{#    {{ include('detatil_produit/_form.html.twig') }}#}
+
+{#    <a href="{{ path('app_detatil_produit_index') }}">back to list</a>#}
+{#{% endblock %}#}
+{% extends 'base.html.twig' %}
+
+{% block title %}New Produit{% endblock %}
+
+{% block body %}
+
+
+    <div class="col-12">
+        {{ form_start(form) }}
+        <div class="card card-fluid">
+            <div class="card-header bg-soft-custom" id="bg">
+                <h6> <i class="fa-solid fa-list" style="font-size:20px;"></i> Ajouter des Détail aux produits </h6>
+            </div>
+            <div class="card-body">
+                {{ include('detatil_produit/_form.html.twig') }}
+            </div>
+            <div class="card-footer">
+                <div class="card-footer-content">
+                    <button type="submit" class="btn btn-primary float-right ml-2">Enregistrer</button>
+                    <a href="{{ path('app_detatil_produit_index') }}" class="btn btn-info float-right"> Liste des Produits</a>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

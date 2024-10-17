@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DetatilProduit index{% endblock %}
+
+{% block body %}
+    <h1>DetatilProduit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for detatil_produit in detatil_produits %}
+            <tr>
+                <td>{{ detatil_produit.id }}</td>
+                <td>{{ detatil_produit.libelle }}</td>
+                <td>
+                    <a href="{{ path('app_detatil_produit_show', {'id': detatil_produit.id}) }}">show</a>
+                    <a href="{{ path('app_detatil_produit_edit', {'id': detatil_produit.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_detatil_produit_new') }}">Create new</a>
+{% endblock %}

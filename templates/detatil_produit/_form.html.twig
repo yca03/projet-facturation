@@ -1,0 +1,37 @@
+{#{{ form_start(form) }}#}
+{#    {{ form_widget(form) }}#}
+{#    <button class="btn">{{ button_label|default('Save') }}</button>#}
+{#{{ form_end(form) }}#}
+
+<fieldset>
+    <legend>Produit</legend>
+    <hr>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="numero_fiche_besoin">Type de Produit *</label>
+                {{ form_widget(form.TypeProduit, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Produit *</label>
+                {{ form_widget(form.produit, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="date_etablissement">Libelle *</label>
+                {{ form_widget(form.libelle, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+
+
+    </div>
+
+</fieldset>

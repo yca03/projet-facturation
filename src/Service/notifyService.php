@@ -2,17 +2,15 @@
 
 namespace App\Service;
 
-use App\Repository\NotifyRepository;
+
 use App\Repository\FactureRepository;
 
 class notifyService
 {
-//    private NotifyRepository $notifyRepository;
     private FactureRepository $factureRepository;
 
-    public function __construct(NotifyRepository $notifyRepository, FactureRepository $factureRepository)
+    public function __construct(FactureRepository $factureRepository)
     {
-//        $this->notifyRepository = $notifyRepository;
         $this->factureRepository = $factureRepository;
     }
 
