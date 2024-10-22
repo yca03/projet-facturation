@@ -45,7 +45,6 @@
             background-color: white;
         }
         .invoice-items td {
-            text-align: right;
             font-weight: bold;
         }
         .total-row {
@@ -95,7 +94,7 @@
                 padding: 10px;
             }
             .invoice-details th, .invoice-details td, .invoice-items th, .invoice-items td {
-                font-size: 11px !important;
+                font-size: 10px !important;
             }
         }
 
@@ -154,19 +153,19 @@
         <tbody>
         {% for detail in detail_factures %}
             <tr>
-                <td class="text-center"><strong>{{ detail.produit.libelle }}</strong></td>
+                <td class="text-left"><strong>{{ detail.produit.libelle }}</strong></td>
                 <td>{{ detail.quantite }}</td>
-                <td>{{ detail.prix | number_format(0, '.', ' ') }}</td>
-                <td>{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
-                <td>{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
-                <td>{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
+                <td class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
+                <td class="text-right">{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
+                <td class="text-right">{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
+                <td class="text-right">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
             </tr>
         {% endfor %}
         <tr class="total-row">
-            <td colspan="3">TOTAL A PAYER</td>
-            <td>{{ facture_pro_format.totalHT | number_format(0, '.', ' ') }} F CFA</td>
-            <td>{{ facture_pro_format.totalTVA | number_format(0, '.', ' ') }} F CFA</td>
-            <td>{{ facture_pro_format.totalTTC | number_format(0, '.', ' ') }} F CFA</td>
+            <td class="text-right" colspan="3">TOTAL A PAYER (F CFA)</td>
+            <td class="text-right">{{ facture_pro_format.totalHT | number_format(0, '.', ' ') }}</td>
+            <td class="text-right">{{ facture_pro_format.totalTVA | number_format(0, '.', ' ') }} </td>
+            <td class="text-right">{{ facture_pro_format.totalTTC | number_format(0, '.', ' ') }} </td>
         </tr>
         </tbody>
     </table>
