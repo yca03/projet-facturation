@@ -192,6 +192,27 @@ class FactureProFormatController extends AbstractController
     }
 
 
+    #[Route('/{id}/real-print', name: 'app_facture_pro_format_real_print')]
+    public function realImpression(FactureProFormat $factureProFormat, DetailFactureRepository $detailFactureRepository): Response
+    {
+
+
+        return $this->render('facture_pro_format/real_print.html.twig', [
+            'facture_pro_format' => $factureProFormat,
+            'detail_factures' => $detailFactureRepository->findDetailFactureByFacture($factureProFormat)
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
     #[Route('/{id}/facture/pro/valider', name: 'app_facture_pro_format_valider', methods: ['POST'])]
     public function valider(FactureProFormat $factureProFormat, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator ,  Security $security): RedirectResponse
     {

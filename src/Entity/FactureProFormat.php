@@ -61,6 +61,13 @@ class FactureProFormat
     #[ORM\OneToMany(targetEntity: Notify::class, mappedBy: 'FactureProFormat')]
     private Collection $notifies;
 
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $remise = null;
+
+
 
 
     public function __construct()
@@ -269,16 +276,29 @@ class FactureProFormat
         return $this;
     }
 
-    public function removeNotify(Notify $notify): static
+    public function getDescription(): ?string
     {
-        if ($this->notifies->removeElement($notify)) {
-            // set the owning side to null (unless already changed)
-            if ($notify->getFactureProFormat() === $this) {
-                $notify->setFactureProFormat(null);
-            }
-        }
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
+
+    public function getRemise(): ?string
+    {
+        return $this->remise;
+    }
+
+    public function setRemise(string $remise): static
+    {
+        $this->remise = $remise;
+
+        return $this;
+    }
+
 
 }

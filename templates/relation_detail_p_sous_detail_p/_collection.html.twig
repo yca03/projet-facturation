@@ -1,0 +1,33 @@
+{% block _relation_detail_p_sous_detail_p_sousDetailProduit_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _relation_detail_p_sous_detail_p_sousDetailProduit_widget %}
+    <div class="col-md-12">
+        <div class="form-group float-right">
+            <button type="button"
+                    id="add-collection-sous-detail-produit"
+                    data-list-selector="#relation_detail_p_sous_detail_p_sousDetailProduit"
+                    class="btn btn-outline-primary">
+                Nouvelle ligne
+            </button>
+        </div>
+    </div>
+    {{ form_widget(form) }}
+{% endblock %}
+{% block _relation_detail_p_sous_detail_p_sousDetailProduit_entry_widget %}
+    <tr id="block_{{ id }}" data-id="{{ id }}" class="data-row">
+        <td>
+            {{ form_widget(form.libelle, {'attr': {"class": 'form-control '}}) }}
+            {{ form_errors(form.libelle) }}
+        </td>
+        <td class="text-center">
+            <button type="button"
+                    class="btn btn-sm btn-icon btn-secondary delete-sous-detail-produit"
+                    data-action="delete"
+                    data-target="#block_{{ id }}">
+                <i class="oi oi-trash"></i>
+            </button>
+        </td>
+    </tr>
+{% endblock %}

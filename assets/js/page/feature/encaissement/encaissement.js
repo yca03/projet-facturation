@@ -8,7 +8,7 @@ $(document).ready(function() {
                     if (selectElement) {
                         selectElement.empty();
                         const placeholderOption = $('<option></option>')
-                            .val('')
+                            .val('')    
                             .text('Sélectionnez une facture')
                             .prop('disabled', true)
                             .prop('selected', true);

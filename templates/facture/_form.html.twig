@@ -54,12 +54,21 @@
 
 
 
-{#        <div class="col-3">#}
-{#            <div class="form-group">#}
-{#                <label for="objet">Reference de la facture *</label>#}
-{#                {{ form_widget(form.reference , {'attr' : {'class': 'form-control'}}) }}#}
-{#            </div>#}
-{#        </div>#}
+<div class="row">
+    <div class="col-6">
+        <div class="form-group">
+            <label for="objet">Remise *</label>
+            {{ form_widget(form.remise, {'attr' : {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="form-group">
+            <label for="objet">objet *</label>
+            {{ form_widget(form.description, {'attr' : {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
 
 
 

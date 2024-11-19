@@ -96,6 +96,9 @@
                 const montantTVA = montantHT * tauxTva;
                 const montantTTC = montantHT + montantTVA;
 
+               //
+
+
                 document.querySelector(`.montantBrut[data-id="${detailId}"]`).value = montantBrut.toFixed(0);
                 document.querySelector(`.montantHT[data-id="${detailId}"]`).value = montantHT.toFixed(0);
                 document.querySelector(`.montantTVA[data-id="${detailId}"]`).value = montantTVA.toFixed(0);

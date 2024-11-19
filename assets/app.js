@@ -38,6 +38,7 @@ import './js/page/feature/encaissement/encaissement'
 import './js/page/feature/encaissement/modePayement'
 
 import './js/page/feature/Produit/add-collection-detail-produit'
+import './js/page/feature/Produit/sous_detail/add-collection-sous-detail-produit'
 
 const moment = require('moment')
 global.moment = moment;

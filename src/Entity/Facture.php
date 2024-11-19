@@ -77,6 +77,14 @@ class Facture
     #[ORM\OneToMany(targetEntity: Notify::class, mappedBy: 'Facture')]
     private Collection $notifies;
 
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $remise = null;
+
+
+
     public function __construct()
     {
         $this->detailFactures = new ArrayCollection();
@@ -362,5 +370,30 @@ class Facture
 
         return $this;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getRemise(): ?string
+    {
+        return $this->remise;
+    }
+
+    public function setRemise(string $remise): static
+    {
+        $this->remise = $remise;
+
+        return $this;
+    }
+
 
 }

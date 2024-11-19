@@ -211,9 +211,9 @@
                 </form>&nbsp;&nbsp;
             {% endif %}
 
-            <button class="btn btn-secondary print-button" onclick="window.print()">
-                <i class="fa-solid fa-print"></i> Imprimer
-            </button>
+            <button class="btn btn-secondary print-button ">
+            <i class="fa-solid fa-download"></i>&nbsp;<a class="text-black" href="{{ path('app_facture_pro_format_real_print',{'id':facture_pro_format.id}) }}">Imprimer</a>
+        </button>
         </div>
     </div>
 

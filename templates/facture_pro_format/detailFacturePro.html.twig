@@ -190,7 +190,7 @@
 
         <div style="text-align: right;">
             <button class="btn btn-info print-button">
-                <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_pro_format_info') }}">retour</a>
+                <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_pro_format_impression',{'id':facture_pro_format.id}) }}">retour</a>
             </button>&nbsp;&nbsp;
 
             {% if is_granted('ROLE_VALIDED_FACTURE_PRO') and facture_pro_format.statut != 'validée' and facture_pro_format.statut != 'convertir' %}

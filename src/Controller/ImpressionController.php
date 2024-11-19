@@ -35,6 +35,11 @@ class ImpressionController extends AbstractController
             'reference' => $facture->getReference(),
             'modePayement'=>$facture->getModePayement(),
             'dateFacture' => $facture->getDate()->format('y-m-d'),
+            'totalHT'=>$facture->getTotalHT(),
+            'totalTVA'=>$facture->getTotalTVA(),
+            'totalTTC'=>$facture->getTotalTTC(),
+            'description'=>$facture->getDescription(),
+            'remise'=>$facture->getRemise(),
             'detailFactures' => [],
             'totalTTC' => $totalTTC,
            

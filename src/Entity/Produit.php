@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\OffreCommerciale\OffreCommerciale;
 use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -50,9 +51,26 @@ class Produit
     #[ORM\OneToMany(targetEntity: DetailProduit::class, mappedBy: 'produit')]
     private Collection $detailProduits;
 
+    /**
+     * @var Collection<int, OffreCommerciale>
+     */
+    #[ORM\OneToMany(targetEntity: OffreCommerciale::class, mappedBy: 'produits')]
+    private Collection $produitsOffre;
+
+    /**
+     * @var Collection<int, OffreCommerciale>
+     */
+    #[ORM\OneToMany(targetEntity: OffreCommerciale::class, mappedBy: 'produit')]
+    private Collection $produits;
+
+    #[ORM\Column(length: 255)]
+    private ?string $quantite = null;
+
     public function __construct()
     {
         $this->detailProduits = new ArrayCollection();
+        $this->produitsOffre = new ArrayCollection();
+        $this->produits = new ArrayCollection();
     }
 
 
@@ -209,6 +227,78 @@ class Produit
                 $detailProduit->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OffreCommerciale>
+     */
+    public function getProduitsOffre(): Collection
+    {
+        return $this->produitsOffre;
+    }
+
+    public function addProduitsOffre(OffreCommerciale $produitsOffre): static
+    {
+        if (!$this->produitsOffre->contains($produitsOffre)) {
+            $this->produitsOffre->add($produitsOffre);
+            $produitsOffre->setProduits($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduitsOffre(OffreCommerciale $produitsOffre): static
+    {
+        if ($this->produitsOffre->removeElement($produitsOffre)) {
+            // set the owning side to null (unless already changed)
+            if ($produitsOffre->getProduits() === $this) {
+                $produitsOffre->setProduits(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OffreCommerciale>
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(OffreCommerciale $produit): static
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits->add($produit);
+            $produit->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(OffreCommerciale $produit): static
+    {
+        if ($this->produits->removeElement($produit)) {
+            // set the owning side to null (unless already changed)
+            if ($produit->getProduit() === $this) {
+                $produit->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getQuantite(): ?string
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(string $quantite): static
+    {
+        $this->quantite = $quantite;
 
         return $this;
     }

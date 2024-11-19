@@ -12,7 +12,7 @@
 	</li><br>
 {% endif %}
 
-{% if is_granted('ROLE_SOCIETY')  or is_granted('ROLE_SUPER_ADMIN') %}
+{% if  is_granted('ROLE_SUPER_ADMIN') %}
 	<li class="menu-item has-child">
 		<a href="#" class="menu-link">
 			<span class="menu-icon fa-solid fa-hotel"></span>
@@ -55,7 +55,6 @@
 			{% endif %}
 		</ul>
 		<!-- /child menu -->
-
 	</li><br>
 
 {% endif %}
@@ -68,10 +67,10 @@
 	</a>
 	<!-- child menu -->
 	<ul class="menu">
-		<li class="menu-item {{ app.request.get('_route') == 'app_user_new' ? 'has-active': '' }}">
+		<li class="menu-item {{ app.request.get('_route') == 'app_clients_new' ? 'has-active': '' }}">
 			<a href="{{ path('app_clients_new') }}" class="menu-link">Créer</a>
 		</li>
-		<li class="menu-item {{ app.request.get('_route') == 'app_user_index' ? 'has-active': '' }}">
+		<li class="menu-item {{ app.request.get('_route') == 'app_clients_index' ? 'has-active': '' }}">
 			<a href="{{ path('app_clients_index') }}" class="menu-link">Liste</a>
 		</li>
 	</ul>
@@ -155,17 +154,34 @@
 			<span class="menu-icon fa fa-solid fa-box"></span>
 			<span class="menu-text">Produit</span>
 		</a>
-		<!-- child menu -->
+
+		<!-- Child menu for Produit -->
 		<ul class="menu">
-			<li class="menu-item {{ app.request.get('_route') == 'app_produit_new' ? 'has-active': '' }}">
+			<li class="menu-item {{ app.request.get('_route') == 'app_produit_new' ? 'has-active' : '' }}">
 				<a href="{{ path('app_produit_new') }}" class="menu-link">Créer</a>
 			</li>
-			<li class="menu-item {{ app.request.get('_route') == 'app_produit_index' ? 'has-active': '' }}">
+			<li class="menu-item {{ app.request.get('_route') == 'app_produit_index' ? 'has-active' : '' }}">
 				<a href="{{ path('app_produit_index') }}" class="menu-link">Liste</a>
 			</li>
+
+
+			<li class="menu-item has-child {{ app.request.get('_route') starts with 'app_facture_pro_format_index' ? 'has-active' : '' }}">
+				<a href="#" class="menu-link">Sous Détail Produit</a>
+
+				<ul class="menu">
+					<li class="menu-item {{ app.request.get('_route') == 'app_relation_detail_p_sous_detail_p_new' ? 'has-active' : '' }}">
+						<a href="{{ path('app_relation_detail_p_sous_detail_p_new') }}" class="menu-link">Créer</a>
+					</li>
+					<li class="menu-item {{ app.request.get('_route') == 'app_relation_detail_p_sous_detail_p_index' ? 'has-active' : '' }}">
+						<a href="{{ path('app_relation_detail_p_sous_detail_p_index') }}" class="menu-link">Liste</a>
+					</li>
+				</ul>
+			</li>
 		</ul>
-		<!-- /child menu -->
+		<!-- /Child menu for Facture -->
+
 	</li>
+
 {% endif %}
 
 
@@ -243,6 +259,25 @@
 			</ul>
 		</li>
 
+	</ul>
+	<!-- /child menu -->
+</li>
+{% endif %}
+
+{% if is_granted('ROLE_FACTURE_PRO') or is_granted('ROLE_VALIDED_FACTURE_PRO') or is_granted('ROLE_FACTURE') or is_granted('ROLE_VALIDED_FACTURE') %}
+<li class="menu-item has-child">
+	<a href="#" class="menu-link">
+		<span class="menu-icon fa fa-solid fa-tag"></span>
+		<span class="menu-text">Offre Financière</span>
+	</a>
+	<!-- child menu -->
+	<ul class="menu">
+		<li class="menu-item {{ app.request.get('_route') == 'app_produit_new' ? 'has-active': '' }}">
+			<a href="{{ path('app_offre_commerciale_new') }}" class="menu-link">Créer</a>
+		</li>
+		<li class="menu-item {{ app.request.get('_route') == 'app_produit_index' ? 'has-active': '' }}">
+			<a href="{{ path('app_offre_commerciale_index') }}" class="menu-link">Liste</a>
+		</li>
 	</ul>
 	<!-- /child menu -->
 </li>

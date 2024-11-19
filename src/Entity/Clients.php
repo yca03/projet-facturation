@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Banque\BanqueClient\BanqueClient;
 use App\Entity\Encaissement\Encaissement;
+use App\Entity\OffreCommerciale\OffreCommerciale;
 use App\Repository\ClientsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -80,12 +81,19 @@ class Clients
     #[ORM\OneToMany(targetEntity: BanqueClient::class, mappedBy: 'client')]
     private Collection $banqueClients;
 
+    /**
+     * @var Collection<int, OffreCommerciale>
+     */
+    #[ORM\OneToMany(targetEntity: OffreCommerciale::class, mappedBy: 'clients')]
+    private Collection $clientsOffre;
+
     public function __construct()
     {
         $this->factures = new ArrayCollection();
         $this->factureProFormats = new ArrayCollection();
         $this->encaissements = new ArrayCollection();
         $this->banqueClients = new ArrayCollection();
+        $this->clientsOffre = new ArrayCollection();
     }
 
    
@@ -369,6 +377,36 @@ class Clients
             // set the owning side to null (unless already changed)
             if ($banqueClient->getClient() === $this) {
                 $banqueClient->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OffreCommerciale>
+     */
+    public function getClientsOffre(): Collection
+    {
+        return $this->clientsOffre;
+    }
+
+    public function addClientsOffre(OffreCommerciale $clientsOffre): static
+    {
+        if (!$this->clientsOffre->contains($clientsOffre)) {
+            $this->clientsOffre->add($clientsOffre);
+            $clientsOffre->setClients($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClientsOffre(OffreCommerciale $clientsOffre): static
+    {
+        if ($this->clientsOffre->removeElement($clientsOffre)) {
+            // set the owning side to null (unless already changed)
+            if ($clientsOffre->getClients() === $this) {
+                $clientsOffre->setClients(null);
             }
         }
 

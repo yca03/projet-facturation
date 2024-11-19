@@ -28,6 +28,8 @@ class FactureType extends AbstractType
                 'placeholder'=>'Sélectionnez le Mode de payement'
             ])
             ->add('codeFacture')
+            ->add('description')
+            ->add('remise')
             ->add('date', dateType::class, [
                 'widget' => 'single_text',
                 'data' => new \DateTime(),

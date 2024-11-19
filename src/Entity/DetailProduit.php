@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DetailProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -19,6 +21,17 @@ class DetailProduit
 
     #[ORM\ManyToOne(inversedBy: 'detailProduits',)]
     private ?Produit $produit = null;
+
+    /**
+     * @var Collection<int, RelationDetailPSousDetailP>
+     */
+    #[ORM\OneToMany(targetEntity: RelationDetailPSousDetailP::class, mappedBy: 'detailProduits')]
+    private Collection $relationDetailPSousDetailPs;
+
+    public function __construct()
+    {
+        $this->relationDetailPSousDetailPs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -48,4 +61,39 @@ class DetailProduit
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, RelationDetailPSousDetailP>
+     */
+    public function getRelationDetailPSousDetailPs(): Collection
+    {
+        return $this->relationDetailPSousDetailPs;
+    }
+
+    public function addRelationDetailPSousDetailP(RelationDetailPSousDetailP $relationDetailPSousDetailP): static
+    {
+        if (!$this->relationDetailPSousDetailPs->contains($relationDetailPSousDetailP)) {
+            $this->relationDetailPSousDetailPs->add($relationDetailPSousDetailP);
+            $relationDetailPSousDetailP->setDetailProduits($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRelationDetailPSousDetailP(RelationDetailPSousDetailP $relationDetailPSousDetailP): static
+    {
+        if ($this->relationDetailPSousDetailPs->removeElement($relationDetailPSousDetailP)) {
+            // set the owning side to null (unless already changed)
+            if ($relationDetailPSousDetailP->getDetailProduits() === $this) {
+                $relationDetailPSousDetailP->setDetailProduits(null);
+            }
+        }
+
+        return $this;
+    }
+
+   public  function __toString()
+   {
+       return $this->libelle;
+   }
 }

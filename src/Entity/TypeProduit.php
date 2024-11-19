@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\OffreCommerciale\OffreCommerciale;
 use App\Repository\TypeProduitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,6 +24,17 @@ class TypeProduit
      */
     #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'typeProduit')]
     private Collection $produits;
+
+    /**
+     * @var Collection<int, OffreCommerciale>
+     */
+    #[ORM\OneToMany(targetEntity: OffreCommerciale::class, mappedBy: 'typeProduit')]
+    private Collection $typeProduits;
+
+    public function __construct()
+    {
+        $this->typeProduits = new ArrayCollection();
+    }
 
 
 
@@ -76,6 +88,36 @@ class TypeProduit
     public function __toString()
     {
             return $this->libelle;
+    }
+
+    /**
+     * @return Collection<int, OffreCommerciale>
+     */
+    public function getTypeProduits(): Collection
+    {
+        return $this->typeProduits;
+    }
+
+    public function addTypeProduit(OffreCommerciale $typeProduit): static
+    {
+        if (!$this->typeProduits->contains($typeProduit)) {
+            $this->typeProduits->add($typeProduit);
+            $typeProduit->setTypeProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTypeProduit(OffreCommerciale $typeProduit): static
+    {
+        if ($this->typeProduits->removeElement($typeProduit)) {
+            // set the owning side to null (unless already changed)
+            if ($typeProduit->getTypeProduit() === $this) {
+                $typeProduit->setTypeProduit(null);
+            }
+        }
+
+        return $this;
     }
 
 

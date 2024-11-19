@@ -25,6 +25,8 @@ class FactureProFormatType extends AbstractType
                 'widget' => 'single_text',
                 'data' => new \DateTime(),
             ])
+            ->add('description')
+            ->add('remise')
             ->add('reference')
             ->add('numeroFacturePro')
             ->add('dateEcheance', null, [

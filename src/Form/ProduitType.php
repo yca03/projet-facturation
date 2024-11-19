@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvent;
@@ -31,8 +32,13 @@ class ProduitType extends AbstractType
             ->add('prix')
             ->add('typeProduit', EntityType::class, [
                 'class' => TypeProduit::class,
+                'placeholder'=>'Sélectionnez le type de produit'
             ])
             ->add('tva')
+            ->add('quantite', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Sélectionnez une quantité pour l\'offre',
+                ]])
 
             ->add('detailProduits', CollectionType::class, [
             'entry_type' => DetailProduitType::class,
@@ -40,7 +46,10 @@ class ProduitType extends AbstractType
             'allow_add' => true,
             'allow_delete'=>true,
             'prototype'=>true
-        ]);
+        ])
+
+
+        ;
 
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
