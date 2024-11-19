@@ -164,10 +164,10 @@
             <div class="payment-details">
                 <strong><i>Modalités de paiement</i></strong><br>
                 <div>
-                    Paiement 1 : 30% soit <strong><i>{{((facture_pro_format.totalHT- ( (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)))) * 0.30) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
-                    Paiement 2 : 30% soit <strong><i>{{ ((facture_pro_format.totalHT- ( (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)))) * 0.30) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
-                    Paiement 3 : 20% soit <strong><i>{{ ((facture_pro_format.totalHT- ( (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)))) * 0.20) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
-                    Paiement 4 : 20% soit <strong><i>{{ ((facture_pro_format.totalHT- ( (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)))) * 0.20) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
+                    Paiement 1 : 30% soit <strong><i>{{  (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) * 0.30) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
+                    Paiement 2 : 30% soit <strong><i>{{   (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) * 0.30) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
+                    Paiement 3 : 20% soit <strong><i>{{  (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) * 0.20) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
+                    Paiement 4 : 20% soit <strong><i>{{  (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) * 0.20) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
 
                 </div>
             </div>
