@@ -156,7 +156,7 @@
         <!-- Payment Information Section -->
         <div class="payment-info">
             Arrêté la présente facture à la somme de :<br>
-            <strong>{{ facture_pro_format.totalTTC|format_number(style='spellout', locale='fr')}} Francs cfa</strong>
+            <strong>{{  (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100))|format_number(style='spellout', locale='fr')}} Francs cfa</strong>
         </div>
 
         <!-- Footer Section -->
