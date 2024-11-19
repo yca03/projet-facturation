@@ -138,13 +138,14 @@
                 <tr>
                     <td colspan="3" class="text-right"><strong><i>Remise {{ facture_pro_format.remise }} %</i></strong></td>
                     <td class="text-right">
-                        {{ (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) | number_format(0, '.', ' ') }}
+                        {{ (facture_pro_format.totalHT- ( (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)))) | number_format(0, '.', ' ') }}
                     </td>
                 </tr>
 
                 <tr>
                     <td colspan="3" class="text-right" ><strong>NET A PAYER  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Total TTC</strong></td>
-                    <td class="text-right">{{ (facture_pro_format.totalHT- ( (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)))) | number_format(0, '.', ' ') }} Fcfa</td>
+                    <td class="text-right"> {{ (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) | number_format(0, '.', ' ') }}
+                       </td>
                 </tr>
 
                 </tfoot>
