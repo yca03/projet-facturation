@@ -185,7 +185,7 @@
             var element = document.getElementById('pdf-area');
             var options = {
 
-                margin:1,  // [Marges: haut, droite, bas, gauche]
+                margin:2,  // [Marges: haut, droite, bas, gauche]
                 filename: 'offre_commerciale.pdf',
                 html2canvas: {
                     scale: 3
@@ -193,7 +193,7 @@
                 jsPDF: {
                     format: 'a4',
                     orientation: 'p',
-                    unit: 'pc',
+                    // unit: 'pc',
                     floatPrecision: 16
                 },
                 pagebreak: {
