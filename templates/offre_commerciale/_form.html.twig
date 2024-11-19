@@ -1,0 +1,63 @@
+
+<fieldset>
+    <legend>Identification</legend>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="date_etablissement">Client *</label>
+                {{ form_widget(form.clients, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">Produits *</label>
+                {{ form_widget(form.typeProduit , {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="form-group">
+                <label for="objet">type de Contrat*</label>
+                {{ form_widget(form.typeContrat , {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+
+<fieldset>
+    <legend>Période d'offre</legend>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="date_etablissement">durée de l'offre *</label>
+                {{ form_widget(form.dureeOffre, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+        <div class="col-8">
+            <label for="objet" class="mr-3">Période de validation du contrat *</label>
+            <div class="d-flex align-items-center">
+                {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control datetimepicker'}}) }}
+                <span class="mx-4">au</span>
+                {{ form_widget(form.dateFin, {'attr': {'class': 'form-control datetimepicker'}}) }}
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset>
+    <legend>Période de Test</legend>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="date_etablissement">Durée de la période de Test *</label>
+                {{ form_widget(form.dureePeriodeTest, {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+
+
+
+
+

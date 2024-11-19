@@ -1,0 +1,58 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des Offres{% endblock %}
+
+{% block body %}
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp; Liste des Offres
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Id</th>
+                            <th>Date début</th>
+                            <th>Clients</th>
+                            <th>Type de Produit</th>
+                            <th>Type de Contrat</th>
+                            <th>Duree de l'Offre</th>
+                            <th>Duree de la Période de Test</th>
+                            <th>Date fin</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for offre_commerciale in offre_commerciales %}
+                            <tr><th class="text-center">{{ offre_commerciale.id }}</th>
+                                <td class="text-center">{{ offre_commerciale.dateDebut ? offre_commerciale.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                                <td class="text-center">{{ offre_commerciale.clients.nom }}</td>
+                                <td class="text-center">{{ offre_commerciale.typeProduit}}</td>
+                                <td class="text-center">{{ offre_commerciale.typeContrat}}</td>
+                                <td class="text-center">{{ offre_commerciale.dureeOffre  }} mois</td>
+                                <td class="text-center">{{ offre_commerciale.dureePeriodeTest }} mois</td>
+                                <td class="text-center">{{ offre_commerciale.dateFin ? offre_commerciale.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                                <td class="text-center">
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_offre_commerciale_edit', {'id': offre_commerciale.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+
+                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_offre_commerciale_show', {'id': offre_commerciale.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
+
+                                    <form method="post" action="{{ path('app_offre_commerciale_edit', {'id': offre_commerciale.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ offre_commerciale.id) }}">
+                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

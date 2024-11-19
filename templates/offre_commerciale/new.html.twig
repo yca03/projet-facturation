@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Offre{% endblock %}
+
+{% block body %}
+
+
+    <div class="col-12">
+        {{ form_start(form) }}
+        <div class="card card-fluid">
+            <div class="card-header bg-soft-custom" id="bg">
+                <h6> <i class="fa-solid fa-list" style="font-size:20px;"></i> Créer une Offre Commerciale </h6>
+            </div>
+            <div class="card-body">
+                {{ include('offre_commerciale/_form.html.twig') }}
+            </div>
+            <div class="card-footer">
+                <div class="card-footer-content">
+                    <button type="submit" class="btn btn-primary float-right ml-2">Enregistrer</button>
+                    <a href="{{ path('app_offre_commerciale_index') }}" class="btn btn-info float-right"> Liste</a>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

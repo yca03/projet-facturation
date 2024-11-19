@@ -1,0 +1,77 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}sous detail produit{% endblock %}
+
+{% block body %}
+
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-soft-custom "style="background:#21244e; color:white;">
+                <i class="fa-solid fa-list" style="font-size:30px;"></i> &nbsp;  Liste des sous detail des Produits
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover bordered table-sm basic-datatable">
+                        <thead class="thead-light">
+                        <tr>
+{#                            <th class="text-center">Id</th>#}
+                            <th class="text-center">Type Produit</th>
+                            <th class="text-center">Libelle</th>
+                            <th class="text-center">actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for relation_detail_p_sous_detail_p in relation_detail_p_sous_detail_ps %}
+                            <tr>
+{#                                <td class="text-center">{{ relation_detail_p_sous_detail_p.id }}</td>#}
+
+                                <td class="text-center">
+                                    <strong style="font-size: 15px">
+                                        {{ relation_detail_p_sous_detail_p.detailProduits.produit.typeProduit.libelle }}
+                                    </strong>
+                                </td>
+
+                                <td class="">
+                                    <strong style="font-size: 15px">
+                                        {{ relation_detail_p_sous_detail_p.detailProduits.produit.libelle }}
+                                    </strong>
+                                    <p class="m-2" style="font-size: 15px">{{ relation_detail_p_sous_detail_p.detailProduits.libelle }}</p>
+                                    <ul>
+                                        {% for sous_detail in relation_detail_p_sous_detail_p.sousDetailProduit %}
+                                            <li>{{ sous_detail.libelle }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+
+                                <td class="text-center">
+                                    <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_relation_detail_p_sous_detail_p_edit', {'id': relation_detail_p_sous_detail_p.id}) }}" style="color:black;">
+                                        <i class="fa fa-pencil-alt"></i>
+                                    </a>
+
+{#                                    <form  class="btn btn-sm btn-icon btn-secondary" method="post" action="{{ path('app_relation_detail_p_sous_detail_p_delete', {'id': relation_detail_p_sous_detail_p.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">#}
+{#                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ relation_detail_p_sous_detail_p.id) }}">#}
+{#                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>#}
+{#                                    </form>#}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="card-footer-content">
+                    <a href="{{path('app_relation_detail_p_sous_detail_p_new')}}" class="btn btn-primary float-right ml-2">
+                        Nouveau</a>
+                    <a href="{{path('app_home')}}" class="btn btn-success float-right ml-3">
+                        <i class="oi oi-home"></i>
+                        Accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

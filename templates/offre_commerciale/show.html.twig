@@ -1,0 +1,207 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OffreCommerciale{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 30px;
+            margin: 0 auto;
+            background-color: transparent;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h5 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .info {
+            margin-bottom: 15px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .info p {
+            margin: 0;
+        }
+
+        .info strong {
+            display: inline-block;
+            width: 250px;
+        }
+
+        .table-section {
+            width: 100%;
+            border-width: 1px;
+            margin-top: 20px;
+        }
+
+        .table-section {
+            border-top: 0.1rem solid #1e1d1d;
+            border-bottom: 0.001rem solid #1e1d1d;
+            font-size: 12px ;
+        }
+
+        .table-section th, .table-section td,.section-title {
+            border: 0.1rem solid #1e1d1d;
+            padding: 8px;
+            font-size: 12px !important;
+            vertical-align: top;
+        }
+
+        .table-section .section-title {
+            font-weight: bold;
+            background-color: #ffff;
+            text-align: left;
+        }
+
+        .table-section  {
+            font-weight: bold;
+            text-align: left;
+            background-color: #ffff;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div id="pdf-area" class="container">
+        <h5>OFFRE COMMERCIALE</h5>
+
+        <div class="info">
+            <p style="font-weight: bold;font-size: 12px"><strong>CLIENT :</strong> {{ offre_commerciale.clients.nom }}
+            </p>
+            <p style="font-weight: bold;font-size: 12px"><strong>PRODUIT :</strong> {{ offre_commerciale.typeProduit.libelle }}
+            </p>
+            <p style="font-weight: bold;font-size: 12px"><strong>TYPE DE CONTRAT :</strong>{{ offre_commerciale.typeContrat }}
+            </p>
+            <p style="font-weight: bold;font-size: 12px"><strong>DURÉE DE L'OFFRE :</strong>({{ offre_commerciale.dureeOffre }}) mois
+            </p>
+            <p style="font-weight: bold;font-size: 12px"><strong>PÉRIODE DE VALIDITÉ DE l'OFFRE :</strong>Du {{ offre_commerciale.dateDebut ? offre_commerciale.dateDebut|date('d-m-Y') : '' }}
+                au {{ offre_commerciale.dateFin ? offre_commerciale.dateFin|date('d-m-Y') : '' }}</p>
+
+{#            <p style="font-weight: bold; font-size: 12px"><strong>PÉRIODE DE VALIDITÉ DE l'OFFRE :</strong>#}
+{#                Du {{ offre_commerciale.dateDebut ? offre_commerciale.dateDebut|format_datetime('full', locale='fr') : '' }}#}
+{#                au {{ offre_commerciale.dateFin ? offre_commerciale.dateFin|format_datetime('full', locale='fr') : '' }}#}
+{#            </p>#}
+            <p style="font-weight: bold;font-size: 12px"><strong>DURÉE DE LA PÉRIODE DE TEST :</strong>({{ offre_commerciale.dureePeriodeTest }}) mois
+            </p>
+        </div>
+
+        <table class="table-section">
+            <tr class="section-title">
+                <td colspan="3">{{ offre_commerciale.typeProduit.libelle }}</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <strong>ACCÈS COMPRENANT :</strong>
+                    <ul>
+                        <li>Accès à la solution</li>
+                        <li>Assistance téléphonique hotline</li>
+                        <li>Nouvelles versions du progiciel</li>
+                        <li>Télémaintenance par internet</li>
+                        <li>Sauvegarde quotidienne Stockage 100 Go inclus</li>
+                    </ul>
+                    <p>Ce contrat de licence de mise à disposition est souscrit pour une durée indéterminée. Le contrat
+                        sera revalorisé en cas d’ajout d’un ou plusieurs modules supplémentaires commandés par le client
+                        dans la limite indiquée aux conditions générales de ventes.</p>
+                    <p>Le client a droit à une garantie comprenant l’assistance téléphonique et téléassistance.</p>
+                </td>
+            </tr>
+            {% for produits in produits %}
+                {% if offre_commerciale.typeProduit.id == produits.typeProduit.id %}
+                    <tr class="section-title">
+                        {% if  produits.libelle == 'Mise en service' %}
+                            <td>INSTALLATION</td>
+                        {% else %}
+                            <td colspan="3">LOGICIEL : {{ produits.libelle }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        {% if produits.libelle == 'Mise en service' %}
+                            <td>{{ produits.libelle }}</td>
+                        {% else %}
+                            <td><strong>Module</strong></td>
+                        {% endif %}
+                        <td class="text-center">Qté</td>
+                        <td class="text-center">PU HT</td>
+                    </tr>
+                    <tr class="description-list">
+                        <td>
+                            <ul>
+                                {% for listeProduit in listeProduits %}
+                                    {% if listeProduit.produitId == produits.id %}
+                                        <li>
+                                            {{ listeProduit.detailLibelle }}
+                                            <ul>
+                                                {% for sousDetail in listeProduit.sousDetails %}
+                                                    <li>{{ sousDetail.libelle }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td class="text-center">{{ produits.quantite }}</td>
+                        <td class="text-right">{{ produits.prix | number_format(0, '.', ' ') }}</td>
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+            <div class="page-break-after"></div>
+        </table>
+
+
+    </div>
+    <br>
+    <div style="text-align: center">
+        <button class="btn btn-secondary print-button" onclick="generate()">
+            <i class="fa-solid fa-download"></i>&nbsp;<span>Imprimer en PDF</span>
+        </button>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        function generate() {
+            var element = document.getElementById('pdf-area');
+            var options = {
+
+                margin:1,  // [Marges: haut, droite, bas, gauche]
+                filename: 'offre_commerciale.pdf',
+                html2canvas: {
+                    scale: 3
+                },
+                jsPDF: {
+                    format: 'a4',
+                    orientation: 'p',
+                    unit: 'pc',
+                    floatPrecision: 16
+                },
+                pagebreak: {
+                    mode: ['avoid-all'],
+                    // after: ['.page-break-after']
+                }
+            };
+            html2pdf(element, options);
+        }
+    </script>
+{% endblock %}

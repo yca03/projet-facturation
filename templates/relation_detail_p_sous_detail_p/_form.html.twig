@@ -1,0 +1,49 @@
+{% form_theme form 'relation_detail_p_sous_detail_p/_collection.html.twig' %}
+
+<fieldset>
+    <legend>Détails des produits</legend>
+    <div class="row">
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="date_etablissement">Date *</label>
+                {{ form_widget(form.dateDebut, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="objet">detail des produits *</label>
+                {{ form_widget(form.detailProduits , {'attr' : {'class': 'form-control select2'}}) }}
+            </div>
+        </div>
+
+    </div>
+
+</fieldset>
+
+<fieldset>
+    <input type="hidden" id="widget-counter-sous-detail-produit" name="widget-counter-sous-detail-produit"
+           value="{{ form.sousDetailProduit|length }}">
+    <legend> Sous détails des Produits</legend>
+    <div class="table-responsive">
+        <table class="table table-sm bordered" id="table_sous_detail_produit">
+            <thead>
+            <tr>
+                <th>libelle</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{ form_widget(form.sousDetailProduit) }}
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+
+
+
+
+
+
+
