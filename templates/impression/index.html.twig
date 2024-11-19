@@ -153,7 +153,7 @@
         <!-- Payment Information Section -->
         <div class="payment-info">
             Arrêté la présente facture à la somme de :<br>
-            <strong>{{  {{ (facture.totalHT - (facture.remise * facture.totalHT / 100))  |format_spellout_number(locale='fr') }}  }} Fcfa</strong>
+            <strong>{{  {{ ((facture.totalHT - (facture.remise * facture.totalHT / 100)))  |format_spellout_number(locale='fr') }}  }} Fcfa</strong>
         </div>
 
         <!-- Footer Section -->
