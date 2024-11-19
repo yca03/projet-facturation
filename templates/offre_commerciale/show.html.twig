@@ -56,7 +56,7 @@
         .table-section th, .table-section td,.section-title {
             border: 0.1rem solid #1e1d1d;
             padding: 8px;
-            font-size: 11px !important;
+            font-size: 12px !important;
             vertical-align: top;
         }
 
@@ -165,7 +165,6 @@
                 {% endif %}
 
             {% endfor %}
-            <div class="page-break-after"></div>
         </table>
 
 
@@ -179,8 +178,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
     <script>
         function generate() {
             var element = document.getElementById('pdf-area');
@@ -189,12 +187,10 @@
                 margin:1,  // [Marges: haut, droite, bas, gauche]
                 filename: 'offre_commerciale.pdf',
                 html2canvas: {
-                    scale: 3,
-                    logging: true, // Activer les logs pour html2canvas
-                    useCORS: true
+                    scale: 3
                 },
                 jsPDF: {
-                    format: 'a3',
+                    format: 'a4',
                     orientation: 'p',
                     unit: 'pc',
                     floatPrecision: 16
