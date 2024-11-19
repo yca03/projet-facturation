@@ -179,13 +179,14 @@
 {% endblock %}
 
 {% block javascripts %}
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script>
         function generate() {
             var element = document.getElementById('pdf-area');
             var options = {
 
-                margin:0,  // [Marges: haut, droite, bas, gauche]
+                margin:1,  // [Marges: haut, droite, bas, gauche]
                 filename: 'offre_commerciale.pdf',
                 html2canvas: {
                     scale: 3
