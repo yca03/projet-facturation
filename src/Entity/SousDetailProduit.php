@@ -16,7 +16,7 @@ class SousDetailProduit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'string')]
     private ?string $uuid = null;
 
     #[ORM\Column(length: 255)]
@@ -40,7 +40,7 @@ class SousDetailProduit
     #[ORM\PrePersist]
     public function setUuid(): static
     {
-        $this->uuid = Uuid::v4();
+        $this->uuid = Uuid::v4()->toBase32();
 
         return $this;
     }
