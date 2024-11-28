@@ -22,6 +22,7 @@
                             <th>Duree de l'Offre</th>
                             <th>Duree de la Période de Test</th>
                             <th>Date fin</th>
+                            <th>Status</th>
                             <th>actions</th>
                         </tr>
                         </thead>
@@ -36,14 +37,30 @@
                                 <td class="text-center">{{ offre_commerciale.dureePeriodeTest }} mois</td>
                                 <td class="text-center">{{ offre_commerciale.dateFin ? offre_commerciale.dateFin|date('Y-m-d H:i:s') : '' }}</td>
                                 <td class="text-center">
-                                    <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_offre_commerciale_edit', {'id': offre_commerciale.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+                                    {% if offre_commerciale.status == 'en attente' %}
+                                        <span class="badge badge-info">{{ offre_commerciale.status }}</span>
+                                    {% elseif offre_commerciale.status == 'validée' or offre_commerciale.status == 'convertir'   %}
+                                        <span class="badge badge-success">{{ offre_commerciale.status }}</span>
+                                    {% elseif offre_commerciale.status == 'annulée' %}
+                                        <span class="badge badge-warning">{{ offre_commerciale.status }}</span>
+                                    {% endif %}
+                                    </td>
 
+                                <td class="text-center">
+                                    {% if offre_commerciale.status !='validée' and offre_commerciale.status != 'convertir' %}
+                                        <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_offre_commerciale_edit', {'id': offre_commerciale.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+                                    {% endif %}
                                     <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_offre_commerciale_show', {'id': offre_commerciale.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
 
-                                    <form method="post" action="{{ path('app_offre_commerciale_edit', {'id': offre_commerciale.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ offre_commerciale.id) }}">
-                                        <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
-                                    </form>
+                                    {% if offre_commerciale.status !='validée' and offre_commerciale.status !='convertir' %}
+                                        <form method="post" action="{{ path('app_offre_commerciale_edit', {'id': offre_commerciale.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ offre_commerciale.id) }}">
+                                            <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
+                                        </form>
+                                    {% endif %}
+                                    {% if offre_commerciale.status =='validée' %}
+                                             <a  class="btn btn-sm btn-icon btn-secondary"  href="{{ path('app_convert_to_offer',{'id':offre_commerciale.id}) }}"><i class="fa-solid fa-repeat"></i></a>
+                                    {% endif %}
                                 </td>
                             </tr>
 

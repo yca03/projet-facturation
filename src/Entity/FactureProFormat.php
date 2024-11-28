@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\OffreCommerciale\OffreCommerciale;
 use App\Repository\FactureProFormatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -66,6 +67,11 @@ class FactureProFormat
 
     #[ORM\Column(length: 255)]
     private ?string $remise = null;
+
+    #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
+    private ?OffreCommerciale $offreCommerciale = null;
+
+
 
 
 
@@ -299,6 +305,19 @@ class FactureProFormat
 
         return $this;
     }
+
+    public function getOffreCommerciale(): ?OffreCommerciale
+    {
+        return $this->offreCommerciale;
+    }
+
+    public function setOffreCommerciale(?OffreCommerciale $offreCommerciale): static
+    {
+        $this->offreCommerciale = $offreCommerciale;
+
+        return $this;
+    }
+
 
 
 }

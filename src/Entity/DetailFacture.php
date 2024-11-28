@@ -2,10 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\OffreCommerciale\OffreCommerciale;
 use App\Repository\DetailFactureRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\FactureProFormat;
 
 #[ORM\Entity(repositoryClass: DetailFactureRepository::class)]
 class DetailFacture
@@ -44,6 +43,9 @@ class DetailFacture
 
     #[ORM\Column(length: 255)]
     private ?string $montantBrut = null;
+
+    #[ORM\ManyToOne(inversedBy: 'offreCommerciale')]
+    private ?OffreCommerciale $offreCommerciale = null;
 
     public function getId(): ?int
     {
@@ -157,6 +159,18 @@ class DetailFacture
     public function setMontantBrut(string $montantBrut): static
     {
         $this->montantBrut = $montantBrut;
+        return $this;
+    }
+
+    public function getOffreCommerciale(): ?OffreCommerciale
+    {
+        return $this->offreCommerciale;
+    }
+
+    public function setOffreCommerciale(?OffreCommerciale $offreCommerciale): static
+    {
+        $this->offreCommerciale = $offreCommerciale;
+
         return $this;
     }
 }

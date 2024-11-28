@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}OffreCommerciale{% endblock %}
+{% block title %}Offre Commerciale{% endblock %}
 
 {% block stylesheets %}
     <style>
         body {
-            font-family: Arial, sans-serif;
+            /*font-family: Arial, sans-serif;*/
             margin: 0;
             padding: 0;
             display: flex;
@@ -41,24 +41,30 @@
             width: 250px;
         }
 
-        .table-section {
-            width: 100%;
-            border-width: 1px;
-            margin-top: 20px;
-        }
+        /*.table-section {*/
+        /*    width: 100%;*/
+        /*    border-width: 1px;*/
+        /*    margin-top: 20px;*/
+        /*}*/
 
         .table-section {
             border-top: 0.1rem solid #1e1d1d;
-            border-bottom: 0.001rem solid #1e1d1d;
+            border-bottom: 0.01rem solid #1e1d1d;
             font-size: 12px ;
         }
 
-        .table-section th, .table-section td,.section-title {
+       .table-section td,.section-title{
             border: 0.1rem solid #1e1d1d;
             padding: 8px;
-            font-size: 12px !important;
+            /*font-size: 12px !important;*/
             vertical-align: top;
         }
+        /*.table-section th, .table-section td,.section-title {*/
+        /*    border: 0.1rem solid #1e1d1d;*/
+        /*    padding: 8px;*/
+        /*    font-size: 12px !important;*/
+        /*    vertical-align: top;*/
+        /*}*/
 
         .table-section .section-title {
             font-weight: bold;
@@ -69,12 +75,33 @@
         .table-section  {
             font-weight: bold;
             text-align: left;
-            background-color: #ffff;
+            /*background-color: #ffff;*/
         }
 
         ul {
             padding-left: 20px;
             margin: 5px 0;
+        }
+        .btn-oui {
+            background-color: #02024a;
+            color: white;
+            border: none;
+        }
+        .btn-oui:hover {
+            background-color: #218838;
+        }
+        .btn-non {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        .btn-non:hover {
+            background-color: #c82333;
+        }
+        @page {
+            size: 21cm 29.7cm;
+            margin: 1.00cm 1.5cm 2.54cm 1.5cm;
+            /* change the margins as you want them to be. */
         }
 
     </style>
@@ -85,9 +112,9 @@
         <h5>OFFRE COMMERCIALE</h5>
 
         <div class="info">
-            <p style="font-weight: bold;font-size: 12px"><strong>CLIENT :</strong> {{ offre_commerciale.clients.nom }}
+            <p style="font-weight: bold;font-size: 13px"><strong>CLIENT :</strong> {{ offre_commerciale.clients.nom }}
             </p>
-            <p style="font-weight: bold;font-size: 12px"><strong>PRODUIT :</strong> {{ offre_commerciale.typeProduit.libelle }}
+            <p style="font-weight: bold;font-size: 13px"><strong>PRODUIT :</strong> {{ offre_commerciale.typeProduit.libelle }}
             </p>
             <p style="font-weight: bold;font-size: 12px"><strong>TYPE DE CONTRAT :</strong>{{ offre_commerciale.typeContrat }}
             </p>
@@ -168,14 +195,44 @@
             <div class="page-break-after"></div>
         </table>
 
-
     </div>
     <br>
     <div style="text-align: center">
         <button class="btn btn-secondary print-button" onclick="generate()">
             <i class="fa-solid fa-download"></i>&nbsp;<span>Imprimer en PDF</span>
         </button>
+
+        {% if offre_commerciale.status !='validée' and offre_commerciale.status != 'convertir' %}
+            <form method="post" action="{{ path('app_offre_soumission',{'id':offre_commerciale.id}) }}"
+                  id="soumissionForm" onsubmit="return confirm('Voulez-vous vraiment Valider ?');"
+                  style="display: inline;">
+                <input type="hidden" name="_token" value="{{ csrf_token('valider' ~ offre_commerciale.id) }}">
+                <button type="button" class="btn btn-success text-white print-button" data-bs-toggle="modal"
+                        data-bs-target="#soumissionModal">
+                    <i class="fa-solid fa-paper-plane"></i> &nbsp; Valider
+                </button>&nbsp;&nbsp;
+            </form>
+        {% endif %}
     </div>
+
+    <!-- Modal pour la soumission -->
+    <div class="modal fade" id="soumissionModal" tabindex="-1" aria-labelledby="soumissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="soumissionModalLabel">Validation</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment Valider le document ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-non" data-bs-dismiss="modal">NON</button>
+                    <button type="button" class="btn btn-oui" id="confirmSoumissionButton">OUI</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block javascripts %}
@@ -203,5 +260,24 @@
             };
             html2pdf(element, options);
         }
+
+
+        //Pour soumettre
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Soumission
+            var soumissionForm = document.querySelector('form[action="{{ path('app_offre_soumission', {'id': offre_commerciale.id}) }}"]');
+            var soumissionButton = document.getElementById('confirmSoumissionButton');
+            if (soumissionButton) {
+                soumissionButton.addEventListener('click', function () {
+                    soumissionForm.submit();
+                    // Close the modal after submission
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('soumissionModal'));
+                    modal.hide();
+                });
+            }
+        });
+
     </script>
 {% endblock %}

@@ -72,9 +72,9 @@
                                     <td class="text-left">{{ facturePro.nom }}</td>
                                     <td class="text-right">{{ facturePro.prix | number_format(0, '.', ' ') }}</td>
                                     <td class="text-right">{{ facturePro.remise | number_format(0, '.', ' ') }}</td>
-                                    <td class="text-right">{{ facturePro.montantHT | number_format(0, '.', ' ') }}</td>
-                                    <td class="text-right">{{ facturePro.montantTVA | number_format(0, '.', ' ') }}</td>
-                                    <td class="text-right">{{ facturePro.montantTTC | number_format(0, '.', ' ') }}</td>
+                                    <td class="text-right">{{ facturePro.totalHT | number_format(0, '.', ' ') }}</td>
+                                    <td class="text-right">{{ facturePro.totalTVA | number_format(0, '.', ' ') }}</td>
+                                    <td class="text-right">{{ facturePro.totalTTC | number_format(0, '.', ' ') }}</td>
                                     <td class="text-center">{{ facturePro.contact }}</td>
                                     <td class="text-center"><a href="{{ path('app_facture_pro_format_impression', {'id': facturePro.id}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>
                                 </tr>

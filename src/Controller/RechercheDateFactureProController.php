@@ -51,9 +51,10 @@ class RechercheDateFactureProController extends AbstractController
                     'quantite' => $detail->getQuantite(),
                     'remise'=>$detail->getRemise(),
                     'prix' => $detail->getPrix(),
-                    'montantTTC' => $facturePro->getTotalTTC(),
-                    'montantHT' => $facturePro->getTotalHT(),
-                    'montantTVA' => $facturePro->getTotalTVA(),
+                    'totalTTC' => $facturePro->getTotalTTC(),
+                    'totalHT' => $facturePro->getTotalHT(),
+                    'totalTVA' => $facturePro->getTotalTVA(),
+
                 ];
             }
         }

@@ -72,6 +72,7 @@ class FactureProFormatController extends AbstractController
                 $detail->setFactureProformat($factureProFormat);
                 $entityManager->persist($detail);
             }
+
             $entityManager->persist($factureProFormat);
             $entityManager->flush();
             flash()
@@ -316,7 +317,6 @@ class FactureProFormatController extends AbstractController
 
 
     #[Route('/{factureProFormaId}/convert-to-invoice', name: 'app_convert_to_invoice', methods: ['GET', 'POST'])]
-
     public function convertToInvoice(
         int $factureProFormaId,
         Request $request,
@@ -333,6 +333,7 @@ class FactureProFormatController extends AbstractController
 
         // Créer une nouvelle facture basée sur la facture pro forma
         $invoice = (new Facture())
+
             ->setDate($factureProForma->getDate())
             ->setReference($factureProForma->getReference())
             ->setCodeFacture($factureProForma->getNumeroFacturePro())
@@ -384,6 +385,8 @@ class FactureProFormatController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
 
 
 

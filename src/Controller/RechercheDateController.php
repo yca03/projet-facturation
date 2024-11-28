@@ -55,6 +55,9 @@ class RechercheDateController extends AbstractController
                     'montantHT' => $detail->getMontantHT(),
                     'montantTVA' => $detail->getMontantTVA(),
                     'remise' => $detail->getRemise(),
+                    'totalHT'=>$facture->getTotalHT(),
+                    'totalTVA'=>$facture->getTotalTVA(),
+                    'totalTTC'=>$facture->getTotalTTc()
                 ];
             }
         }

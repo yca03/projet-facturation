@@ -85,9 +85,9 @@
 {#                                <td class="text-center">{{ facture.quantite }}</td>#}
                                 <td class="text-right">{{ facture.prix | number_format(0, '.', ' ') }}</td>
                                 <td class="text-right">{{ facture.remise | number_format(0, '.', ' ')}}</td>
-                                <td class="text-right">{{ facture.montantHT | number_format(0, '.', ' ') }}</td>
-                                <td class="text-right">{{ facture.montantTVA | number_format(0, '.', ' ') }}</td>
-                                <td class="text-right">{{ facture.montantTTC | number_format(0, '.', ' ')  }}</td>
+                                <td class="text-right">{{ facture.totalHT | number_format(0, '.', ' ') }}</td>
+                                <td class="text-right">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>
+                                <td class="text-right">{{ facture.totalTTC | number_format(0, '.', ' ')  }}</td>
                                 <td class="text-center">{{ facture.clientcontact }}</td>
                                 <td class="text-center"><a href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>
 

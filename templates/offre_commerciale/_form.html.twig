@@ -37,9 +37,9 @@
         <div class="col-8">
             <label for="objet" class="mr-3">Période de validation du contrat *</label>
             <div class="d-flex align-items-center">
-                {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control datetimepicker'}}) }}
+                {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control date'}}) }}
                 <span class="mx-4">au</span>
-                {{ form_widget(form.dateFin, {'attr': {'class': 'form-control datetimepicker'}}) }}
+                {{ form_widget(form.dateFin, {'attr': {'class': 'form-control date'}}) }}
             </div>
         </div>
     </div>
