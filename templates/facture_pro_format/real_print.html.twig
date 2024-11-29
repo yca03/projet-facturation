@@ -119,7 +119,7 @@
                 <tbody>
                 {% for detail in detail_factures %}
                 <tr>
-                    <td>{{ detail.produit.quantite }}</td>
+                    <td>{{ detail.quantite }}</td>
                     <td class="text-left">{{ detail.produit.libelle }}</td>
                     <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
                     <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
