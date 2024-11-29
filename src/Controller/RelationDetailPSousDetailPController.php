@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\RelationDetailPSousDetailP;
+use App\Entity\SousDetailProduit;
 use App\Form\RelationDetailPSousDetailPType;
 use App\Repository\RelationDetailPSousDetailPRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -71,6 +72,19 @@ final class RelationDetailPSousDetailPController extends AbstractController
             foreach ($relationDetailPSousDetailP->getSousDetailProduit() as $detailProduit) {
                 $detailProduit->setRelationDetailPSousDetailP($relationDetailPSousDetailP);
                 $entityManager->persist($detailProduit);
+            }
+
+            // Traiter les suppressions (si vous avez supprimé des éléments de la collection)
+            $existingSousDetailProduits = $entityManager->getRepository(SousDetailProduit::class)->findBy([
+                'relationDetailPSousDetailP' => $relationDetailPSousDetailP
+            ]);
+
+            // Vérifier et supprimer les éléments qui ne sont plus dans la collection
+            foreach ($existingSousDetailProduits as $existingDetailProduit) {
+                if (!$relationDetailPSousDetailP->getSousDetailProduit()->contains($existingDetailProduit)) {
+                    // L'élément n'est plus dans la collection, donc il doit être supprimé
+                    $entityManager->remove($existingDetailProduit);
+                }
             }
             $entityManager->flush();
             flash()
