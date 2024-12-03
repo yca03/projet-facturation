@@ -276,7 +276,6 @@ class FactureProFormatController extends AbstractController
         $factureProFormat->setStatut(Statut::EN_ATTENTE);
         $entityManager->flush();
 
-
         flash()
             ->options([
                 'timeout' => 3000, // 3 seconds
