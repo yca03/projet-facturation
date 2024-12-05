@@ -29,9 +29,9 @@
                         <tbody>
                         {% for user in users %}
                             <tr>
-                                <td class="text-center">{{user.nom }}</td>
-                                <td class="text-center">{{user.prenom }}</td>
-                                <td class="text-center">
+                                <td class="text-left">{{user.nom }}</td>
+                                <td class="text-left">{{user.prenom }}</td>
+                                <td class="text-left">
                                     {% if user.roles is iterable %}
                                         {% for role in user.roles %}
                                             {% if role == 'ROLE_SUPER_ADMIN' %}
@@ -42,7 +42,7 @@
                                                 CONSULTER
                                             {% elseif role == 'ROLE_FACTURE_PRO' %}
                                                 FACTURE PRO-FORMA
-                                            {% elseif role == 'ROLEVALIDED_FACTURE_PRO' %}
+                                            {% elseif role == 'ROLE_VALIDED_FACTURE_PRO' %}
                                                 VALIDER FACTURE PRO-FORMA
                                             {% elseif role == 'ROLE_FACTURE' %}
                                                 FACTURE
@@ -55,8 +55,8 @@
                                     {% endif %}
                                 </td>
 
-                                <td class="text-center">{{user.nomUtilisateur }}</td>
-                                <td class="text-center">{{user.email }}</td>
+                                <td class="text-left">{{user.nomUtilisateur }}</td>
+                                <td class="text-left">{{user.email }}</td>
                                 <td class="text-center">
                                     {% if user.status == 1 %}
                                         Actif
