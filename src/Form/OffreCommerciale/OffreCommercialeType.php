@@ -8,6 +8,7 @@ use App\Entity\TypeProduit;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -34,10 +35,11 @@ class OffreCommercialeType extends AbstractType
                 ],
                 'placeholder'=>'Sélectionnez le mois'
             ])
-            ->add('dateDebut', null, [
+            ->add('dateDebut', DateType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('dateFin', null, [
+
+            ->add('dateFin', DateType::class, [
                 'widget' => 'single_text',
             ])
             ->add('dureePeriodeTest', ChoiceType::class, [

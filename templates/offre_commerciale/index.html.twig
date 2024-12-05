@@ -29,13 +29,13 @@
                         <tbody>
                         {% for offre_commerciale in offre_commerciales %}
                             <tr><th class="text-center">{{ offre_commerciale.id }}</th>
-                                <td class="text-center">{{ offre_commerciale.dateDebut ? offre_commerciale.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                                <td class="text-center">{{ offre_commerciale.dateDebut ? offre_commerciale.dateDebut|date('d-m-y') : '' }}</td>
                                 <td class="text-center">{{ offre_commerciale.clients.nom }}</td>
                                 <td class="text-center">{{ offre_commerciale.typeProduit}}</td>
                                 <td class="text-center">{{ offre_commerciale.typeContrat}}</td>
                                 <td class="text-center">{{ offre_commerciale.dureeOffre  }} mois</td>
                                 <td class="text-center">{{ offre_commerciale.dureePeriodeTest }} mois</td>
-                                <td class="text-center">{{ offre_commerciale.dateFin ? offre_commerciale.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                                <td class="text-center">{{ offre_commerciale.dateFin ? offre_commerciale.dateFin|date('d-m-y') : '' }}</td>
                                 <td class="text-center">
                                     {% if offre_commerciale.status == 'en attente' %}
                                         <span class="badge badge-info">{{ offre_commerciale.status }}</span>
@@ -53,7 +53,7 @@
                                     <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_offre_commerciale_show', {'id': offre_commerciale.id}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
 
                                     {% if offre_commerciale.status !='validée' and offre_commerciale.status !='convertir' %}
-                                        <form method="post" action="{{ path('app_offre_commerciale_edit', {'id': offre_commerciale.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                        <form method="post" action="{{ path('app_offre_commerciale_delete', {'id': offre_commerciale.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ offre_commerciale.id) }}">
                                             <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
                                         </form>

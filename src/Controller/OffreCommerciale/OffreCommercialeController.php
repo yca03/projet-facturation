@@ -133,6 +133,12 @@ final class OffreCommercialeController extends AbstractController
     public function delete(Request $request, OffreCommerciale $offreCommerciale, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$offreCommerciale->getId(), $request->getPayload()->getString('_token'))) {
+            flash()
+                ->options([
+                    'timeout' => 3000, // 3 seconds
+                    'position' => 'bottom-right',
+                ])
+                ->success('Offre supprimée avec succès .');
             $entityManager->remove($offreCommerciale);
             $entityManager->flush();
         }
