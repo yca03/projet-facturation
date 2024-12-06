@@ -200,9 +200,14 @@
     </div>
     <br>
     <div style="text-align: center">
+
+        {% if offre_commerciale.status != 'en attente'  %}
+
         <button class="btn btn-secondary print-button" onclick="generate()">
             <i class="fa-solid fa-download"></i>&nbsp;<span>Imprimer en PDF</span>
         </button>
+
+        {% endif %}
 
         {% if offre_commerciale.status !='validée' and offre_commerciale.status != 'convertir' %}
             <form method="post" action="{{ path('app_offre_soumission',{'id':offre_commerciale.id}) }}"
