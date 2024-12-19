@@ -451,7 +451,7 @@ class Clients
         return $this->telephone2;
     }
 
-    public function setTelephone2(string $telephone2): static
+    public function setTelephone2(?string $telephone2): static
     {
         $this->telephone2 = $telephone2;
 
