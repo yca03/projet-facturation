@@ -21,7 +21,7 @@ class Clients
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
@@ -89,6 +89,12 @@ class Clients
 
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $NumeroClients = null;
+
+    #[ORM\Column(length: 255,nullable: true)]
+    private ?string $adressePostale = null;
+
+    #[ORM\Column(length: 255,nullable: true)]
+    private ?string $telephone2 = null;
 
     public function __construct()
     {
@@ -424,6 +430,30 @@ class Clients
     public function setNumeroClients(string $NumeroClients): static
     {
         $this->NumeroClients = $NumeroClients;
+
+        return $this;
+    }
+
+    public function getAdressePostale(): ?string
+    {
+        return $this->adressePostale;
+    }
+
+    public function setAdressePostale(string $adressePostale): static
+    {
+        $this->adressePostale = $adressePostale;
+
+        return $this;
+    }
+
+    public function getTelephone2(): ?string
+    {
+        return $this->telephone2;
+    }
+
+    public function setTelephone2(string $telephone2): static
+    {
+        $this->telephone2 = $telephone2;
 
         return $this;
     }
