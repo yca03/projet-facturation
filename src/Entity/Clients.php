@@ -33,31 +33,31 @@ class Clients
     #[ORM\OneToMany(targetEntity: Facture::class, mappedBy: 'IdClient')]
     private Collection $factures;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $typeSociete = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $numeroCompteContribuable = null;
 
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $remise = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $ville = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $siege = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $pays = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $siteInternet = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $regimeFiscal = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $Activite = null;
 
     #[ORM\ManyToOne(inversedBy: 'Clients')]
@@ -87,7 +87,7 @@ class Clients
     #[ORM\OneToMany(targetEntity: OffreCommerciale::class, mappedBy: 'clients')]
     private Collection $clientsOffre;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $NumeroClients = null;
 
     public function __construct()
