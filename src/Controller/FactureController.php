@@ -234,7 +234,7 @@ class FactureController extends AbstractController
                 ])
                 ->success('La facture a été validée avec succès.');
 
-            $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
+            $url = $urlGenerator->generate('app_facture_show_valider', ['id' => $facture->getId()]);
             return new RedirectResponse($url);
         }
         if ($facture->getStatut() !== Statut::EN_ATTENTE) {
