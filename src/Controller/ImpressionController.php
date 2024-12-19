@@ -30,6 +30,8 @@ class ImpressionController extends AbstractController
             'clientNom' => $facture->getIdClient()->getNom(),
             'clientadresse' => $facture->getIdClient()->getAdresse(),
             'numeroClients'=>$facture->getIdClient()->getNumeroClients(),
+            'adressePostale'=>$facture->getIdClient()->getAdressePostale(),
+            'telephone2'=>$facture->getIdClient()->getTelephone2(),
             'dateExpirationFacture'=>$facture->getDateExpiration(),
             'clientcontact'=>$facture->getIdClient()->getContact(),
             'codeFacture' => $facture->getCodeFacture(),

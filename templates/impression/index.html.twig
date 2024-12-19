@@ -92,8 +92,9 @@
             </div>
             <div style="border: 1px solid #000; padding: 10px;">
                 <strong>CLIENT :</strong> {{ facture.clientNom }}<br>
-                07 BP 152 ABIDJAN 07<br>
-                Tél. : {{ facture.clientcontact }}
+                {{ facture.adressePostale }}<br>
+                Tél. : {{ facture.clientcontact }} <br>
+                {{ facture.telephone2 }}
             </div>
         </div>
 
