@@ -19,7 +19,7 @@ $(document).ready(function() {
                                     const option = $('<option></option>')
                                         .val(ref.id)
                                         .text(ref.label)
-                                        .data('total', ref.totalTTC)
+                                        .data('total', ref.totalHT)
                                         .data('reste', ref.reste);
                                     selectElement.append(option);
                                 }
@@ -43,7 +43,7 @@ $(document).ready(function() {
                                         const option = $('<option></option>')
                                             .val(ref.id)
                                             .text(ref.label)
-                                            .data('total', ref.totalTTC)
+                                            .data('total', ref.totalHT)
                                             .data('reste', ref.reste);
                                         select.append(option);
                                     }

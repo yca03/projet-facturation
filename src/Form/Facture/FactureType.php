@@ -16,9 +16,18 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityManagerInterface;
 
 class FactureType extends AbstractType
 {
+
+    private $entityManager;
+
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -77,61 +86,86 @@ class FactureType extends AbstractType
             );
 
 
-        // Écouteur d'événement pour générer le code de facture automatiquement avant la soumission du formulaire
-$builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-    $data = $event->getData();
-    $form = $event->getForm();
-
-    // Vérifier si le champ codeFacture est vide
-    if (empty($data->getCodeFacture())) {
-        $prefixe = "2024/ "; // Préfixe souhaité
-        $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
-
-        // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
-        $codeFacture = $prefixe . substr($identifiantUnique, -strlen($prefixe));
-
-        $data->setCodeFacture($codeFacture); // Définir le code de facture généré
-    }
-
-    if (empty($data->getReference())) {
-        $prefixe = "REF-2024-"; // Préfixe souhaité pour la référence
-        $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
-
-        // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
-        $reference = $prefixe . substr($identifiantUnique, -6); // Par exemple, prendre les 6 derniers caractères de l'identifiant unique
-
-        $data->setReference($reference); // Définir la référence générée
-    }
-});
-$builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event)
-{
-    $data = $event->getData();
-    $form = $event->getForm();
-
-    // Vérifier si le champ codeFacture est vide
-    if (empty($data->getCodeFacture())) {
-        $prefixe = "2024/ "; // Préfixe souhaité
-        $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
-
-        // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
-        $codeFacture = $prefixe . substr($identifiantUnique, -strlen($prefixe));
-
-        $data->setCodeFacture($codeFacture); // Définir le code de facture généré
-    }
+        // Event Listener for PRE_SET_DATA (Before the form is displayed)
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $data = $event->getData();
+            $form = $event->getForm();
 
 
-    if (empty($data->getReference())) {
-        $prefixe = "REF-2024-"; // Préfixe souhaité pour la référence
-        $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
+            if (empty($data->getCodeFacture())) {
 
-        // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
-        $reference = $prefixe . substr($identifiantUnique, -6); // Par exemple, prendre les 6 derniers caractères de l'identifiant unique
+                $lastFacture = $this->entityManager->getRepository(Facture::class)
+                    ->createQueryBuilder('f')
+                    ->orderBy('f.codeFacture', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
 
-        $data->setReference($reference); // Définir la référence générée
-    }
-});
+                if ($lastFacture) {
+
+                    preg_match('/(\d+)$/', $lastFacture->getCodeFacture(), $matches);
+                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+
+                    $codeFacture = 'N° 2024 Z075 /00' . $nextNumber;
+                } else {
+                    $codeFacture = 'N° 2024 Z075 /0001';
+                }
+
+                $data->setCodeFacture($codeFacture);
+            }
+
+            // Vérifier et générer la référence si elle est vide
+            if (empty($data->getReference())) {
+                $prefixe = "REF-2024-";
+                $identifiantUnique = uniqid();
 
 
+                $reference = $prefixe . substr($identifiantUnique, -6);
+
+                $data->setReference($reference);
+            }
+        });
+
+        // Event Listener for SUBMIT (After the form is submitted)
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+            $form = $event->getForm();
+
+
+            if (empty($data->getCodeFacture())) {
+                // Récupérer la dernière facture insérée pour déterminer l'incrément
+                $lastFacture = $this->entityManager->getRepository(Facture::class)
+                    ->createQueryBuilder('f')
+                    ->orderBy('f.codeFacture', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+
+                if ($lastFacture) {
+
+                    preg_match('/(\d+)$/', $lastFacture->getCodeFacture(), $matches);
+                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+                    $nextNumber = str_pad($lastNumber + 1, 7, '0', STR_PAD_LEFT);
+
+                    $codeFacture = 'N° 2024 Z075 /00' . $nextNumber;
+                } else {
+                    $codeFacture = 'N° 2024 Z075 /0001';
+                }
+
+                $data->setCodeFacture($codeFacture);
+            }
+
+            // Vérifier et générer la référence si elle est vide après la soumission
+            if (empty($data->getReference())) {
+                $prefixe = "REF-2024-";
+                $identifiantUnique = uniqid();
+
+                $reference = $prefixe . substr($identifiantUnique, -6);
+
+                $data->setReference($reference);
+            }
+        });
     }
 
 

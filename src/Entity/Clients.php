@@ -87,6 +87,9 @@ class Clients
     #[ORM\OneToMany(targetEntity: OffreCommerciale::class, mappedBy: 'clients')]
     private Collection $clientsOffre;
 
+    #[ORM\Column(length: 255)]
+    private ?string $NumeroClients = null;
+
     public function __construct()
     {
         $this->factures = new ArrayCollection();
@@ -409,6 +412,18 @@ class Clients
                 $clientsOffre->setClients(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNumeroClients(): ?string
+    {
+        return $this->NumeroClients;
+    }
+
+    public function setNumeroClients(string $NumeroClients): static
+    {
+        $this->NumeroClients = $NumeroClients;
 
         return $this;
     }

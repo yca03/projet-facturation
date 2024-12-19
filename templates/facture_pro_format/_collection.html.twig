@@ -19,7 +19,10 @@
 {% block _facture_pro_format_detailFacture_entry_widget %}
 
 <tr id="block_{{ id }}" data-id="{{ id }}" class="data-row">
-
+    <td>
+        {{ form_widget(form.periode, {'attr': {"class": 'form-control', "data-id": id}}) }}
+        {{ form_errors(form.periode) }}
+    </td>
      <td>
         {{ form_widget(form.produit, {'attr': {"class": 'form-control produit-selector', "data-id": id}}) }}
         {{ form_errors(form.produit) }}

@@ -4,9 +4,11 @@ namespace App\Form;
 
 use App\Entity\Clients;
 use App\Entity\DetailFacture;
+use App\Entity\Facture;
 use App\Entity\FactureProFormat;
 use App\Entity\ModePayement;
 use App\Form\Facture\DetailFactureType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -18,6 +20,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FactureProFormatType extends AbstractType
 {
+    private $entityManager;
+
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -77,25 +86,34 @@ class FactureProFormatType extends AbstractType
             $data = $event->getData();
             $form = $event->getForm();
 
-            // Vérifier si le champ numeroFacturePro est vide
             if (empty($data->getNumeroFacturePro())) {
-                $prefixe = "2024/ "; // Préfixe souhaité
-                $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
+                $lastFacture = $this->entityManager->getRepository(FactureProFormat::class)
+                    ->createQueryBuilder('f')
+                    ->orderBy('f.numeroFacturePro', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
 
-                // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
-                $numeroFacturePro = $prefixe . substr($identifiantUnique, -strlen($prefixe));
+                if ($lastFacture) {
+                    preg_match('/(\d+)$/', $lastFacture->getNumeroFacturePro(), $matches);
+                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
 
-                $data->setNumeroFacturePro($numeroFacturePro); // Définir le code de facture généré
+                    $codeFacture = 'N° 2024 Z075 /00' . $nextNumber;
+                } else {
+                    $codeFacture = 'N° 2024 Z075 /0001';
+                }
+
+                $data->SetNumeroFacturePro($codeFacture);
             }
 
             if (empty($data->getReference())) {
-                $prefixe = "REF-2024-"; // Préfixe souhaité pour la référence
-                $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
+                $prefixe = "REF-2024-";
+                $identifiantUnique = uniqid();
 
-                // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
-                $reference = $prefixe . substr($identifiantUnique, -6); // Par exemple, prendre les 6 derniers caractères de l'identifiant unique
+                $reference = $prefixe . substr($identifiantUnique, -6);
 
-                $data->setReference($reference); // Définir la référence générée
+                $data->setReference($reference);
             }
         });
 
@@ -104,25 +122,37 @@ class FactureProFormatType extends AbstractType
             $data = $event->getData();
             $form = $event->getForm();
 
-            // Vérifier si le champ numeroFacturePro est vide
+
             if (empty($data->getNumeroFacturePro())) {
-                $prefixe = "2024/ "; // Préfixe souhaité
-                $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
 
-                // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
-                $numeroFacturePro = $prefixe . substr($identifiantUnique, -5);
+                $lastFacture = $this->entityManager->getRepository(FactureProFormat::class)
+                    ->createQueryBuilder('f')
+                    ->orderBy('f.numeroFacturePro', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
 
-                $data->setNumeroFacturePro($numeroFacturePro); // Définir le code de facture généré
+                if ($lastFacture) {
+
+                    preg_match('/(\d+)$/', $lastFacture->getNumeroFacturePro(), $matches);
+                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+
+                    $codeFacture = 'N° 2024 Z075 /00' . $nextNumber;
+                } else {
+                    $codeFacture = 'N° 2024 Z075 /0001'; // Première facture
+                }
+
+                $data->SetNumeroFacturePro($codeFacture);
             }
 
             if (empty($data->getReference())) {
-                $prefixe = "REF-2024-"; // Préfixe souhaité pour la référence
-                $identifiantUnique = uniqid(); // Identifiant unique généré par PHP
+                $prefixe = "REF-2024-";
+                $identifiantUnique = uniqid();
 
-                // Formatage de l'identifiant unique pour qu'il ait toujours la même longueur
-                $reference = $prefixe . substr($identifiantUnique, -5); // Par exemple, prendre les 5 derniers caractères de l'identifiant unique
+                $reference = $prefixe . substr($identifiantUnique, -5);
 
-                $data->setReference($reference); // Définir la référence générée
+                $data->setReference($reference);
             }
         });
     }

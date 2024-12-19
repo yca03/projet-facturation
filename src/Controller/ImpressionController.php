@@ -29,6 +29,7 @@ class ImpressionController extends AbstractController
             'idFacture' => $facture->getId(),
             'clientNom' => $facture->getIdClient()->getNom(),
             'clientadresse' => $facture->getIdClient()->getAdresse(),
+            'numeroClients'=>$facture->getIdClient()->getNumeroClients(),
             'dateExpirationFacture'=>$facture->getDateExpiration(),
             'clientcontact'=>$facture->getIdClient()->getContact(),
             'codeFacture' => $facture->getCodeFacture(),
@@ -49,6 +50,7 @@ class ImpressionController extends AbstractController
         foreach ($facture->getDetailFactures() as $detail) {
             $data['detailFactures'][] = [
                 'produit' => $detail->getProduit()->getLibelle(),
+                'periode' =>$detail->getPeriode(),
                 'quantite' => $detail->getQuantite(),
                 'prix' => $detail->getPrix(),
                 'montantTTC' => $detail->getMontantTTC(),

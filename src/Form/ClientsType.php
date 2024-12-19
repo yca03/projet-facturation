@@ -34,6 +34,7 @@ class ClientsType extends AbstractType
             ->add('siege')
             ->add('pays')
             ->add('siteInternet')
+            ->add('numeroClients')
             ->add('regimeFiscal', ChoiceType::class, [
                 'choices' => [
                     'Regime de l\'entreprenant (RE)'=>'RE',

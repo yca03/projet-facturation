@@ -229,7 +229,7 @@ class FactureProFormatController extends AbstractController
                     'position' => 'bottom-right',
                 ])
                 ->success('La facture pro-forma a été validée avec succès.');
-            $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $factureProFormat->getId()]);
+            $url = $urlGenerator->generate('app_facture_pro_format_index_valider', ['id' => $factureProFormat->getId()]);
             return new RedirectResponse($url);
         }
 
@@ -339,12 +339,15 @@ class FactureProFormatController extends AbstractController
             ->setIdClient($factureProForma->getClients())
             ->setModePayement($factureProForma->getModePayement())
             ->setDateExpiration($factureProForma->getDateEcheance())
+            ->setRemise($factureProForma->getRemise()  ?? '')
+            ->setDescription($factureProForma->getDescription())
             ->setStatut(Statut::BROUILLON);
 
         // Copier les détails de la facture pro forma vers la nouvelle facture
         $detailsFactureProForma = $factureProForma->getDetailFacture();
         foreach ($detailsFactureProForma as $detail) {
             $newDetail = (new DetailFacture())
+                ->setPeriode($detail->getPeriode())
                 ->setProduit($detail->getProduit())
                 ->setQuantite($detail->getQuantite())
                 ->setPrix($detail->getPrix())

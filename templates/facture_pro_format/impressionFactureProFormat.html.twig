@@ -211,9 +211,11 @@
                 </form>&nbsp;&nbsp;
             {% endif %}
 
+      {% if facture_pro_format.statut != 'brouillon' and facture_pro_format.statut != 'en attente'  %}
             <button class="btn btn-secondary print-button ">
             <i class="fa-solid fa-download"></i>&nbsp;<a class="text-black" href="{{ path('app_facture_pro_format_real_print',{'id':facture_pro_format.id}) }}">Imprimer</a>
         </button>
+     {% endif %}
         </div>
     </div>
 

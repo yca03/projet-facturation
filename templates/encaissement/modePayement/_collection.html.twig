@@ -23,11 +23,11 @@
             {{ form_errors(form.reference) }}
         </td>
         <td class="compte-banque" >
-            {{ form_widget(form.BanqueClient, {'attr': {"class": 'form-control separator', "data-id": id}}) }}
+            {{ form_widget(form.BanqueClient, {'attr': {"class": 'form-control select2 separator', "data-id": id}}) }}
             {{ form_errors(form.BanqueClient) }}
         </td>
         <td class="banque-client">
-            {{ form_widget(form.banque, {'attr': {"class": 'form-control separator', "data-id": id}}) }}
+            {{ form_widget(form.banque, {'attr': {"class": 'form-control select2 separator', "data-id": id}}) }}
             {{ form_errors(form.banque) }}
         </td>
         <td>

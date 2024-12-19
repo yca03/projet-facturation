@@ -28,6 +28,7 @@ class DetailProduit
     #[ORM\OneToMany(targetEntity: RelationDetailPSousDetailP::class, mappedBy: 'detailProduits')]
     private Collection $relationDetailPSousDetailPs;
 
+
     public function __construct()
     {
         $this->relationDetailPSousDetailPs = new ArrayCollection();
@@ -92,8 +93,8 @@ class DetailProduit
         return $this;
     }
 
-   public  function __toString()
-   {
-       return $this->libelle;
-   }
+    public function __toString()
+    {
+        return $this->libelle;
+    }
 }

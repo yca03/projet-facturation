@@ -88,7 +88,7 @@
         <div class="client-info">
             <div style="border: 1px solid #000; padding: 10px;">
                 <strong>Référence :</strong> {{ facture.reference }}<br>
-                <strong>N° client :</strong> 411103
+                <strong>N° client :</strong> {{ facture.numeroClients }}
             </div>
             <div style="border: 1px solid #000; padding: 10px;">
                 <strong>CLIENT :</strong> {{ facture.clientNom }}<br>
@@ -119,8 +119,13 @@
                 <tbody>
                 {% for detail in facture.detailFactures %}
                     <tr>
-                        <td>{{ detail.quantite }}</td>
-                        <td class="text-left">{{ detail.produit }}</td>
+                        <td>
+
+                            {{ detail.quantite }}
+                        </td>
+                        <td class="text-left">
+                            {{ detail.periode }} <br>
+                            {{ detail.produit }}</td>
                         <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
                         <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
                     </tr>
@@ -142,7 +147,7 @@
                 <tr>
                     <td colspan="3" class="text-right" ><strong>NET A PAYER  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Total TTC</strong></td>
                     <td class="text-right">
-                        {{ (facture.totalHT - (facture.remise * facture.totalHT / 100)) | number_format(0, '.', ' ') }}Fcfa</td>
+                        {{ (facture.totalHT - (facture.remise * facture.totalHT / 100)) | number_format(0, '.', ' ') }} Fcfa</td>
                 </tr>
 
                 </tfoot>

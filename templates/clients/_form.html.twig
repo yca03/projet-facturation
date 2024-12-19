@@ -13,24 +13,31 @@
 
     <div class="row">
 
-        <div class="col-4">
+        <div class="col-3">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Nom de la Société *</label>
                 {{ form_widget(form.nom, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Type de Société  *</label>
                 {{ form_widget(form.typeSociete, {'attr' : {'class': 'form-control select2'}}) }}
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
             <div class="form-group">
                 <label for="numero_fiche_besoin">Activité  *</label>
                 {{ form_widget(form.activite, {'attr' : {'class': 'form-control '}}) }}
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="form-group">
+                <label for="numero_fiche_besoin">N°client  *</label>
+                {{ form_widget(form.numeroClients, {'attr' : {'class': 'form-control '}}) }}
             </div>
         </div>
 

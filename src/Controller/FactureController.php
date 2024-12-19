@@ -245,7 +245,7 @@ class FactureController extends AbstractController
                 ])
                 ->warning('La facture doit être soumise avant la validation.');
 
-            $url = $urlGenerator->generate('app_facture_index_pending', ['id' => $facture->getId()]);
+            $url = $urlGenerator->generate('app_facture_show_valider', ['id' => $facture->getId()]);
             return new RedirectResponse($url);
         }
 
@@ -351,6 +351,8 @@ class FactureController extends AbstractController
     }
 
 
+    //pour l encaissement
+
     #[Route('/get/references', name: 'get_facture_references', methods: ['GET'])]
     public function getReferences(Request $request, FactureRepository $factureRepository): JsonResponse
     {
@@ -366,6 +368,7 @@ class FactureController extends AbstractController
             return [
                 'id' => $facture->getId(),
                 'label' => $facture->getReference(),
+                'totalHT'=>($facture->getTotalHT() - ($facture->getRemise() * $facture->getTotalHT()/ 100)),
                 'totalTTC' => $facture->getTotalTTC(),
                 'reste'=>$facture->getReste(),
             ];
