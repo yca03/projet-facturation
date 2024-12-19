@@ -50,7 +50,7 @@
     <div class="row">
 
 
-        <div class="col-4">
+        <div class="col-3">
             <div class="form-group">
                 <label for="objet">Ville  *</label>
                 {{ form_widget(form.ville, {'attr' : {'class': 'form-control'}}) }}
@@ -58,7 +58,7 @@
         </div>
 
 
-        <div class="col-4">
+        <div class="col-3">
             <div class="form-group">
                 <label for="date_etablissement">Siège *</label>
                 {{ form_widget(form.siege, {'attr' : {'class': 'form-control'}}) }}
@@ -66,10 +66,17 @@
         </div>
 
 
-        <div class="col-4">
+        <div class="col-3">
             <div class="form-group">
                 <label for="objet">pays *</label>
                 {{ form_widget(form.pays, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="form-group">
+                <label for="objet">Adresse Postale *</label>
+                {{ form_widget(form.adressePostale, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
@@ -82,26 +89,35 @@
 
     <div class="row">
 
-        <div class="col-4">
+        <div class="col-3">
             <div class="form-group">
-                <label for="objet">Téléphone *</label>
+                <label for="objet">Téléphone 1 *</label>
                 {{ form_widget(form.contact, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
+            <div class="form-group">
+                <label for="objet">Téléphone 2 *</label>
+                {{ form_widget(form.telephone2, {'attr' : {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-3">
             <div class="form-group">
                 <label for="objet">Email *</label>
                 {{ form_widget(form.adresse, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
             <div class="form-group">
                 <label for="objet">Site Internet *</label>
                 {{ form_widget(form.siteInternet, {'attr' : {'class': 'form-control'}}) }}
             </div>
         </div>
+
+
     </div>
 
 

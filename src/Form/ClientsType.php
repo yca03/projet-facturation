@@ -28,6 +28,8 @@ class ClientsType extends AbstractType
             ])
             ->add('nom')
             ->add('adresse')
+            ->add('adressePostale')
+            ->add('telephone2')
             ->add('contact')
             ->add('numeroCompteContribuable')
             ->add('ville')
