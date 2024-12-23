@@ -47,7 +47,7 @@ class DetailFacture
     #[ORM\ManyToOne(inversedBy: 'offreCommerciale')]
     private ?OffreCommerciale $offreCommerciale = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $periode = null;
 
     public function getId(): ?int
@@ -182,7 +182,7 @@ class DetailFacture
         return $this->periode;
     }
 
-    public function setPeriode(string $periode): static
+    public function setPeriode(?string $periode): static
     {
         $this->periode = $periode;
 
