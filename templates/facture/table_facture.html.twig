@@ -148,7 +148,7 @@
         {% for detail in facture.detailFactures %}
 
             <tr>
-                <td class="service text-center">{{ detail.produit }}</td>
+                <td class="service text-left">{{ detail.produit }}</td>
                 <td>{{detail.quantite}}</td>
                 <td>{{ detail.prix | number_format(0, '.', ' ') }} </td>
                 <td>{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
