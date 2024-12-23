@@ -129,6 +129,11 @@ class FactureController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($facture->getDetailFactures() as $detailFacture) {
+                $detailFacture->setFacture($facture);
+                $entityManager->persist($detailFacture);
+            }
             $entityManager->flush();
 
             flash()

@@ -104,6 +104,13 @@ class FactureProFormatController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($factureProFormat->getDetailFacture() as $detail)
+            {
+                $detail->setFactureProformat($factureProFormat);
+                $entityManager->persist($detail);
+            }
+
             $entityManager->flush();
 
             flash()
