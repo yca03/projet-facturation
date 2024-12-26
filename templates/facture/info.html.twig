@@ -14,7 +14,7 @@
                     <table class="table table-striped table-hover bordered table-sm basic-datatable">
                         <thead class="thead-light">
                         <tr>
-                            <th class="text-center">ID</th>
+{#                            <th class="text-center">ID</th>#}
                             <th class="text-center">Date </th>
                             <th class="text-center">Numéro Client</th>
 {#                            <th class="text-center">Type de Société</th>#}
@@ -36,7 +36,7 @@
                             {% if facture.idFacture not in displayed_ids %}
                                 {% set displayed_ids = displayed_ids|merge([facture.idFacture]) %}
                                 <tr>
-                                    <th class="text-center">{{ facture.idFacture }}</th>
+{#                                    <th class="text-center">{{ facture.idFacture }}</th>#}
                                     <td class="text-center">{{ facture.dateFacture|date("d/m/Y")}}</td>
                                     <td class="text-left">{{ facture.codeFacture }}</td>
                                     <td class="text-left">{{ facture.clientNom }}</td>
