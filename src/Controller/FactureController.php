@@ -168,7 +168,7 @@ class FactureController extends AbstractController
                 ->success('informations supprimées avec succès.');
         }
 
-        return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_facture_info', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/facture/all_info', name: 'app_facture_info', methods: ['GET'])]
