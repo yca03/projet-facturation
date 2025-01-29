@@ -212,6 +212,17 @@ class FactureProFormatController extends AbstractController
     }
 
 
+    #[Route('/{id}/real-print-pgp', name: 'app_facture_pro_format_real_print_pgp')]
+    public function realPrint_pgp(FactureProFormat $factureProFormat, DetailFactureRepository $detailFactureRepository): Response
+    {
+
+
+        return $this->render('facture_pro_format/real_print_pgp.html.twig', [
+            'facture_pro_format' => $factureProFormat,
+            'detail_factures' => $detailFactureRepository->findDetailFactureByFacture($factureProFormat)
+        ]);
+    }
+
 
 
 

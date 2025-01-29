@@ -1,0 +1,191 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Real print | {% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-size: 15px;
+        }
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header, .client-info, .facture-info, .table-container, .payment-info, .footer {
+            margin: 15px;
+        }
+        .payment-info
+        {
+            font-size: 12px;
+        }
+        .facture-info
+        {
+            text-align: center;
+            padding: 10px;
+        }
+        .header, .client-info {
+            display: flex;
+            justify-content: space-between;
+        }
+        .header h1, .header p {
+            margin: 0;
+        }
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-container table, .table-container th, .table-container td {
+            border: 1px solid #000;
+            font-size: 12px !important;
+        }
+        .table-container th, .table-container td {
+            padding: 8px;
+            text-align: center;
+        }
+        .table-container th {
+            background-color: #e3e2e2;
+        }
+        .footer {
+            text-align: right;
+        }
+        .footer .payment-details {
+            width: 40%;
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+        @media print {
+            .print-button, .back {
+                display: none !important;
+            }
+        }
+
+    </style>
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Header Section -->
+
+        <h5 class="text-center"> FACTURE PRO-FORMA : {{ facture_pro_format.numeroFacturePro }}</h5> <br><br>
+        <div class="header">
+            <div>
+                <strong>OFFSET CONSULTING</strong><br>
+                Abidjan Cocody<br>
+                Tél : (+225) 21 22 01 59 71<br>
+                Cel : (+225) 07 78 63 63 06<br>
+                contact@offset-consulting.com
+            </div>
+            <div>
+                Abidjan, le {{ facture_pro_format.date|date("d/m/Y") }}
+            </div>
+        </div>
+
+        <!-- Client Information Section -->
+        <div class="client-info">
+            <div style="border: 1px solid #000; padding: 10px;">
+                <strong>Référence :</strong> {{ facture_pro_format.reference }}<br>
+                <strong>N° client :</strong> {{ facture_pro_format.clients.numeroClients }}
+            </div>
+            <div style="border: 1px solid #000; padding: 10px;">
+                <strong>CLIENT :</strong> {{ facture_pro_format.clients.nom }}<br>
+                {{ facture_pro_format.clients.adressePostale }}<br>
+                Tél. : {{ facture_pro_format.clients.contact }} <br>
+                {{ facture_pro_format.clients.telephone2 }}
+            </div>
+        </div>
+
+        <!-- Facture Information Section -->
+        <div class="facture-info">
+            <strong>Objet :</strong> {{ facture_pro_format.description }}
+        </div>
+
+        <!-- Table Section -->
+        <!-- Table Section -->
+
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Qté</th>
+                    <th>Désignation</th>
+                    <th>Prix unitaire HT</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for detail in detail_factures %}
+                    <tr>
+                        <td>{{ detail.quantite }}</td>
+                        <td class="text-left">{{ detail.produit.libelle }}</td>
+                        <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
+                        <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot >
+                <tr>
+                    <td colspan="3" class="text-right"><strong>Total HT</strong></td>
+                    <td class="text-right">{{ facture_pro_format.totalHT | number_format(0, '.', ' ') }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right"><strong>T.V.A 18%</strong></td> <!-- Seulement cette cellule -->
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right"><strong><i>Remise {{ facture_pro_format.remise }} %</i></strong></td>
+                    <td class="text-right">
+                        {{ (facture_pro_format.totalHT- ( (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)))) | number_format(0, '.', ' ') }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" class="text-right" ><strong>NET A PAYER  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Total TTC</strong></td>
+                    <td class="text-right"> {{ (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) | number_format(0, '.', ' ') }}
+                    </td>
+                </tr>
+
+                </tfoot>
+
+            </table>
+        </div>
+
+        <!-- Payment Information Section -->
+        <div class="payment-info">
+            Arrêté la présente facture à la somme de :<br>
+            <strong>{{  (facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100))|format_number(style='spellout', locale='fr')}} Francs cfa</strong>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <div class="payment-details">
+                <strong><i>Modalités de paiement</i></strong><br>
+                <div>
+                    Paiement 1 : 30% soit <strong><i>{{  ((facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) * 0.30) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
+                    Paiement 2 : 30% soit <strong><i>{{   ((facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) * 0.30) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
+                    Paiement 3 : 20% soit <strong><i>{{  ((facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) * 0.20) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
+                    Paiement 4 : 20% soit <strong><i>{{  ((facture_pro_format.totalHT - (facture_pro_format.remise * facture_pro_format.totalHT / 100)) * 0.20) | number_format(0, '.', ' ') }} Fcfa</i></strong><br>
+
+                </div>
+            </div>
+            <div>
+                Le Gérant
+            </div>
+            <br><br><br>
+            <button class="btn btn-secondary print-button" onclick="window.print()">
+                <i class="fa-solid fa-download"></i>&nbsp;<a class="text-black" href="">Imprimer</a>
+            </button>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
