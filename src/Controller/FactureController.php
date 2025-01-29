@@ -71,11 +71,6 @@ class FactureController extends AbstractController
                 $detailFacture->setFacture($facture);
                 $entityManager->persist($detailFacture);
             }
-            // Parcourir les PGPs et les associer à la facture
-            foreach ($facture->getPGPs() as $pgp) {
-                $pgp->setFacture($facture);
-                $entityManager->persist($pgp);
-            }
 
             $entityManager->flush();
 
