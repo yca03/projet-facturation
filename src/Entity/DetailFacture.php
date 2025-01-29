@@ -50,6 +50,8 @@ class DetailFacture
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $periode = null;
 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,4 +190,5 @@ class DetailFacture
 
         return $this;
     }
+
 }

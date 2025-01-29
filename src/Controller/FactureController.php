@@ -67,10 +67,14 @@ class FactureController extends AbstractController
             // pour set la valeur en attente dans le champs status
             $facture->setStatut(Statut::BROUILLON);
 
-
             foreach ($facture->getDetailFactures() as $detailFacture) {
                 $detailFacture->setFacture($facture);
                 $entityManager->persist($detailFacture);
+            }
+            // Parcourir les PGPs et les associer à la facture
+            foreach ($facture->getPGPs() as $pgp) {
+                $pgp->setFacture($facture);
+                $entityManager->persist($pgp);
             }
 
             $entityManager->flush();
@@ -220,6 +224,8 @@ class FactureController extends AbstractController
 
     }
 
+    //Spciale PGP
+
 
 
 
@@ -327,6 +333,7 @@ class FactureController extends AbstractController
             'clientadresse' => $facture->getIdClient()->getAdresse(),
             'dateExpirationFacture'=>$facture->getDateExpiration(),
             'clientcontact'=>$facture->getIdClient()->getContact(),
+            'formatPgp'=>$facture->getIdClient()->isFormatPgp(),
             'codeFacture' => $facture->getCodeFacture(),
             'reference' => $facture->getReference(),
             'modePayement'=>$facture->getModePayement(),
@@ -356,7 +363,7 @@ class FactureController extends AbstractController
     }
 
 
-    //pour l encaissement
+    //pour l'encaissement
 
     #[Route('/get/references', name: 'get_facture_references', methods: ['GET'])]
     public function getReferences(Request $request, FactureRepository $factureRepository): JsonResponse
@@ -381,6 +388,9 @@ class FactureController extends AbstractController
 
         return new JsonResponse($data);
     }
+
+
+
 
 
 

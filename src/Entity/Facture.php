@@ -83,6 +83,10 @@ class Facture
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $remise = null;
 
+    /**
+     * @var Collection<int, PGP>
+     */
+
 
 
     public function __construct()
@@ -91,6 +95,7 @@ class Facture
         $this->factureProFormats = new ArrayCollection();
         $this->detatilEncaissements = new ArrayCollection();
         $this->notifies = new ArrayCollection();
+        $this->pGPs = new ArrayCollection();
     }
 
     /**
@@ -393,6 +398,12 @@ class Facture
         $this->remise = $remise;
 
         return $this;
+    }
+
+
+    public function __toString()
+    {
+        return $this->getIdClient()->getNom();
     }
 
 

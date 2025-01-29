@@ -33,5 +33,6 @@ const addTagFormDeleteLinkDetailFacture = () => {
     });
 };
 
+
 addFormToCollectionDetailFacture();
 addTagFormDeleteLinkDetailFacture();

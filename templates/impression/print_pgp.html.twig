@@ -1,0 +1,402 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Real print | {% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            font-size: 15px;
+        }
+
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header, .client-info, .facture-info, .table-container, .payment-info, .footer {
+            margin: 15px;
+        }
+
+        .payment-info {
+            font-size: 12px;
+        }
+
+        .facture-info {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .header, .client-info {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header h1, .header p {
+            margin: 0;
+        }
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-container table, .table-container th, .table-container td {
+            border: 1px solid #000;
+            font-size: 12px !important;
+        }
+
+        .table-container th, .table-container td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        .table-container th {
+            background-color: #e3e2e2;
+        }
+
+        .footer {
+            text-align: right;
+        }
+
+        .footer .payment-details {
+            width: 40%;
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+
+        @media print {
+            .print-button, .back {
+                display: none !important;
+            }
+        }
+
+    </style>
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Header Section -->
+
+        {#        <h5 class="text-center"> FACTURE : {{ facture.codeFacture }}</h5> <br><br> #}<br><br><br><br>
+        <div class="header">
+            <div>
+                <strong>OFFSET CONSULTING</strong><br>
+                Abidjan Cocody<br>
+                Tél : (+225) 21 22 01 59 71<br>
+                Cel : (+225) 07 78 63 63 06<br>
+                contact@offset-consulting.com
+            </div>
+            <div>
+                Abidjan, le {{ facture.dateFacture|date("d/m/Y") }}
+            </div>
+        </div>
+
+        <!-- Client Information Section -->
+        <div class="client-info">
+            <div style="border: 1px solid #000; padding: 10px;">
+                <strong>Référence :</strong> {{ facture.reference }}<br>
+                <strong>N° client :</strong> {{ facture.numeroClients }}
+            </div>
+            <div style="border: 1px solid #000; padding: 10px;">
+                <strong>CLIENT :</strong> {{ facture.clientNom }}<br>
+                {{ facture.adressePostale }}<br>
+                Tél. : {{ facture.clientcontact }} /
+                {{ facture.telephone2 }}
+            </div>
+        </div>
+
+        <!-- Facture Information Section -->
+        <div class="facture-info">
+            <strong>Objet :</strong> {{ facture.description }}
+        </div>
+
+        <!-- Table Section -->
+        <!-- Table Section -->
+
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Qté</th>
+                    <th>Désignation</th>
+                    <th>Prix unitaire HT</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% set total = 0 %}
+                {% set count = 0 %}
+                {% set is_first_group = true %}
+
+                <td colspan="4" class="text-center" style="font-weight: bold;font-size: 14px!important;"
+                    id="periods-display1">
+
+                </td>
+                {% for detail in facture.detailFactures %}
+
+                    <tr style="border: none">
+                        <td>{{ detail.quantite }}</td>
+                        <td class="text-left">
+{#                            {{ detail.periode }} <br>#}
+                            {{ detail.produit }}
+                        </td>
+                        <td class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
+                        <td class="text-right">{{ (detail.quantite * detail.prix) | number_format(0, '.', ' ') }}</td>
+                    </tr>
+
+                    {% set total = total + (detail.quantite * detail.prix) %}
+                    {% set count = count + 1 %}
+
+                    {# Si c'est le premier groupe de 3 lignes, on affiche le total après 3 lignes #}
+                    {% if is_first_group and count == 3 %}
+
+                        <tr>
+                            <td></td>
+                            <td colspan="2" class="text-center" style="font-weight: bold;font-size: 15px!important;">
+                                Total
+                            </td>
+                            <td class="text-right">{{ total | number_format(0, '.', ' ') }}</td>
+                        </tr>
+                        {% set total = 0 %}
+                        {% set count = 0 %}
+                        {% set is_first_group = false %}
+
+
+                        <td colspan="4" class="text-center" style="font-weight: bold;font-size: 14px!important;"
+                            id="periods-display2">
+
+                        </td>
+                        {# Si ce n'est pas le premier groupe et qu'on atteint 3 ou 4 lignes, on affiche le total #}
+                    {% elseif not is_first_group and (count == 3 and count == 4) %}
+                        <tr>
+                            <td></td>
+                            <td colspan="2" class="text-center" style="font-weight: bold;font-size: 15px!important;">
+                                Total
+                            </td>
+                            <td class="text-right">{{ total | number_format(0, '.', ' ') }}</td>
+                        </tr>
+                        {% set total = 0 %}
+                        {% set count = 0 %}
+                    {% endif %}
+
+                    {# Si c'est la dernière ligne et qu'il reste un groupe incomplet, on affiche son total #}
+                    {% if loop.index == facture.detailFactures|length and count > 0 %}
+                        <tr>
+                            <td></td>
+                            <td colspan="2" class="text-center" style="font-weight: bold;font-size: 15px!important;">
+                                Total
+                            </td>
+                            <td class="text-right">{{ total | number_format(0, '.', ' ') }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+
+
+                <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right"><strong>Total HT</strong></td>
+                    <td class="text-right">{{ facture.totalHT | number_format(0, '.', ' ') }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right"><strong>T.V.A 18%</strong></td> <!-- Seulement cette cellule -->
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right"><strong><i>Remise {{ facture.remise }} %</i></strong></td>
+                    <td colspan="3"
+                        class="text-right">  {{ (facture.totalHT - (facture.totalHT - (facture.remise * facture.totalHT / 100))) | number_format(0, '.', ' ') }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right" style="font-size: 15px!important;font-weight: bold"><strong>NET A
+                            PAYER &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Total TTC</strong></td>
+                    <td class="text-right">
+                        {{ (facture.totalHT - (facture.remise * facture.totalHT / 100)) | number_format(0, '.', ' ') }}
+                        Fcfa
+                    </td>
+                </tr>
+
+                </tfoot>
+
+            </table>
+        </div>
+
+        <!-- Payment Information Section -->
+        <div class="payment-info">
+            Arrêté la présente facture à la somme de :<br>
+            <strong>{{ (facture.totalHT - (facture.remise * facture.totalHT / 100)) | format_spellout_number(locale='fr') }}
+                Fcfa</strong>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <div>
+                Le Gérant
+            </div>
+            <br><br><br>
+            <button class="btn btn-secondary print-button" onclick="window.print()">
+                <i class="fa-solid fa-download"></i>&nbsp;<a class="text-black" href="">Imprimer</a>
+            </button>
+        </div>
+
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <!-- Modal -->
+    <div class="modal modal- fade has-shown" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="cancelModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 id="cancelModalLabel" class="modal-title">
+                        <i class="fa fa-exclamation-circle text-white mr-1"></i> Période facturation PGP
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div><!-- /.modal-header -->
+                <div class="modal-body">
+                    <form id="modal-form">
+                        <div class="mb-3"><br>
+                            <label for="period1_1" class="form-label">Première période</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <select name="period1" id="period1_1" class="form-select">
+                                        <option value="janvier">Janvier</option>
+                                        <option value="février">Février</option>
+                                        <option value="mars">Mars</option>
+                                        <option value="avril">Avril</option>
+                                        <option value="mai">Mai</option>
+                                        <option value="juin">Juin</option>
+                                        <option value="juillet">Juillet</option>
+                                        <option value="août">Août</option>
+                                        <option value="septembre">Septembre</option>
+                                        <option value="octobre">Octobre</option>
+                                        <option value="novembre">Novembre</option>
+                                        <option value="décembre">Décembre</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <select name="period1" id="period1_2" class="form-select">
+                                        <option value="janvier">Janvier</option>
+                                        <option value="février">Février</option>
+                                        <option value="mars">Mars</option>
+                                        <option value="avril">Avril</option>
+                                        <option value="mai">Mai</option>
+                                        <option value="juin">Juin</option>
+                                        <option value="juillet">Juillet</option>
+                                        <option value="août">Août</option>
+                                        <option value="septembre">Septembre</option>
+                                        <option value="octobre">Octobre</option>
+                                        <option value="novembre">Novembre</option>
+                                        <option value="décembre">Décembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if facture.detailFactures|length > 3 %}
+                            <!-- Affichage de la deuxième période si plus de 3 éléments dans la table -->
+                            <div class="mb-3">
+                                <label for="period2_1" class="form-label">Deuxième période</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <select name="period2" id="period2_1" class="form-select">
+                                            <option value="janvier">Janvier</option>
+                                            <option value="février">Février</option>
+                                            <option value="mars">Mars</option>
+                                            <option value="avril">Avril</option>
+                                            <option value="mai">Mai</option>
+                                            <option value="juin">Juin</option>
+                                            <option value="juillet">Juillet</option>
+                                            <option value="août">Août</option>
+                                            <option value="septembre">Septembre</option>
+                                            <option value="octobre">Octobre</option>
+                                            <option value="novembre">Novembre</option>
+                                            <option value="décembre">Décembre</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <select name="period2" id="period2_2" class="form-select">
+                                            <option value="janvier">Janvier</option>
+                                            <option value="février">Février</option>
+                                            <option value="mars">Mars</option>
+                                            <option value="avril">Avril</option>
+                                            <option value="mai">Mai</option>
+                                            <option value="juin">Juin</option>
+                                            <option value="juillet">Juillet</option>
+                                            <option value="août">Août</option>
+                                            <option value="septembre">Septembre</option>
+                                            <option value="octobre">Octobre</option>
+                                            <option value="novembre">Novembre</option>
+                                            <option value="décembre">Décembre</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal" data-dismiss="modal">Soumettre</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Affichez le modal automatiquement dès que la page se charge
+    window.onload = function () {
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        myModal.show();
+    };
+
+    // Soumettre le formulaire du modal (vous pouvez ajouter votre logique ici)
+    document.getElementById("modal-form").onsubmit = function (event) {
+        event.preventDefault();
+
+        // Récupérer les valeurs des sélecteurs
+        var period1 = document.getElementById("period1_1").value;
+        var period2 = document.getElementById("period1_2").value;
+
+        // Initialiser period3 et period4 à une valeur par défaut (vide) si les éléments ne sont pas présents
+        var period3 = '';
+        var period4 = '';
+
+        // Vérifier si les éléments de la deuxième période existent
+        if (document.getElementById("period2_1") && document.getElementById("period2_2")) {
+            period3 = document.getElementById("period2_1").value;
+            period4 = document.getElementById("period2_2").value;
+        }
+
+        // Créer le texte à afficher
+        var periodsText = '<strong>Période 1:</strong> ' + period1 + ' - ' + period2 + '<br>';
+        var periodsText2 = '';
+
+        // Si la deuxième période existe, ajouter son texte
+        if (period3 && period4) {
+            periodsText2 = '<strong>Période 2:</strong> ' + period3 + ' - ' + period4;
+        }
+
+        // Mettre à jour le contenu de la section pour afficher les périodes
+        document.getElementById("periods-display1").innerHTML = periodsText;
+        document.getElementById("periods-display2").innerHTML = periodsText2;
+
+        // Fermer le modal après soumission
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        myModal.hide();
+    };
+</script>
+{% endblock %}

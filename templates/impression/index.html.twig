@@ -93,7 +93,7 @@
             <div style="border: 1px solid #000; padding: 10px;">
                 <strong>CLIENT :</strong> {{ facture.clientNom }}<br>
                 {{ facture.adressePostale }}<br>
-                Tél. : {{ facture.clientcontact }} <br>
+                Tél. : {{ facture.clientcontact }} /
                 {{ facture.telephone2 }}
             </div>
         </div>
@@ -120,10 +120,7 @@
                 <tbody>
                 {% for detail in facture.detailFactures %}
                     <tr>
-                        <td>
-
-                            {{ detail.quantite }}
-                        </td>
+                        <td>{{ detail.quantite }}</td>
                         <td class="text-left">
                             {{ detail.periode }} <br>
                             {{ detail.produit }}</td>

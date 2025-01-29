@@ -7,7 +7,7 @@
         <div class="col-4">
             <div class="form-group">
                 <label for="date_etablissement">Date *</label>
-                {{ form_widget(form.date, {'attr' : {'class': 'form-control'}}) }}
+                {{ form_widget(form.date, {'attr' : {'class': 'form-control dateID'}}) }}
             </div>
         </div>
 
@@ -32,7 +32,7 @@
         <div class="col-4">
             <div class="form-group">
                 <label for="objet">Société *</label>
-                {{ form_widget(form.IdClient, {'attr' : {'class': 'form-control select2', 'onchange': 'updateRemise(this.value)'}}) }}
+                {{ form_widget(form.IdClient, {'attr' : {'class': 'form-control idclient select2', 'onchange': 'updateRemise(this.value)'}}) }}
             </div>
         </div>
 
@@ -99,7 +99,7 @@
             </tbody>
         </table>
     </div>
-</fieldset>  
+</fieldset>
 
 
 

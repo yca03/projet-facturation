@@ -6,6 +6,7 @@ use App\Entity\Clients;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -49,6 +50,13 @@ class ClientsType extends AbstractType
             ->add('activite')
             ->add('remise',TextType::class,[
                 'required'=>false,
+            ])
+            ->add('formatPgp', CheckboxType::class, [
+                'label_attr' => [
+                    'class' => 'switch-custom'
+                ],
+                'label' => 'format facture PGP ?',
+                'required' => false,
             ])
         ;
     }

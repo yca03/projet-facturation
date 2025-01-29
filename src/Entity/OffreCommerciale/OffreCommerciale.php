@@ -60,6 +60,9 @@ class OffreCommerciale
     #[ORM\OneToMany(targetEntity: DetailFacture::class, mappedBy: 'offreCommerciale')]
     private Collection $offreCommerciale;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $remise = null;
+
 
     public function __construct()
     {
@@ -236,6 +239,18 @@ class OffreCommerciale
                 $offreCommerciale->setOffreCommerciale(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRemise(): ?string
+    {
+        return $this->remise;
+    }
+
+    public function setRemise(?string $remise): static
+    {
+        $this->remise = $remise;
 
         return $this;
     }

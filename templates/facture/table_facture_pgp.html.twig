@@ -114,101 +114,96 @@
     </style>
 {% endblock %}
 {% block body %}
-<div class="invoice-container">
-    <div class="invoice-header">
-        <h1>FACTURE {{ facture.codeFacture }}</h1>
-    </div>
-    <table class="invoice-details">
-        <tr>
-            <th>Date d'émission</th>
-            <th>Référence</th>
-            <th>Client</th>
-            <th>Mode de règlement</th>
-        </tr>
-        <tr>
-            <td>{{ facture.dateFacture|date("d/m/Y") }}</td>
-            <td> {{ facture.reference }}</td>
-            <td>{{ facture.clientNom }}</td>
-            <td> {{ facture.modePayement }}</td>
-        </tr>
-    </table>
-    <table class="invoice-items">
-        <thead>
-        <tr>
-            <th>Produits</th>
-            <th>Quantités</th>
-            <th>Prix unitaire (Fcfa)</th>
-            <th>Montant HT</th>
-            <th>Montant TVA</th>
-            <th>Montant TTC</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% set totalTTC = 0 %}
-        {% for detail in facture.detailFactures %}
-
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1>FACTURE {{ facture.codeFacture }}</h1>
+        </div>
+        <table class="invoice-details">
             <tr>
-                <td class="service text-left">{{ detail.produit }}</td>
-                <td>{{detail.quantite}}</td>
-                <td>{{ detail.prix | number_format(0, '.', ' ') }} </td>
-                <td>{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
-                <td>{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
-                <td class="service1">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
+                <th>Date d'émission</th>
+                <th>Référence</th>
+                <th>Client</th>
+                <th>Mode de règlement</th>
             </tr>
-            {% set totalTTC = totalTTC + detail.montantTTC %}
-        {% endfor %}
-        <tr class="total-row">
-            <td colspan="5" class="no-border right-align">Net à payer :</td>
-            <td>{{ totalTTC | number_format(0, '.', ' ') }} F CFA</td>
-        </tr>
-    </table>
-    <div style="text-align: right;">
-        <p><em>Signature / date </em></p>
+            <tr>
+                <td>{{ facture.dateFacture|date("d/m/Y") }}</td>
+                <td> {{ facture.reference }}</td>
+                <td>{{ facture.clientNom }}</td>
+                <td> {{ facture.modePayement }}</td>
+            </tr>
+        </table>
+        <table class="invoice-items">
+            <thead>
+            <tr>
+                <th>Produits</th>
+                <th>Quantités</th>
+                <th>Prix unitaire (Fcfa)</th>
+                <th>Montant HT</th>
+                <th>Montant TVA</th>
+                <th>Montant TTC</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set totalTTC = 0 %}
+            {% for detail in facture.detailFactures %}
 
-        <br><br>
+                <tr>
+                    <td class="service text-left">{{ detail.produit }}</td>
+                    <td>{{detail.quantite}}</td>
+                    <td>{{ detail.prix | number_format(0, '.', ' ') }} </td>
+                    <td>{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
+                    <td>{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
+                    <td class="service1">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
+                </tr>
+                {% set totalTTC = totalTTC + detail.montantTTC %}
+            {% endfor %}
+            <tr class="total-row">
+                <td colspan="5" class="no-border right-align">Net à payer :</td>
+                <td>{{ totalTTC | number_format(0, '.', ' ') }} F CFA</td>
+            </tr>
+        </table>
+        <div style="text-align: right;">
+            <p><em>Signature / date </em></p>
+
+            <br><br>
 
 
 
-        <button class="btn btn-info print-button ">
-            <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_info') }}" style="color: white">retour</a>
-        </button>&nbsp;&nbsp;
+            <button class="btn btn-info print-button ">
+                <i class="fa-solid fa-back"></i> <a href="{{ path('app_facture_info') }}" style="color: white">retour</a>
+            </button>&nbsp;&nbsp;
 
-        {% if is_granted('ROLE_VALIDED_FACTURE')  and facture.statut != 'annulée'and facture.statut != 'validée'  %}
-        <form method="post" action="{{ path('app_facture_valider', {'id': facture.idFacture}) }}" id="validationForm" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
-            <input type="hidden" name="_token" value="{{ csrf_token('validée' ~ facture.idFacture) }}">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#validationModal">  valider </button>
-        </form>&nbsp;&nbsp;
-        {% endif %}
+            {% if is_granted('ROLE_VALIDED_FACTURE')  and facture.statut != 'annulée'and facture.statut != 'validée'  %}
+                <form method="post" action="{{ path('app_facture_valider', {'id': facture.idFacture}) }}" id="validationForm" onsubmit="return confirm('Voulez-vous vraiment validé');" style="display: inline;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('validée' ~ facture.idFacture) }}">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#validationModal">  valider </button>
+                </form>&nbsp;&nbsp;
+            {% endif %}
 
-        {% if is_granted('ROLE_FACTURE') and facture.statut != 'annulé'and facture.statut != 'validée' and facture.statut != 'en attente' %}
-            <form method="post" action="{{ path('app_facture_soumission', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment soumettre');" style="display: inline;">
-                <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture.idFacture) }}">
-                <button type="button" class="btn btn-warning text-dark print-button" data-bs-toggle="modal" data-bs-target="#soumissionModal">
-                    <i class="fa-solid fa-paper-plane"></i> &nbsp; soumettre
+            {% if is_granted('ROLE_FACTURE') and facture.statut != 'annulé'and facture.statut != 'validée' and facture.statut != 'en attente' %}
+                <form method="post" action="{{ path('app_facture_soumission', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment soumettre');" style="display: inline;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('soumission' ~ facture.idFacture) }}">
+                    <button type="button" class="btn btn-warning text-dark print-button" data-bs-toggle="modal" data-bs-target="#soumissionModal">
+                        <i class="fa-solid fa-paper-plane"></i> &nbsp; soumettre
+                    </button>
+                </form>&nbsp;&nbsp;
+            {% endif %}
+
+            {% if is_granted('ROLE_VALIDED_FACTURE')  and facture.statut != 'annulée' and facture.statut != 'validée' %}
+                <form method="post" action="{{ path('app_facture_annulation', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment annulé');" style="display: inline;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture.idFacture) }}">
+                    <button type="button" class="btn btn-danger text-dark print-button" data-bs-toggle="modal" data-bs-target="#annulationModal"> <i class="fa-solid fa-xmark"></i> &nbsp; annuler</button>
+                </form>&nbsp;&nbsp;
+
+            {% endif %}
+
+            {% if facture.statut != 'brouillon' and facture.statut != 'en attente'%}
+                <button class="btn btn-secondary print-button ">
+                    <i class="fa-solid fa-download"></i>&nbsp;<a class="text-black" href="{{ path('app_impression', {'id': facture.idFacture}) }}">Imprimer</a>
                 </button>
-            </form>&nbsp;&nbsp;
-        {% endif %}
-
-        {% if is_granted('ROLE_VALIDED_FACTURE')  and facture.statut != 'annulée' and facture.statut != 'validée' %}
-            <form method="post" action="{{ path('app_facture_annulation', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment annulé');" style="display: inline;">
-                <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture.idFacture) }}">
-                <button type="button" class="btn btn-danger text-dark print-button" data-bs-toggle="modal" data-bs-target="#annulationModal"> <i class="fa-solid fa-xmark"></i> &nbsp; annuler</button>
-            </form>&nbsp;&nbsp;
-
-        {% endif %}
-
-        {% if facture.statut != 'brouillon' and facture.statut != 'en attente' and facture.formatPgp == false %}
-            <button class="btn btn-secondary print-button ">
-                <i class="fa-solid fa-download"></i>&nbsp;<a class="text-black" href="{{ path('app_impression', {'id': facture.idFacture}) }}">Imprimer</a>
-            </button>
-
-        {% else %}
-            <button class="btn btn-secondary print-button">
-                <i class="fa-solid fa-download"></i>&nbsp;<a class="text-black" href="{{ path('app_print_pgp', {'id': facture.idFacture}) }}">Imprimer</a>
-            </button>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
-</div>
 
 
 

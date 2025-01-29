@@ -61,6 +61,7 @@ class OffreCommercialeType extends AbstractType
                 'class' => TypeProduit::class,
                 'placeholder'=>'Sélectionnez un Produit',
             ])
+            ->add('remise')
         ;
     }
 

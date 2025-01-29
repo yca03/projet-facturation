@@ -189,7 +189,7 @@
                             </ul>
                         </td>
                         <td class="text-center">{{ produits.quantite }}</td>
-                        <td class="text-right">{{ produits.prix | number_format(0, '.', ' ') }}</td>
+                        <td class="text-right">{{ (produits.prix - (offre_commerciale.remise * produits.prix / 100) )| number_format(0, '.', ' ') }}</td>
                     </tr>
                 {% endif %}
 

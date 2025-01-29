@@ -96,6 +96,9 @@ class Clients
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $telephone2 = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $formatPgp = null;
+
     public function __construct()
     {
         $this->factures = new ArrayCollection();
@@ -454,6 +457,18 @@ class Clients
     public function setTelephone2(?string $telephone2): static
     {
         $this->telephone2 = $telephone2;
+
+        return $this;
+    }
+
+    public function isFormatPgp(): ?bool
+    {
+        return $this->formatPgp;
+    }
+
+    public function setFormatPgp(?bool $formatPgp): static
+    {
+        $this->formatPgp = $formatPgp;
 
         return $this;
     }

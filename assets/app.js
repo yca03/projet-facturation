@@ -33,6 +33,7 @@ import './js/page/feature/facture/add-collection-detail-facture'
 import './js/page/feature/facture/add-collection-detail-facture-pro'
 import './js/page/feature/facture/add-collection-detailEncaissement'
 import './js/page/feature/facture/add-collection-detailEncaissement-modePayement'
+import './js/page/feature/facture/readOnly'
 
 import './js/page/feature/encaissement/encaissement'
 import './js/page/feature/encaissement/modePayement'
