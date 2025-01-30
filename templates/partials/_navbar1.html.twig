@@ -9,7 +9,7 @@
 			<span class="menu-icon fa fa-solid fa-home"></span>
 			<span class="menu-text">Accueil</span>
 		</a>
-	</li><br>
+	</li>
 {% endif %}
 
 {% if  is_granted('ROLE_SUPER_ADMIN') %}
@@ -28,7 +28,7 @@
 			</li>
 		</ul>
 		<!-- /child menu -->
-	</li><br>
+	</li>
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN')  or is_granted('ROLE_SUPER_ADMIN') %}
@@ -55,7 +55,7 @@
 			{% endif %}
 		</ul>
 		<!-- /child menu -->
-	</li><br>
+	</li>
 
 {% endif %}
 
@@ -75,7 +75,7 @@
 		</li>
 	</ul>
 	<!-- /child menu -->
-</li><br>
+</li>
 
 {% endif %}
 
@@ -205,26 +205,6 @@
 {% endif %}
 
 
-{% if is_granted('ROLE_CONSULTER') %}
-	<li class="menu-item has-child">
-		<a href="" class="menu-link">
-			<span class="menu-icon fa fa-solid fa-layer-group"></span>
-			<span class="menu-text">Etat</span>
-		</a>
-		<!-- child menu -->
-		<ul class="menu">
-			<li class="menu-item {{ app.request.get('_route') == 'depense_new' ? 'has-active': '' }}">
-				<a href="{{ path('app_list_etat') }}" class="menu-link">Facture</a>
-			</li>
-			<li class="menu-item {{ app.request.get('_route') == 'depense_index' ? 'has-active': '' }}">
-				<a href="{{ path('app_etat_facture_pro') }}" class="menu-link">Facture pro-forma</a>
-			</li>
-		</ul>
-		<!-- /child menu -->
-	</li><br>
-{% endif %}
-<br>
-
 {% if is_granted('ROLE_VALIDED_FACTURE') %}
 <li class="menu-item has-child">
 	<a href="#" class="menu-link">
@@ -241,7 +221,7 @@
 		</li>
 	</ul>
 	<!-- /child menu -->
-</li><br>
+</li>
 {% endif %}
 
 
@@ -282,6 +262,25 @@
 	</ul>
 	<!-- /child menu -->
 </li>
+{% endif %}
+
+{% if is_granted('ROLE_CONSULTER') %}
+	<li class="menu-item has-child">
+		<a href="" class="menu-link">
+			<span class="menu-icon fa fa-solid fa-layer-group"></span>
+			<span class="menu-text">Etat</span>
+		</a>
+		<!-- child menu -->
+		<ul class="menu">
+			<li class="menu-item {{ app.request.get('_route') == 'depense_new' ? 'has-active': '' }}">
+				<a href="{{ path('app_list_etat') }}" class="menu-link">Facture</a>
+			</li>
+			<li class="menu-item {{ app.request.get('_route') == 'depense_index' ? 'has-active': '' }}">
+				<a href="{{ path('app_etat_facture_pro') }}" class="menu-link">Facture pro-forma</a>
+			</li>
+		</ul>
+		<!-- /child menu -->
+	</li><br>
 {% endif %}
 
 

@@ -197,12 +197,13 @@
 
         {% endif %}
 
-        {% if facture.formatPgp == false %}
+        {% if facture.statut != 'brouillon' and facture.statut != 'en attente' and facture.formatPgp == false %}
             <button class="btn btn-secondary print-button ">
                 <i class="fa-solid fa-download"></i>&nbsp;<a class="text-black" href="{{ path('app_impression', {'id': facture.idFacture}) }}">Imprimer</a>
             </button>
+        {% endif %}
 
-        {% else %}
+        {% if facture.statut != 'brouillon' and facture.statut != 'en attente' and  facture.formatPgp == true%}
             <button class="btn btn-secondary print-button">
                 <i class="fa-solid fa-download"></i>&nbsp;<a class="text-black" href="{{ path('app_print_pgp', {'id': facture.idFacture}) }}">Imprimer</a>
             </button>

@@ -78,9 +78,9 @@
 
                                 <th class="text-center">{{ facture.idFacture }}</th>
                                 <td class="text-center">{{ facture.dateFacture|date("d/m/Y")}}</td>
-                                <td class="text-center">{{ facture.clientTypeSociete }}</td>
-                                <td class="text-center">{{ facture.reference }}</td>
-                                <td class="text-center">{{ facture.clientNom }}</td>
+                                <td class="text-left">{{ facture.clientTypeSociete }}</td>
+                                <td class="text-left">{{ facture.reference }}</td>
+                                <td class="text-left">{{ facture.clientNom }}</td>
 {#                                <td class="text-center">{{ facture.produit }}</td>#}
 {#                                <td class="text-center">{{ facture.quantite }}</td>#}
                                 <td class="text-right">{{ facture.prix | number_format(0, '.', ' ') }}</td>
