@@ -36,6 +36,7 @@ class FactureProFormatType extends AbstractType
                 'data' => new \DateTime(),
             ])
             ->add('periode')
+            ->add('periode_2')
             ->add('description')
             ->add('remise',ChoiceType::class,[
                 'choices'=> [

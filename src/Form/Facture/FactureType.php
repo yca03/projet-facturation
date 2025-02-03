@@ -95,6 +95,7 @@ class FactureType extends AbstractType
 //                'placeholder' => 'Période (en mois)',
 //            ])
         ->add('periode')
+            ->add('periode_2')
 
         ;
 

@@ -22,8 +22,8 @@
 {#                            <th class="text-center">Prix</th>#}
 {#                            <th class="text-center">Remise</th>#}
                             <th class="text-center">Montant HT</th>
-                            <th class="text-center">montant TVA</th>
-                            <th class="text-center">Montant TTC</th>
+{#                            <th class="text-center">montant TVA</th>#}
+{#                            <th class="text-center">Montant TTC</th>#}
                             <th class="text-center">Date d'expiration </th>
                             <th class="text-center">Contact</th>
                             <th class="text-center">Statut</th>
@@ -41,8 +41,8 @@
                                     <td class="text-left">{{ facture.codeFacture }}</td>
                                     <td class="text-left">{{ facture.clientNom }}</td>
                                     <td class="text-right">{{ facture.totalHT | number_format(0, '.', ' ') }}</td>
-                                    <td class="text-right">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>
-                                    <td class="text-right">{{ facture.totalTTC| number_format(0, '.', ' ') }}</td>
+{#                                    <td class="text-right">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>#}
+{#                                    <td class="text-right">{{ facture.totalTTC| number_format(0, '.', ' ') }}</td>#}
                                     <td class="text-center">{{ facture.dateExpirationFacture |date("d/m/y") }}</td>
                                     <td class="text-center">{{ facture.clientcontact }}</td>
                                     <td class="text-center">

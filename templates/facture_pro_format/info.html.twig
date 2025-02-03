@@ -18,8 +18,8 @@
                             <th class="text-center">Numéro Client</th>
                             <th class="text-center">Client</th>
                             <th class="text-center">Montant HT</th>
-                            <th class="text-center">Montant TVA</th>
-                            <th class="text-center">Montant TTC</th>
+{#                            <th class="text-center">Montant TVA</th>#}
+{#                            <th class="text-center">Montant TTC</th>#}
                             <th class="text-center">Date d'expiration</th>
                             <th class="text-center">Contact</th>
                             <th class="text-center">Statut</th>
@@ -34,8 +34,8 @@
                                 <td class="text-center">{{ facture_pro_format.numeroFacturePro }}</td>
                                 <td class="text-left">{{ facture_pro_format.clients.nom }}</td>
                                 <td class="text-right">{{ facture_pro_format.totalHT|number_format(0, '.', ' ') }}</td>
-                                <td class="text-right">{{ facture_pro_format.totalTVA|number_format(0, '.', ' ') }}</td>
-                                <td class="text-right">{{ facture_pro_format.totalTTC|number_format(0, '.', ' ') }}</td>
+{#                                <td class="text-right">{{ facture_pro_format.totalTVA|number_format(0, '.', ' ') }}</td>#}
+{#                                <td class="text-right">{{ facture_pro_format.totalTTC|number_format(0, '.', ' ') }}</td>#}
                                 <td class="text-center">{{ facture_pro_format.dateEcheance|date("d/m/Y") }}</td>
                                 <td class="text-center">{{ facture_pro_format.clients.contact }}</td>
                                 <td class="text-center align-middle">

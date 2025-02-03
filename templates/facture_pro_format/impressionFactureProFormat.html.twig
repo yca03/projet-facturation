@@ -146,8 +146,9 @@
             <th>Quantités</th>
             <th>Prix unitaire (Fcfa)</th>
             <th>Montant HT</th>
-            <th>Montant TVA</th>
-            <th>Montant TTC</th>
+{#            <th>Montant TVA</th>#}
+{#            <th>Montant TTC</th>#}
+           <th>Montant TTC</th>
         </tr>
         </thead>
         <tbody>
@@ -157,15 +158,16 @@
                 <td>{{ detail.quantite }}</td>
                 <td class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
                 <td class="text-right">{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
-                <td class="text-right">{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
-                <td class="text-right">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
+{#                <td class="text-right">{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>#}
+{#                <td class="text-right">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>#}
+               <td class="text-right">{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
             </tr>
         {% endfor %}
         <tr class="total-row">
-            <td class="text-right" colspan="3">TOTAL A PAYER (F CFA)</td>
+            <td class="text-right" colspan="2">TOTAL A PAYER (F CFA)</td>
             <td class="text-right">{{ facture_pro_format.totalHT | number_format(0, '.', ' ') }}</td>
-            <td class="text-right">{{ facture_pro_format.totalTVA | number_format(0, '.', ' ') }} </td>
-            <td class="text-right">{{ facture_pro_format.totalTTC | number_format(0, '.', ' ') }} </td>
+            <td class="text-right">{{ facture_pro_format.totalHT | number_format(0, '.', ' ') }} </td>
+            <td class="text-right">{{ facture_pro_format.totalHT | number_format(0, '.', ' ') }} </td>
         </tr>
         </tbody>
     </table>

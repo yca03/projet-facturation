@@ -139,7 +139,8 @@
             <th>Quantités</th>
             <th>Prix unitaire (Fcfa)</th>
             <th>Montant HT</th>
-            <th>Montant TVA</th>
+{#            <th>Montant TVA</th>#}
+{#            <th>Montant TTC</th>#}
             <th>Montant TTC</th>
         </tr>
         </thead>
@@ -152,13 +153,14 @@
                 <td>{{detail.quantite}}</td>
                 <td>{{ detail.prix | number_format(0, '.', ' ') }} </td>
                 <td>{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
-                <td>{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>
-                <td class="service1">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>
+{#                <td>{{ detail.montantTVA | number_format(0, '.', ' ') }}</td>#}
+{#                <td class="service1">{{ detail.montantTTC | number_format(0, '.', ' ') }}</td>#}
+                <td>{{ detail.montantHT | number_format(0, '.', ' ') }}</td>
             </tr>
-            {% set totalTTC = totalTTC + detail.montantTTC %}
+            {% set totalTTC = totalTTC + detail.montantHT %}
         {% endfor %}
         <tr class="total-row">
-            <td colspan="5" class="no-border right-align">Net à payer :</td>
+            <td colspan="4" class="no-border right-align">Net à payer :</td>
             <td>{{ totalTTC | number_format(0, '.', ' ') }} F CFA</td>
         </tr>
     </table>

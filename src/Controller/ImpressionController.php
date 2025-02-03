@@ -44,6 +44,7 @@ class ImpressionController extends AbstractController
             'description'=>$facture->getDescription(),
             'remise'=>$facture->getRemise(),
             'periode'=>$facture->getPeriode(),
+            'periode_2'=>$facture->getPeriode2(),
             'detailFactures' => [],
             'totalTTC' => $totalTTC,
            

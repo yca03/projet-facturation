@@ -122,8 +122,8 @@
                     <tr>
                         <td>{{ detail.quantite }}</td>
                         <td class="text-left">
-                            {{ facture.dateFacture ? facture.dateFacture|format_date('full', locale='fr') : '' }} -
-                            {{ facture.periode ? facture.periode|format_date('full', locale='fr') : '' }}
+                            {{ facture_pro_format.periode|date|format_datetime(locale='fr',pattern=" MMMM YYYY")  }} -
+                            {{ facture_pro_format.periode2|date|format_datetime(locale='fr',pattern=" MMMM YYYY") }}
                             <br>
                             {{ detail.produit.libelle }}
                         </td>

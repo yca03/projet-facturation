@@ -86,6 +86,9 @@ class Facture
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $periode = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $periode_2 = null;
+
     /**
      * @var Collection<int, PGP>
      */
@@ -417,6 +420,18 @@ class Facture
     public function setPeriode(?\DateTimeInterface $periode): static
     {
         $this->periode = $periode;
+
+        return $this;
+    }
+
+    public function getPeriode2(): ?\DateTimeInterface
+    {
+        return $this->periode_2;
+    }
+
+    public function setPeriode2(\DateTimeInterface $periode_2): static
+    {
+        $this->periode_2 = $periode_2;
 
         return $this;
     }
