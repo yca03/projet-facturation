@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Facture;
 use App\Repository\ClientsRepository;
 use App\Repository\FactureRepository;
 use App\Repository\ProduitRepository;
@@ -50,7 +51,7 @@ class HomeController extends AbstractController
             ->getQuery()
             ->getArrayResult();
 
-        // Liste des mois en français
+        // Liste des mois
         $moisFr = [
             1 => 'Janvier', 2 => 'Février', 3 => 'Mars', 4 => 'Avril',
             5 => 'Mai', 6 => 'Juin', 7 => 'Juillet', 8 => 'Août',
@@ -66,6 +67,8 @@ class HomeController extends AbstractController
             $formattedFacturesParMois[$monthName] = $facture['count'];
         }
 
+
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'nomUsers' => $nomUsers,
@@ -77,6 +80,8 @@ class HomeController extends AbstractController
             'montantTotalFactures' => $montantTotalFactures,
             'montantFacturesPartielleEtSoldee' => $montantFacturesPartielleEtSoldee,
             'nombreFacturesEncaissees'=>$nombreFacturesEncaissees,
+            'alertHome' => $factureRepository->findAll(),
         ]);
     }
+
 }

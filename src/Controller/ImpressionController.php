@@ -43,6 +43,7 @@ class ImpressionController extends AbstractController
             'totalTTC'=>$facture->getTotalTTC(),
             'description'=>$facture->getDescription(),
             'remise'=>$facture->getRemise(),
+            'periode'=>$facture->getPeriode(),
             'detailFactures' => [],
             'totalTTC' => $totalTTC,
            
@@ -52,7 +53,6 @@ class ImpressionController extends AbstractController
         foreach ($facture->getDetailFactures() as $detail) {
             $data['detailFactures'][] = [
                 'produit' => $detail->getProduit()->getLibelle(),
-                'periode' =>$detail->getPeriode(),
                 'quantite' => $detail->getQuantite(),
                 'prix' => $detail->getPrix(),
                 'montantTTC' => $detail->getMontantTTC(),
@@ -104,6 +104,7 @@ class ImpressionController extends AbstractController
             'totalTTC'=>$facture->getTotalTTC(),
             'description'=>$facture->getDescription(),
             'remise'=>$facture->getRemise(),
+            'periode'=>$facture->getPeriode(),
             'detailFactures' => [],
             'totalTTC' => $totalTTC,
 
@@ -113,7 +114,7 @@ class ImpressionController extends AbstractController
         foreach ($facture->getDetailFactures() as $detail) {
             $data['detailFactures'][] = [
                 'produit' => $detail->getProduit()->getLibelle(),
-                'periode' =>$detail->getPeriode(),
+//                'periode' =>$detail->getPeriode(),
                 'quantite' => $detail->getQuantite(),
                 'prix' => $detail->getPrix(),
                 'montantTTC' => $detail->getMontantTTC(),

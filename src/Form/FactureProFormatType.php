@@ -11,6 +11,7 @@ use App\Form\Facture\DetailFactureType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,8 +35,25 @@ class FactureProFormatType extends AbstractType
                 'widget' => 'single_text',
                 'data' => new \DateTime(),
             ])
+            ->add('periode')
             ->add('description')
-            ->add('remise')
+            ->add('remise',ChoiceType::class,[
+                'choices'=> [
+                    '5%' => 5,
+                    '10%' => 10,
+                    '15%' => 15,
+                    '20%' => 20,
+                    '25%' => 25,
+                    '30%' => 30,
+                    '35%' => 35,
+                    '40%' => 40,
+                    '45%' => 45,
+                    '50%'=> 50
+
+                ],
+                'placeholder'=> 'rémise sur la facture',
+                'required' => false,
+            ])
             ->add('reference')
             ->add('numeroFacturePro')
             ->add('dateEcheance', null, [

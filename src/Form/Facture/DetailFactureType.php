@@ -14,7 +14,6 @@ class DetailFactureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('periode')
             ->add('quantite')
             ->add('prix')
             ->add('montantTTC')

@@ -359,13 +359,13 @@ class FactureProFormatController extends AbstractController
             ->setDateExpiration($factureProForma->getDateEcheance())
             ->setRemise($factureProForma->getRemise()  ?? '')
             ->setDescription($factureProForma->getDescription())
+            ->setPeriode($factureProForma->getPeriode())
             ->setStatut(Statut::BROUILLON);
 
         // Copier les détails de la facture pro forma vers la nouvelle facture
         $detailsFactureProForma = $factureProForma->getDetailFacture();
         foreach ($detailsFactureProForma as $detail) {
             $newDetail = (new DetailFacture())
-                ->setPeriode($detail->getPeriode())
                 ->setProduit($detail->getProduit())
                 ->setQuantite($detail->getQuantite())
                 ->setPrix($detail->getPrix())

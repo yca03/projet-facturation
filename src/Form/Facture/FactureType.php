@@ -8,6 +8,7 @@ use App\Entity\Facture;
 use App\Entity\ModePayement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -38,7 +39,23 @@ class FactureType extends AbstractType
             ])
             ->add('codeFacture')
             ->add('description')
-            ->add('remise')
+            ->add('remise',ChoiceType::class,[
+                'choices'=> [
+                    '5%' => 5,
+                    '10%' => 10,
+                    '15%' => 15,
+                    '20%' => 20,
+                    '25%' => 25,
+                    '30%' => 30,
+                    '35%' => 35,
+                    '40%' => 40,
+                    '45%' => 45,
+                    '50%'=> 50
+
+                ],
+                'placeholder'=> 'rémise sur la facture',
+                'required' => false,
+            ])
             ->add('date', dateType::class, [
                 'widget' => 'single_text',
                 'data' => new \DateTime(),
@@ -59,7 +76,25 @@ class FactureType extends AbstractType
             ])
 //            ->add('reference',HiddenType::class,[])
             ->add('reference')
-            ->add('dateExpiration');
+            ->add('dateExpiration')
+//            ->add('periode', ChoiceType::class, [
+//                'choices' => [
+//                    '1 mois' => 1,
+//                    '2 mois' => 2,
+//                    '3 mois' => 3,
+//                    '4 mois' => 4,
+//                    '5 mois' => 5,
+//                    '6 mois' => 6,
+//                    '7 mois' => 7,
+//                    '8 mois' => 8,
+//                    '9 mois' => 9,
+//                    '10 mois' => 10,
+//                    '11 mois' => 11,
+//                    '12 mois' => 12,
+//                ],
+//                'placeholder' => 'Période (en mois)',
+//            ])
+        ->add('periode')
 
         ;
 

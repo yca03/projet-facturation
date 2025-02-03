@@ -52,22 +52,32 @@
 
     </div>
 
-
+    <legend>Offre Commerciale</legend>
 
 <div class="row">
-    <div class="col-6">
-        <div class="form-group">
-            <label for="objet">Remise *</label>
-            {{ form_widget(form.remise, {'attr' : {'class': 'form-control'}}) }}
-        </div>
-    </div>
 
-    <div class="col-6">
+    <div class="col-4">
         <div class="form-group">
             <label for="objet">objet *</label>
             {{ form_widget(form.description, {'attr' : {'class': 'form-control'}}) }}
         </div>
     </div>
+
+    <div class="col-4">
+        <div class="form-group">
+            <label for="objet">Période  </label>
+            {{ form_widget(form.periode, {'attr' : {'class': 'form-control '}}) }}
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group">
+            <label for="objet">Remise % </label>
+            {{ form_widget(form.remise, {'attr' : {'class': 'form-control select2'}}) }}
+        </div>
+    </div>
+
+
 </div>
 
 
@@ -82,7 +92,6 @@
         <table class="table table-sm bordered" id="table_detail_facture">
             <thead>
             <tr>
-                <th>Période</th>
                 <th>Service (s)</th>
                 <th>Quanité</th>
                 <th>prix (fcfa)</th>

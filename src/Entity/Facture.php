@@ -83,6 +83,9 @@ class Facture
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $remise = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $periode = null;
+
     /**
      * @var Collection<int, PGP>
      */
@@ -404,6 +407,18 @@ class Facture
     public function __toString()
     {
         return $this->getIdClient()->getNom();
+    }
+
+    public function getPeriode(): ?\DateTimeInterface
+    {
+        return $this->periode;
+    }
+
+    public function setPeriode(?\DateTimeInterface $periode): static
+    {
+        $this->periode = $periode;
+
+        return $this;
     }
 
 

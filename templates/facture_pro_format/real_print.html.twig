@@ -121,7 +121,11 @@
                 {% for detail in detail_factures %}
                 <tr>
                     <td>{{ detail.quantite }}</td>
-                    <td class="text-left">{{ detail.produit.libelle }}</td>
+                    <td class="text-left">
+                        {{ facture_pro_format.date ? facture_pro_format.date|format_date('full', locale='fr') : '' }} -
+                        {{ facture_pro_format.periode ? facture_pro_format.periode|format_date('full', locale='fr') : '' }} <br>
+                        {{ detail.produit.libelle }}
+                    </td>
                     <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
                     <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
                 </tr>

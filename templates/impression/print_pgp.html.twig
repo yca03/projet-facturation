@@ -142,7 +142,8 @@
                     <tr style="border: none">
                         <td>{{ detail.quantite }}</td>
                         <td class="text-left">
-{#                            {{ detail.periode }} <br>#}
+{#                            {{ facture.dateFacture ? facture.dateFacture|format_date('full', locale='fr') : '' }} -#}
+{#                            {{ facture.dateFacture ? facture.dateFacture|format_date('full', locale='fr') : '' }}#}
                             {{ detail.produit }}
                         </td>
                         <td class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>

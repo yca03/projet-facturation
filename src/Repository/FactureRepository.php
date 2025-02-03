@@ -73,6 +73,9 @@ class FactureRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+
+
+
     //end
 
 
@@ -119,6 +122,12 @@ class FactureRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-
+//
+//    public  function  alertHome()
+//    {
+//        return $this->createQueryBuilder('f')
+//            ->join('f.Idclients','fc')
+//            ->select('f.dateExpiration')
+//    }
 
 }

@@ -189,7 +189,7 @@
             </form>&nbsp;&nbsp;
         {% endif %}
 
-        {% if is_granted('ROLE_VALIDED_FACTURE')  and facture.statut != 'annulée' and facture.statut != 'validée' %}
+        {% if is_granted('ROLE_VALIDED_FACTURE')  and facture.statut != 'annulée'  %}
             <form method="post" action="{{ path('app_facture_annulation', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment annulé');" style="display: inline;">
                 <input type="hidden" name="_token" value="{{ csrf_token('annulation' ~ facture.idFacture) }}">
                 <button type="button" class="btn btn-danger text-dark print-button" data-bs-toggle="modal" data-bs-target="#annulationModal"> <i class="fa-solid fa-xmark"></i> &nbsp; annuler</button>

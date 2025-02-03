@@ -23,8 +23,8 @@
                         {% for banque_only in banque_onlies %}
                             <tr>
                                 <th class="text-center">{{ banque_only.id }}</th>
-                                <td class="text-center">{{ banque_only.nom}}</td>
-                                <td class="text-center">{{ banque_only.codeBanque }}</td>
+                                <td class="text-left">{{ banque_only.nom}}</td>
+                                <td class="text-left">{{ banque_only.codeBanque }}</td>
                                 <td class="text-center">
                                     <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_banque_only_edit', {'id': banque_only.id}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
 

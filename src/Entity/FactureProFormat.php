@@ -71,6 +71,9 @@ class FactureProFormat
     #[ORM\ManyToOne(inversedBy: 'factureProFormats')]
     private ?OffreCommerciale $offreCommerciale = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $periode = null;
+
 
 
 
@@ -314,6 +317,18 @@ class FactureProFormat
     public function setOffreCommerciale(?OffreCommerciale $offreCommerciale): static
     {
         $this->offreCommerciale = $offreCommerciale;
+
+        return $this;
+    }
+
+    public function getPeriode(): ?\DateTimeInterface
+    {
+        return $this->periode;
+    }
+
+    public function setPeriode(\DateTimeInterface $periode): static
+    {
+        $this->periode = $periode;
 
         return $this;
     }
