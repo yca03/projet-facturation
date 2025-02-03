@@ -159,7 +159,6 @@
 
 
   <!-- Modal -->
-
 {% for facture in alertHome %}
     {% set expirationDate = facture.dateExpiration|date('d/m/Y') %}
     {% set currentDate = "now"|date("d/m/Y") %}
@@ -168,7 +167,7 @@
     {% set diffDays = (expirationTimestamp - currentTimestamp) / 86400 %}
 
     {% if diffDays >= 0 and diffDays <= 10 %}
-        <div class="modal fade mx-6" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog"
+        <div class="modal fade mx-6" id="exampleModal{{ facture.id }}" data-backdrop="static" tabindex="-1" role="dialog"
              aria-labelledby="cancelModalLabel" aria-hidden="true">
             <div class="modal-dialog  modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -180,9 +179,9 @@
                     </div><!-- /.modal-header -->
                     <div class="modal-body">
                         <div class="mb-3" style="font-size: 20px"><br>
-                            <p>L'abonnement du client <strong style="color: red">{{ facture.IdClient.nom }} </strong> arrive à échéance dans  <strong style="color: red">{{ diffDays|round }} jour(s)  </strong>. Veuillez renouveler l'abonnement avant la date d'expiration..</p>
-                            <div class="row">
-                            </div>
+                            <p>L'abonnement du client <strong style="color: red">{{ facture.IdClient.nom }} </strong> arrive à échéance dans
+                               <strong style="color: red">{{ diffDays|round }} jour(s) </strong>. Veuillez renouveler l'abonnement avant la date d'expiration..
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -269,10 +268,24 @@
 
 <!-- Script pour afficher la modale au chargement de la page -->
 <script>
-    window.onload = function() {
-        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-        myModal.show();
-    };
+  document.addEventListener('DOMContentLoaded', function() {
+    {% for facture in alertHome %}
+        {% set expirationDate = facture.dateExpiration|date('d/m/Y') %}
+        {% set currentDate = "now"|date("d/m/Y") %}
+        {% set expirationTimestamp = facture.dateExpiration|date('U') %}
+        {% set currentTimestamp = "now"|date('U') %}
+        {% set diffDays = (expirationTimestamp - currentTimestamp) / 86400 %}
+
+        {% if diffDays >= 0 and diffDays <= 10 %}
+            var modalElement = document.getElementById('exampleModal{{ facture.id }}');
+            if (modalElement) {
+                var myModal = new bootstrap.Modal(modalElement);
+                myModal.show();
+            }
+        {% endif %}
+    {% endfor %}
+});
+
 </script>
 
 {% endblock %}
