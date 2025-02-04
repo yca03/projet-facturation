@@ -122,12 +122,15 @@
                     <tr>
                         <td>{{ detail.quantite }}</td>
                         <td class="text-left">
-                            {{ facture.periode|date|format_datetime(locale='fr',pattern=" MMMM YYYY")  }} -
-                            {{ facture.periode_2|date|format_datetime(locale='fr',pattern=" MMMM YYYY") }}
+                            {% if facture.periode == facture.periode_2 %}
+                                {{ facture.periode|date|format_datetime(locale='fr', pattern="MMMM YYYY") }}
+                            {% else %}
+                                {{ facture.periode|date|format_datetime(locale='fr', pattern="MMMM YYYY") }} -
+                                {{ facture.periode_2|date|format_datetime(locale='fr', pattern="MMMM YYYY") }}
+                            {% endif %}
                             <br>
                             {{ detail.produit }}
                         </td>
-
                         <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
                         <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
                     </tr>
