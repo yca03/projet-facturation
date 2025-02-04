@@ -83,10 +83,10 @@ class Facture
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $remise = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE,nullable: true)]
     private ?\DateTimeInterface $periode = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE,nullable: true)]
     private ?\DateTimeInterface $periode_2 = null;
 
     /**
