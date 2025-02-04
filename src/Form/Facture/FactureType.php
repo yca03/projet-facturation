@@ -56,12 +56,7 @@ class FactureType extends AbstractType
                 'placeholder'=> 'rémise sur la facture',
                 'required' => false,
             ])
-            ->add('date', dateType::class, [
-                'widget' => 'single_text',
-                'data' => new \DateTime(),
-                'html5' => false,
-                'format' => 'dd-MM-yyyy HH:mm',
-            ])
+            ->add('date')
             ->add('IdClient', EntityType::class, [
                 'class' => Clients::class,
                 'placeholder'=>'Sélectionnez un Client'

@@ -31,10 +31,7 @@ class FactureProFormatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date', dateType::class, [
-                'widget' => 'single_text',
-                'data' => new \DateTime(),
-            ])
+            ->add('date')
             ->add('periode')
             ->add('periode_2')
             ->add('description')
