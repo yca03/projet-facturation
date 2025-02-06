@@ -66,6 +66,8 @@ class Produit
     #[ORM\Column(length: 255)]
     private ?string $quantite = null;
 
+
+
     public function __construct()
     {
         $this->detailProduits = new ArrayCollection();
@@ -302,6 +304,7 @@ class Produit
 
         return $this;
     }
+
 
 
 }

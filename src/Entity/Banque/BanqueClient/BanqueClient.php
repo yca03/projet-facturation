@@ -33,8 +33,7 @@ class BanqueClient
     #[ORM\Column(length: 255)]
     private ?string $gestionnaire = null;
 
-    #[ORM\ManyToOne(inversedBy: 'banqueClients')]
-    private ?Clients $client = null;
+
 
     #[ORM\ManyToOne(inversedBy: 'banqueClients')]
     private ?BanqueOnly $banqueOnly = null;
@@ -127,17 +126,6 @@ class BanqueClient
         return $this;
     }
 
-    public function getClient(): ?Clients
-    {
-        return $this->client;
-    }
-
-    public function setClient(?Clients $client): static
-    {
-        $this->client = $client;
-
-        return $this;
-    }
 
     public function getBanqueOnly(): ?BanqueOnly
     {

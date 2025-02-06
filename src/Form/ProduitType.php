@@ -7,6 +7,7 @@ use App\Entity\TypeProduit;
 use App\Form\Facture\DetailFactureType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -39,7 +40,6 @@ class ProduitType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Sélectionnez une quantité pour l\'offre',
                 ]])
-
             ->add('detailProduits', CollectionType::class, [
             'entry_type' => DetailProduitType::class,
             'entry_options' => ['label' => false],

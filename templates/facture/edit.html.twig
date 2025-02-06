@@ -30,7 +30,7 @@
 
 {% block javascripts %}
 <script>
-    // Fonction pour mettre à jour la remise du client en fonctionne du id
+  //  Fonction pour mettre à jour la remise du client en fonctionne du id
     function updateRemise(clientId) {
         if (clientId) {
             fetch('/facture/pro/format/clients/' + clientId + '/remise')

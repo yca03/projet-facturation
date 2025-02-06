@@ -21,11 +21,6 @@ class BanqueClientType extends AbstractType
             ->add('codeAgent')
             ->add('numeroBic')
             ->add('gestionnaire')
-            ->add('client', EntityType::class, [
-                'class' => Clients::class,
-                'choice_label' => 'nom',
-                'placeholder'=>'selectionnez un client'
-            ])
             ->add('banqueOnly', EntityType::class, [
                 'class' => BanqueOnly::class,
                 'choice_label' => 'nom',

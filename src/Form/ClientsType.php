@@ -51,13 +51,17 @@ class ClientsType extends AbstractType
             ->add('remise',TextType::class,[
                 'required'=>false,
             ])
-            ->add('formatPgp', CheckboxType::class, [
-                'label_attr' => [
-                    'class' => 'switch-custom'
-                ],
-                'label' => 'format facture PGP ?',
-                'required' => false,
-            ])
+        ->add('formatPgp', CheckboxType::class, [
+            'label' => 'Activé ?',
+            'label_attr' => [
+                'class' => 'custom-control-label'
+            ],
+            'attr' => [
+                'class' => 'custom-control-input',
+                'id' => 'customSwitch1'
+            ],
+            'required' => false,
+        ])
         ;
     }
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Clients;
 use App\Entity\DetailFacture;
 use App\Entity\Facture;
+use App\Entity\TypeProduit;
 use App\Statut\Statut;
 use App\Form\Facture\FactureType;
 use App\Repository\ClientsRepository;
@@ -50,6 +51,30 @@ class FactureController extends AbstractController
     {
         return new JsonResponse(['remise' => $clients->getRemise()]);
     }
+
+    #[Route('/produit/type-produit/', name: 'app_type_produit', methods: ['GET'])]
+    public function getActiveTypes(EntityManagerInterface $em): JsonResponse
+    {
+        // Récupérer uniquement les types de produits actifs
+        $typesProduitActifs = $em->getRepository(TypeProduit::class)
+            ->findBy(['active' => true]);
+
+        $typesProduitData = [];
+        foreach ($typesProduitActifs as $typeProduit) {
+            $typesProduitData[] = [
+                'id' => $typeProduit->getId(),
+                'name' => $typeProduit->getLibelle(),
+                'active' => $typeProduit->isActive(),
+            ];
+        }
+
+        return new JsonResponse(['types_produits' => $typesProduitData]);
+    }
+
+
+
+
+
 
 
 

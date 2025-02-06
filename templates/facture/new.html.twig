@@ -135,6 +135,42 @@
 
     </script>
 
+{#    <script>#}
+{#        $(document).ready(function() {#}
+{#            // Écouteur d'événements pour le switch#}
+{#            $('#customSwitch1').on('change', function() {#}
+{#                if ($(this).is(':checked')) {#}
+{#                    // Si le switch est activé, récupère les produits associés aux types de produits actifs#}
+{#                    $.ajax({#}
+{#                        url: '/facture/produit/type-produit',#}
+{#                        method: 'GET',#}
+{#                        success: function(response) {#}
+{#                            console.log(response); // Afficher la réponse dans la console#}
+{#                            if (response.produits) {#}
+{#                                var select = $('.produit-selector'); // Sélection du champ de produit#}
+{#                                select.empty(); // Vider le champ#}
+
+{#                                // Ajouter les options récupérées#}
+{#                                response.produits.forEach(function(produit) {#}
+{#                                    select.append(new Option(produit.name, produit.id));#}
+{#                                });#}
+{#                            } else {#}
+{#                                console.log("Aucun produit trouvé ou la structure de la réponse est incorrecte");#}
+{#                            }#}
+{#                        },#}
+{#                        error: function() {#}
+{#                            alert('Erreur de récupération des produits');#}
+{#                        }#}
+{#                    });#}
+
+{#                } else {#}
+{#                    // Si le switch est désactivé, vide le champ produit ou remets une liste par défaut#}
+{#                    $('.produit-selector').empty();#}
+{#                }#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const factureId = $('#facture_IdClient');
@@ -153,6 +189,5 @@
     </script>
 
 {% endblock %}
-
 
 
