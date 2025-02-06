@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // Fonction pour mettre à jour les options des factures
     function updateFacturesOptions(clientId, selectElement) {
         if (clientId) {
             $.ajax({
@@ -8,7 +9,7 @@ $(document).ready(function() {
                     if (selectElement) {
                         selectElement.empty();
                         const placeholderOption = $('<option></option>')
-                            .val('')    
+                            .val('')
                             .text('Sélectionnez une facture')
                             .prop('disabled', true)
                             .prop('selected', true);
@@ -73,11 +74,13 @@ $(document).ready(function() {
         }
     }
 
+    // Gérer le changement de client
     $('#encaissement_clients').change(function () {
         const clientId = $(this).val();
         updateFacturesOptions(clientId);
     });
 
+    // Gérer le changement de facture
     $('body').on('change', '.encaissement_detatilEncaissements_0_facture', function () {
         const selectedOption = $(this).find('option:selected');
         const totalTTC = selectedOption.data('total');
@@ -92,11 +95,12 @@ $(document).ready(function() {
         updateSolde($(this).closest('tr'));
     });
 
+    // Calcul du solde
     $('body').on('input', '.montantVerse', function () {
-        // console.log('Changement détecté dans montantVerse:', $(this).val());
         updateSolde($(this).closest('tr'));
     });
 
+    // Fonction pour mettre à jour le solde
     function updateSolde(row) {
         const montantDu = parseFloat(row.find('.encaissement_detatilEncaissements_0_montantDu').val()) || 0;
         const montantVerse = parseFloat(row.find('.montantVerse').val()) || 0;
@@ -106,9 +110,9 @@ $(document).ready(function() {
         soldeField.val(solde.toFixed(0));
     }
 
+    // Mettre à jour le montant depuis l'encaissement
     function updateMontantFromEncaissement() {
         const montantVerseValue = parseFloat($('.montantVerse').val()) || 0;
-        // console.log('Valeur récupérée du montantVerse:', montantVerseValue);
 
         if (montantVerseValue) {
             const modePayementTable = $('#table_detail_ModePayement');
@@ -118,7 +122,6 @@ $(document).ready(function() {
                     const montantField = modePayementRow.find('[name$="[montant]"]');
                     if (montantField.length) {
                         montantField.val(montantVerseValue);
-                        // console.log('Valeur du montant mise à jour:', montantVerseValue);
                     } else {
                         console.log('Aucun champ montant trouvé dans la dernière ligne ajoutée');
                     }
@@ -128,11 +131,10 @@ $(document).ready(function() {
             } else {
                 console.log('Tableau ModePayement introuvable');
             }
-        } else {
-            // console.log('Valeur de montantVerse est vide ou non définie');
         }
     }
 
+    // Ajouter un détail d'encaissement
     $('#add-collection-detail-encaissement').click(function () {
         const clientId = $('#encaissement_clients').val();
         if (clientId) {
@@ -144,12 +146,8 @@ $(document).ready(function() {
         }
     });
 
+    // Gérer l'affichage dynamique des colonnes selon le mode de paiement
     const modePayementSelect = $('#encaissement_modePayement');
-
-    if (!modePayementSelect.length) {
-        return;
-    }
-
     const initialDisplay = {
         compteBanque: '',
         banqueClient: '',
@@ -179,7 +177,6 @@ $(document).ready(function() {
 
     function toggleFields() {
         const selectedValue = modePayementSelect.val();
-
         const table = document.getElementById('table_detail_ModePayement');
         if (!table) {
             return;
@@ -235,8 +232,39 @@ $(document).ready(function() {
     if (tableElement) {
         observer.observe(tableElement, { childList: true, subtree: true });
     }
-});
 
+    // Validation du formulaire à la soumission
+    $('#votreFormulaire').submit(function(event) {
+        event.preventDefault(); // Empêche la soumission par défaut
+
+        const clientId = $('#encaissement_clients').val();
+
+        // Vérification de la valeur de #encaissement_clients
+        console.log('Valeur de #encaissement_clients:', clientId);
+
+        // Vérification de la sélection du client
+        if (!clientId || clientId.trim() === '') {
+            alert("Veuillez sélectionner un client.");
+            return; // Empêcher la soumission si aucun client n'est sélectionné
+        }
+
+        const data = $(this).serialize(); // Sérialiser les données du formulaire
+
+        // Soumettre les données via AJAX
+        $.ajax({
+            url: '/votre-url-de-soumission',
+            type: 'POST',
+            data: data,
+            success: function(response) {
+                console.log('Formulaire soumis avec succès');
+                // Gérer la réponse ici, par exemple en réinitialisant certains champs ou en affichant un message de succès.
+            },
+            error: function(error) {
+                console.error('Erreur lors de la soumission du formulaire:', error);
+            }
+        });
+    });
+});
 
 
 // js encaissement seull
