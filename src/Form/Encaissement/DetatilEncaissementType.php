@@ -25,7 +25,7 @@ class DetatilEncaissementType extends AbstractType
                 'class' => Facture::class,
                 'choice_label' => 'reference',
                 'placeholder' => 'Sélectionnez une facture',
-                'required' => false,
+//                'required' => false,
             ]);
 
     }
