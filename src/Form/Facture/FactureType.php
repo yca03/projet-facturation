@@ -221,13 +221,13 @@ class FactureType extends AbstractType
                     $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
                     $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
                     // Générer le code facture avec l'année actuelle
-                    $reference = 'REF- ' . date('Y') . '2025' . $nextNumber;
+                    $reference = 'REF- ' . date('Y') . '-' . $nextNumber;
                 } else {
                     // Première facture de l'année
                     $reference = 'REF- ' . date('Y') . '00001';
                 }
 
-                $data->setCodeFacture($reference);
+                $data->setReference($reference);
             }
         });
     }

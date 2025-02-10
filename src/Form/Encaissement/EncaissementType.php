@@ -5,6 +5,7 @@ namespace App\Form\Encaissement;
 use App\Entity\Client;
 use App\Entity\Clients;
 use App\Entity\Encaissement\Encaissement;
+use App\Entity\Facture;
 use App\Entity\ModePayement;
 use App\Form\DetailModePayement\DetailModePayementType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,9 +16,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityManagerInterface;
 
 class EncaissementType extends AbstractType
 {
+    private $entityManager;
+
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -55,9 +64,27 @@ class EncaissementType extends AbstractType
             $form = $event->getForm();
 
             if (empty($data->getReference())) {
-                $prefixe = "REF-2024-";
-                $identifiantUnique = uniqid();
-                $reference = $prefixe . substr($identifiantUnique, -6);
+                $currentYear = date('Y'); // Année actuelle
+                // Récupérer la dernière référence pour l'année en cours
+                $lastReference =$this->entityManager->getRepository(Encaissement::class)
+                    ->createQueryBuilder('f')
+                    ->orderBy('f.reference', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+
+                if ($lastReference) {
+                    // Extraire le dernier numéro de facture et incrémenter
+                    preg_match('/(\d+)$/', $lastReference->getReference(), $matches);
+                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+                    // Générer le code facture avec l'année actuelle
+                    $reference = 'REF- ' . date('Y') . '2025' . $nextNumber;
+                } else {
+                    // Première facture de l'année
+                    $reference = 'REF- ' . date('Y') . '00001';
+                }
+
                 $data->setReference($reference);
             }
         });
@@ -66,9 +93,27 @@ class EncaissementType extends AbstractType
             $data = $event->getData();
             $form = $event->getForm();
             if (empty($data->getReference())) {
-                $prefixe = "REF-2024-";
-                $identifiantUnique = uniqid();
-                $reference = $prefixe . substr($identifiantUnique, -6);
+                $currentYear = date('Y'); // Année actuelle
+                // Récupérer la dernière référence pour l'année en cours
+                $lastReference =$this->entityManager->getRepository(Encaissement::class)
+                    ->createQueryBuilder('f')
+                    ->orderBy('f.reference', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+
+                if ($lastReference) {
+                    // Extraire le dernier numéro de facture et incrémenter
+                    preg_match('/(\d+)$/', $lastReference->getReference(), $matches);
+                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+                    // Générer le code facture avec l'année actuelle
+                    $reference = 'REF- ' . date('Y') . '-' . $nextNumber;
+                } else {
+                    // Première facture de l'année
+                    $reference = 'REF- ' . date('Y') . '00001';
+                }
+
                 $data->setReference($reference);
             }
         });
