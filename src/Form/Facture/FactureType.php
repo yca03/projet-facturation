@@ -152,25 +152,23 @@ class FactureType extends AbstractType
                 // Récupérer la dernière référence pour l'année en cours
                 $lastReference = $this->entityManager->getRepository(Facture::class)
                     ->createQueryBuilder('f')
-                    ->select('f.reference')
-                    ->where('f.reference LIKE :year')
-                    ->setParameter('year', $currentYear . '%')
-                    ->orderBy('f.reference', 'DESC')
+                    ->orderBy('f.codeFacture', 'DESC')
                     ->setMaxResults(1)
                     ->getQuery()
                     ->getOneOrNullResult();
 
                 if ($lastReference) {
-                    // Extraire le dernier numéro de référence et incrémenter
-                    preg_match('/(\d+)$/', $lastReference['reference'], $matches);
+                    // Extraire le dernier numéro de facture et incrémenter
+                    preg_match('/(\d+)$/', $lastReference->getReference(), $matches);
                     $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
                     $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
-                    // Générer la référence avec l'année actuelle
-                    $reference = 'REF-' . $currentYear . '-' . $nextNumber;
+                    // Générer le code facture avec l'année actuelle
+                    $reference = 'REF-' . date('Y') . '-' . $nextNumber;
                 } else {
-                    // Première référence de l'année
-                    $reference = 'REF-' . $currentYear . '-00001';
+                    // Première facture de l'année
+                    $reference = 'REF-' . date('Y') . '00001';
                 }
+
 
                 $data->setReference($reference);
             }
@@ -210,29 +208,26 @@ class FactureType extends AbstractType
             if (empty($data->getReference())) {
                 $currentYear = date('Y'); // Année actuelle
                 // Récupérer la dernière référence pour l'année en cours
-                $lastReference = $this->entityManager->getRepository(Facture::class)
+                $lastReference =$this->entityManager->getRepository(Facture::class)
                     ->createQueryBuilder('f')
-                    ->select('f.reference')
-                    ->where('f.reference LIKE :year')
-                    ->setParameter('year', $currentYear . '%')
-                    ->orderBy('f.reference', 'DESC')
+                    ->orderBy('f.codeFacture', 'DESC')
                     ->setMaxResults(1)
                     ->getQuery()
                     ->getOneOrNullResult();
 
                 if ($lastReference) {
-                    // Extraire le dernier numéro de référence et incrémenter
-                    preg_match('/(\d+)$/', $lastReference['reference'], $matches);
+                    // Extraire le dernier numéro de facture et incrémenter
+                    preg_match('/(\d+)$/', $lastReference->getReference(), $matches);
                     $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
                     $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
-                    // Générer la référence avec l'année actuelle
-                    $reference = 'REF-' . $currentYear . '-' . $nextNumber;
+                    // Générer le code facture avec l'année actuelle
+                    $reference = 'REF- ' . date('Y') . '2025' . $nextNumber;
                 } else {
-                    // Première référence de l'année
-                    $reference = 'REF-' . $currentYear . '-00001';
+                    // Première facture de l'année
+                    $reference = 'REF- ' . date('Y') . '00001';
                 }
 
-                $data->setReference($reference);
+                $data->setCodeFacture($reference);
             }
         });
     }
