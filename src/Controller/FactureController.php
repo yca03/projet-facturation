@@ -41,6 +41,14 @@ class FactureController extends AbstractController
         ]);
     }
 
+    #[Route('/facture/Soldee', name: 'app_facture_soldee', methods: ['GET'])]
+    public function soldee(FactureRepository $factureRepository): Response
+    {
+        return $this->render('facture/index_solde.html.twig', [
+            'factures' => $factureRepository->findFactureSoldee(),
+        ]);
+    }
+
 
 
 
@@ -219,6 +227,7 @@ class FactureController extends AbstractController
                     'clientTypeSociete' => $facture->getIdClient()->getTypeSociete(),
                     'dateExpirationFacture'=>$facture->getDateExpiration()->format('Y-m-d'),
                     'clientcontact' => $facture->getIdClient()->getContact(),
+                    'numeroClients' => $facture->getIdClient()->getNumeroClients(),
                     'clientnumeroCompteContribuable' => $facture->getIdClient()->getNumeroCompteContribuable(),
                     'statut'=>$facture->getStatut(),
                     'modePayement'=>$facture->getModePayement(),

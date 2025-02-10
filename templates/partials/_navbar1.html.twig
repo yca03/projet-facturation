@@ -155,6 +155,9 @@
                     <li class="menu-item {{ app.request.get('_route') == 'app_facture_show_valider' ? 'has-active' : '' }}">
                         <a href="{{ path('app_facture_show_valider') }}" class="menu-link">facture validée</a>
                     </li>
+					<li class="menu-item {{ app.request.get('_route') == 'app_facture_soldee' ? 'has-active' : '' }}">
+						<a href="{{ path('app_facture_soldee') }}" class="menu-link">facture Soldée</a>
+					</li>
                 {% endif %}
                 <li class="menu-item {{ app.request.get('_route') == 'app_facture_info' ? 'has-active' : '' }}">
                     <a href="{{ path('app_facture_info') }}" class="menu-link">Toute la liste</a>

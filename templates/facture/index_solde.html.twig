@@ -13,7 +13,7 @@
                     <table class="table table-striped table-hover bordered table-sm basic-datatable">
                         <thead class="thead-light">
                         <tr>
-                            <th class="text-center">ID</th>
+{#                            <th class="text-center">ID</th>#}
                             <th class="text-center">Date </th>
                             <th class="text-center">Numéro Client</th>
                             <th class="text-center">Client</th>
@@ -28,7 +28,7 @@
                         <tbody>
                         {% for facture in factures %}
                             <tr>
-                                <th class="text-center">{{ facture.id }}</th>
+{#                                <th class="text-center">{{ facture.id }}</th>#}
                                 <td class="text-center">{{ facture.date|date("d/m/Y")}}</td>
                                 <td class="text-center">{{ facture.codeFacture }}</td>
                                 <td class="text-left">{{ facture.IdClient.nom }}</td>
@@ -38,15 +38,9 @@
                                 <td class="text-center">{{ facture.dateExpiration |date("d/m/y") }}</td>
                                 <td class="text-center">{{ facture.IdClient.contact }}</td>
                                 <td class="text-center">
-                                    {% if facture.statut == 'brouillon' %}
-                                        <span class="badge badge-primary">{{ facture.statut }}</span>
-                                    {% elseif facture.statut == 'en attente' %}
-                                        <span class="badge badge-info">{{ facture.statut }}</span>
-                                    {% elseif facture.statut == 'validée' %}
-                                        <span class="badge badge-success">{{ facture.statut }}</span>
-                                    {% elseif facture.statut == 'annulée' %}
-                                        <span class="badge bg-danger">{{ facture.statut }}</span>
-                                    {% endif %}
+                                        {% if facture.statutPaye is defined %}
+                                            <span class="badge badge-info">{{ facture.statutPaye }}</span>
+                                        {% endif %}
                                 </td>
                             </tr>
 

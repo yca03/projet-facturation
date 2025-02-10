@@ -29,18 +29,19 @@ class FactureType extends AbstractType
     {
         $this->entityManager = $entityManager;
     }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('modePayement' , EntityType::class,
-            [
-                'class'=> ModePayement::class,
-                'placeholder'=>'Sélectionnez le Mode de payement'
-            ])
+            ->add('modePayement', EntityType::class,
+                [
+                    'class' => ModePayement::class,
+                    'placeholder' => 'Sélectionnez le Mode de payement'
+                ])
             ->add('codeFacture')
             ->add('description')
-            ->add('remise',ChoiceType::class,[
-                'choices'=> [
+            ->add('remise', ChoiceType::class, [
+                'choices' => [
                     '5%' => 5,
                     '10%' => 10,
                     '15%' => 15,
@@ -50,24 +51,24 @@ class FactureType extends AbstractType
                     '35%' => 35,
                     '40%' => 40,
                     '45%' => 45,
-                    '50%'=> 50
+                    '50%' => 50
 
                 ],
-                'placeholder'=> 'rémise sur la facture',
+                'placeholder' => 'rémise sur la facture',
                 'required' => false,
             ])
             ->add('date')
             ->add('IdClient', EntityType::class, [
                 'class' => Clients::class,
-                'placeholder'=>'Sélectionnez un Client'
+                'placeholder' => 'Sélectionnez un Client'
             ])
 //            ->add('libelle', TextType::class)
             ->add('detailFactures', CollectionType::class, [
                 'entry_type' => DetailFactureType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
-                'allow_delete'=>true,
-                'prototype'=>true
+                'allow_delete' => true,
+                'prototype' => true
             ])
 //            ->add('reference',HiddenType::class,[])
             ->add('reference')
@@ -89,10 +90,8 @@ class FactureType extends AbstractType
 //                ],
 //                'placeholder' => 'Période (en mois)',
 //            ])
-        ->add('periode')
-            ->add('periode_2')
-
-        ;
+            ->add('periode')
+            ->add('periode_2');
 
         $builder
             ->addEventListener(
@@ -122,48 +121,7 @@ class FactureType extends AbstractType
             $data = $event->getData();
             $form = $event->getForm();
 
-
-            if (empty($data->getCodeFacture())) {
-
-                $lastFacture = $this->entityManager->getRepository(Facture::class)
-                    ->createQueryBuilder('f')
-                    ->orderBy('f.codeFacture', 'DESC')
-                    ->setMaxResults(1)
-                    ->getQuery()
-                    ->getOneOrNullResult();
-
-                if ($lastFacture) {
-
-                    preg_match('/(\d+)$/', $lastFacture->getCodeFacture(), $matches);
-                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
-                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
-
-                    $codeFacture = 'N° 2024 Z075 /00' . $nextNumber;
-                } else {
-                    $codeFacture = 'N° 2024 Z075 /0001';
-                }
-
-                $data->setCodeFacture($codeFacture);
-            }
-
-            // Vérifier et générer la référence si elle est vide
-            if (empty($data->getReference())) {
-                $prefixe = "REF-2024-";
-                $identifiantUnique = uniqid();
-
-
-                $reference = $prefixe . substr($identifiantUnique, -6);
-
-                $data->setReference($reference);
-            }
-        });
-
-        // Event Listener for SUBMIT (After the form is submitted)
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            $data = $event->getData();
-            $form = $event->getForm();
-
-
+            // Vérifier et générer le codeFacture s'il est vide
             if (empty($data->getCodeFacture())) {
                 // Récupérer la dernière facture insérée pour déterminer l'incrément
                 $lastFacture = $this->entityManager->getRepository(Facture::class)
@@ -174,14 +132,75 @@ class FactureType extends AbstractType
                     ->getOneOrNullResult();
 
                 if ($lastFacture) {
-
+                    // Extraire le dernier numéro de facture et incrémenter
                     preg_match('/(\d+)$/', $lastFacture->getCodeFacture(), $matches);
                     $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
-                    $nextNumber = str_pad($lastNumber + 1, 7, '0', STR_PAD_LEFT);
-
-                    $codeFacture = 'N° 2024 Z075 /00' . $nextNumber;
+                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+                    // Générer le code facture avec l'année actuelle
+                    $codeFacture = 'N° ' . date('Y') . ' Z075 /00' . $nextNumber;
                 } else {
-                    $codeFacture = 'N° 2024 Z075 /0001';
+                    // Première facture de l'année
+                    $codeFacture = 'N° ' . date('Y') . ' Z075 /0001';
+                }
+
+                $data->setCodeFacture($codeFacture);
+            }
+
+            // Vérifier et générer la référence si elle est vide
+            if (empty($data->getReference())) {
+                $currentYear = date('Y'); // Année actuelle
+                // Récupérer la dernière référence pour l'année en cours
+                $lastReference = $this->entityManager->getRepository(Facture::class)
+                    ->createQueryBuilder('f')
+                    ->select('f.reference')
+                    ->where('f.reference LIKE :year')
+                    ->setParameter('year', $currentYear . '%')
+                    ->orderBy('f.reference', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+
+                if ($lastReference) {
+                    // Extraire le dernier numéro de référence et incrémenter
+                    preg_match('/(\d+)$/', $lastReference['reference'], $matches);
+                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+                    // Générer la référence avec l'année actuelle
+                    $reference = 'REF-' . $currentYear . '-' . $nextNumber;
+                } else {
+                    // Première référence de l'année
+                    $reference = 'REF-' . $currentYear . '-00001';
+                }
+
+                $data->setReference($reference);
+            }
+        });
+
+// Event Listener for SUBMIT (After the form is submitted)
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+            $form = $event->getForm();
+
+            // Vérifier et générer le codeFacture s'il est vide
+            if (empty($data->getCodeFacture())) {
+                // Récupérer la dernière facture insérée pour déterminer l'incrément
+                $lastFacture = $this->entityManager->getRepository(Facture::class)
+                    ->createQueryBuilder('f')
+                    ->orderBy('f.codeFacture', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+
+                if ($lastFacture) {
+                    // Extraire le dernier numéro de facture et incrémenter
+                    preg_match('/(\d+)$/', $lastFacture->getCodeFacture(), $matches);
+                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+                    // Générer le code facture avec l'année actuelle
+                    $codeFacture = 'N° ' . date('Y') . ' Z075 /00' . $nextNumber;
+                } else {
+                    // Première facture de l'année
+                    $codeFacture = 'N° ' . date('Y') . ' Z075 /0001';
                 }
 
                 $data->setCodeFacture($codeFacture);
@@ -189,10 +208,29 @@ class FactureType extends AbstractType
 
             // Vérifier et générer la référence si elle est vide après la soumission
             if (empty($data->getReference())) {
-                $prefixe = "REF-2024-";
-                $identifiantUnique = uniqid();
+                $currentYear = date('Y'); // Année actuelle
+                // Récupérer la dernière référence pour l'année en cours
+                $lastReference = $this->entityManager->getRepository(Facture::class)
+                    ->createQueryBuilder('f')
+                    ->select('f.reference')
+                    ->where('f.reference LIKE :year')
+                    ->setParameter('year', $currentYear . '%')
+                    ->orderBy('f.reference', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
 
-                $reference = $prefixe . substr($identifiantUnique, -6);
+                if ($lastReference) {
+                    // Extraire le dernier numéro de référence et incrémenter
+                    preg_match('/(\d+)$/', $lastReference['reference'], $matches);
+                    $lastNumber = isset($matches[1]) ? (int)$matches[1] : 0;
+                    $nextNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+                    // Générer la référence avec l'année actuelle
+                    $reference = 'REF-' . $currentYear . '-' . $nextNumber;
+                } else {
+                    // Première référence de l'année
+                    $reference = 'REF-' . $currentYear . '-00001';
+                }
 
                 $data->setReference($reference);
             }
@@ -200,10 +238,11 @@ class FactureType extends AbstractType
     }
 
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Facture::class,
-        ]);
+        public
+        function configureOptions(OptionsResolver $resolver): void
+        {
+            $resolver->setDefaults([
+                'data_class' => Facture::class,
+            ]);
+        }
     }
-}

@@ -16,7 +16,8 @@
                         <tr>
 {#                            <th class="text-center">ID</th>#}
                             <th class="text-center">Date </th>
-                            <th class="text-center">Numéro Client</th>
+                            <th class="text-center">Numéro Facture</th>
+                            <th class="text-center">Compte Client</th>
 {#                            <th class="text-center">Type de Société</th>#}
                             <th class="text-center">Client</th>
 {#                            <th class="text-center">Prix</th>#}
@@ -39,6 +40,7 @@
 {#                                    <th class="text-center">{{ facture.idFacture }}</th>#}
                                     <td class="text-center">{{ facture.dateFacture|date("d/m/Y")}}</td>
                                     <td class="text-left">{{ facture.codeFacture }}</td>
+                                    <td class="text-left">{{ facture.numeroClients }}</td>
                                     <td class="text-left">{{ facture.clientNom }}</td>
                                     <td class="text-right">{{ facture.totalHT | number_format(0, '.', ' ') }}</td>
 {#                                    <td class="text-right">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>#}
@@ -52,32 +54,52 @@
                                             <span class="badge badge-info">{{ facture.statut }}</span>
                                         {% elseif facture.statut == 'validée' %}
                                             <span class="badge badge-success">{{ facture.statut }}</span>
-                                            {% if facture.statutPaye is defined %}
-                                                 <span class="badge badge-info">{{ facture.statutPaye }}</span>
-                                            {% endif %}
+{#                                            {% if facture.statutPaye is defined %}#}
+{#                                                 <span class="badge badge-info">{{ facture.statutPaye }}</span>#}
+{#                                            {% endif %}#}
                                         {% elseif facture.statut == 'annulée' %}
                                             <span class="badge badge-warning">{{ facture.statut }}</span>
                                         {% endif %}
                                     </td>
 
+{#                                    <td class="text-center">#}
+{#                                        {% if facture.statut != 'annulée' %}#}
+{#                                            {% if facture.statut != 'en attente' and facture.statut != 'validée'%}#}
+{#                                                <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_edit', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>#}
+{#                                            {% endif %}#}
+{#                                            <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_table_facture', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>#}
+{#                                        {% else %}#}
+{#                                            <!-- Facture annulée : l'icône est affichée, mais le lien est désactivé -->#}
+{#                                            <button class="btn btn-sm btn-icon btn-secondary" disabled><i class="fa-solid fa-eye"></i></button>#}
+{#                                        {% endif %}#}
+{#                                        {% if facture.statut != 'validée'%}#}
+{#                                            <form class="btn btn-sm btn-icon btn-secondary" method="post" action="{{ path('app_facture_delete', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">#}
+{#                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture.idFacture) }}">#}
+{#                                                <button type="submit" style="border:none; background:none"><i class="fa-solid fa-trash"></i></button>#}
+{#                                            </form>#}
+{#                                        {% endif %}#}
+{#                                    </td>#}
+
                                     <td class="text-center">
                                         {% if facture.statut != 'annulée' %}
-                                             {% if facture.statut != 'en attente' and facture.statut != 'validée'%}
-                                                <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_edit', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
-                                             {% endif %}
-                                            <a  class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_table_facture', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
-
-                                        {% endif %}
-                                        {% if facture.statut != 'validée'%}
-                                        <form  class="btn btn-sm btn-icon btn-secondary" method="post" action="{{ path('app_facture_delete', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
-                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture.idFacture) }}">
-                                            <button type="submit" style="border:none; background:none"> <i class="fa-solid fa-trash"></i></button>
-                                        </form>
-
+                                            {% if facture.statut != 'en attente' and facture.statut != 'validée'%}
+                                                <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_facture_edit', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-pen"></i></a>
+                                            {% endif %}
+                                            <a class="btn btn-sm btn-icon btn-secondary" href="{{ path('app_table_facture', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-eye"></i></a>
+                                        {% else %}
+                                            <!-- Facture annulée : l'icône est affichée, mais le lien est désactivé -->
+                                            <button class="btn btn-sm btn-icon btn-secondary" disabled><i class="fa-solid fa-eye"></i></button>
                                         {% endif %}
 
-
+                                        {% if facture.statut != 'validée' and facture.statut != 'annulée' %}
+                                            <form class="btn btn-sm btn-icon btn-secondary" method="post" action="{{ path('app_facture_delete', {'id': facture.idFacture}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer?');" style="display: inline;">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ facture.idFacture) }}">
+                                                <button type="submit" style="border:none; background:none"><i class="fa-solid fa-trash"></i></button>
+                                            </form>
+                                        {% endif %}
                                     </td>
+
+
                                 </tr>
                             {% endif %}
                         {% endfor %}

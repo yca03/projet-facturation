@@ -43,13 +43,27 @@ class HomeController extends AbstractController
             ->getQuery()
             ->getSingleScalarResult();
 
-        // Récupérer les factures par mois
+//        // Récupérer les factures par mois
+//        $facturesParMois = $factureRepository->createQueryBuilder('f')
+//            ->select('MONTH(f.date) as month, COUNT(f.id) as count')
+//            ->groupBy('month')
+//            ->orderBy('month', 'ASC')
+//            ->getQuery()
+//            ->getArrayResult();
+//        dd($facturesParMois);
+
+
+        // Récupérer les factures par mois et par année
         $facturesParMois = $factureRepository->createQueryBuilder('f')
-            ->select('MONTH(f.date) as month, COUNT(f.id) as count')
-            ->groupBy('month')
-            ->orderBy('month', 'ASC')
+            ->select('YEAR(f.date) as year', 'MONTH(f.date) as month', 'COUNT(f.id) as count')
+            ->groupBy('year', 'month')  // Groupé par année et mois
+            ->orderBy('year', 'ASC')    // Trie d'abord par année, puis par mois
+            ->addOrderBy('month', 'ASC')
             ->getQuery()
             ->getArrayResult();
+
+
+
 
         // Liste des mois
         $moisFr = [

@@ -97,6 +97,18 @@ class FactureRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+
+    public function findFactureSoldee()
+    {
+        $qb = $this->createQueryBuilder('f');
+        $qb->where('f.StatutPaye = :statut')
+            ->setParameter('statut',Statut::PAID);
+        return $qb->getQuery()->getResult();
+    }
+
+
+
+
     public function findByClientAndStatut(array $criteria, string $statut)
     {
         return $this->createQueryBuilder('f')
