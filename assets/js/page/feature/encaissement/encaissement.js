@@ -233,37 +233,6 @@ $(document).ready(function() {
         observer.observe(tableElement, { childList: true, subtree: true });
     }
 
-    // Validation du formulaire à la soumission
-    $('#votreFormulaire').submit(function(event) {
-        event.preventDefault(); // Empêche la soumission par défaut
-
-        const clientId = $('#encaissement_clients').val();
-
-        // Vérification de la valeur de #encaissement_clients
-        console.log('Valeur de #encaissement_clients:', clientId);
-
-        // Vérification de la sélection du client
-        if (!clientId || clientId.trim() === '') {
-            alert("Veuillez sélectionner un client.");
-            return; // Empêcher la soumission si aucun client n'est sélectionné
-        }
-
-        const data = $(this).serialize(); // Sérialiser les données du formulaire
-
-        // Soumettre les données via AJAX
-        $.ajax({
-            url: '/votre-url-de-soumission',
-            type: 'POST',
-            data: data,
-            success: function(response) {
-                console.log('Formulaire soumis avec succès');
-                // Gérer la réponse ici, par exemple en réinitialisant certains champs ou en affichant un message de succès.
-            },
-            error: function(error) {
-                console.error('Erreur lors de la soumission du formulaire:', error);
-            }
-        });
-    });
 });
 
 
