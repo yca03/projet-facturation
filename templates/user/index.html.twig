@@ -48,6 +48,8 @@
                                                 FACTURE / ENCAISSEMENT
                                             {% elseif role == 'ROLE_VALIDED_FACTURE' %}
                                                 VALIDER FACTURE
+                                            {% elseif role == 'ROLE_USER_PRINT' %}
+                                                IMPRESSION DES FACTURES ET FACTURES PRO-FORMA
                                             {% endif %}
                                         {% endfor %}
                                     {% else %}

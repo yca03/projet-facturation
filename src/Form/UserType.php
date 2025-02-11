@@ -35,6 +35,7 @@ class UserType extends AbstractType
             'FACTURE PRO-FORMA / valider , annuler   une facture pro-forma'=>'ROLE_VALIDED_FACTURE_PRO',
             'FACTURE / Créer , supprimer , modifier une facture' => 'ROLE_FACTURE',
             'FACTURE / Valider , Anunler , Encaisser une facture '=>'ROLE_VALIDED_FACTURE',
+            'FACTURE / FACTURE PRO FORMAT / Impression des factures pro forma et factures '=>'ROLE_USER_PRINT',
 
         ];
 
@@ -58,6 +59,13 @@ class UserType extends AbstractType
             ->add('contact')
             ->add('status', CheckboxType::class, [
                 'label' => 'Actif',
+                'label_attr' => [
+                    'class' => 'custom-control-label'
+                ],
+                'attr' => [
+                    'class' => 'custom-control-input',
+                    'id' => 'customSwitch1'
+                ],
                 'required' => false,
             ])
             ->add('nomUtilisateur');
