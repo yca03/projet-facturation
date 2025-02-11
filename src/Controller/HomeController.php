@@ -54,34 +54,33 @@ class HomeController extends AbstractController
 
 
         // Récupérer les factures par mois et par année
+        $anneeActuelle = date('Y'); // Récupère l'année en cours
+
         $facturesParMois = $factureRepository->createQueryBuilder('f')
             ->select('YEAR(f.date) as year', 'MONTH(f.date) as month', 'COUNT(f.id) as count')
-            ->groupBy('year', 'month')  // Groupé par année et mois
-            ->orderBy('year', 'ASC')    // Trie d'abord par année, puis par mois
-            ->addOrderBy('month', 'ASC')
+            ->where('YEAR(f.date) = :currentYear')  // Filtre pour l'année en cours
+            ->setParameter('currentYear', $anneeActuelle)
+            ->groupBy('year', 'month')
+            ->orderBy('month', 'ASC')  // Trie par mois
             ->getQuery()
             ->getArrayResult();
 
+//        dd($facturesParMois);
 
-
-
-        // Liste des mois
+// Liste des mois
         $moisFr = [
             1 => 'Janvier', 2 => 'Février', 3 => 'Mars', 4 => 'Avril',
             5 => 'Mai', 6 => 'Juin', 7 => 'Juillet', 8 => 'Août',
             9 => 'Septembre', 10 => 'Octobre', 11 => 'Novembre', 12 => 'Décembre'
         ];
 
-        // Formatage des données pour JavaScript
+// Formatage des données pour JavaScript (par mois)
         $formattedFacturesParMois = array_fill_keys(array_values($moisFr), 0);
-
 
         foreach ($facturesParMois as $facture) {
             $monthName = $moisFr[$facture['month']];
             $formattedFacturesParMois[$monthName] = $facture['count'];
         }
-
-
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',

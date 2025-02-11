@@ -48,6 +48,8 @@ class FactureRepository extends ServiceEntityRepository
     {
         return (float) $this->createQueryBuilder('f')
             ->select('SUM(f.totalTTC)')
+            ->where('f.statut = :statut')
+            ->setParameter('statut',Statut::VALIDATED)
             ->getQuery()
             ->getSingleScalarResult();
     }

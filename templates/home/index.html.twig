@@ -193,74 +193,63 @@
 {% endblock %}
 
 
-{% block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Données de factures par mois
-            const facturesParMois = {{ facturesParMois|json_encode|raw }};
-            const mois = Object.keys(facturesParMois);
-            const dataFactures = Object.values(facturesParMois);
+        {% block javascripts %}
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Données de factures par mois
+                    const facturesParMois = {{ facturesParMois|json_encode|raw }};
+                    const mois = Object.keys(facturesParMois);
+                    const dataFactures = Object.values(facturesParMois);
 
-            // Premier graphique (Bar Chart)
-            const ctx1 = document.getElementById('myChart').getContext('2d');
-            new Chart(ctx1, {
-                type: 'bar',
-                data: {
-                    labels: mois,
-                    datasets: [{
-                        label: '#  Statistique mensuelles',
-                        data: dataFactures,
-                        borderWidth: 1,
-                        backgroundColor: 'rgba(75,179,244,0.2)',
-                        borderColor: 'rgb(95,165,244)'
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: false
+                    // Premier graphique (Bar Chart)
+                    const ctx1 = document.getElementById('myChart').getContext('2d');
+                    new Chart(ctx1, {
+                        type: 'bar',
+                        data: {
+                            labels: mois,
+                            datasets: [{
+                                label: '# Statistiques mensuelles',
+                                data: dataFactures,
+                                borderWidth: 1,
+                                backgroundColor: 'rgba(75,179,244,0.2)',
+                                borderColor: 'rgb(95,165,244)'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: false
+                                }
+                            }
                         }
-                    }
-                }
-              //  pour augmenter la graduation
-                // options: {
-                //     scales: {
-                //         y: {
-                //             beginAtZero: true,
-                //             max: 100, // Fixe la valeur maximale à 100
-                //             ticks: {
-                //                 stepSize: 10 // Définir le pas des graduations
-                //             }
-                //         }
-                //     }
-                // }
-            });
+                    });
 
-            // Deuxième graphique (Line Chart)
-            const ctx2 = document.getElementById('myChart2').getContext('2d');
-            new Chart(ctx2, {
-                type: 'line',
-                data: {
-                    labels: mois,
-                    datasets: [{
-                        label: 'Statistique  mensuelle',
-                        data: dataFactures,
-                        fill: false,
-                        borderColor: 'rgb(237,157,142)',
-                        tension: 0.1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
+                    // Deuxième graphique (Line Chart)
+                    const ctx2 = document.getElementById('myChart2').getContext('2d');
+                    new Chart(ctx2, {
+                        type: 'line',
+                        data: {
+                            labels: mois,
+                            datasets: [{
+                                label: 'Statistiques mensuelles',
+                                data: dataFactures,
+                                fill: false,
+                                borderColor: 'rgb(237,157,142)',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
                         }
-                    }
-                }
-            });
-        });
-    </script>
+                    });
+                });
+            </script>
+
 
 
 
