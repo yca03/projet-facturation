@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\FactureRepository;
+use App\Statut\Statut;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,8 @@ class RechercheDateController extends AbstractController
             ->leftjoin('f.IdClient', 'c')
             ->leftjoin('f.detailFactures', 'df')
             ->leftjoin('df.produit', 'p')
+//            ->where('f.StatutPaye = :statutPaye')
+//            ->setParameter('statutPaye',Statut::PAID)
             ->addSelect('c', 'df', 'p');
 
         if ($dateDebut) {
@@ -47,7 +50,8 @@ class RechercheDateController extends AbstractController
                     'clientnumeroCompteContribuable' => $facture->getIdClient()->getNumeroCompteContribuable(),
                     'codeFacture' => $facture->getCodeFacture(),
                     'reference'=>$facture->getReference(),
-                    'dateFacture' => $facture->getDate()->format('Y-m-d'),
+                    'dateFacture' => $facture->getDate()->format('d-m-Y'),
+                    'statut'=>$facture->getStatutPaye(),
                     'produit' => $detail->getProduit()->getLibelle(),
                     'quantite' => $detail->getQuantite(),
                     'prix' => $detail->getPrix(),

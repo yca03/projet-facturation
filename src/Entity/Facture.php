@@ -89,6 +89,9 @@ class Facture
     #[ORM\Column(type: Types::DATE_MUTABLE,nullable: true)]
     private ?\DateTimeInterface $periode_2 = null;
 
+    #[ORM\ManyToOne(inversedBy: 'factures')]
+    private ?Journee $journed = null;
+
     /**
      * @var Collection<int, PGP>
      */
@@ -432,6 +435,18 @@ class Facture
     public function setPeriode2(\DateTimeInterface $periode_2): static
     {
         $this->periode_2 = $periode_2;
+
+        return $this;
+    }
+
+    public function getJourned(): ?Journee
+    {
+        return $this->journed;
+    }
+
+    public function setJourned(?Journee $journed): static
+    {
+        $this->journed = $journed;
 
         return $this;
     }

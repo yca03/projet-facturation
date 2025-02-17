@@ -1,0 +1,111 @@
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}New Journee{% endblock %}#}
+
+{#{% block body %}#}
+{#    <h1>Create new Journee</h1>#}
+
+{#    {{ include('journee/_form.html.twig') }}#}
+
+{#    <a href="{{ path('app_journee_index') }}">back to list</a>#}
+{#{% endblock %}#}
+
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}New Periode{% endblock %}#}
+
+{#{% block body %}#}
+
+
+{#    <div class="col-12">#}
+{#        {{ form_start(form) }}#}
+{#        <div class="card card-fluid">#}
+{#            <div class="card-header bg-soft-custom" id="bg">#}
+{#                <h6> <i class="fa-solid fa-list" style="font-size:20px;"></i> Ajouter une nouvelle periode</h6>#}
+{#            </div>#}
+{#            <div class="card-body">#}
+{#                <div class="col">#}
+{#                    <div class="col-12">#}
+{#                        <div class="form-group">#}
+{#                            <label for="date_etablissement">periode *</label>#}
+{#                            {{ form_widget(form.periode, {'attr' : {'class': 'form-control'}}) }}#}
+{#                        </div>#}
+{#                    </div>#}
+
+{#                    <div class="form-group">#}
+{#                        <label for="tf5">Active</label>#}
+{#                        <div class="custom-control custom-switch">#}
+{#                            {{ form_widget(form.enable, {'attr': {'class': 'custom-control-input', 'id': 'customSwitch1'}}) }}#}
+{#                        </div>#}
+{#                    </div>#}
+
+
+{#                </div>#}
+{#            </div>#}
+{#            <div class="card-footer">#}
+{#                <div class="card-footer-content">#}
+{#                    <button type="submit" class="btn btn-primary float-right ml-2">Ouvrir la journée</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        {{ form_end(form) }}#}
+{#    </div>#}
+{#{% endblock %}#}
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}New Periode{% endblock %}
+
+{% block body %}
+    <!-- Modal -->
+    <div class="modal fade" id="periodeModal" tabindex="-1" role="dialog" aria-labelledby="periodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header " style="background: #232754;">
+                    <h5 class="modal-title text-white" id="periodeModalLabel"><i class="fa-solid fa-list" style="font-size:20px;"></i> Ajouter une nouvelle période</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        {{ form_start(form) }}
+                        <div class="form-group">
+                            <label for="periode">Période *</label>
+                            {{ form_widget(form.periode, {'attr' : {'class': 'form-control'}}) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tf5">Active</label>
+                            <div class="custom-control custom-switch">
+                                {{ form_widget(form.enable, {'attr': {'class': 'custom-control-input', 'id': 'customSwitch1'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Ouvrir la période</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        // JavaScript to show the modal as soon as the page loads
+        $(document).ready(function(){
+            $('#periodeModal').modal('show');
+        });
+    </script>
+
+{% endblock %}
+
+

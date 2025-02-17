@@ -401,7 +401,7 @@ class FactureProFormatController extends AbstractController
         }
 
         // Afficher le formulaire pour la création de la facture
-        return $this->render('facture/new.html.twig', [
+        return $this->render('facture/open.html.twig', [
             'form' => $form->createView(),
         ]);
     }

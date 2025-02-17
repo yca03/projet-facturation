@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Journee index{% endblock %}
+
+{% block body %}
+    <h1>Journee index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Periode</th>
+                <th>Enable</th>
+                <th>CreatedAdt</th>
+                <th>EndedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for journee in journees %}
+            <tr>
+                <td>{{ journee.id }}</td>
+                <td>{{ journee.periode ? journee.periode|date('Y-m-d') : '' }}</td>
+                <td>{{ journee.enable ? 'Yes' : 'No' }}</td>
+                <td>{{ journee.createdAdt ? journee.createdAdt|date('Y-m-d') : '' }}</td>
+                <td>{{ journee.endedAt ? journee.endedAt|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_journee_show', {'id': journee.id}) }}">show</a>
+                    <a href="{{ path('app_journee_edit', {'id': journee.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_journee_new') }}">Create new</a>
+{% endblock %}

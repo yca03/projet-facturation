@@ -14,7 +14,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .header, .client-info, .facture-info, .table-container, .payment-info, .footer {
-            margin: 15px;
+            margin: 20px;
         }
         .payment-info
         {
@@ -24,6 +24,9 @@
         {
             text-align: center;
             padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
         }
         .header, .client-info {
             display: flex;
@@ -38,7 +41,7 @@
         }
         .table-container table, .table-container th, .table-container td {
             border: 1px solid #000;
-            font-size: 12px !important;
+            font-size: 14px !important;
         }
         .table-container th, .table-container td {
             padding: 8px;
@@ -70,7 +73,7 @@
     <div class="container">
         <!-- Header Section -->
 
-{#        <h5 class="text-center"> FACTURE : {{ facture.codeFacture }}</h5> <br><br>#}<br><br><br><br>
+{#        <h5 class="text-center"> FACTURE : {{ facture.codeFacture }}</h5> <br><br>#}<br><br><br><br><br><br><br><br><br><br>
         <div class="header">
             <div>
                 <strong>OFFSET CONSULTING</strong><br>
@@ -100,8 +103,21 @@
 
         <!-- Facture Information Section -->
         <div class="facture-info">
-            <strong>Objet :</strong>  {{ facture.description }}
+            <div class="facture-objet">
+                <strong>Objet :</strong>  {{ facture.description }}
+            </div>
+
+            <div class="facture-periode">
+                {% if facture.periode == facture.periode_2 %}
+                    {{ facture.periode|date|format_datetime(locale='fr', pattern="MMMM YYYY") }}
+                {% else %}
+                    {{ facture.periode|date|format_datetime(locale='fr', pattern="MMMM ") }} -
+                    {{ facture.periode_2|date|format_datetime(locale='fr', pattern="MMMM YYYY") }}
+                {% endif %}
+            </div>
         </div>
+
+
 
         <!-- Table Section -->
         <!-- Table Section -->
@@ -122,13 +138,13 @@
                     <tr>
                         <td>{{ detail.quantite }}</td>
                         <td class="text-left">
-                            {% if facture.periode == facture.periode_2 %}
-                                {{ facture.periode|date|format_datetime(locale='fr', pattern="MMMM YYYY") }}
-                            {% else %}
-                                {{ facture.periode|date|format_datetime(locale='fr', pattern="MMMM YYYY") }} -
-                                {{ facture.periode_2|date|format_datetime(locale='fr', pattern="MMMM YYYY") }}
-                            {% endif %}
-                            <br>
+{#                            {% if facture.periode == facture.periode_2 %}#}
+{#                                {{ facture.periode|date|format_datetime(locale='fr', pattern="MMMM YYYY") }}#}
+{#                            {% else %}#}
+{#                                {{ facture.periode|date|format_datetime(locale='fr', pattern="MMMM YYYY") }} -#}
+{#                                {{ facture.periode_2|date|format_datetime(locale='fr', pattern="MMMM YYYY") }}#}
+{#                            {% endif %}#}
+{#                            <br>#}
                             {{ detail.produit }}
                         </td>
                         <td  class="text-right">{{ detail.prix | number_format(0, '.', ' ') }}</td>
@@ -163,7 +179,9 @@
         <!-- Payment Information Section -->
         <div class="payment-info">
             Arrêté la présente facture à la somme de :<br>
-            <strong>{{ (facture.totalHT - (facture.remise * facture.totalHT / 100)) | format_spellout_number(locale='fr') }} Fcfa</strong>
+{#            <strong>{{ (facture.totalHT - (facture.remise * facture.totalHT / 100)) | format_spellout_number(locale='fr') }} Fcfa</strong>#}
+           <strong> {{ (facture.totalHT - (facture.remise * facture.totalHT / 100)) | format_spellout_number(locale='fr') | capitalize }} Fcfa</strong>
+
         </div>
 
         <!-- Footer Section -->

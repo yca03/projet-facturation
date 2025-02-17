@@ -53,7 +53,7 @@
 
                         <tr>
                             {#                            <th class="text-center">ID</th>#}
-                            <th class="text-center">ID</th>
+{#                            <th class="text-center">ID</th>#}
                             <th class="text-center">Date </th>
                             <th class="text-center">Type de Société</th>
                             <th class="text-center">Reference</th>
@@ -66,6 +66,7 @@
                             <th class="text-center">montant TVA</th>
                             <th class="text-center">Montant TTC</th>
                             <th class="text-center">Contact</th>
+                            <th class="text-center">Statut</th>
                             <th>actions</th>
                         </tr>
                         </thead>
@@ -76,7 +77,7 @@
                             {% set displayed_ids = displayed_ids|merge([facture.idFacture]) %}
                             <tr>
 
-                                <th class="text-center">{{ facture.idFacture }}</th>
+{#                                <th class="text-center">{{ facture.idFacture }}</th>#}
                                 <td class="text-center">{{ facture.dateFacture|date("d/m/Y")}}</td>
                                 <td class="text-left">{{ facture.clientTypeSociete }}</td>
                                 <td class="text-left">{{ facture.reference }}</td>
@@ -89,6 +90,10 @@
                                 <td class="text-right">{{ facture.totalTVA | number_format(0, '.', ' ') }}</td>
                                 <td class="text-right">{{ facture.totalTTC | number_format(0, '.', ' ')  }}</td>
                                 <td class="text-center">{{ facture.clientcontact }}</td>
+
+                                <td class="text-center">
+                                    <span class="badge badge-success">{{ facture.statut }}</span>
+                                </td>
                                 <td class="text-center"><a href="{{ path('app_impression', {'id': facture.idFacture}) }}" style="color:black;"><i class="fa-solid fa-file-pen"></i></a></td>
 
                             </tr>

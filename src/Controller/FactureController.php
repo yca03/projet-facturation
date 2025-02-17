@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Clients;
 use App\Entity\DetailFacture;
 use App\Entity\Facture;
+use App\Entity\Journee;
 use App\Entity\TypeProduit;
+use App\Repository\JourneeRepository;
 use App\Statut\Statut;
 use App\Form\Facture\FactureType;
 use App\Repository\ClientsRepository;
@@ -89,22 +91,24 @@ class FactureController extends AbstractController
 
 
     #[Route('/new', name: 'app_facture_new', methods: ['GET', 'POST'])]
-    public function new( FactureRepository $factureRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function new( FactureRepository $factureRepository, Request $request, EntityManagerInterface $entityManager,JourneeRepository $journeeRepository): Response
     {
         $facture = new Facture();
         $form = $this->createForm(FactureType::class, $facture);
         $form->handleRequest($request);
+        $journee =$journeeRepository->activeJournee();
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($facture);
 
             // pour set la valeur en attente dans le champs status
             $facture->setStatut(Statut::BROUILLON);
 
+
             foreach ($facture->getDetailFactures() as $detailFacture) {
                 $detailFacture->setFacture($facture);
                 $entityManager->persist($detailFacture);
             }
-
+            $facture->setJourned($journee);
             $entityManager->flush();
 
             flash()
@@ -207,14 +211,31 @@ class FactureController extends AbstractController
     public function allFactureInfo(FactureRepository $factureRepository): Response
     {
         // Obtenir toutes les factures avec les détails et les clients associés
+//        $factures = $factureRepository->createQueryBuilder('f')
+//            ->leftJoin('f.IdClient', 'c')
+//            ->leftJoin('f.modePayement', 'fm')
+//            ->leftJoin('f.detailFactures', 'df')
+//            ->leftJoin('df.produit', 'p')
+////            ->leftJoin('f.journed','fj')
+//            ->addSelect('c', 'df', 'p')
+//            ->getQuery()
+//            ->getResult();
+
+        $currentYear = date('Y');
+
+        // Obtenir toutes les factures avec les détails et les clients associés de l'année en cours
         $factures = $factureRepository->createQueryBuilder('f')
             ->leftJoin('f.IdClient', 'c')
             ->leftJoin('f.modePayement', 'fm')
             ->leftJoin('f.detailFactures', 'df')
             ->leftJoin('df.produit', 'p')
+            // Filtrer par année de la facture
+            ->where('YEAR(f.date) = :currentYear')
+            ->setParameter('currentYear', $currentYear)
             ->addSelect('c', 'df', 'p')
             ->getQuery()
             ->getResult();
+
 
         // Préparer les données pour la vue
         $data = [];
@@ -225,7 +246,7 @@ class FactureController extends AbstractController
                     'clientNom' => $facture->getIdClient()->getNom(),
                     'clientadresse' => $facture->getIdClient()->getAdresse(),
                     'clientTypeSociete' => $facture->getIdClient()->getTypeSociete(),
-                    'dateExpirationFacture'=>$facture->getDateExpiration()->format('Y-m-d'),
+                    'dateExpirationFacture'=>$facture->getDateExpiration()->format('d-m-Y'),
                     'clientcontact' => $facture->getIdClient()->getContact(),
                     'numeroClients' => $facture->getIdClient()->getNumeroClients(),
                     'clientnumeroCompteContribuable' => $facture->getIdClient()->getNumeroCompteContribuable(),
@@ -233,7 +254,7 @@ class FactureController extends AbstractController
                     'modePayement'=>$facture->getModePayement(),
                     'codeFacture' => $facture->getCodeFacture(),
                     'reference'=>$facture->getReference(),
-                    'dateFacture' => $facture->getDate()->format('Y-m-d'),
+                    'dateFacture' => $facture->getDate()->format('d-m-Y'),
                     'produit' => $detail->getProduit()->getLibelle(),
                     'quantite' => $detail->getQuantite(),
                     'prix' => $detail->getPrix(),
@@ -366,7 +387,7 @@ class FactureController extends AbstractController
             'codeFacture' => $facture->getCodeFacture(),
             'reference' => $facture->getReference(),
             'modePayement'=>$facture->getModePayement(),
-            'dateFacture' => $facture->getDate()->format('y-m-d'),
+            'dateFacture' => $facture->getDate()->format('d-m-Y'),
             'statut'=>$facture->getStatut(),
             'detailFactures' => [],
             'totalTTC' => $totalTTC,
