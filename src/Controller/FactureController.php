@@ -210,31 +210,31 @@ class FactureController extends AbstractController
     #[Route('/facture/all_info', name: 'app_facture_info', methods: ['GET'])]
     public function allFactureInfo(FactureRepository $factureRepository): Response
     {
-        // Obtenir toutes les factures avec les détails et les clients associés
-//        $factures = $factureRepository->createQueryBuilder('f')
-//            ->leftJoin('f.IdClient', 'c')
-//            ->leftJoin('f.modePayement', 'fm')
-//            ->leftJoin('f.detailFactures', 'df')
-//            ->leftJoin('df.produit', 'p')
-////            ->leftJoin('f.journed','fj')
-//            ->addSelect('c', 'df', 'p')
-//            ->getQuery()
-//            ->getResult();
-
-        $currentYear = date('Y');
-
-        // Obtenir toutes les factures avec les détails et les clients associés de l'année en cours
+      //   Obtenir toutes les factures avec les détails et les clients associés
         $factures = $factureRepository->createQueryBuilder('f')
             ->leftJoin('f.IdClient', 'c')
             ->leftJoin('f.modePayement', 'fm')
             ->leftJoin('f.detailFactures', 'df')
             ->leftJoin('df.produit', 'p')
-            // Filtrer par année de la facture
-            ->where('YEAR(f.date) = :currentYear')
-            ->setParameter('currentYear', $currentYear)
+//            ->leftJoin('f.journed','fj')
             ->addSelect('c', 'df', 'p')
             ->getQuery()
             ->getResult();
+
+//        $currentYear = date('Y');
+//
+//        // Obtenir toutes les factures avec les détails et les clients associés de l'année en cours
+//        $factures = $factureRepository->createQueryBuilder('f')
+//            ->leftJoin('f.IdClient', 'c')
+//            ->leftJoin('f.modePayement', 'fm')
+//            ->leftJoin('f.detailFactures', 'df')
+//            ->leftJoin('df.produit', 'p')
+//            // Filtrer par année de la facture
+////            ->where('YEAR(f.date) = :currentYear')
+////            ->setParameter('currentYear', $currentYear)
+//            ->addSelect('c', 'df', 'p')
+//            ->getQuery()
+//            ->getResult();
 
 
         // Préparer les données pour la vue
