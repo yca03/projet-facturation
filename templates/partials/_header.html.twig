@@ -83,13 +83,22 @@
                         <span class="oi oi-clock p-2"></span>
                         <strong class="pt-1">Date du jour : {{ "now"|date('d-m-Y') }}</strong>
                     </button>
+                    {% set journee = journee_number.allInfo() %}
+                    {% if journee %}
+                    <button class="btn-account d-flex align-items-center" type="button">
+                        <a href="{{ path('app_journee_new') }}" >
+                        <span class="oi oi-calendar p-2 text-white"></span>
+                        <strong class="pt-1 text-white">  Période : {{ journee.periode|date('Y') }}  -
+                            {% if journee.enable == true %}
+                                Ouverte
+                            {% else %}
+                               Fermer
+                            {% endif %}
 
-{#                    <button class="btn-account d-flex align-items-center" type="button">#}
-{#                        <a href="{{ path('app_journee_new') }}" >#}
-{#                        <span class="oi oi-calendar p-2 text-white"></span>#}
-{#                        <strong class="pt-1 text-white">Période : {{ "now"|date('Y') }} - Ouverte</strong>#}
-{#                        </a>#}
-{#                    </button>#}
+                        </strong>
+                        </a>
+                    </button>
+                    {% endif %}
                 </div>
                 <!-- /.top-bar-item -->
 

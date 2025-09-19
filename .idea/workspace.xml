@@ -4,25 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="modif-of-friday-6">
+    <list default="true" id="e70e150c-3361-479b-8e26-705597a118ae" name="Changes" comment="modif-of-monday-17-02-2025">
+      <change afterPath="$PROJECT_DIR$/src/Service/journeeService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0225327e-51af-48c5-a0be-422d70c31b68.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0225327e-51af-48c5-a0be-422d70c31b68.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/FactureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Banque/BanqueClient/BanqueClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Banque/BanqueClient/BanqueClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Produit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TypeProduit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TypeProduit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Banque/BanqueClient/BanqueClientType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Banque/BanqueClient/BanqueClientType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ClientsType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ClientsType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ProduitType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProduitType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Banque/banque_client/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Banque/banque_client/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/clients/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/clients/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/produit/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/JourneeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/JourneeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/_collection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/_collection.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/journee/open.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/journee/open.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/_header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_header.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -597,95 +591,37 @@
       <workItem from="1738312983325" duration="19704000" />
       <workItem from="1738570372425" duration="20874000" />
       <workItem from="1738656305472" duration="16751000" />
-      <workItem from="1738826991218" duration="23142000" />
-    </task>
-    <task id="LOCAL-00063" summary="offre_commerciale-print2">
-      <option name="closed" value="true" />
-      <created>1732028092236</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1732028092236</updated>
-    </task>
-    <task id="LOCAL-00064" summary="offre_commerciale-print">
-      <option name="closed" value="true" />
-      <created>1732028318267</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1732028318267</updated>
-    </task>
-    <task id="LOCAL-00065" summary="offre_commerciale-print">
-      <option name="closed" value="true" />
-      <created>1732029363077</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1732029363077</updated>
-    </task>
-    <task id="LOCAL-00066" summary="offre_commerciale-print">
-      <option name="closed" value="true" />
-      <created>1732029591735</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1732029591735</updated>
-    </task>
-    <task id="LOCAL-00067" summary="offre_commerciale-print2">
-      <option name="closed" value="true" />
-      <created>1732783712457</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1732783712457</updated>
-    </task>
-    <task id="LOCAL-00068" summary="offre_commerciale-print2">
-      <option name="closed" value="true" />
-      <created>1732783723466</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1732783723466</updated>
-    </task>
-    <task id="LOCAL-00069" summary="offre_commerciale-print">
-      <option name="closed" value="true" />
-      <created>1732805153716</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1732805153716</updated>
-    </task>
-    <task id="LOCAL-00070" summary="offre_commerciale-print">
-      <option name="closed" value="true" />
-      <created>1732805191156</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1732805191156</updated>
-    </task>
-    <task id="LOCAL-00071" summary="offre_commerciale-print">
-      <option name="closed" value="true" />
-      <created>1732805220318</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1732805220318</updated>
-    </task>
-    <task id="LOCAL-00072" summary="offre_commerciale-print">
-      <option name="closed" value="true" />
-      <created>1732876677161</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1732876677162</updated>
-    </task>
-    <task id="LOCAL-00073" summary="offre_commerciale-print1">
-      <option name="closed" value="true" />
-      <created>1732877379202</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1732877379203</updated>
+      <workItem from="1738826991218" duration="25194000" />
+      <workItem from="1738912241708" duration="8810000" />
+      <workItem from="1739172898110" duration="21179000" />
+      <workItem from="1739259656161" duration="17473000" />
+      <workItem from="1739348799233" duration="22540000" />
+      <workItem from="1739430503553" duration="13242000" />
+      <workItem from="1739518943422" duration="1192000" />
+      <workItem from="1739783351179" duration="10821000" />
+      <workItem from="1739866734800" duration="8258000" />
+      <workItem from="1739950662651" duration="4326000" />
+      <workItem from="1742824997162" duration="2068000" />
+      <workItem from="1742834680295" duration="1010000" />
+      <workItem from="1742916299452" duration="1843000" />
+      <workItem from="1742974943594" duration="584000" />
+      <workItem from="1743150908929" duration="592000" />
+      <workItem from="1743498665914" duration="197000" />
+      <workItem from="1744369692616" duration="1167000" />
+      <workItem from="1744883705205" duration="1756000" />
+      <workItem from="1754997855304" duration="17000" />
+      <workItem from="1754998044960" duration="55000" />
+      <workItem from="1756301055445" duration="13000" />
+      <workItem from="1756303268760" duration="1329000" />
+      <workItem from="1756720813335" duration="621000" />
+      <workItem from="1756725473826" duration="759000" />
+      <workItem from="1758217363215" duration="252000" />
+      <workItem from="1758218101487" duration="249000" />
+      <workItem from="1758275206652" duration="608000" />
+      <workItem from="1758279363292" duration="223000" />
+      <workItem from="1758280050411" duration="36000" />
+      <workItem from="1758280273540" duration="1393000" />
+      <workItem from="1758283109403" duration="772000" />
     </task>
     <task id="LOCAL-00074" summary="offre_commerciale-print">
       <option name="closed" value="true" />
@@ -991,7 +927,95 @@
       <option name="project" value="LOCAL" />
       <updated>1738830343860</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="modif-of-friday-7">
+      <option name="closed" value="true" />
+      <created>1738860527361</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1738860527361</updated>
+    </task>
+    <task id="LOCAL-00113" summary="modif-of-friday-8">
+      <option name="closed" value="true" />
+      <created>1738861370776</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1738861370776</updated>
+    </task>
+    <task id="LOCAL-00114" summary="modif-of-friday-9">
+      <option name="closed" value="true" />
+      <created>1738913504862</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1738913504862</updated>
+    </task>
+    <task id="LOCAL-00115" summary="modif-of-friday-10">
+      <option name="closed" value="true" />
+      <created>1739195824365</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1739195824366</updated>
+    </task>
+    <task id="LOCAL-00116" summary="modif-of-friday-10">
+      <option name="closed" value="true" />
+      <created>1739198143366</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1739198143366</updated>
+    </task>
+    <task id="LOCAL-00117" summary="modif-of-friday-11">
+      <option name="closed" value="true" />
+      <created>1739204696150</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1739204696150</updated>
+    </task>
+    <task id="LOCAL-00118" summary="modif-of-friday-12">
+      <option name="closed" value="true" />
+      <created>1739264089349</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1739264089350</updated>
+    </task>
+    <task id="LOCAL-00119" summary="modif-of-friday-13">
+      <option name="closed" value="true" />
+      <created>1739281855965</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1739281855965</updated>
+    </task>
+    <task id="LOCAL-00120" summary="modif-of-friday-14">
+      <option name="closed" value="true" />
+      <created>1739288906839</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1739288906839</updated>
+    </task>
+    <task id="LOCAL-00121" summary="modif-of-monday-1">
+      <option name="closed" value="true" />
+      <created>1739807890558</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1739807890558</updated>
+    </task>
+    <task id="LOCAL-00122" summary="modif-of-monday-17-02-2025">
+      <option name="closed" value="true" />
+      <created>1739808329650</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1739808329650</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1014,16 +1038,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="offre_commerciale-print1" />
-    <MESSAGE value="offre_commerciale-print" />
-    <MESSAGE value="modif2" />
-    <MESSAGE value="modif" />
-    <MESSAGE value="enregistrement-facture-real" />
-    <MESSAGE value="enregistrement-facture-modifiee" />
-    <MESSAGE value="enregistrement-facture" />
-    <MESSAGE value="modification-facture" />
-    <MESSAGE value="champs-periode-non-obligatoire1" />
-    <MESSAGE value="champs-periode-non-obligatoire" />
     <MESSAGE value="suppression-du-titre-de-la-facture" />
     <MESSAGE value="last-modif-end" />
     <MESSAGE value="last-modif-end-1" />
@@ -1039,6 +1053,16 @@
     <MESSAGE value="modif-of-friday-4" />
     <MESSAGE value="modif-of-friday-5" />
     <MESSAGE value="modif-of-friday-6" />
-    <option name="LAST_COMMIT_MESSAGE" value="modif-of-friday-6" />
+    <MESSAGE value="modif-of-friday-7" />
+    <MESSAGE value="modif-of-friday-8" />
+    <MESSAGE value="modif-of-friday-9" />
+    <MESSAGE value="modif-of-friday-10" />
+    <MESSAGE value="modif-of-friday-11" />
+    <MESSAGE value="modif-of-friday-12" />
+    <MESSAGE value="modif-of-friday-13" />
+    <MESSAGE value="modif-of-friday-14" />
+    <MESSAGE value="modif-of-monday-1" />
+    <MESSAGE value="modif-of-monday-17-02-2025" />
+    <option name="LAST_COMMIT_MESSAGE" value="modif-of-monday-17-02-2025" />
   </component>
 </project>

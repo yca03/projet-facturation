@@ -273,6 +273,69 @@ class FactureController extends AbstractController
         ]);
 
     }
+//
+//    #[Route('/facture/all_info', name: 'app_facture_info', methods: ['GET'])]
+//    public function allFactureInfo(FactureRepository $factureRepository, JourneeRepository $journeeRepository): Response
+//    {
+//        // Étape 1: Récupérer la journée active (enable = true)
+//        $journedActive = $journeeRepository->findOneBy(['enable' => true]);
+//
+//        if (!$journedActive) {
+//            // Si aucune journée active n'est trouvée, retourner un message ou une erreur.
+//            return new Response('Aucune période active trouvée.', Response::HTTP_NOT_FOUND);
+//        }
+//
+//        // Étape 2: Obtenir toutes les factures liées à la période active
+//        $factures = $factureRepository->createQueryBuilder('f')
+//            ->leftJoin('f.IdClient', 'c')
+//            ->leftJoin('f.modePayement', 'fm')
+//            ->leftJoin('f.detailFactures', 'df')
+//            ->leftJoin('df.produit', 'p')
+//            ->leftJoin('f.journed', 'fj') // Assurez-vous que la jointure avec la table journed est effectuée
+//            ->where('fj.id = :journedActiveId') // Filtrer par l'ID de la période active
+//            ->setParameter('journedActiveId', $journedActive->getId())
+//            ->addSelect('c', 'df', 'p')
+//            ->getQuery()
+//            ->getResult();
+//
+//        // Étape 3: Préparer les données pour la vue
+//        $data = [];
+//        foreach ($factures as $facture) {
+//            foreach ($facture->getDetailFactures() as $detail) {
+//                $data[] = [
+//                    'idFacture' => $facture->getId(),
+//                    'clientNom' => $facture->getIdClient()->getNom(),
+//                    'clientadresse' => $facture->getIdClient()->getAdresse(),
+//                    'clientTypeSociete' => $facture->getIdClient()->getTypeSociete(),
+//                    'dateExpirationFacture' => $facture->getDateExpiration()->format('d-m-Y'),
+//                    'clientcontact' => $facture->getIdClient()->getContact(),
+//                    'numeroClients' => $facture->getIdClient()->getNumeroClients(),
+//                    'clientnumeroCompteContribuable' => $facture->getIdClient()->getNumeroCompteContribuable(),
+//                    'statut' => $facture->getStatut(),
+//                    'modePayement' => $facture->getModePayement(),
+//                    'codeFacture' => $facture->getCodeFacture(),
+//                    'reference' => $facture->getReference(),
+//                    'dateFacture' => $facture->getDate()->format('d-m-Y'),
+//                    'produit' => $detail->getProduit()->getLibelle(),
+//                    'quantite' => $detail->getQuantite(),
+//                    'prix' => $detail->getPrix(),
+//                    'tva' => $detail->getProduit(),
+//                    'totalTTC' => $facture->getTotalTTC(),
+//                    'totalHT' => $facture->getTotalHT(),
+//                    'totalTVA' => $facture->getTotalTVA(),
+//                    'statutPaye' => $facture->getStatutPaye(),
+//                    'remise' => $detail->getRemise(),
+//                ];
+//            }
+//        }
+//
+//        dd($data);
+//
+//        // Étape 4: Retourner la vue avec les données
+//        return $this->render('facture/info.html.twig', [
+//            'factures' => $data,
+//        ]);
+//    }
 
     //Spciale PGP
 

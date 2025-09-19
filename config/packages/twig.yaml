@@ -3,6 +3,7 @@ twig:
     globals:
         societe_info: '@App\Service\societeService'
         notify_number: '@App\Service\notifyService'
+        journee_number: '@App\Service\journeeService'
 
 when@test:
     twig:

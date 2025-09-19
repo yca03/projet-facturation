@@ -41,7 +41,27 @@ final class JourneeController extends AbstractController
             'form' => $form,
         ]);
     }
+//fermèture de la journee
 
+    #[Route('/new', name: 'app_journee_close', methods: ['GET', 'POST'])]
+    public function close(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $journee = new Journee();
+        $form = $this->createForm(JourneeType::class, $journee);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($journee);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('journee/close.html.twig', [
+            'journee' => $journee,
+            'form' => $form,
+        ]);
+    }
     #[Route('/{id}', name: 'app_journee_show', methods: ['GET'])]
 
     public function show(Journee $journee): Response
